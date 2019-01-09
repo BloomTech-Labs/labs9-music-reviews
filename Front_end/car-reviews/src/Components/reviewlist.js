@@ -31,7 +31,7 @@ const ReviewList = props => {
       </div>
       {/* ) : ( */}
       <div>
-        <Modal header="Year Make Model Trim" trigger={<Button>MODAL</Button>}>
+        <Modal header="Year Make Model Trim" trigger={<Button>MODAL</Button>} width="250 px">
           <p>Review by: @name</p>
           <img
             src="https://mygoto.io/assets/web/images/placeholder-img.jpg"
