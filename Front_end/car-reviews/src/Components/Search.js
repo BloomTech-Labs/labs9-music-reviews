@@ -1,3 +1,24 @@
+<<<<<<< HEAD
+import React, { Component } from 'react'
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
+import dummyData from '../DummyData/dummyData.js'
+
+class Search extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      carReviews: [],
+    }
+  }
+  componentDidMount() {
+    this.setState({
+      carReviews: dummyData,
+    })
+  }
+}
+
+export default Search
+=======
 import React, {Component} from 'react';
 import { Row, Col, Button, Input, Section} from 'react-materialize';
 
@@ -67,3 +88,4 @@ class Search extends Component {
 }
  
 export default Search;
+>>>>>>> 2cfb10f14959df55f5c0a2f2d34fc2749f90c356
