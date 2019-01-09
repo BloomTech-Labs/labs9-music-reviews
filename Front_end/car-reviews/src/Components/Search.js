@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Row, Col, Button, Input} from 'react-materialize';
+import { Row, Col, Button, Input, Section} from 'react-materialize';
 
 class Search extends Component {
     constructor(props) {
@@ -14,8 +14,9 @@ class Search extends Component {
     }
 
     render() { 
-        return (                    
-                   <Row className = 'center'>
+        return (   
+                <Section className = 'center'>                 
+                   <Row>
                    <Input s = {3} label = 'Reviewer' type = 'select'>
                         <option value='' disabled selected>Choose reviewer (optional)</option>
                         <option value='1'>Adam Lee</option>
@@ -52,12 +53,15 @@ class Search extends Component {
                         <option value='2'>Option 2</option>
                         <option value='3'>Option 3</option>
                    </Input>
+                   </Row>
+                   <Row>
 
                        <Col s={12} >
                             <Button>Review</Button>
                             <Button>Search</Button>
                        </Col>
                    </Row> 
+                   </Section>
          );
     }
 }
