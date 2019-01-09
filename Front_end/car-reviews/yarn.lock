@@ -1960,9 +1960,10 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@^2.2.3, classnames@^2.2.5:
+classnames@^2.2.5:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
+  integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
 
 clean-css@4.2.x:
   version "4.2.1"
@@ -6837,7 +6838,11 @@ prompts@^0.1.9:
     kleur "^2.0.1"
     sisteransi "^0.1.1"
 
+<<<<<<< HEAD
 prop-types@^15.5.4, prop-types@^15.5.8, prop-types@^15.6.1, prop-types@^15.6.2:
+=======
+prop-types@^15.6.0, prop-types@^15.6.2:
+>>>>>>> d9dc3930bdf26e416912c96e219ffbbb9b0345f0
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   dependencies:
@@ -7016,7 +7021,7 @@ react-dev-utils@^7.0.1:
     strip-ansi "4.0.0"
     text-table "0.2.0"
 
-react-dom@^16.2.0, react-dom@^16.7.0:
+react-dom@^16.7.0:
   version "16.7.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.7.0.tgz#a17b2a7ca89ee7390bc1ed5eb81783c7461748b8"
   dependencies:
@@ -7074,6 +7079,15 @@ react-router@^4.3.1:
     path-to-regexp "^1.7.0"
     prop-types "^15.6.1"
     warning "^4.0.1"
+
+react-ratings-declarative@^3.4.1:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/react-ratings-declarative/-/react-ratings-declarative-3.4.1.tgz#9025393bd08fcae44b4052c575468c8d1ff994e4"
+  integrity sha512-zL3d5PNcDcF/+KNcZlP2KVE5UIp53yLk7EJkbM9bXpvrqUp/S91lp7SkFsWPqv+q8dUg3BOdfEX1RWNQs1ocVw==
+  dependencies:
+    classnames "^2.2.5"
+    prop-types "^15.6.0"
+    react "^16.2.0"
 
 react-scripts@2.1.3:
   version "2.1.3"
