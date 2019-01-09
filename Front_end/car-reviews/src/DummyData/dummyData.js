@@ -10,7 +10,7 @@ const dummyData = [
     reviewer: 'Adam Lee',
     year: 2019,
     make: 'Honda',
-    model: 'Odessey',
+    model: 'Odyssey',
     trim: 'turbo',
   },
   {
