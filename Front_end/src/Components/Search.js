@@ -88,4 +88,3 @@ class Search extends Component {
 }
  
 export default Search;
->>>>>>> 2cfb10f14959df55f5c0a2f2d34fc2749f90c356
