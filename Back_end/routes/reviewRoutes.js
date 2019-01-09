@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.use(express.json());
 
-// need to add middleware to verify user and tie that user to written review.
+// need to add middleware to verify user and tie that user to the written review.
 
 // get all reviews
 router.get('/', async (req, res) => {
@@ -51,7 +51,6 @@ router.post('/', async (req, res) => {
     else {
         try {
             const newReview = await dbReviews.write(review);
-            console.log(newReview)
             res.status(200).json(newReview);
         }
         catch (err) {
@@ -84,12 +83,12 @@ router.put('/:reviewId', async (req, res) => {
 });
 
 // delete selected review
-router.delete(':/reviewId', async (req, res) => {
+router.delete('/:reviewId', async (req, res) => {
     const { reviewId } = req.params;
     try {
         const removeReview = await dbReviews.remove(reviewId);
         res.status(200).json({
-            message: `Review (Review ID: ${reviewId}) deleted.`
+            message: "Review deleted."
         })
     }
     catch (err){
