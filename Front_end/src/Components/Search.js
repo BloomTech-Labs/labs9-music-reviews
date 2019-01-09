@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
 import dummyData from '../DummyData/dummyData.js'
@@ -18,7 +18,7 @@ class Search extends Component {
 }
 
 export default Search
-=======
+
 import React, {Component} from 'react';
 import { Row, Col, Button, Input, Section} from 'react-materialize';
 
