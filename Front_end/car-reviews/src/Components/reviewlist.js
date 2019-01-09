@@ -7,7 +7,10 @@ import {
   MenuItem,
   Navbar,
   NavItem,
-  Dropdown
+  Dropdown,
+  SideNav,
+  SideNavItem,
+  Icon
 } from "react-materialize";
 
 const ReviewList = props => {
@@ -23,6 +26,25 @@ const ReviewList = props => {
       <Navbar right>
         <NavItem href="/">Sign Out</NavItem>
       </Navbar>
+      <div>
+          <SideNav>
+            <SideNavItem
+              userView
+              user={{
+                background: "img/image.jpg",
+                image: "img/image.jpg",
+                name: "Name Surname",
+                email: "gmailk@gmail.com"
+              }}
+            />
+            <SideNavItem icon="search">Search</SideNavItem>
+            <SideNavItem icon="rate_review">My Reviews</SideNavItem>
+            <SideNavItem icon="attach_money">Billing</SideNavItem>
+            <SideNavItem icon="settings">Settings</SideNavItem>
+            <SideNavItem divider />
+            <SideNavItem icon="cancel">Sign Out</SideNavItem>
+          </SideNav>
+      </div>
       {/* If no reviews on account display prompt for new review otherwise display all reviews on account */}
       {/* {props.reviews.length === 0 ? ( */}
       <div>
@@ -31,7 +53,11 @@ const ReviewList = props => {
       </div>
       {/* ) : ( */}
       <div>
-        <Modal header="Year Make Model Trim" trigger={<Button>MODAL</Button>} width="250 px">
+        <Modal
+          header="Year Make Model Trim"
+          trigger={<Button>MODAL</Button>}
+          width="250 px"
+        >
           <p>Review by: @name</p>
           <img
             src="https://mygoto.io/assets/web/images/placeholder-img.jpg"
@@ -43,11 +69,13 @@ const ReviewList = props => {
             <NavItem>Rented</NavItem>
             <NavItem>Driven</NavItem>
           </Dropdown>
-          <textarea type="textarea"
-              placeholder="Type Review"
+          <textarea
+            type="textarea"
+            placeholder="Type Review"
             //   onChange={props.handleReviewChange}
             //   value={props.reviews.review}
-              name="review"></textarea>
+            name="review"
+          />
         </Modal>
         Reviews are here!
       </div>
