@@ -3,6 +3,8 @@ import ReviewList from './Components/ReviewList'
 import { Route } from 'react-router-dom'
 import LandingPage from './Components/LandingPage'
 import SearchLanding from './Components/SearchLanding'
+import Billing from './Components/Billing'
+
 class App extends Component {
   render() {
     return (
@@ -10,6 +12,7 @@ class App extends Component {
         <Route exact path="/" component={LandingPage} />
         <Route path="/search_landing" component={SearchLanding} />
         <Route path="/reviews" component={ReviewList} />
+        <Route path="/billing" component={Billing} />
       </div>
     )
   }
