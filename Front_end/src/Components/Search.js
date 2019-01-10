@@ -22,7 +22,7 @@ class Search extends Component {
             <option value="1">Adam Lee</option>
             <option value="2">Das MA</option>
             <option value="3">Francis Tse</option>
-            <option value="4">AD Farris</option>
+            <option value="4">A.D.Faris</option>
             <option value="5">Will Kwon</option>
           </Input>
 
