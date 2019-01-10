@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import LogInModal from './LogInModal.js';
+import SignUpModal from './SignUpModal.js';
 
 import {
   Navbar,
@@ -51,8 +52,8 @@ class Navigation extends Component {
 
     const LoggedOut = (
       <Navbar className="blue" right>
-        <LogInModal />
-        <NavItem>Sign In</NavItem>
+        <SignUpModal>Sign Up</SignUpModal>
+        <LogInModal>Sign In</LogInModal>
       </Navbar>
     );
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Modal, NavItem } from 'react-materialize';
-const LogInModal = () => (
+const SignUpModal = () => (
   <Modal
-    className="login"
+    className="signup"
     header="Modal Header"
-    trigger={<NavItem>Log In</NavItem>}
+    trigger={<NavItem>Sign Up</NavItem>}
   />
 );
-export default LogInModal;
+export default SignUpModal;
