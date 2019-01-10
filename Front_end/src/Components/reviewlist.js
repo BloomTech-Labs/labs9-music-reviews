@@ -33,7 +33,8 @@ class ReviewList extends Component {
         make: "",
         model: "",
         trim: "",
-        reviewtext: ""
+        reviewText: "",
+        modifiedTime: ""
       },
       input: "",
       loggedIn: true
