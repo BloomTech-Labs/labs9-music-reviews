@@ -13,12 +13,12 @@ import {
 const ViewReviewModalCard = props => {
   return (
     <div>
-      <Col m={6} s={12} l={3}>
+      <Col>
         {/* Create new review modal */}
         <Modal
           header="Year Make Model Trim"
           fixedFooter
-          width="50%"
+          style={{ width: "35%" }}
           trigger={
             <Card title="Year Make Model Trim">
               <img
