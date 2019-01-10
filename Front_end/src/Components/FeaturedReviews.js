@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Section, Row } from 'react-materialize'
 import axios from 'axios'
-import FcCard from './Featured_review_card'
+import FcCard from './FeaturedReviewCard'
 
 class FeaturedReviews extends Component {
   constructor(props) {
