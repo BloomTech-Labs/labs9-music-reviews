@@ -4,16 +4,8 @@ import NewReviewModalCard from "./NewReviewModalCard";
 import EditReviewModalCard from "./EditReviewModalCard";
 import ViewReviewModalCard from "./ViewReviewModalCard";
 import {
-  Button,
-  Modal,
   Breadcrumb,
   MenuItem,
-  Navbar,
-  NavItem,
-  Dropdown,
-  SideNav,
-  SideNavItem,
-  Col,
   Row
 } from "react-materialize";
 
