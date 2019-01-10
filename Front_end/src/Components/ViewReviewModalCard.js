@@ -10,19 +10,24 @@ import {
   Card,
 } from "react-materialize";
 
-const NewReviewModalCard = props => {
+const EditReviewModalCard = props => {
   return (
     <div>
       <Col m={6} s={12} l={3}>
-        {/* New Review Card */}
+        {/* Create new review modal */}
         <Modal
           header="Year Make Model Trim"
           fixedFooter
           width="50%"
           trigger={
-            <Card title="Add a new review">
-              {/* Create new review modal */}
-              <Button floating large className="red" waves="light" icon="add" />
+            <Card title="Year Make Model Trim">
+              <img
+                src="https://mygoto.io/assets/web/images/placeholder-img.jpg"
+                height="50%"
+                width="50%"
+                align="center"
+              />
+              Updated Time
             </Card>
           }
           actions={
@@ -30,7 +35,6 @@ const NewReviewModalCard = props => {
               <Button modal="close" waves="light" className="red darken-2">
                 Close
               </Button>
-              <Button>Submit</Button>
             </div>
           }
         >
@@ -48,17 +52,16 @@ const NewReviewModalCard = props => {
               <NavItem>Driven</NavItem>
             </Dropdown>
           </div>
-          <textarea
-            type="textarea"
-            placeholder="Type Review"
-            //   onChange={props.handleReviewChange}
-            //   value={props.reviews.review}
-            name="review"
-          />
+          <p>Lorem ipsum check it out hizzle amizzle, adipiscing shiznit. Rizzle sapizzle velit, dizzle volutpizzle, 
+              suscipizzle quizzle, gravida rizzle, izzle. Pellentesque eget tortor. I'm in the shizzle erizzle. Boom 
+              shackalack check it out dolor dapibus yippiyo tempizzle go to hizzle. Maurizzle pellentesque nibh et 
+              turpizzle. Shizznit izzle tortizzle. Pellentesque check it out rhoncus my shizz. In hizzle yippiyo platea 
+              dictumst. Donec dapibizzle. Pimpin' tellizzle gizzle, go to hizzle eu, the bizzle ac, fo , nunc. Bling 
+              bling suscipizzle. Integizzle semper shut the shizzle up shizznit cool.</p>
         </Modal>
       </Col>
     </div>
   );
 };
 
-export default NewReviewModalCard;
+export default EditReviewModalCard;

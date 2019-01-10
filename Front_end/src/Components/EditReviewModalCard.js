@@ -4,17 +4,10 @@ import Stars from "./Stars";
 import {
   Button,
   Modal,
-  Breadcrumb,
-  MenuItem,
-  Navbar,
   NavItem,
   Dropdown,
-  SideNav,
-  SideNavItem,
   Col,
-  Row,
   Card,
-  CardTitle
 } from "react-materialize";
 
 const EditReviewModalCard = props => {
@@ -42,6 +35,7 @@ const EditReviewModalCard = props => {
               <Button modal="close" waves="light" className="red darken-2">
                 Close
               </Button>
+              <Button>Delete</Button>
               <Button>Submit</Button>
             </div>
           }

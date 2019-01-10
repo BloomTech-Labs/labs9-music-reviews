@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import NewReviewModalCard from "./NewReviewModalCard";
 import EditReviewModalCard from "./EditReviewModalCard";
+import ViewReviewModalCard from "./ViewReviewModalCard";
 import {
   Button,
   Modal,
@@ -13,33 +14,61 @@ import {
   SideNav,
   SideNavItem,
   Col,
-  Row,
-  Card,
-  CardTitle
+  Row
 } from "react-materialize";
 
 const BreadcrumbDiv = styled.div`
   text-align: left;
 `;
 
-const ReviewList = props => {
-  return (
-    <div>
-      <BreadcrumbDiv>
-        {/* Breadcrumb*/}
-        <Breadcrumb>
-          <MenuItem>
-            <a href="/">Home</a>
-          </MenuItem>
-          <MenuItem>My Reviews</MenuItem>
-        </Breadcrumb>
-      </BreadcrumbDiv>
+class ReviewList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      reviews: [],
+      review: {
+        id: null,
+        username: "",
+        year: "",
+        make: "",
+        model: "",
+        trim: "",
+        reviewtext: ""
+      },
+      input: "",
+      loggedIn: "false"
+    };
+  }
 
-      {/* If no reviews on account display prompt for new review otherwise display all reviews on account */}
+  handleReviewChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
 
+  render() {
+    const userReviews = this.state.reviews.filter(review => {
+      return (
+        review.review
+          .toLowerCase()
+          .indexOf(this.state.username.toLowerCase()) !== -1
+      );
+    });
+    return (
       <div>
+        <BreadcrumbDiv>
+          {/* Breadcrumb*/}
+          <Breadcrumb>
+            <MenuItem>
+              <a href="/">Home</a>
+            </MenuItem>
+            <MenuItem>My Reviews</MenuItem>
+          </Breadcrumb>
+        </BreadcrumbDiv>
+
+        {/* If no reviews on account display prompt for new review otherwise display all reviews on account */}
+
         <div>
-          {/* <SideNav fixed="false">
+          <div>
+            {/* <SideNav fixed="false">
             <SideNavItem
               userView
               user={{
@@ -56,25 +85,58 @@ const ReviewList = props => {
             <SideNavItem divider />
             <SideNavItem icon="cancel">Sign Out</SideNavItem>
           </SideNav> */}
-        </div>
-        <div>
-          {1 === 0 ? (
-            <div>
-              <NewReviewModalCard />
-            </div>
-          ) : (
-            <div>
-              {/* Review Card Map */}
-              <Row>
-                <EditReviewModalCard />
-                <NewReviewModalCard />
-              </Row>
-            </div>
-          )}
+          </div>
+          <div>
+            {1 === 0 ? (
+              <div>
+                {/* Create a new Review */}
+                <NewReviewModalCard
+                  reviews={this.state.reviews}
+                  handleReviewChange={this.handleReviewChange}
+                  input={this.state.input}
+                  loggedIn={this.state.loggedIn}
+                />
+              </div>
+            ) : (
+              <div>
+                {/* Review Card Map */}
+                {this.state.loggedIn === false ? (
+                  <Row>
+                    {userReviews.map(review => (
+                      <ViewReviewModalCard
+                        reviews={this.state.reviews}
+                        handleReviewChange={this.handleReviewChange}
+                        input={this.state.input}
+                        loggedIn={this.state.loggedIn}
+                      />
+                    ))}
+                  </Row>
+                ) : (
+                  <Row>
+                    {userReviews.map(review => (
+                      <EditReviewModalCard
+                        reviews={this.state.reviews}
+                        handleReviewChange={this.handleReviewChange}
+                        input={this.state.input}
+                        loggedIn={this.state.loggedIn}
+                      />
+                    ))}
+                    {/* Create a new Review */}
+                    <NewReviewModalCard
+                      reviews={this.state.reviews}
+                      handleReviewChange={this.handleReviewChange}
+                      input={this.state.input}
+                      loggedIn={this.state.loggedIn}
+                    />
+                  </Row>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default ReviewList;
