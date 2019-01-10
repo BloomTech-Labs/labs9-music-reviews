@@ -36,7 +36,7 @@ class ReviewList extends Component {
         reviewtext: ""
       },
       input: "",
-      loggedIn: "false"
+      loggedIn: true
     };
   }
 
