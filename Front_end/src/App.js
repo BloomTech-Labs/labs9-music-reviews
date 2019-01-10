@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ReviewList from './Components/reviewlist'
+import ReviewList from './Components/ReviewList'
 import { Route } from 'react-router-dom'
 import LandingPage from './Components/Landing_page'
 import Search_Landing from './Components/Search_Landing'
