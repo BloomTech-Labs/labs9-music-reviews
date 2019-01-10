@@ -10,7 +10,7 @@ import {
   Card,
 } from "react-materialize";
 
-const EditReviewModalCard = props => {
+const ViewReviewModalCard = props => {
   return (
     <div>
       <Col m={6} s={12} l={3}>
@@ -64,4 +64,4 @@ const EditReviewModalCard = props => {
   );
 };
 
-export default EditReviewModalCard;
+export default ViewReviewModalCard;
