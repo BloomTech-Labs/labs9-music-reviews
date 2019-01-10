@@ -1,7 +1,16 @@
 import React, { Component } from 'react'
-// import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
 // import dummyData from '../DummyData/dummyData.js'
-import { Card, CardImg, CardText, CardBody, CardTitle, Label } from 'reactstrap'
+import {
+  Card,
+  CardImg,
+  CardText,
+  CardBody,
+  CardTitle,
+  Label,
+  Form,
+  Input,
+} from 'react-materialize'
 
 const carReviews = [
   {
@@ -27,69 +36,21 @@ const carReviews = [
   },
 ]
 
-class Search extends Component {
+class SearchView extends Component {
   constructor(props) {
     super(props)
     this.state = {
       carReviews,
-      reviewer: '',
-      year: '',
-      make: '',
-      model: '',
-      trim: '',
     }
   }
 
-  onReviewerChange = event => {
-    this.setState({ reviewer: event.target.value })
-  }
-
-  onYearChange = event => {
-    this.setState({ year: event.target.value })
-  }
-
-  onMakeChange = event => {
-    this.setState({ make: event.target.value })
-  }
-
-  onModelChange = event => {
-    this.setState({ model: event.target.value })
-  }
-
-  onTrimChange = event => {
-    this.setState({ trim: event.target.value })
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value })
   }
 
   render() {
     return (
-      <div className="renderCarReview">
-        {/* form  */}
-
-        <form>
-          <label>Reviewer:</label>
-          <input type="text" onChange={this.onReviewerChange} />
-        </form>
-
-        <form>
-          <label>Year:</label>
-          <input type="text" onChange={this.onYearChange} />
-        </form>
-
-        <form>
-          <label>Make:</label>
-          <input type="text" onChange={this.onMakeChange} />
-        </form>
-
-        <form>
-          <label>Model:</label>
-          <input type="text" onChange={this.onModelChange} />
-        </form>
-
-        <form>
-          <Label>Trim</Label>
-        </form>
-
-        {/* Card is for result of search */}
+      <div>
         <Card>
           <CardImg />
           <CardTitle>Result of your search results:</CardTitle>
@@ -120,4 +81,4 @@ class Search extends Component {
   }
 }
 
-export default Search
+export default SearchView
