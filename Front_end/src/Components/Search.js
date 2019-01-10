@@ -1,15 +1,3 @@
-<<<<<<< Updated upstream:Front_end/src/Components/Search.js
-import React, {Component} from 'react';
-import { Row, Col, Button, Input, Section} from 'react-materialize';
-
-class Search extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { 
-            data: []
-         }
-    }
-=======
 import React, { Component } from 'react'
 import { Row, Col, Button, Input, Section } from 'react-materialize'
 
@@ -20,7 +8,6 @@ class Search extends Component {
       data: [],
     }
   }
->>>>>>> Stashed changes:Front_end/car-reviews/src/Components/Search.js
 
   componentDidMount() {}
 
@@ -85,10 +72,5 @@ class Search extends Component {
     )
   }
 }
-<<<<<<< Updated upstream:Front_end/src/Components/Search.js
- 
-export default Search;
-=======
 
 export default Search
->>>>>>> Stashed changes:Front_end/car-reviews/src/Components/Search.js
