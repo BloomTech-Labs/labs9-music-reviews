@@ -1,26 +1,18 @@
-import React, { Component } from "react";
-import "./App.css";
-import ReviewList from "./Components/reviewlist";
-import { Route } from "react-router-dom";
-import Navigation from './Components/Navigation';
-import Search from './Components/Search';
-import FeaturedReviews from './Components/Featured_reviews';
-import PopularCars from './Components/Popular_cars';
-import PopularReviewers from './Components/Popular_reviewers';
-
+import React, { Component } from 'react'
+import ReviewList from './Components/reviewlist'
+import { Route } from 'react-router-dom'
+import LandingPage from './Components/Landing_page'
+import Search_Landing from './Components/Search_Landing'
 class App extends Component {
   render() {
     return (
       <div className="App">
+        <Route exact path="/" component={LandingPage} />
+        <Route path="/search_landing" component={Search_Landing} />
         <Route path="/reviews" component={ReviewList} />
-        <Navigation />
-        <Search />
-        <FeaturedReviews />
-        <PopularCars />
-        <PopularReviewers />
       </div>
     )
   }
 }
 
-export default App;
+export default App
