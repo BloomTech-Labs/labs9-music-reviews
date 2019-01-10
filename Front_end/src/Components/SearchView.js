@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-// import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
 // import dummyData from '../DummyData/dummyData.js'
-import { Card, CardImg, CardText, CardBody, CardTitle, Label } from 'reactstrap'
+import { Card, Col, CardTitle, Row, Section } from 'react-materialize'
+import Stars from './Stars'
 
 const carReviews = [
   {
@@ -27,97 +28,73 @@ const carReviews = [
   },
 ]
 
-class Search extends Component {
+class SearchView extends Component {
   constructor(props) {
     super(props)
     this.state = {
       carReviews,
-      reviewer: '',
-      year: '',
-      make: '',
-      model: '',
-      trim: '',
     }
   }
 
-  onReviewerChange = event => {
-    this.setState({ reviewer: event.target.value })
-  }
-
-  onYearChange = event => {
-    this.setState({ year: event.target.value })
-  }
-
-  onMakeChange = event => {
-    this.setState({ make: event.target.value })
-  }
-
-  onModelChange = event => {
-    this.setState({ model: event.target.value })
-  }
-
-  onTrimChange = event => {
-    this.setState({ trim: event.target.value })
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value })
   }
 
   render() {
     return (
-      <div className="renderCarReview">
-        {/* form  */}
+      <Section className="center">
+        <Row>
+          <Col m={6} s={12} l={3}>
+            <Card
+              className="medium"
+              header={<CardTitle image="img/sample-1.jpg" />}
+            >
+              <div>
+                <Stars />
+              </div>
+              1990 Mazda Rx7 Turbo II
+            </Card>
+          </Col>
 
-        <form>
-          <label>Reviewer:</label>
-          <input type="text" onChange={this.onReviewerChange} />
-        </form>
+          <Col m={6} s={12} l={3}>
+            <Card
+              className="medium"
+              header={<CardTitle image="img/sample-1.jpg" />}
+            >
+              <div>
+                <Stars />
+              </div>
+              1990 Mazda Rx7 Turbo II
+            </Card>
+          </Col>
 
-        <form>
-          <label>Year:</label>
-          <input type="text" onChange={this.onYearChange} />
-        </form>
+          <Col m={3} s={12} l={3}>
+            <Card
+              className="medium"
+              header={<CardTitle image="img/sample-1.jpg" />}
+            >
+              <div>
+                <Stars />
+              </div>
+              1990 Mazda Rx7 Turbo II
+            </Card>
+          </Col>
 
-        <form>
-          <label>Make:</label>
-          <input type="text" onChange={this.onMakeChange} />
-        </form>
-
-        <form>
-          <label>Model:</label>
-          <input type="text" onChange={this.onModelChange} />
-        </form>
-
-        <form>
-          <Label>Trim</Label>
-        </form>
-
-        {/* Card is for result of search */}
-        <Card>
-          <CardImg />
-          <CardTitle>Result of your search results:</CardTitle>
-          <CardBody>
-            {this.state.carReviews.map(review =>
-              <div key={review.reviewer}>
-                <CardText>
-                  {' '}{review.reviewer}{' '}
-                </CardText>
-                <CardText>
-                  {' '}{review.year}{' '}
-                </CardText>
-                <CardText>
-                  {' '}{review.make}{' '}
-                </CardText>
-                <CardText>
-                  {' '}{review.model}{' '}
-                </CardText>
-                <CardText>
-                  {' '}{review.trim}{' '}
-                </CardText>
-              </div>,
-            )}
-          </CardBody>
-        </Card>
-      </div>
+          <Col m={6} s={12} l={3}>
+            <Card
+              className="medium"
+              header={<CardTitle image="img/sample-1.jpg" />}
+            >
+              <div>
+                <Stars />
+              </div>
+              1990 Mazda Rx7 Turbo II
+            </Card>
+          </Col>
+        </Row>
+      </Section>
     )
   }
 }
 
-export default Search
+export default SearchView

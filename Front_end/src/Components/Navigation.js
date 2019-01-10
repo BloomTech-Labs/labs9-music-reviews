@@ -1,3 +1,4 @@
+
 import React, {Component} from 'react';
 import LogInModal from './LogInModal.js';
 import SignUpModal from './SignUpModal.js';
@@ -12,17 +13,21 @@ class Navigation extends Component {
     };
   }
   render () {
+
     const LoggedIn = (
       <Navbar className="blue" right>
         <SideNav
           trigger={
             <Button
+
               style={{background: 'inherit', hover: 'none', border: 'none'}}
+
             >
               <Icon large>menu</Icon>
             </Button>
           }
           options={{closeOnClick: true}}
+
         >
           <SideNavItem
             userView
@@ -41,6 +46,7 @@ class Navigation extends Component {
           <SideNavItem icon="cancel">Sign Out</SideNavItem>
         </SideNav>
       </Navbar>
+
     );
 
     const LoggedOut = (
