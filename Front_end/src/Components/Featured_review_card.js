@@ -3,9 +3,6 @@ import { Col, Card, CardTitle } from 'react-materialize';
 import Ratings from 'react-ratings-declarative';
 
 class FeaturedStars extends Component {
-    constructor(props){
-        super(props)
-    }
     render() { 
         return ( 
             <Ratings
@@ -23,9 +20,6 @@ class FeaturedStars extends Component {
 }
 
 class FcCard extends Component {
-    constructor(props){
-        super(props)
-    }
     render() {
         return (
                     <Col m={6} s={12} l={3}>
