@@ -42,7 +42,6 @@ class FeaturedReviews extends Component {
   }
 
   render() {
-    console.log(this.state.connectedTest, 'CONNECTED')
     return (
       <Section>
         <h1>Featured Reviews</h1>
