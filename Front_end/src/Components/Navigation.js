@@ -1,35 +1,28 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import LogInModal from './LogInModal.js';
 import SignUpModal from './SignUpModal.js';
 
-import {
-  Navbar,
-  NavItem,
-  SideNav,
-  SideNavItem,
-  Icon,
-  Button,
-} from 'react-materialize';
+import { Navbar, SideNav, SideNavItem, Icon, Button } from 'react-materialize';
 
 class Navigation extends Component {
-  constructor (props) {
-    super (props);
+  constructor(props) {
+    super(props);
     this.state = {
       isLoggedIn: false,
     };
   }
-  render () {
+  render() {
     const LoggedIn = (
       <Navbar className="blue" right>
         <SideNav
           trigger={
             <Button
-              style={{background: 'inherit', hover: 'none', border: 'none'}}
+              style={{ background: 'inherit', hover: 'none', border: 'none' }}
             >
               <Icon large>menu</Icon>
             </Button>
           }
-          options={{closeOnClick: true}}
+          options={{ closeOnClick: true }}
         >
           <SideNavItem
             userView
@@ -51,13 +44,13 @@ class Navigation extends Component {
     );
 
     const LoggedOut = (
-      <Navbar className="blue" right>
-        <SignUpModal>Sign Up</SignUpModal>
-        <LogInModal>Sign In</LogInModal>
+      <Navbar className="blue">
+        <SignUpModal className="signup">Sign Up</SignUpModal>
+        <LogInModal className="login">Sign In</LogInModal>
       </Navbar>
     );
 
-    const {isLoggedIn} = this.state;
+    const { isLoggedIn } = this.state;
 
     return isLoggedIn ? LoggedIn : LoggedOut;
   }
