@@ -5,7 +5,7 @@ const db = knex(knexConfig.development);
 module.exports = {
   signUp,
   signIn,
-  changeUserSettings,
+  changePassword,
   getAllUsers,
 };
 

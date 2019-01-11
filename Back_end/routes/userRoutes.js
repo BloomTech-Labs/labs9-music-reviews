@@ -58,7 +58,7 @@ router.post('/change_password', async (req, res) => {
         username: user.username,
         password: user.newPassword,
       };
-      const changedUser = await dbUsers.changeUserSettings({
+      const changedUser = await dbUsers.changePassword({
         newSettings,
       });
       res.status(200).json(changedUser);
