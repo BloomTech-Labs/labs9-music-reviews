@@ -18,12 +18,9 @@ function signIn(user) {
     password: user.password,
   });
 }
-function changePassword(user) {
+function changeUserSettings(user) {
   return db('users').where({ username: user.username }).update(user);
 }
 function getAllUsers() {
   return db('users');
-}
-function changeEmail(user) {
-  return db('users').where({ username: user.username }).update(user);
 }
