@@ -111,7 +111,7 @@ class ReviewList extends Component {
             <SideNavItem divider />
             <SideNavItem icon="cancel">Sign Out</SideNavItem>
           </SideNav>
-          <div>
+          <Row>
             {1 === 0 ? (
               <div>
                 {/* Create a new Review */}
@@ -126,26 +126,26 @@ class ReviewList extends Component {
               <div>
                 {/* Review Card Map */}
                 {this.state.loggedIn === false ? (
-                  <Row>
-                    {userReviews.map(review => (
+                  <div>
+                    {/* {userReviews.map(review => ( */}
                       <ViewReviewModalCard
                         reviews={this.state.reviews}
                         handleReviewChange={this.handleReviewChange}
                         input={this.state.input}
                         loggedIn={this.state.loggedIn}
                       />
-                    ))}
-                  </Row>
+                    {/* ))} */}
+                  </div>
                 ) : (
-                  <Row>
-                    {userReviews.map(review => (
+                  <div>
+                    {/* {userReviews.map(review => ( */}
                       <EditReviewModalCard
                         reviews={this.state.reviews}
                         handleReviewChange={this.handleReviewChange}
                         input={this.state.input}
                         loggedIn={this.state.loggedIn}
                       />
-                    ))}
+                    {/* ))} */}
                     {/* Create a new Review */}
                     <NewReviewModalCard
                       reviews={this.state.reviews}
@@ -153,11 +153,11 @@ class ReviewList extends Component {
                       input={this.state.input}
                       loggedIn={this.state.loggedIn}
                     />
-                  </Row>
+                  </div>
                 )}
               </div>
             )}
-          </div>
+          </Row>
         </div>
       </div>
     );
