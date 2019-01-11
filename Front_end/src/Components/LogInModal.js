@@ -1,21 +1,21 @@
 //component is a modal that contains a form in which a user can sign in
 
 import React from 'react';
-import {Modal, NavItem, Button} from 'react-materialize';
-import {withRouter} from 'react-router-dom';
+import { Modal, NavItem, Button } from 'react-materialize';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 class LogInModal extends React.Component {
-  constructor () {
-    super ();
+  constructor() {
+    super();
     this.state = {
       username: '',
       password: '',
     };
   }
-  onChangeHandler = e => {
+  onChangeHandler = (e) => {
     //onChangeHandler for controlled inputs
-    this.setState ({[e.target.name]: e.target.value});
+    this.setState({ [e.target.name]: e.target.value });
   };
   onSubmitHandler = () => {
     const user = {
@@ -23,20 +23,20 @@ class LogInModal extends React.Component {
       password: this.state.password,
     };
     axios
-      .post ('https://labs9-car-reviews.herokuapp.com/user/login', user)
-      .then (res => this.props.history.push ('/reviews'))
-      .catch (err => alert (err));
+      .post('https://labs9-car-reviews.herokuapp.com/user/login', user)
+      .then((res) => this.props.history.push('/reviews'))
+      .catch((err) => alert(err));
   };
-  render () {
+  render() {
     return (
       <Modal header="Log In" trigger={<NavItem>Log In</NavItem>}>
         <div>
           <input
-            type="text"
+            type="email"
             name="username"
             value={this.state.username}
             onChange={this.onChangeHandler}
-            placeholder="Enter username"
+            placeholder="Enter email address"
           />
           <input
             type="password"
@@ -53,4 +53,4 @@ class LogInModal extends React.Component {
     );
   }
 }
-export default withRouter (LogInModal);
+export default withRouter(LogInModal);
