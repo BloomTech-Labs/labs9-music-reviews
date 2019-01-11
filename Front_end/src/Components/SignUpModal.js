@@ -27,7 +27,11 @@ class SignUpModal extends React.Component {
       };
       axios
         .post('https://labs9-car-reviews.herokuapp.com/user/signup', newUser)
-        .then((res) => this.props.history.push('/reviews'))
+        .then((res) => {
+          localStorage.setItem('username', this.state.username);
+          localStorage.setItem('password', this.state.password);
+          this.props.history.push('/reviews');
+        })
         .catch((err) => alert(err));
     } else {
       alert('You must enter a valid email.');
