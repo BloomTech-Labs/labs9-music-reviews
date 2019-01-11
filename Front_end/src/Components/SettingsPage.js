@@ -43,7 +43,10 @@ class SettingsPage extends React.Component {
   onSubmitHandler = () => {
     //need to add ability to change email
     const validator = /\S+@\S+/; //regex to check valid email
-    if (validator.test(this.state.username.toLowerCase())) {
+    if (
+      validator.test(this.state.username.toLowerCase()) &&
+      this.state.newPassword
+    ) {
       //basic validation check for email, email should be tested server side too
       const user = {
         username: this.state.username,
@@ -57,12 +60,15 @@ class SettingsPage extends React.Component {
         )
         .then((res) => {
           localStorage.setItem('username', this.state.username); //should be more secure than this,auth0?
-          localStorage.setItem('password', this.state.password); //should be more secure than this,auth0?
+          localStorage.setItem(
+            'password',
+            this.state.newPassword || this.state.oldPassword
+          ); //should be more secure than this,auth0?
           this.props.history.push('/reviews');
         })
         .catch((err) => alert(err));
     } else {
-      alert('You must enter a valid email.');
+      alert('You must enter a valid new password.');
     }
   };
   render() {

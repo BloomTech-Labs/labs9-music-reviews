@@ -5,7 +5,7 @@ const db = knex(knexConfig.development);
 module.exports = {
   signUp,
   signIn,
-  changePassword,
+  changeUserSettings,
   getAllUsers,
 };
 
@@ -18,7 +18,7 @@ function signIn(user) {
     password: user.password,
   });
 }
-function changeUserSettings(user) {
+function changePassword(user) {
   return db('users').where({ username: user.username }).update(user);
 }
 function getAllUsers() {

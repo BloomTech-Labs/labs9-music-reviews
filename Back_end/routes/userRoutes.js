@@ -50,20 +50,23 @@ router.post('/login', async (req, res) => {
     }
   }
 });
-router.post('/change_user_settings', async (req, res) => {
+router.post('/change_password', async (req, res) => {
   const user = req.body;
-  if (!user.username || !user.password) {
-    res.status(400).json({
-      message: 'Invalid credentials.',
-    });
-  } else {
+  if (user.username && user.oldPassword && user.newPassword) {
     try {
-      const changedUser = await dbUsers.changePassword(user);
+      const changedUser = await dbUsers.changeUserSettings({
+        username: user.username,
+        password: user.newPassword,
+      });
       res.status(200).json(changedUser);
     } catch (err) {
       res.status(500).json({ message: 'Something went wrong.' });
     }
+  } else {
   }
+  res.status(400).json({
+    message: 'Invalid credentials.',
+  });
 });
 
 module.exports = router;
