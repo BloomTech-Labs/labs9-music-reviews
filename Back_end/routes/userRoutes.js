@@ -54,9 +54,12 @@ router.post('/change_password', async (req, res) => {
   const user = req.body;
   if (user.username && user.oldPassword && user.newPassword) {
     try {
-      const changedUser = await dbUsers.changeUserSettings({
+      const newSettings = {
         username: user.username,
         password: user.newPassword,
+      };
+      const changedUser = await dbUsers.changeUserSettings({
+        newSettings,
       });
       res.status(200).json(changedUser);
     } catch (err) {
