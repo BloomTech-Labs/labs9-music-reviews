@@ -28,8 +28,8 @@ class LogInModal extends React.Component {
       axios
         .post('https://labs9-car-reviews.herokuapp.com/user/login', user)
         .then((res) => {
-          localStorage.setItem('username', this.state.username);
-          localStorage.setItem('password', this.state.password);
+          localStorage.setItem('username', this.state.username); //should be more secure than this,auth0?
+          localStorage.setItem('password', this.state.password); //should be more secure than this,auth0?
           this.props.history.push('/reviews');
         })
         .catch((err) => alert(err));
