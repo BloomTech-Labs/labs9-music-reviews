@@ -8,8 +8,12 @@ module.exports = {
       filename: './data/reviews.sqlite3'
     },
     useNullAsDefault: true,
-    // migrations:
-    // seeds:
+    migrations: {
+      directory: './migrations',
+    },
+    seeds: {
+      directory: './seeds',
+    }
   },
 
   // staging: {

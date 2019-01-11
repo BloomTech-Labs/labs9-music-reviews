@@ -9,7 +9,7 @@ exports.seed = async function(knex, Promise) {
   //seed database with fake users
   // Deletes ALL existing entries
   const fakeUsers = [];
-  const totalFakeUsers = 500;
+  const totalFakeUsers = 400;
   for (let i = 0; i < totalFakeUsers; i++) {
     fakeUsers.push(createFakeUser());
   }

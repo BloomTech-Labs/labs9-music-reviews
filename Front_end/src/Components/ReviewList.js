@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import axios from "axios";
 import NewReviewModalCard from "./NewReviewModalCard";
 import EditReviewModalCard from "./EditReviewModalCard";
 import ViewReviewModalCard from "./ViewReviewModalCard";
 import {
   Breadcrumb,
   MenuItem,
-  Row
+  Row,
+  SideNav,
+  SideNavItem,
+  Button,
+  Icon
 } from "react-materialize";
 
 const BreadcrumbDiv = styled.div`
@@ -29,9 +34,21 @@ class ReviewList extends Component {
         modifiedTime: ""
       },
       input: "",
-      loggedIn: true
+      loggedIn: false
     };
   }
+
+  // componentDidMount() {
+  //   axios
+  //     .get('./DummyData/dummyData.json')
+  //     .then(response => {
+  //       const newReviews = response.data;
+  //       const newState = Object.assign({}, this.state, { reviews: newReviews });
+  //       this.setState(newState);
+  //       console.log(this.state);
+  //     })
+  //     .catch(err => console.log(err));
+  // };
 
   handleReviewChange = event => {
     this.setState({ [event.target.name]: event.target.value });
@@ -59,9 +76,8 @@ class ReviewList extends Component {
 
         {/* If no reviews on account display prompt for new review otherwise display all reviews on account */}
 
-        <div>
-          <div>
-            {/* <SideNav fixed="false">
+        <div style={{ display: "flex" }}>
+          {/* <SideNav style={{ position: "relative", height: "800px" }}>
             <SideNavItem
               userView
               user={{
@@ -78,8 +94,24 @@ class ReviewList extends Component {
             <SideNavItem divider />
             <SideNavItem icon="cancel">Sign Out</SideNavItem>
           </SideNav> */}
-          </div>
-          <div>
+          <SideNav
+            trigger={
+              <Button
+                style={{ background: "#ee6e73", hover: "none", border: "none" }}
+              >
+                <Icon medium>menu</Icon>
+              </Button>
+            }
+            options={{ closeOnClick: true }}
+          >
+            <SideNavItem icon="search">Search</SideNavItem>
+            <SideNavItem icon="rate_review">My Reviews</SideNavItem>
+            <SideNavItem icon="attach_money">Billing</SideNavItem>
+            <SideNavItem icon="settings">Settings</SideNavItem>
+            <SideNavItem divider />
+            <SideNavItem icon="cancel">Sign Out</SideNavItem>
+          </SideNav>
+          <Row>
             {1 === 0 ? (
               <div>
                 {/* Create a new Review */}
@@ -94,26 +126,26 @@ class ReviewList extends Component {
               <div>
                 {/* Review Card Map */}
                 {this.state.loggedIn === false ? (
-                  <Row>
-                    {userReviews.map(review => (
+                  <div>
+                    {/* {userReviews.map(review => ( */}
                       <ViewReviewModalCard
                         reviews={this.state.reviews}
                         handleReviewChange={this.handleReviewChange}
                         input={this.state.input}
                         loggedIn={this.state.loggedIn}
                       />
-                    ))}
-                  </Row>
+                    {/* ))} */}
+                  </div>
                 ) : (
-                  <Row>
-                    {userReviews.map(review => (
+                  <div>
+                    {/* {userReviews.map(review => ( */}
                       <EditReviewModalCard
                         reviews={this.state.reviews}
                         handleReviewChange={this.handleReviewChange}
                         input={this.state.input}
                         loggedIn={this.state.loggedIn}
                       />
-                    ))}
+                    {/* ))} */}
                     {/* Create a new Review */}
                     <NewReviewModalCard
                       reviews={this.state.reviews}
@@ -121,11 +153,11 @@ class ReviewList extends Component {
                       input={this.state.input}
                       loggedIn={this.state.loggedIn}
                     />
-                  </Row>
+                  </div>
                 )}
               </div>
             )}
-          </div>
+          </Row>
         </div>
       </div>
     );
