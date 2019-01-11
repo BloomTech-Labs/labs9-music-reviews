@@ -34,7 +34,7 @@ class ReviewList extends Component {
         modifiedTime: ""
       },
       input: "",
-      loggedIn: true
+      loggedIn: false
     };
   }
 
