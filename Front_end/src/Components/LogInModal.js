@@ -18,14 +18,20 @@ class LogInModal extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
   onSubmitHandler = () => {
-    const user = {
-      username: this.state.username,
-      password: this.state.password,
-    };
-    axios
-      .post('https://labs9-car-reviews.herokuapp.com/user/login', user)
-      .then((res) => this.props.history.push('/reviews'))
-      .catch((err) => alert(err));
+    const validator = /\S+@\S+/; //regex to check valid email
+    if (validator.test(this.state.username.toLowerCase())) {
+      //basic validation check for email, email should be tested server side too
+      const user = {
+        username: this.state.username,
+        password: this.state.password,
+      };
+      axios
+        .post('https://labs9-car-reviews.herokuapp.com/user/login', user)
+        .then((res) => this.props.history.push('/reviews'))
+        .catch((err) => alert(err));
+    } else {
+      alert('You must enter a valid email.');
+    }
   };
   render() {
     return (
@@ -36,7 +42,7 @@ class LogInModal extends React.Component {
             name="username"
             value={this.state.username}
             onChange={this.onChangeHandler}
-            placeholder="Enter email address"
+            placeholder="user@example.com"
           />
           <input
             type="password"

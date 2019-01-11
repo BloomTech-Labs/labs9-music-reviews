@@ -5,5 +5,8 @@ class SettingsPage extends React.Component {
     super();
     this.state = {};
   }
+  render() {
+    return <div />;
+  }
 }
 export default SettingsPage;
