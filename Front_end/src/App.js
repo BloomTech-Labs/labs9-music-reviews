@@ -14,6 +14,7 @@ class App extends Component {
         <Route path="/search_landing" component={SearchLanding} />
         <Route path="/reviews" component={ReviewList} />
         <Route path="/billing" component={Billing} />
+        <Route path="/settings" component={SettingsPage} />
       </div>
     );
   }
