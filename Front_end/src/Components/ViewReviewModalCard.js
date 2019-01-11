@@ -6,18 +6,17 @@ import { Button, Modal, NavItem, Dropdown, Col, Card } from "react-materialize";
 const ViewReviewModalCard = props => {
   return (
     <div>
-      <Col m={6} s={12} style={{ height: "250px" }}>
+      <Col s={6} m={12}>
         {/* Create new review modal */}
         <Modal
           header="Year Make Model Trim"
           fixedFooter
           style={{ width: "35%" }}
           trigger={
-            <Card title="Year Make Model Trim">
+            <Card class="col s12"title="Year Make Model Trim">
               <div style={{ display: "flex", flexDirection: "column"}}>
                 <img
                   src="https://mygoto.io/assets/web/images/placeholder-img.jpg"
-                  height="200px"
                 />
                 Updated Time
               </div>
@@ -39,7 +38,7 @@ const ViewReviewModalCard = props => {
               width="70%"
             />
           </div>
-          <div>
+          <div class="center-align">
             <Stars />
           </div>
           <p>
