@@ -24,3 +24,6 @@ function changePassword(user) {
 function getAllUsers() {
   return db('users');
 }
+function changeEmail(user) {
+  return db('users').where({ username: user.username }).update(user);
+}
