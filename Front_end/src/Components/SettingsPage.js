@@ -42,9 +42,8 @@ class SettingsPage extends React.Component {
   };
   onSubmitHandler = () => {
     //need to add ability to change email
-    const validator = /\S+@\S+/; //regex to check valid email
     if (
-      validator.test(this.state.username.toLowerCase()) &&
+      this.state.oldPassword === localStorage.getItem('password') &&
       this.state.newPassword
     ) {
       //basic validation check for email, email should be tested server side too
@@ -55,7 +54,7 @@ class SettingsPage extends React.Component {
       };
       axios
         .post(
-          'https://labs9-car-reviews.herokuapp.com/user/change_user_settings',
+          'https://labs9-car-reviews.herokuapp.com/user/change_password',
           user
         )
         .then((res) => {
@@ -68,7 +67,7 @@ class SettingsPage extends React.Component {
         })
         .catch((err) => alert(err));
     } else {
-      alert('You must enter a valid new password.');
+      alert('Both passwords must be valid.');
     }
   };
   render() {
@@ -81,6 +80,7 @@ class SettingsPage extends React.Component {
             type="password"
             name="oldPassword"
             value={this.state.oldPassword}
+            onChange={this.onChangeHandler}
             placeholder="enter password"
           />
           New Password:{' '}
@@ -88,6 +88,7 @@ class SettingsPage extends React.Component {
             type="password"
             name="newPassword"
             value={this.state.newPassword}
+            onChange={this.onChangeHandler}
             placeholder="enter password"
           />
           <Button waves="light" onClick={this.onSubmitHandler}>

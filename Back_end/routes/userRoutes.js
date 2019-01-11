@@ -63,10 +63,10 @@ router.post('/change_password', async (req, res) => {
       res.status(500).json({ message: 'Something went wrong.' });
     }
   } else {
+    res.status(400).json({
+      message: 'Invalid credentials.',
+    });
   }
-  res.status(400).json({
-    message: 'Invalid credentials.',
-  });
 });
 
 module.exports = router;
