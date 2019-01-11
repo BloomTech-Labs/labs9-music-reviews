@@ -1,13 +1,32 @@
 import React from 'react';
 import axios from 'axios';
 import { Button } from 'react-materialize';
+import styled from 'styled-components';
 
+const SettingsPageForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  max-width: 350px;
+  width: 100%;
+  text-align: left;
+  margin-left: 10%;
+  margin-top: 30px;
+  padding: 2%;
+  box-sizing: border-box;
+
+  @media (max-width: 599px) {
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 5%;
+  }
+`;
 class SettingsPage extends React.Component {
   constructor() {
     super();
     this.state = {
       username: '',
-      password: '',
+      oldPassword: '',
+      newPassword: '',
     };
   }
   componentDidMount() {
@@ -15,7 +34,6 @@ class SettingsPage extends React.Component {
       //get username and password from localStorage and set state variables to those variable values
       //should prob be refactored once auth0 is integrated
       username: localStorage.getItem('username'),
-      password: localStorage.getItem('password'),
     });
   }
   onChangeHandler = (e) => {
@@ -23,12 +41,14 @@ class SettingsPage extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
   onSubmitHandler = () => {
+    //need to add ability to change email
     const validator = /\S+@\S+/; //regex to check valid email
     if (validator.test(this.state.username.toLowerCase())) {
       //basic validation check for email, email should be tested server side too
       const user = {
         username: this.state.username,
-        password: this.state.password,
+        oldPassword: this.state.oldPassword,
+        newPassword: this.state.newPassword,
       };
       axios
         .post(
@@ -47,25 +67,28 @@ class SettingsPage extends React.Component {
   };
   render() {
     return (
-      <form>
-        <input
-          type="email"
-          name="username"
-          value={this.state.username}
-          onChange={this.onChangeHandler}
-          placeholder="user@example.com"
-        />
-        <input
-          type="password"
-          name="password"
-          value={this.state.password}
-          onChange={this.onChangeHandler}
-          placeholder="username@example.com"
-        />
-        <Button waves="light" onClick={this.onSubmitHandler}>
-          Save
-        </Button>
-      </form>
+      <div>
+        <SettingsPageForm>
+          Username: <p>{this.state.username}</p>
+          Old Password:{' '}
+          <input
+            type="password"
+            name="oldPassword"
+            value={this.state.oldPassword}
+            placeholder="enter password"
+          />
+          New Password:{' '}
+          <input
+            type="password"
+            name="newPassword"
+            value={this.state.newPassword}
+            placeholder="enter password"
+          />
+          <Button waves="light" onClick={this.onSubmitHandler}>
+            Save
+          </Button>
+        </SettingsPageForm>
+      </div>
     );
   }
 }

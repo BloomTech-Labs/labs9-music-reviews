@@ -30,7 +30,7 @@ class SignUpModal extends React.Component {
         .then((res) => {
           localStorage.setItem('username', this.state.username); //should be more secure than this,auth0?
           localStorage.setItem('password', this.state.password); //should be more secure than this,auth0?
-          this.props.history.push('/reviews');
+          this.props.history.push('/settings');
         })
         .catch((err) => alert(err));
     } else {

@@ -5,6 +5,7 @@ import LandingPage from './Components/LandingPage';
 import SearchLanding from './Components/SearchLanding';
 import Billing from './Components/Billing';
 import SettingsPage from './Components/SettingsPage';
+import './App.css';
 
 class App extends Component {
   render() {
