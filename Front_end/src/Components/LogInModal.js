@@ -1,42 +1,52 @@
 //component is a modal that contains a form in which a user can sign in
 
 import React from 'react';
-import {Modal, NavItem, Button} from 'react-materialize';
-import {withRouter} from 'react-router-dom';
+import { Modal, NavItem, Button } from 'react-materialize';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 class LogInModal extends React.Component {
-  constructor () {
-    super ();
+  constructor() {
+    super();
     this.state = {
       username: '',
       password: '',
     };
   }
-  onChangeHandler = e => {
+  onChangeHandler = (e) => {
     //onChangeHandler for controlled inputs
-    this.setState ({[e.target.name]: e.target.value});
+    this.setState({ [e.target.name]: e.target.value });
   };
   onSubmitHandler = () => {
-    const user = {
-      username: this.state.username,
-      password: this.state.password,
-    };
-    axios
-      .post ('https://labs9-car-reviews.herokuapp.com/user/login', user)
-      .then (res => this.props.history.push ('/reviews'))
-      .catch (err => alert (err));
+    const validator = /\S+@\S+/; //regex to check valid email
+    if (validator.test(this.state.username.toLowerCase())) {
+      //basic validation check for email, email should be tested server side too
+      const user = {
+        username: this.state.username,
+        password: this.state.password,
+      };
+      axios
+        .post('https://labs9-car-reviews.herokuapp.com/user/login', user)
+        .then((res) => {
+          localStorage.setItem('username', this.state.username); //should be more secure than this,auth0?
+          localStorage.setItem('password', this.state.password); //should be more secure than this,auth0?
+          this.props.history.push('/settings');
+        })
+        .catch((err) => alert(err));
+    } else {
+      alert('You must enter a valid email.');
+    }
   };
-  render () {
+  render() {
     return (
       <Modal header="Log In" trigger={<NavItem>Log In</NavItem>}>
         <div>
           <input
-            type="text"
+            type="email"
             name="username"
             value={this.state.username}
             onChange={this.onChangeHandler}
-            placeholder="Enter username"
+            placeholder="user@example.com"
           />
           <input
             type="password"
@@ -53,4 +63,4 @@ class LogInModal extends React.Component {
     );
   }
 }
-export default withRouter (LogInModal);
+export default withRouter(LogInModal);
