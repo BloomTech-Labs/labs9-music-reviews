@@ -13,14 +13,11 @@ const EditReviewModalCard = props => {
           fixedFooter
           style={{ width: "35%" }}
           trigger={
-            <Card title="Year Make Model Trim">
-              <img
-                src="https://mygoto.io/assets/web/images/placeholder-img.jpg"
-                height="50%"
-                width="50%"
-                align="center"
-              />
-              Updated Time
+            <Card class="col s12" title="Year Make Model Trim">
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <img src="https://mygoto.io/assets/web/images/placeholder-img.jpg" />
+                Updated Time
+              </div>
             </Card>
           }
           actions={
@@ -39,7 +36,14 @@ const EditReviewModalCard = props => {
               width="70%"
             />
           </div>
-          <div>
+          <div
+            class="center-align"
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              alignItems: "center"
+            }}
+          >
             <Stars />
             <Dropdown trigger={<Button>Select One</Button>}>
               <NavItem>Owned</NavItem>
@@ -55,8 +59,10 @@ const EditReviewModalCard = props => {
             name="review"
             style={{ height: "150px" }}
           />
-          <Button modal="close">Submit</Button>
-          <Button>Delete</Button>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+            <Button modal="close">Submit</Button>
+            <Button>Delete</Button>
+          </div>
         </Modal>
       </Col>
     </div>
