@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { SideNav, SideNavItem, Breadcrumb, MenuItem, Card, Button, Row, Col, Input } from 'react-materialize';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import Checkout from './Checkout';
 
 const Payment = styled.div`
     padding: 3rem;
@@ -63,7 +64,11 @@ class Billing extends Component {
                         </Payment>            
                     </div>
                 </Row>
-
+                <Checkout 
+                    name={"Testing"}
+                    description={"Running a test"}
+                    amount={1}
+                />
             </div>
         )
     };
