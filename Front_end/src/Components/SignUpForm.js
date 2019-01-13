@@ -26,6 +26,7 @@ class SignUpForm extends React.Component {
         )
         .then (authUser => {
           console.log (authUser);
+          this.props.history.push ('/');
         })
         .catch (error => {
           this.setState ({error});

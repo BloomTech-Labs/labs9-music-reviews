@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import LogInModal from './LogInPage.js';
 import SignUpModal from './SignUpPage.js';
 import {withRouter} from 'react-router-dom';
+import SignOut from './SignOut';
 import {
   NavItem,
   Navbar,
@@ -10,6 +11,7 @@ import {
   Icon,
   Button,
 } from 'react-materialize';
+import {FirebaseContext} from './Firebase/index.js';
 
 class Navigation extends Component {
   constructor () {
@@ -45,7 +47,9 @@ class Navigation extends Component {
           <SideNavItem icon="attach_money">Billing</SideNavItem>
           <SideNavItem icon="settings">Settings</SideNavItem>
           <SideNavItem divider />
-          <SideNavItem icon="cancel">Sign Out</SideNavItem>
+          <FirebaseContext.Consumer>
+            {firebase => <SignOut firebase={firebase} />}
+          </FirebaseContext.Consumer>
         </SideNav>
       </Navbar>
     );
