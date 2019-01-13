@@ -1,22 +1,18 @@
-const express = require ('express');
-const server = express ();
-const cors = require ('cors');
-const SERVER_CONFIGS = require('./constants/server_configs.js');
-const configureServer = require('./server');
-const configureRoutes = require('./routes');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 
+const CORS_WHITELIST = require('./constants/frontEnd');
 
-server.use (express.json ());
-server.use (cors ());
-configureServer(server);
-configureRoutes(server);
+const corsOptions = {
+    origin: (origin, callback) => 
+        (CORS_WHITELIST.indexOf(origin) !== -1)
+            ? callback(null, true)
+            : callback(new Error('Not allowed by CORS'))
+};
 
-const reviewRoutes = require ('./routes/reviewRoutes');
-const userRoutes = require ('./routes/userRoutes.js');
-// reviews route
-server.use ('/reviews', reviewRoutes);
+const configureServer = app => {
+    app.use(cors(corsOptions));
+    app.use(bodyParser.json());
+}
 
-// user route
-server.use ('/user', userRoutes);
-
-server.listen ((process.env.PORT || 9000));
+module.exports = configureServer;

@@ -7,6 +7,7 @@ const PAYMENT_SERVER_URL = process.env.PAYMENT_SERVER_URL || "http://localhost:9
 
 const CURRENCY = 'USD';
 
+// stripe takes amount in cents. For example, if the payment to be charged is $ 1.00, the amount should 100
 const convertToCents = amount => amount * 100;
 
 const successPayment = data => {
@@ -14,10 +15,12 @@ const successPayment = data => {
   };
   
   const errorPayment = data => {
+    console.log(data)
     alert('Payment Error');
   };
 
 const onToken = (amount, description) => token => {
+    console.log(amount, description, token);
     axios.post(PAYMENT_SERVER_URL, {
         description,
         source: token.id,
@@ -29,13 +32,14 @@ const onToken = (amount, description) => token => {
 }
 
 const Checkout = ({name, description, amount}) => 
+    // check change description to 1 month/1 year subscription
     <StripeCheckout
         name={name}
         description={description}
         amount={convertToCents(amount)}
         token={onToken(amount, description)}
         currency={CURRENCY}
-        stripeKey={process.env.REACT_APP_PUBLISHABLE_KEY}
+        stripeKey='pk_test_eDPjJdefeIGEjcCgJ30Z5glO'
     />
 
 export default Checkout;
