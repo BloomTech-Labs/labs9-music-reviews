@@ -44,10 +44,24 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   <!-- Import jQuery before materialize.js -->
+  <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
+  <script>
+  // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyA-Z1swen1u5Uwyg0-a293xCUSZqy9bkoE",
+      authDomain: "album-reviews.firebaseapp.com",
+      databaseURL: "https://album-reviews.firebaseio.com",
+      projectId: "album-reviews",
+      storageBucket: "album-reviews.appspot.com",
+      messagingSenderId: "867099794089"
+    };
+    firebase.initializeApp(config);
+  </script>
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
   <!-- And then your bundled js -->
   <script src="path/to/your/bundle.js"></script>
+  
 </body>
 
 </html>
