@@ -1,5 +1,4 @@
 import React from 'react';
-import {withRouter} from 'react-router-dom';
 import SignUpForm from './SignUpForm';
 import {FirebaseContext} from './Firebase';
 
@@ -15,4 +14,4 @@ class SignUpPage extends React.Component {
     );
   }
 }
-export default withRouter (SignUpPage);
+export default SignUpPage;

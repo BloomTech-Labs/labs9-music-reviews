@@ -3,11 +3,10 @@ import axios from 'axios';
 import {Button} from 'react-materialize';
 import {withRouter} from 'react-router-dom';
 
-class SignUpForm extends React.Component {
+class LogInForm extends React.Component {
   constructor (props) {
     super (props);
     this.state = {
-      name: '',
       email: '',
       password: '',
     };
@@ -20,10 +19,7 @@ class SignUpForm extends React.Component {
     const validUser = this.isValid ();
     if (validUser) {
       this.props.firebase
-        .doCreateUserWithEmailAndPassword (
-          this.state.email,
-          this.state.password
-        )
+        .doSignInWithEmailAndPassword (this.state.email, this.state.password)
         .then (authUser => {
           console.log (authUser);
         })
@@ -33,21 +29,14 @@ class SignUpForm extends React.Component {
     }
   };
   isValid = () => {
-    return this.state.name && this.state.email && this.state.password;
+    return this.state.email && this.state.password;
   };
   redirect = () => {
-    this.props.history.push ('/login');
+    this.props.history.push ('/signup');
   };
   render () {
     return (
       <div>
-        <input
-          type="text"
-          name="name"
-          value={this.state.name}
-          onChange={this.onChangeHandler}
-          placeholder="Name"
-        />
         <input
           type="email"
           name="email"
@@ -63,13 +52,13 @@ class SignUpForm extends React.Component {
           placeholder="Password"
         />
         <Button waves="light" onClick={this.onSubmitHandler}>
-          Sign Up
+          Sign In
         </Button>
         <Button waves="light" onClick={this.redirect}>
-          Already have an account?
+          Don't have an account?
         </Button>
       </div>
     );
   }
 }
-export default withRouter (SignUpForm);
+export default withRouter (LogInForm);
