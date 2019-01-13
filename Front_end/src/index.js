@@ -7,6 +7,7 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import Firebase, {FirebaseContext} from './components/Firebase';
 
 ReactDOM.render (
+  //FirebaseContext.Provider wrapped around App connects firebase and app
   <FirebaseContext.Provider value={new Firebase ()}>
     <Router>
       <App />

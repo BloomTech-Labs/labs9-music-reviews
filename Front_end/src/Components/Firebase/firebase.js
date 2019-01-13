@@ -1,5 +1,7 @@
-//This file is used to configure object for firebase and make a firebase class//
+/*This file is used to configure object for firebase and make
+a firebase class with methods for authentication*/
 import app from 'firebase/app';
+import 'firebase/auth';
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -11,8 +13,20 @@ const config = {
 };
 
 class Firebase {
-  constructor() {
-    app.initializeApp(config);
+  constructor () {
+    app.initializeApp (config);
+    this.auth = app.auth ();
   }
+  doCreateUserWithEmailAndPassword = (email, password) =>
+    this.auth.createUserWithEmailAndPassword (email, password);
+
+  doSignInWithEmailAndPassword = (email, password) =>
+    this.auth.signInWithEmailAndPassword (email, password);
+
+  doSignOut = () => this.auth.signOut ();
+
+  doPassWordReset = email => this.auth.sendPasswordResetEmail (email);
+
+  doPassWordUpdate = email => this.auth.currentUser.updatePassWord (password);
 }
 export default Firebase;
