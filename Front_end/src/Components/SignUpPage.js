@@ -1,45 +1,45 @@
-//component is a modal that contains a form in which a user can sign in
+//component is a modal that contains a form in which a user can sign up
 
 import React from 'react';
-import { Modal, NavItem, Button } from 'react-materialize';
-import { withRouter } from 'react-router-dom';
+import {Modal, NavItem, Button} from 'react-materialize';
+import {withRouter} from 'react-router-dom';
 import axios from 'axios';
 
-class LogInModal extends React.Component {
-  constructor() {
-    super();
+class SignUpPage extends React.Component {
+  constructor () {
+    super ();
     this.state = {
       username: '',
       password: '',
     };
   }
-  onChangeHandler = (e) => {
+  onChangeHandler = e => {
     //onChangeHandler for controlled inputs
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState ({[e.target.name]: e.target.value});
   };
   onSubmitHandler = () => {
     const validator = /\S+@\S+/; //regex to check valid email
-    if (validator.test(this.state.username.toLowerCase())) {
+    if (validator.test (this.state.username.toLowerCase ())) {
       //basic validation check for email, email should be tested server side too
-      const user = {
+      const newUser = {
         username: this.state.username,
         password: this.state.password,
       };
       axios
-        .post('https://labs9-car-reviews.herokuapp.com/user/login', user)
-        .then((res) => {
-          localStorage.setItem('username', this.state.username); //should be more secure than this,auth0?
-          localStorage.setItem('password', this.state.password); //should be more secure than this,auth0?
-          this.props.history.push('/settings');
+        .post ('https://labs9-car-reviews.herokuapp.com/user/signup', newUser)
+        .then (res => {
+          localStorage.setItem ('username', this.state.username); //should be more secure than this,auth0?
+          localStorage.setItem ('password', this.state.password); //should be more secure than this,auth0?
+          this.props.history.push ('/settings');
         })
-        .catch((err) => alert(err));
+        .catch (err => alert (err));
     } else {
-      alert('You must enter a valid email.');
+      alert ('You must enter a valid email.');
     }
   };
-  render() {
+  render () {
     return (
-      <Modal header="Log In" trigger={<NavItem>Log In</NavItem>}>
+      <Modal header="Sign Up" trigger={<NavItem>Sign Up</NavItem>}>
         <div>
           <input
             type="email"
@@ -56,11 +56,11 @@ class LogInModal extends React.Component {
             placeholder="Enter password"
           />
           <Button waves="light" onClick={this.onSubmitHandler}>
-            Log In
+            Sign Up
           </Button>
         </div>
       </Modal>
     );
   }
 }
-export default withRouter(LogInModal);
+export default withRouter (SignUpPage);
