@@ -3,7 +3,12 @@ import axios from 'axios';
 import StripeCheckout from 'react-stripe-checkout';
 
 // may need to modify later, still testing
-const PAYMENT_SERVER_URL = process.env.PAYMENT_SERVER_URL || "http://localhost:9000/payment";
+const PAYMENT_SERVER_URL = process.env.PAYMENT_SERVER_URL || "http://localhost:9000/payment/charge";
+
+// Publishable key is solely for identifying our Stripe account. Safe to be pushed.
+const STRIPE_PUBLISHABLE_KEY = 'pk_test_48apY3K7i1kB09oFAezAYI9Q';
+
+console.log(STRIPE_PUBLISHABLE_KEY);
 
 const CURRENCY = 'USD';
 
@@ -11,13 +16,14 @@ const CURRENCY = 'USD';
 const convertToCents = amount => amount * 100;
 
 const successPayment = data => {
+    console.log(data)
     alert('Payment Successful');
   };
   
-  const errorPayment = data => {
-    console.log(data)
+const errorPayment = error => {
+    console.log(error)
     alert('Payment Error');
-  };
+};
 
 const onToken = (amount, description) => token => {
     console.log(amount, description, token);
@@ -32,14 +38,16 @@ const onToken = (amount, description) => token => {
 }
 
 const Checkout = ({name, description, amount}) => 
-    // check change description to 1 month/1 year subscription
+    // variable to change description to 1 month/1 year subscription?
     <StripeCheckout
+        label="Subscribe"
         name={name}
         description={description}
         amount={convertToCents(amount)}
         token={onToken(amount, description)}
         currency={CURRENCY}
-        stripeKey='pk_test_eDPjJdefeIGEjcCgJ30Z5glO'
+        panelLabel='Subscribe'
+        stripeKey={STRIPE_PUBLISHABLE_KEY}
     />
 
 export default Checkout;
