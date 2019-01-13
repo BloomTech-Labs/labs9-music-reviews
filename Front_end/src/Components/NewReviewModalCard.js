@@ -42,7 +42,7 @@ const NewReviewModalCard = props => {
               width="70%"
             />
           </div>
-          <div>
+          <div class="center-align" style={{ display: "flex", justifyContent: "space-around", alignItems: "center"}}>
             <Stars />
             <Dropdown trigger={<Button>Select One</Button>}>
               <NavItem>Owned</NavItem>

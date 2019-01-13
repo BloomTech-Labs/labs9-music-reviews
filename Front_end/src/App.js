@@ -1,9 +1,11 @@
-import React, { Component } from 'react'
-import ReviewList from './Components/ReviewList'
-import { Route } from 'react-router-dom'
-import LandingPage from './Components/LandingPage'
-import SearchLanding from './Components/SearchLanding'
-import Billing from './Components/Billing'
+import React, { Component } from 'react';
+import ReviewList from './Components/ReviewList';
+import { Route } from 'react-router-dom';
+import LandingPage from './Components/LandingPage';
+import SearchLanding from './Components/SearchLanding';
+import Billing from './Components/Billing';
+import SettingsPage from './Components/SettingsPage';
+import './App.css';
 
 class App extends Component {
   render() {
@@ -13,9 +15,10 @@ class App extends Component {
         <Route path="/search_landing" component={SearchLanding} />
         <Route path="/reviews" component={ReviewList} />
         <Route path="/billing" component={Billing} />
+        <Route path="/settings" component={SettingsPage} />
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;
