@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import LogInModal from './LogInPage.js';
 import SignUpModal from './SignUpPage.js';
-import {Link} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import {
   NavItem,
   Navbar,
@@ -52,8 +52,12 @@ class Navigation extends Component {
 
     const LoggedOut = (
       <Navbar right className="blue">
-        <NavItem Link to="/signup">Sign Up</NavItem>
-        <NavItem Link to="/login">Sign In</NavItem>
+        <NavItem onClick={() => this.props.history.push ('/signup')}>
+          Sign Up
+        </NavItem>
+        <NavItem onClick={() => this.props.history.push ('/login')}>
+          Log In
+        </NavItem>
       </Navbar>
     );
 
@@ -63,4 +67,4 @@ class Navigation extends Component {
   }
 }
 
-export default Navigation;
+export default withRouter (Navigation);

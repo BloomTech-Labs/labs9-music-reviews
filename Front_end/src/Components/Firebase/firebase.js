@@ -29,4 +29,5 @@ class Firebase {
 
   doPassWordUpdate = email => this.auth.currentUser.updatePassWord (email);
 }
+
 export default Firebase;

@@ -1,12 +1,10 @@
 import React from 'react';
-import {Modal, NavItem, Button} from 'react-materialize';
-import {withRouter} from 'react-router-dom';
 import axios from 'axios';
-import {FirebaseContext} from './Firebase';
+import {Button} from 'react-materialize';
 
-class LogInPage extends React.Component {
-  constructor () {
-    super ();
+class SignUpForm extends React.Component {
+  constructor (props) {
+    super (props);
     this.state = {
       name: '',
       email: '',
@@ -17,16 +15,28 @@ class LogInPage extends React.Component {
     //onChangeHandler for controlled inputs
     this.setState ({[e.target.name]: e.target.value});
   };
-  isValid = () => {
-    return this.state.name && this.state.email && this.state.password;
-  };
   onSubmitHandler = () => {
     const validUser = this.isValid ();
+    if (validUser) {
+      this.props.firebase
+        .doCreateUserWithEmailAndPassword (
+          this.state.email,
+          this.state.password
+        )
+        .then (authUser => {
+          console.log (authUser);
+        })
+        .catch (error => {
+          this.setState ({error});
+        });
+    }
+  };
+  isValid = () => {
+    return this.state.name && this.state.email && this.state.password;
   };
   render () {
     return (
       <div>
-        <h1>Log In</h1>
         <input
           type="text"
           name="name"
@@ -49,10 +59,10 @@ class LogInPage extends React.Component {
           placeholder="Password"
         />
         <Button waves="light" onClick={this.onSubmitHandler}>
-          Log In
+          Sign Up
         </Button>
       </div>
     );
   }
 }
-export default withRouter (LogInPage);
+export default SignUpForm;
