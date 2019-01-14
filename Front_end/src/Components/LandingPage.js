@@ -1,9 +1,9 @@
 import React from 'react';
-import Navigation from './Navigation';
-import Search from './Search';
-import FeaturedReviews from './FeaturedReviews';
-import PopularCars from './PopularCars';
-import PopularReviewers from './PopularReviewers';
+import Navigation from './Navigation/Navigation';
+import Search from './SearchLanding/Search';
+import FeaturedReviews from './Display/FeaturedReviews';
+import PopularCars from './Display/PopularCars';
+import PopularReviewers from './Display/PopularReviewers';
 
 
 
