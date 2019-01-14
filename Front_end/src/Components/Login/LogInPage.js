@@ -1,5 +1,5 @@
 import React from 'react';
-import {FirebaseContext} from './Firebase';
+import {FirebaseContext} from '../Firebase';
 import LogInForm from './LogInForm';
 
 class LogInPage extends React.Component {

@@ -25,8 +25,12 @@ class SignUpForm extends React.Component {
           this.state.password
         )
         .then (authUser => {
-          console.log (authUser);
-          this.props.history.push ('/');
+          this.props.firebase
+            .sendVerificationViaEmail (this.state.name)
+            .then (res => {
+              this.props.history.push ('/');
+            })
+            .catch (err => console.log (err));
         })
         .catch (error => {
           this.setState ({error});

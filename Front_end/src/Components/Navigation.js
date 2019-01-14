@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import LogInModal from './LogInPage.js';
-import SignUpModal from './SignUpPage.js';
 import {withRouter} from 'react-router-dom';
-import SignOut from './SignOut';
+import SignOut from './Signout/SignOut';
 import {
   NavItem,
   Navbar,

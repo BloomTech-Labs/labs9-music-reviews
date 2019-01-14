@@ -21,7 +21,6 @@ class LogInForm extends React.Component {
       this.props.firebase
         .doSignInWithEmailAndPassword (this.state.email, this.state.password)
         .then (authUser => {
-          console.log (authUser);
           this.props.history.push ('/');
         })
         .catch (error => {

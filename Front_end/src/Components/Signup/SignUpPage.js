@@ -1,6 +1,6 @@
 import React from 'react';
 import SignUpForm from './SignUpForm';
-import {FirebaseContext} from './Firebase';
+import {FirebaseContext} from '../Firebase';
 
 class SignUpPage extends React.Component {
   render () {

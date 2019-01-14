@@ -28,6 +28,16 @@ class Firebase {
   doPassWordReset = email => this.auth.sendPasswordResetEmail (email);
 
   doPassWordUpdate = email => this.auth.currentUser.updatePassWord (email);
+
+  sendVerificationViaEmail = name =>
+    this.auth.currentUser
+      .updateProfile ({displayName: name})
+      .then (res =>
+        this.auth.currentUser.sendEmailVerification ({
+          url: process.env.REACT_APP_CONFIRMATION_EMAIL_REDIRECT,
+        })
+      )
+      .catch (err => console.log (err));
 }
 
 export default Firebase;
