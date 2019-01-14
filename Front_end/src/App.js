@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Route} from 'react-router-dom';
-import ReviewList from './Components/ReviewList';
+import ReviewList from './Components/ReviewList/ReviewList';
 import LandingPage from './Components/LandingPage';
-import SearchLanding from './Components/SearchLanding';
-import Billing from './Components/Billing';
+import SearchLanding from './Components/SearchLanding/SearchLanding';
+import Billing from './Components/Billing/Billing';
 import SettingsPage from './Components/Settings/SettingsPage';
 import SignUpPage from './Components/Signup/SignUpPage';
 import LogInPage from './Components/Login/LogInPage';
