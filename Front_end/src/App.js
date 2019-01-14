@@ -4,9 +4,9 @@ import ReviewList from './Components/ReviewList';
 import LandingPage from './Components/LandingPage';
 import SearchLanding from './Components/SearchLanding';
 import Billing from './Components/Billing';
-import SettingsPage from './Components/SettingsPage';
-import SignUpPage from './Components/SignUpPage';
-import LogInPage from './Components/LogInPage';
+import SettingsPage from './Components/Settings/SettingsPage';
+import SignUpPage from './Components/Signup/SignUpPage';
+import LogInPage from './Components/Login/LogInPage';
 import './App.css';
 
 class App extends Component {
