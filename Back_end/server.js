@@ -19,7 +19,5 @@ server.use('/reviews', reviewRoutes)
 // user route
 server.use('/user', userRoutes)
 
-const port = 9000
-server.listen(port, () => {
-  console.log(`===Server listening on port ${port}===`)
-})
+server.listen ((process.env.PORT || 9000));
+

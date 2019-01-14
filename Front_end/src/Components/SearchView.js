@@ -1,16 +1,8 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
 // import dummyData from '../DummyData/dummyData.js'
-import {
-  Card,
-  CardImg,
-  CardText,
-  CardBody,
-  CardTitle,
-  Label,
-  Form,
-  Input,
-} from 'react-materialize'
+import { Card, Col, CardTitle, Row, Section } from 'react-materialize'
+import Stars from './Stars'
 
 const carReviews = [
   {
@@ -50,33 +42,57 @@ class SearchView extends Component {
 
   render() {
     return (
-      <div>
-        <Card>
-          <CardImg />
-          <CardTitle>Result of your search results:</CardTitle>
-          <CardBody>
-            {this.state.carReviews.map(review =>
-              <div key={review.reviewer}>
-                <CardText>
-                  {' '}{review.reviewer}{' '}
-                </CardText>
-                <CardText>
-                  {' '}{review.year}{' '}
-                </CardText>
-                <CardText>
-                  {' '}{review.make}{' '}
-                </CardText>
-                <CardText>
-                  {' '}{review.model}{' '}
-                </CardText>
-                <CardText>
-                  {' '}{review.trim}{' '}
-                </CardText>
-              </div>,
-            )}
-          </CardBody>
-        </Card>
-      </div>
+      <Section className="center">
+        <Row>
+          <Col m={6} s={12} l={3}>
+            <Card
+              className="medium"
+              header={<CardTitle image="img/sample-1.jpg" />}
+            >
+              <div>
+                <Stars />
+              </div>
+              1990 Mazda Rx7 Turbo II
+            </Card>
+          </Col>
+
+          <Col m={6} s={12} l={3}>
+            <Card
+              className="medium"
+              header={<CardTitle image="img/sample-1.jpg" />}
+            >
+              <div>
+                <Stars />
+              </div>
+              1990 Mazda Rx7 Turbo II
+            </Card>
+          </Col>
+
+          <Col m={3} s={12} l={3}>
+            <Card
+              className="medium"
+              header={<CardTitle image="img/sample-1.jpg" />}
+            >
+              <div>
+                <Stars />
+              </div>
+              1990 Mazda Rx7 Turbo II
+            </Card>
+          </Col>
+
+          <Col m={6} s={12} l={3}>
+            <Card
+              className="medium"
+              header={<CardTitle image="img/sample-1.jpg" />}
+            >
+              <div>
+                <Stars />
+              </div>
+              1990 Mazda Rx7 Turbo II
+            </Card>
+          </Col>
+        </Row>
+      </Section>
     )
   }
 }

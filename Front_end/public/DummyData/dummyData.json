@@ -1,0 +1,62 @@
+[
+  {
+    "reviewer": "adfaris",
+    "year": 2019,
+    "make": "BMW",
+    "model": "F1",
+    "trim": "turbo",
+    "rating": 4.8,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Brabham_BMW_BT54_Turbo_1985_vr_TCE.jpg"
+  },
+  {
+    "reviewer": "Adam Lee",
+    "year": 2019,
+    "make": "Honda",
+    "model": "Odyssey",
+    "trim": "turbo",
+    "rating": 3.6
+  },
+  {
+    "reviewer": "Das Ma",
+    "year": 2019,
+    "make": "Land Rover",
+    "model": "EXL",
+    "trim": "Super Charged",
+    "rating": 4.5,
+    "image": "https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/wp-content/uploads/2017/10/2017-Land-Rover-Range-Rover-Supercharged-SWB-110.jpg"
+  },
+  {
+    "reviewer": "Das Ma",
+    "year": 2018,
+    "make": "Toyota",
+    "model": "RAV4",
+    "trim": "XLE",
+    "rating": 3.7
+  },
+  {
+    "reviewer": "Francis",
+    "year": 2006,
+    "make": "Mercedez-Benz",
+    "model": "GL450",
+    "trim": "",
+    "rating": 5,
+    "image": "http://zombdrive.com/images1600_/2007_mercedes-benz_gl-class_4dr-suv_gl320-cdi_fq_oem_1_500.jpg"
+  },
+  {
+    "reviewer": "Will",
+    "year": 2006,
+    "make": "Hyundai",
+    "model": "Elantra",
+    "trim": "GLE",
+    "rating": 2
+  },
+  {
+    "reviewer": "Adam",
+    "year": 2006,
+    "make": "Toyota",
+    "model": "Prius",
+    "trim": "Hybrid",
+    "rating": 4.6,
+    "image": "https://cdn.motor1.com/images/mgl/6ZQn7/s3/2005-66446-2006-toyota-prius-hybrid1.jpg"
+  }
+]
