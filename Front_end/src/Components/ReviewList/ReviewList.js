@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import NewReviewModalCard from "./NewReviewModalCard";
-import EditReviewModalCard from "./EditReviewModalCard";
-import ViewReviewModalCard from "./ViewReviewModalCard";
+import NewReviewModalCard from "../ReviewList/NewReviewModalCard";
+import EditReviewModalCard from "../ReviewList/EditReviewModalCard";
+import ViewReviewModalCard from "../ReviewList/ViewReviewModalCard";
 import {
   Breadcrumb,
   MenuItem,

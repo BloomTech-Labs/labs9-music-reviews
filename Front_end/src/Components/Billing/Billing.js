@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SideNav, SideNavItem, Breadcrumb, MenuItem, Card, Button, Row, Col, Input } from 'react-materialize';
+import { SideNav, SideNavItem, Breadcrumb, MenuItem, Button, Row, Col, Input } from 'react-materialize';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Checkout from './Checkout';
