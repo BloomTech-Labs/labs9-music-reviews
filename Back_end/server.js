@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
@@ -17,28 +17,20 @@ const configureServer = app => {
 }
 
 module.exports = configureServer;
-=======
-const express = require('express')
-const server = express()
-const cors = require('cors')
 
-server.use(express.json())
-server.use(cors())
+const express = require ('express');
+const server = express ();
+const cors = require ('cors');
 
-const reviewRoutes = require('./routes/reviewRoutes')
-const userRoutes = require('./routes/userRoutes.js')
+server.use (express.json ());
+server.use (cors ());
 
-// sanity check
-server.use('/', (req, res) => {
-  res.send('Server running...')
-})
-
+const reviewRoutes = require ('./routes/reviewRoutes');
+const userRoutes = require ('./routes/userRoutes.js');
 // reviews route
-server.use('/reviews', reviewRoutes)
+server.use ('/reviews', reviewRoutes);
 
 // user route
-server.use('/user', userRoutes)
+server.use ('/user', userRoutes);
 
 server.listen ((process.env.PORT || 9000));
-
->>>>>>> 6630a78b105fc5cb7694ca2eb9942c979ae195a3

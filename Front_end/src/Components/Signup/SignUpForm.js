@@ -26,7 +26,7 @@ class SignUpForm extends React.Component {
         )
         .then (authUser => {
           this.props.firebase
-            .sendVerificationViaEmail (this.state.name)
+            .doSendVerificationViaEmail (this.state.name)
             .then (res => {
               this.props.history.push ('/');
             })
