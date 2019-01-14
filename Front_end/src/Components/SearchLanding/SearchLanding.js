@@ -1,9 +1,9 @@
 import React from 'react'
 import Navigation from './Navigation'
-import Search from './Search'
-import Filter from './Filter'
-import SearchView from './SearchView'
-import About from './About'
+import Search from '../SearchLanding/Search'
+import Filter from '../SearchLanding/Filter'
+import SearchView from '../SearchLanding/SearchView'
+import About from '../SearchLanding/About'
 
 const LandingPage = () => {
   return (

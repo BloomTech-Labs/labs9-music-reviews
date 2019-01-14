@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Col, Card, CardTitle, Modal } from 'react-materialize'
 import Ratings from 'react-ratings-declarative'
-import ReviewCardPop from './ReviewCardPop';
+import ReviewCardPop from '../ReviewCardPop';
 
 class FeaturedStars extends Component {
   render() {

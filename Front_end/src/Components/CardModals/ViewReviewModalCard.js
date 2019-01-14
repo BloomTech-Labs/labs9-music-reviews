@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Stars from "./Stars";
+import Stars from "../StarsRating/Stars";
 import { Button, Modal, NavItem, Dropdown, Col, Card } from "react-materialize";
 
 const ViewReviewModalCard = props => {

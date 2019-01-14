@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Section, Row, Col, Card, CardTitle} from 'react-materialize';
-import Stars from './Stars';
+import Stars from '..//StarsRating/Stars';
 
 
 class PopularCars extends Component {

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
-import SignOut from './Signout/SignOut';
+import SignOut from '../Signout/SignOut';
 import {
   NavItem,
   Navbar,
