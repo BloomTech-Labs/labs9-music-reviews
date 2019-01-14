@@ -66,6 +66,7 @@ class Billing extends Component {
                                 description={"Running a test"}
                                 amount={1}
                             />
+                            <p style={{ color: "lightgray" }}>*Subscriptions are automatically renewed unless specified. To edit subscription preferences, please navigate to ""</p>
                         </Payment>            
                     </Col>
                 </Row>

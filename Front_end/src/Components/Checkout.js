@@ -3,12 +3,10 @@ import axios from 'axios';
 import StripeCheckout from 'react-stripe-checkout';
 
 // may need to modify later, still testing
-const PAYMENT_SERVER_URL = process.env.PAYMENT_SERVER_URL || "http://localhost:9000/payment/charge";
+const PAYMENT_SERVER_URL = process.env.PAYMENT_SERVER_URL || "http://localhost:9000/payment";
 
 // Publishable key is solely for identifying our Stripe account. Safe to be pushed.
 const STRIPE_PUBLISHABLE_KEY = 'pk_test_48apY3K7i1kB09oFAezAYI9Q';
-
-console.log(STRIPE_PUBLISHABLE_KEY);
 
 const CURRENCY = 'USD';
 
@@ -26,7 +24,6 @@ const errorPayment = error => {
 };
 
 const onToken = (amount, description) => token => {
-    console.log(amount, description, token);
     axios.post(PAYMENT_SERVER_URL, {
         description,
         source: token.id,
