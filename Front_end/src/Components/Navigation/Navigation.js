@@ -9,7 +9,7 @@ import {
   Icon,
   Button,
 } from 'react-materialize';
-import {FirebaseContext} from './Firebase/index.js';
+import {FirebaseContext} from '../Firebase/index.js';
 
 class Navigation extends Component {
   constructor () {
