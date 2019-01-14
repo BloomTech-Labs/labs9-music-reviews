@@ -14,12 +14,10 @@ const CURRENCY = 'USD';
 const convertToCents = amount => amount * 100;
 
 const successPayment = data => {
-    console.log(data)
     alert('Payment Successful');
   };
   
 const errorPayment = error => {
-    console.log(error)
     alert('Payment Error');
 };
 
