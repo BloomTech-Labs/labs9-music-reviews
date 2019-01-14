@@ -1,5 +1,5 @@
 import React from 'react'
-import Navigation from './Navigation'
+import Navigation from '../Navigation/Navigation'
 import Search from '../SearchLanding/Search'
 import Filter from '../SearchLanding/Filter'
 import SearchView from '../SearchLanding/SearchView'
