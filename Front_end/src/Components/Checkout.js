@@ -38,10 +38,10 @@ const Checkout = ({name, description, amount}) =>
         label="Subscribe"
         name={name}
         description={description}
-        amount={convertToCents(amount)}
         token={onToken(amount, description)}
         currency={CURRENCY}
         panelLabel='Subscribe'
+        amount={convertToCents(amount)}
         stripeKey={STRIPE_PUBLISHABLE_KEY}
     />
 
