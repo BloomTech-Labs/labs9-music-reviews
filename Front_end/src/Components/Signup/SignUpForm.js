@@ -1,40 +1,49 @@
 import React from 'react';
 import axios from 'axios';
-import {Button} from 'react-materialize';
-import {withRouter} from 'react-router-dom';
+import { Button } from 'react-materialize';
+import { withRouter } from 'react-router-dom';
 
 class SignUpForm extends React.Component {
-  constructor (props) {
-    super (props);
+  constructor(props) {
+    super(props);
     this.state = {
       email: '',
       password: '',
     };
   }
-  onChangeHandler = e => {
+  onChangeHandler = (e) => {
     //onChangeHandler for controlled inputs
-    this.setState ({[e.target.name]: e.target.value});
+    this.setState({ [e.target.name]: e.target.value });
   };
   onSubmitHandler = () => {
-    const validUser = this.isValid ();
+    const validUser = this.isValid();
     if (validUser) {
       this.props.firebase
-        .doCreateUserWithEmailAndPassword (
-          this.state.email,
-          this.state.password
-        )
-        .then (authUser => {
-          const index = this.state.email.indexOf ('@');
-          const name = this.state.email.slice (0, index);
+        .doCreateUserWithEmailAndPassword(this.state.email, this.state.password)
+        .then((authUser) => {
+          const index = this.state.email.indexOf('@');
+          const name = this.state.email.slice(0, index);
           this.props.firebase
-            .doSendVerificationViaEmail (name)
-            .then (res => {
-              this.props.history.push ('/');
+            .doSendVerificationViaEmail(name)
+            .then((res) => {
+              this.props.firebase.auth.onAuthStateChanged((user) => {
+                if (user) {
+                  user.getIdToken().then((idToken) => {
+                    axios
+                      .post('http://localhost:9000/user/create', {
+                        idToken: idToken,
+                      })
+                      .then((res) => console.log(res))
+                      .catch((err) => console.log(err));
+                  });
+                }
+              });
+              this.props.history.push('/');
             })
-            .catch (err => console.log (err));
+            .catch((err) => console.log(err));
         })
-        .catch (error => {
-          this.setState ({error});
+        .catch((error) => {
+          this.setState({ error });
         });
     }
   };
@@ -42,9 +51,9 @@ class SignUpForm extends React.Component {
     return this.state.email && this.state.password;
   };
   redirect = () => {
-    this.props.history.push ('/login');
+    this.props.history.push('/login');
   };
-  render () {
+  render() {
     return (
       <div>
         <input
@@ -71,4 +80,4 @@ class SignUpForm extends React.Component {
     );
   }
 }
-export default withRouter (SignUpForm);
+export default withRouter(SignUpForm);
