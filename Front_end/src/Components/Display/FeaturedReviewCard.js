@@ -9,7 +9,7 @@ class FeaturedStars extends Component {
       <Ratings 
         rating={this.props.rating} 
         widgetRatedColors="orange"
-        widgetDimensions = "35px"
+        widgetDimensions = "30px"
         >
         <Ratings.Widget />
         <Ratings.Widget />
@@ -24,9 +24,9 @@ class FeaturedStars extends Component {
 class FcCard extends Component {
   render() {
     return (
-          <Col sm = '12' md = '4' lg = '3'>
+          <Col xs = '12' sm = '6' md = '4' lg = '3'>
             <Card>
-              <CardImg top width="100%" src={this.props.image} alt={this.props.track} />
+              <CardImg top width="50%" src={this.props.image} alt={this.props.alt} />
               <CardBody>
                 <FeaturedStars rating = {this.props.rating}/>
                 <CardTitle>Track: {this.props.track}</CardTitle>

@@ -2,70 +2,75 @@ import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 import SignOut from '../Signout/SignOut';
 import {
-  NavItem,
+  Collapse,
   Navbar,
-  SideNav,
-  SideNavItem,
-  Icon,
-  Button,
-} from 'react-materialize';
+  NavbarToggler,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  FormGroup,
+  Input} from 'reactstrap';
+import { Icon } from 'react-materialize';
+
 import {FirebaseContext} from '../Firebase/index.js';
 
 class Navigation extends Component {
   constructor () {
     super ();
     this.state = {
-      isLoggedIn: false,
+      isOpen: false
     };
   }
+
+  toggle = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+
   render () {
-    const LoggedIn = (
-      <Navbar className="blue" right>
-        <SideNav
-          trigger={
-            <Button
-              style={{background: 'inherit', hover: 'none', border: 'none'}}
-            >
-              <Icon large>menu</Icon>
-            </Button>
-          }
-          options={{closeOnClick: true}}
-        >
-          <SideNavItem
-            userView
-            user={{
-              background: 'img/image.jpg',
-              image: 'img/image.jpg',
-              name: 'Name Surname',
-              email: 'gmailk@gmail.com',
-            }}
-          />
-          <SideNavItem icon="search">Search</SideNavItem>
-          <SideNavItem icon="rate_review">My Reviews</SideNavItem>
-          <SideNavItem icon="attach_money">Billing</SideNavItem>
-          <SideNavItem icon="settings">Settings</SideNavItem>
-          <SideNavItem divider />
-          <FirebaseContext.Consumer>
-            {firebase => <SignOut firebase={firebase} />}
-          </FirebaseContext.Consumer>
-        </SideNav>
-      </Navbar>
-    );
-
-    const LoggedOut = (
-      <Navbar right className="blue">
-        <NavItem onClick={() => this.props.history.push ('/signup')}>
-          Sign Up
-        </NavItem>
-        <NavItem onClick={() => this.props.history.push ('/login')}>
-          Log In
-        </NavItem>
-      </Navbar>
-    );
-
-    const {isLoggedIn} = this.state;
-
-    return isLoggedIn ? LoggedIn : LoggedOut;
+    return (
+        <Navbar color="dark" dark expand="md" style = {{height: '100px', }}>
+            <Nav className="ml-auto" navbar style = {{alignContent: 'center', alignItems: 'center'}}>
+            
+              <Input
+                type="search"
+                name="search"
+                id="search"
+                placeholder="Search music"
+                style = {{width: '500px', margin: '0 10px 0 0', padding: '5px', height: '30px', backgroundColor: '#495057', color: '#fff'}}
+              />
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav>
+                  <Icon>menu</Icon>
+                </DropdownToggle>
+                <DropdownMenu right style = {{width: '250px'}}>
+                  <DropdownItem>
+                    My Profile
+                  </DropdownItem>
+                  <DropdownItem>
+                    My Reviews
+                  </DropdownItem>
+                  <DropdownItem>
+                    Saved Reviews
+                  </DropdownItem>
+                  <DropdownItem>
+                    Settings
+                  </DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem>
+                    Logout
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+              <a><Icon>account_box</Icon></a>
+            </Nav>
+        </Navbar>
+    )
   }
 }
 

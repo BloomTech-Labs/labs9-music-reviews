@@ -8,7 +8,7 @@ import SettingsPage from './Components/Settings/SettingsPage';
 import SignUpPage from './Components/Signup/SignUpPage';
 import LogInPage from './Components/Login/LogInPage';
 import ForgotPasswordPage from './Components/ForgotPassword/ForgotPasswordPage';
-import './App.css';
+//import './App.css';
 
 class App extends Component {
   render () {
