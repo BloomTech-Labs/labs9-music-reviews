@@ -39,7 +39,7 @@ class SignUpForm extends React.Component {
     }
   };
   isValid = () => {
-    return this.state.name && this.state.email && this.state.password;
+    return this.state.email && this.state.password;
   };
   redirect = () => {
     this.props.history.push ('/login');

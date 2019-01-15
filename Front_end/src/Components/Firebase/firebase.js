@@ -16,6 +16,7 @@ class Firebase {
   constructor () {
     app.initializeApp (config);
     this.auth = app.auth ();
+    this.googleProvider = new app.auth.GoogleAuthProvider ();
   }
   doCreateUserWithEmailAndPassword = (email, password) =>
     this.auth.createUserWithEmailAndPassword (email, password);
@@ -36,6 +37,7 @@ class Firebase {
         })
       )
       .catch (err => console.log (err));
+  doSignInWithGoogle = () => this.auth.signInWithPopup (this.googleProvider);
 }
 
 export default Firebase;
