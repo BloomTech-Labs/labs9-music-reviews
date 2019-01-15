@@ -9,6 +9,7 @@ import SignUpPage from './Components/Signup/SignUpPage';
 import LogInPage from './Components/Login/LogInPage';
 import ForgotPasswordPage from './Components/ForgotPassword/ForgotPasswordPage';
 import './App.css';
+import ReviewsPage from './Components/ReviewsPage/ReviewsPage';
 
 class App extends Component {
   render () {
@@ -17,6 +18,7 @@ class App extends Component {
         <Route exact path="/" component={LandingPage} />
         <Route path="/search_landing" component={SearchLanding} />
         <Route path="/reviews" component={ReviewList} />
+        <Route path="/album_reviews" component={ReviewsPage} />
         <Route path="/billing" component={Billing} />
         <Route path="/settings" component={SettingsPage} />
         <Route path="/signup" component={SignUpPage} />
