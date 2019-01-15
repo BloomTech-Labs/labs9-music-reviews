@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import ReviewEditModal from "../CardModals/ReviewEditModal";
+import Navigation from "../Navigation/Navigation";
 import NewReviewModalCard from "../CardModals/NewReviewModalCard";
 import EditReviewModalCard from "../CardModals/EditReviewModalCard";
 import ViewReviewModalCard from "../CardModals/ViewReviewModalCard";
@@ -64,101 +66,14 @@ class ReviewList extends Component {
     });
     return (
       <div>
-        <BreadcrumbDiv>
-          {/* Breadcrumb*/}
-          <Breadcrumb>
-            <MenuItem>
-              <a href="/">Home</a>
-            </MenuItem>
-            <MenuItem>My Reviews</MenuItem>
-          </Breadcrumb>
-        </BreadcrumbDiv>
-
-        {/* If no reviews on account display prompt for new review otherwise display all reviews on account */}
-
-        <div style={{ display: "flex" }}>
-          {/* <SideNav style={{ position: "relative", height: "800px" }}>
-            <SideNavItem
-              userView
-              user={{
-                background: "img/image.jpg",
-                image: "img/image.jpg",
-                name: "Name Surname",
-                email: "gmailk@gmail.com"
-              }}
-            />
-            <SideNavItem icon="search">Search</SideNavItem>
-            <SideNavItem icon="rate_review">My Reviews</SideNavItem>
-            <SideNavItem icon="attach_money">Billing</SideNavItem>
-            <SideNavItem icon="settings">Settings</SideNavItem>
-            <SideNavItem divider />
-            <SideNavItem icon="cancel">Sign Out</SideNavItem>
-          </SideNav> */}
-          <SideNav
-            trigger={
-              <Button
-                style={{ background: "#ee6e73", hover: "none", border: "none" }}
-              >
-                <Icon medium>menu</Icon>
-              </Button>
-            }
-            options={{ closeOnClick: true }}
-          >
-            <SideNavItem icon="search">Search</SideNavItem>
-            <SideNavItem icon="rate_review">My Reviews</SideNavItem>
-            <SideNavItem icon="attach_money">Billing</SideNavItem>
-            <SideNavItem icon="settings">Settings</SideNavItem>
-            <SideNavItem divider />
-            <SideNavItem icon="cancel">Sign Out</SideNavItem>
-          </SideNav>
-          <Row>
-            {1 === 0 ? (
-              <div>
-                {/* Create a new Review */}
-                <NewReviewModalCard
-                  reviews={this.state.reviews}
-                  handleReviewChange={this.handleReviewChange}
-                  input={this.state.input}
-                  loggedIn={this.state.loggedIn}
-                />
-              </div>
-            ) : (
-              <div>
-                {/* Review Card Map */}
-                {this.state.loggedIn === false ? (
-                  <div>
-                    {/* {userReviews.map(review => ( */}
-                      <ViewReviewModalCard
-                        reviews={this.state.reviews}
-                        handleReviewChange={this.handleReviewChange}
-                        input={this.state.input}
-                        loggedIn={this.state.loggedIn}
-                      />
-                    {/* ))} */}
-                  </div>
-                ) : (
-                  <div>
-                    {/* {userReviews.map(review => ( */}
-                      <EditReviewModalCard
-                        reviews={this.state.reviews}
-                        handleReviewChange={this.handleReviewChange}
-                        input={this.state.input}
-                        loggedIn={this.state.loggedIn}
-                      />
-                    {/* ))} */}
-                    {/* Create a new Review */}
-                    <NewReviewModalCard
-                      reviews={this.state.reviews}
-                      handleReviewChange={this.handleReviewChange}
-                      input={this.state.input}
-                      loggedIn={this.state.loggedIn}
-                    />
-                  </div>
-                )}
-              </div>
-            )}
-          </Row>
+        <div>
+          <Navigation />
         </div>
+        <ReviewEditModal />
+        <ReviewEditModal />
+        <Row>
+          
+        </Row>
       </div>
     );
   }
