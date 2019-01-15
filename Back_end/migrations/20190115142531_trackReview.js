@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
     tbl.datetime('dateCreated')
     tbl.datetime('dateModified')
     tbl.integer('rating')
-    tbl.string('albumName')
+    tbl.string('trackName')
     tbl.text('reviewText')
     tbl.integer('userId').unique()
     tbl.foreign('userId').references('userId').inTable('user')
