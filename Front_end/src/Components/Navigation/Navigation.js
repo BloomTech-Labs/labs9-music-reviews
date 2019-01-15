@@ -64,7 +64,9 @@ class Navigation extends Component {
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>
-                    Logout
+                  <FirebaseContext.Consumer>	
+                    {firebase => <SignOut firebase={firebase} />}	
+                  </FirebaseContext.Consumer>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
