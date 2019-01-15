@@ -30,7 +30,11 @@
     transform: rotate(360deg);
   }
 }
-.verifylink {
-  color: #cd5c5c;
+.forgotPassword {
+  color: #999999;
+  cursor:pointer;
+}
+.cancelReset{
+  color:#00635d;
   cursor:pointer;
 }

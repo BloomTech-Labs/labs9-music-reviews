@@ -62,6 +62,12 @@ class LogInForm extends React.Component {
         <Button waves="light" onClick={this.redirect}>
           Don't have an account?
         </Button>
+        <span
+          className="forgotPassword"
+          onClick={() => this.props.history.push ('/forgot_password')}
+        >
+          Forgot account?
+        </span>
       </div>
     );
   }
