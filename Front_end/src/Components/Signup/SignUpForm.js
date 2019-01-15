@@ -7,7 +7,6 @@ class SignUpForm extends React.Component {
   constructor (props) {
     super (props);
     this.state = {
-      name: '',
       email: '',
       password: '',
     };
@@ -25,8 +24,10 @@ class SignUpForm extends React.Component {
           this.state.password
         )
         .then (authUser => {
+          const index = this.state.email.indexOf ('@');
+          const name = this.state.email.slice (0, index);
           this.props.firebase
-            .doSendVerificationViaEmail (this.state.name)
+            .doSendVerificationViaEmail (name)
             .then (res => {
               this.props.history.push ('/');
             })
@@ -46,13 +47,6 @@ class SignUpForm extends React.Component {
   render () {
     return (
       <div>
-        <input
-          type="text"
-          name="name"
-          value={this.state.name}
-          onChange={this.onChangeHandler}
-          placeholder="Name"
-        />
         <input
           type="email"
           name="email"

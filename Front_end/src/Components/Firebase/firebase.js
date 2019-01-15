@@ -27,9 +27,6 @@ class Firebase {
 
   doPassWordReset = email => this.auth.sendPasswordResetEmail (email);
 
-  doPassWordUpdate = password =>
-    this.auth.currentUser.updatePassWord (password);
-
   doSendVerificationViaEmail = name =>
     this.auth.currentUser
       .updateProfile ({displayName: name})
@@ -39,7 +36,6 @@ class Firebase {
         })
       )
       .catch (err => console.log (err));
-  doEmailUpdate = email => this.auth.updateEmail (email);
 }
 
 export default Firebase;
