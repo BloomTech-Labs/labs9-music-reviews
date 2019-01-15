@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {withRouter} from 'react-router-dom';
+import {withRouter, Route} from 'react-router-dom';
 import SignOut from '../Signout/SignOut';
 import {
   Collapse,
@@ -17,6 +17,7 @@ import {
 import { Icon } from 'react-materialize';
 
 import {FirebaseContext} from '../Firebase/index.js';
+import Breadcrumbs from './Breadcrumbs';
 
 class Navigation extends Component {
   constructor () {
@@ -36,7 +37,7 @@ class Navigation extends Component {
     return (
         <Navbar color="dark" dark expand="md" style = {{height: '100px', }}>
             <Nav className="ml-auto" navbar style = {{alignContent: 'center', alignItems: 'center'}}>
-            
+            <Route path="/:path" component={Breadcrumbs} />
               <Input
                 type="search"
                 name="search"
