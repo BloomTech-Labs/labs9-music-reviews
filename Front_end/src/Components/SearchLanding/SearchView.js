@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
 // import dummyData from '../DummyData/dummyData.js'
 import { Card, Col, CardTitle, Row, Section } from 'react-materialize'
-import Stars from './Stars'
+import Stars from '../StarsRating/Stars'
 
 const carReviews = [
   {

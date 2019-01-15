@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Col, Card, CardTitle } from 'react-materialize'
+import { Col, Card, CardTitle, Modal } from 'react-materialize'
 import Ratings from 'react-ratings-declarative'
+import ReviewCardPop from '../ReviewCardPop';
 
 class FeaturedStars extends Component {
   render() {
@@ -21,15 +22,17 @@ class FcCard extends Component {
     return (
       <Col m={6} s={12} l={3}>
         <Card
-          className="medium"
-          header={<CardTitle image={this.props.image} />}
+          className="large"
+          header={<Modal trigger = {<CardTitle image = {this.props.image}></CardTitle>}><h3>{this.props.year} {this.props.make} {this.props.model} {this.props.trim}</h3> <a href="#">
+          @{this.props.reviewer}</a> 
+          <ReviewCardPop image = {this.props.image}/></Modal>}
           actions={[
             <a href="#">
               @{this.props.reviewer}
-            </a>,
+            </a>
           ]}
         >
-          <div>
+          <div className = 'center-align'>
             <FeaturedStars rating={this.props.rating} />
           </div>
           {this.props.year} {this.props.make} <br /> {this.props.model}{' '}

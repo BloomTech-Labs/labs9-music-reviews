@@ -4,12 +4,15 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "firebase": "^5.7.3",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-materialize": "^2.6.0",
     "react-ratings-declarative": "^3.4.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.3",
+    "react-stripe-checkout": "^2.6.3",
+    "reactstrap": "^7.1.0",
     "styled-components": "^4.1.3"
   },
   "scripts": {

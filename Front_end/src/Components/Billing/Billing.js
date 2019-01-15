@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { SideNav, SideNavItem, Breadcrumb, MenuItem, Card, Button, Row, Col, Input } from 'react-materialize';
+import { SideNav, SideNavItem, Breadcrumb, MenuItem, Button, Row, Col, Input } from 'react-materialize';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import Checkout from './Checkout';
 
 const Payment = styled.div`
     padding: 3rem;
@@ -23,7 +24,7 @@ class Billing extends Component {
                 </Breadcrumb>
 
                 <Row>
-                    <div class="col s2">
+                    <Col className="col s2">
                         <SideNav
                             trigger={<Button>SIDE NAV</Button>}
                             options={{ closeOnClick: true }}
@@ -45,25 +46,30 @@ class Billing extends Component {
                             <SideNavItem divider />
                             <SideNavItem icon="cancel">Sign Out</SideNavItem>
                         </SideNav>
-                    </div>
+                    </Col>
 
-                    <div class="valign-wrapper s10">
+                    <Col className="valign-wrapper s10">
                         <Payment>
-                            <h2> Billing </h2>
-                            <Card title="Payment Info" class="large" style={{ padding: "3rem 10rem 3rem 0", textAlign: "left" }}>
+                            <h2 style={{ textAlign: "left" }}> Billing </h2>
+                            {/* <Card title="Payment Info" className="large" style={{ padding: "3rem 10rem 3rem 0", textAlign: "left" }}>
                                 <Input placeholder="Credit Card #" /><br />
                                 <Input placeholder="Expiration Date" /><br />
                                 <Input placeholder="CVV" />
-                            </Card>
+                            </Card> */}
+                            {/* <Button waves='light' large={true}>Buy Now</Button> */}
                             <div style={{ margin: "2rem 0" }}>
                                 <Input name='year' type='checkbox' value='1 Year Subscription - $ 9.99' label='1 Year Subscription - $ 9.99' /><br /><br />
                                 <Input name='month' type='checkbox' value='1 Month Subscription - $ 0.99' label='1 Month Subscription - $ 0.99' />
                             </div>
-                            <Button waves='light' large={true}>Buy Now</Button>
+                            <Checkout 
+                                name={"Testing"}
+                                description={"Running a test"}
+                                amount={1}
+                            />
+                            <p style={{ color: "lightgray" }}>*Subscriptions are automatically renewed unless specified. To edit subscription preferences, please navigate to ""</p>
                         </Payment>            
-                    </div>
+                    </Col>
                 </Row>
-
             </div>
         )
     };
