@@ -67,4 +67,4 @@ typings/
 # VSCode settings
 .vscode/
 
-.serviceAccountKey.json
+serviceAccountKey.json
