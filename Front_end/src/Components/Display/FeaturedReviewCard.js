@@ -24,7 +24,7 @@ class FeaturedStars extends Component {
 class FcCard extends Component {
   render() {
     return (
-          <Col sm = '12' md = '6' lg = '3'>
+          <Col sm = '12' md = '4' lg = '3'>
             <Card>
               <CardImg top width="100%" src={this.props.image} alt={this.props.track} />
               <CardBody>
