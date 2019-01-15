@@ -31,6 +31,7 @@ class FeaturedReviews extends Component {
         <h1>Featured Reviews</h1>
         <Row>
           {this.state.data.map((data, index) => {
+            if (data.rating >= 4)
             return (
               <FcCard
                 key={index}
@@ -40,6 +41,7 @@ class FeaturedReviews extends Component {
                 artist = {data.artist}
                 rating={data.rating}
                 image={data.image}
+                alt = {data.track}
               />
             )
           })}
