@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import {Button} from 'react-materialize';
 import {withRouter} from 'react-router-dom';
+import {FirebaseContext} from '../Firebase';
+import LogInWithGoogle from './LogInWithGoogle';
 
 class LogInForm extends React.Component {
   constructor (props) {
@@ -54,9 +56,18 @@ class LogInForm extends React.Component {
         <Button waves="light" onClick={this.onSubmitHandler}>
           Sign In
         </Button>
+        <FirebaseContext.Consumer>
+          {firebase => <LogInWithGoogle firebase={firebase} />}
+        </FirebaseContext.Consumer>
         <Button waves="light" onClick={this.redirect}>
           Don't have an account?
         </Button>
+        <span
+          className="forgotPassword"
+          onClick={() => this.props.history.push ('/forgot_password')}
+        >
+          Forgot account?
+        </span>
       </div>
     );
   }

@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import { Section, Row } from 'react-materialize'
-import axios from 'axios'
-import FcCard from './FeaturedReviewCard'
+import React, { Component, Fragment } from 'react';
+import { Row } from 'reactstrap';
+import axios from 'axios';
+import FcCard from './FeaturedReviewCard';
 
 class FeaturedReviews extends Component {
   constructor(props) {
@@ -15,25 +15,9 @@ class FeaturedReviews extends Component {
   componentDidMount() {
     axios
       .get('./DummyData/dummyData.json') // JSON File Path
-      // .get('https://labs9-car-reviews.herokuapp.com/reviews')
       .then(response => {
         this.setState({
           data: response.data,
-        })
-      })
-      .catch(function(error) {
-        console.log(error)
-      })
-    this.getReview()
-  }
-
-  getReview = () => {
-    const getReview = 'https://labs9-car-reviews.herokuapp.com/reviews'
-    axios
-      .get(getReview)
-      .then(response => {
-        this.setState({
-          connectedTest: response.data,
         })
       })
       .catch(function(error) {
@@ -43,19 +27,21 @@ class FeaturedReviews extends Component {
 
   render() {
     return (
-      <Section>
+      <Fragment>
         <h1>Featured Reviews</h1>
         <Row>
           {this.state.data.map((data, index) => {
+            if (data.rating >= 4)
             return (
               <FcCard
                 key={index}
                 reviewer={data.reviewer}
                 year={data.year}
-                make={data.make}
-                trim={data.trim}
+                track={data.track}
+                artist = {data.artist}
                 rating={data.rating}
                 image={data.image}
+                alt = {data.track}
               />
             )
           })}
@@ -72,7 +58,7 @@ class FeaturedReviews extends Component {
             )
           })}
         </Row>
-      </Section>
+      </Fragment>
     )
   }
 }
