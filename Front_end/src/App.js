@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Route} from 'react-router-dom';
 import ReviewList from './Components/ReviewList/ReviewList';
+import ReviewsPage from './Components/ReviewsPage/ReviewsPage';
 import LandingPage from './Components/LandingPage';
 import SearchLanding from './Components/SearchLanding/SearchLanding';
 import Billing from './Components/Billing/Billing';
