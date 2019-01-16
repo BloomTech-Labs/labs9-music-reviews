@@ -11,28 +11,28 @@ module.exports = {
 };
 
 function retrieve() {
-    return db('reviews');
+    return db('trackReview');
 };
 
 function retrieveById(id) {
-    return db('reviews')
+    return db('trackReview')
             .where({ id: Number(id) });
 };
 
 function write(review) {
-    return db('reviews')
+    return db('trackReview')
             .insert(review)
             .then(ids => ({ id: ids[0] }));
 };
 
 function edit(id, review) {
-    return db('reviews')
+    return db('trackReview')
             .where('id', Number(id))
             .update(review);
 };
 
 function remove(id) {
-    return db('reviews')
+    return db('trackReview')
             .where('id', Number(id))
             .del();
 }
