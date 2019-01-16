@@ -61,7 +61,7 @@ class SearchView extends Component {
           }}
         >
           <Row>
-            <Col m={6} s={12} l={3}>
+            <Col sm={'auto'}>
               <Card
                 className="medium"
                 header={<CardTitle image="img/sample-1.jpg" />}
@@ -75,7 +75,7 @@ class SearchView extends Component {
           </Row>
 
           <Row>
-            <Col m={6} s={12} l={3}>
+            <Col sm={'auto'}>
               <Card
                 className="medium"
                 header={<CardTitle image="img/sample-1.jpg" />}
@@ -89,7 +89,7 @@ class SearchView extends Component {
           </Row>
 
           <Row>
-            <Col m={6} s={12} l={3}>
+            <Col sm={'auto'}>
               <Card
                 className="medium"
                 header={<CardTitle image="img/sample-1.jpg" />}
@@ -103,7 +103,7 @@ class SearchView extends Component {
           </Row>
 
           <Row>
-            <Col m={6} s={12} l={3}>
+            <Col sm={'auto'}>
               <Card
                 className="medium"
                 header={<CardTitle image="img/sample-1.jpg" />}
@@ -131,7 +131,7 @@ class SearchView extends Component {
           }}
         >
           <Row>
-            <Col m={6} s={12} l={3}>
+            <Col sm={'auto'}>
               <Card
                 className="medium"
                 header={<CardTitle image="img/sample-1.jpg" />}
@@ -145,7 +145,7 @@ class SearchView extends Component {
           </Row>
 
           <Row>
-            <Col m={6} s={12} l={3}>
+            <Col sm={'auto'}>
               <Card
                 className="medium"
                 header={<CardTitle image="img/sample-1.jpg" />}
@@ -159,7 +159,7 @@ class SearchView extends Component {
           </Row>
 
           <Row>
-            <Col m={6} s={12} l={3}>
+            <Col sm={'auto'}>
               <Card
                 className="medium"
                 header={<CardTitle image="img/sample-1.jpg" />}
@@ -173,7 +173,7 @@ class SearchView extends Component {
           </Row>
 
           <Row>
-            <Col m={6} s={12} l={3}>
+            <Col sm={'auto'}>
               <Card
                 className="medium"
                 header={<CardTitle image="img/sample-1.jpg" />}
@@ -201,7 +201,7 @@ class SearchView extends Component {
           }}
         >
           <Row>
-            <Col m={6} s={12} l={3}>
+            <Col sm={'auto'}>
               <Card
                 className="medium"
                 header={<CardTitle image="img/sample-1.jpg" />}
@@ -215,7 +215,7 @@ class SearchView extends Component {
           </Row>
 
           <Row>
-            <Col m={6} s={12} l={3}>
+            <Col sm={'auto'}>
               <Card
                 className="medium"
                 header={<CardTitle image="img/sample-1.jpg" />}
@@ -229,7 +229,7 @@ class SearchView extends Component {
           </Row>
 
           <Row>
-            <Col m={6} s={12} l={3}>
+            <Col sm={'auto'}>
               <Card
                 className="medium"
                 header={<CardTitle image="img/sample-1.jpg" />}
@@ -243,7 +243,7 @@ class SearchView extends Component {
           </Row>
 
           <Row>
-            <Col m={6} s={12} l={3}>
+            <Col sm={'auto'}>
               <Card
                 className="medium"
                 header={<CardTitle image="img/sample-1.jpg" />}
