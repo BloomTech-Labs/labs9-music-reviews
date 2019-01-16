@@ -10,11 +10,15 @@ app.use(cors());
 
 configureRoutes(app);
 
-const reviewRoutes = require('./routes/reviewRoutes');
+const trackReviewRoutes = require('./routes/trackReviewRoutes');
+const albumReviewRoutes = require('./routes/albumReviewRoutes');
 const userRoutes = require('./routes/userRoutes.js');
 
-// reviews route
-app.use('/reviews', reviewRoutes);
+// track reviews route
+app.use('/track_reviews', trackReviewRoutes);
+
+// album reviews route
+app.use('/album_reviews', albumReviewRoutes);
 
 // user route
 app.use('/user', userRoutes);

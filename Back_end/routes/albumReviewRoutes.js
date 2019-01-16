@@ -20,10 +20,10 @@ router.get('/', async (req, res) => {
 });
 
 // get review by ID
-router.get('/:reviewId', async (req, res) => {
-    const { reviewId } = req.params;
+router.get('/:albumId', async (req, res) => {
+    const { albumId } = req.params;
     try {
-        const review = await dbReviews.retrieveById(reviewId);
+        const review = await dbReviews.retrieveById(albumId);
         res.status(200).json(review);
     }
     catch (err) {
@@ -62,8 +62,8 @@ router.post('/', async (req, res) => {
 });
 
 // update selected review
-router.put('/:reviewId', async (req, res) => {
-    const { reviewId } = req.params;
+router.put('/:albumId', async (req, res) => {
+    const { albumId } = req.params;
     const review = req.body;
     if(!review.title || !review.content){
         res.status(400).json({
@@ -71,7 +71,7 @@ router.put('/:reviewId', async (req, res) => {
         })
     } else {
         try {
-            const updatedReview = await dbReviews.edit(reviewId, review);
+            const updatedReview = await dbReviews.edit(albumId, review);
             res.status(200).json(updatedReview);
         }
         catch (err) {
@@ -83,10 +83,10 @@ router.put('/:reviewId', async (req, res) => {
 });
 
 // delete selected review
-router.delete('/:reviewId', async (req, res) => {
-    const { reviewId } = req.params;
+router.delete('/:albumId', async (req, res) => {
+    const { albumId } = req.params;
     try {
-        const removeReview = await dbReviews.remove(reviewId);
+        const removeReview = await dbReviews.remove(albumId);
         res.status(200).json({
             message: "Review deleted."
         })
