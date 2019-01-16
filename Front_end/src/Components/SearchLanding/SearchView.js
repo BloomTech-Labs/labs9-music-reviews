@@ -1,7 +1,16 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
 // import dummyData from '../DummyData/dummyData.js'
-import { Card, Col, CardTitle, Row, Form, FormGroup, Input } from 'reactstrap'
+import {
+  Card,
+  Col,
+  CardTitle,
+  Row,
+  Form,
+  FormGroup,
+  Input,
+  CardImg,
+} from 'reactstrap'
 import Stars from '../StarsRating/Stars'
 
 class SearchView extends Component {
@@ -62,10 +71,13 @@ class SearchView extends Component {
         >
           <Row>
             <Col sm={'auto'}>
-              <Card
-                className="medium"
-                header={<CardTitle image="img/sample-1.jpg" />}
-              >
+              <Card>
+                <CardImg
+                  top
+                  width="100%"
+                  src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"
+                  alt="Card image cap"
+                />
                 <div>
                   <Stars />
                 </div>
@@ -76,10 +88,13 @@ class SearchView extends Component {
 
           <Row>
             <Col sm={'auto'}>
-              <Card
-                className="medium"
-                header={<CardTitle image="img/sample-1.jpg" />}
-              >
+              <Card>
+                <CardImg
+                  top
+                  width="100%"
+                  src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"
+                  alt="Card image cap"
+                />
                 <div>
                   <Stars />
                 </div>
@@ -90,10 +105,13 @@ class SearchView extends Component {
 
           <Row>
             <Col sm={'auto'}>
-              <Card
-                className="medium"
-                header={<CardTitle image="img/sample-1.jpg" />}
-              >
+              <Card>
+                <CardImg
+                  top
+                  width="100%"
+                  src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"
+                  alt="Card image cap"
+                />
                 <div>
                   <Stars />
                 </div>
@@ -104,10 +122,13 @@ class SearchView extends Component {
 
           <Row>
             <Col sm={'auto'}>
-              <Card
-                className="medium"
-                header={<CardTitle image="img/sample-1.jpg" />}
-              >
+              <Card>
+                <CardImg
+                  top
+                  width="100%"
+                  src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"
+                  alt="Card image cap"
+                />
                 <div>
                   <Stars />
                 </div>
@@ -132,10 +153,13 @@ class SearchView extends Component {
         >
           <Row>
             <Col sm={'auto'}>
-              <Card
-                className="medium"
-                header={<CardTitle image="img/sample-1.jpg" />}
-              >
+              <Card>
+                <CardImg
+                  top
+                  width="100%"
+                  src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"
+                  alt="Card image cap"
+                />
                 <div>
                   <Stars />
                 </div>
@@ -146,10 +170,13 @@ class SearchView extends Component {
 
           <Row>
             <Col sm={'auto'}>
-              <Card
-                className="medium"
-                header={<CardTitle image="img/sample-1.jpg" />}
-              >
+              <Card>
+                <CardImg
+                  top
+                  width="100%"
+                  src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"
+                  alt="Card image cap"
+                />
                 <div>
                   <Stars />
                 </div>
@@ -160,10 +187,13 @@ class SearchView extends Component {
 
           <Row>
             <Col sm={'auto'}>
-              <Card
-                className="medium"
-                header={<CardTitle image="img/sample-1.jpg" />}
-              >
+              <Card>
+                <CardImg
+                  top
+                  width="100%"
+                  src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"
+                  alt="Card image cap"
+                />
                 <div>
                   <Stars />
                 </div>
@@ -174,10 +204,13 @@ class SearchView extends Component {
 
           <Row>
             <Col sm={'auto'}>
-              <Card
-                className="medium"
-                header={<CardTitle image="img/sample-1.jpg" />}
-              >
+              <Card>
+                <CardImg
+                  top
+                  width="100%"
+                  src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"
+                  alt="Card image cap"
+                />
                 <div>
                   <Stars />
                 </div>
@@ -202,10 +235,13 @@ class SearchView extends Component {
         >
           <Row>
             <Col sm={'auto'}>
-              <Card
-                className="medium"
-                header={<CardTitle image="img/sample-1.jpg" />}
-              >
+              <Card>
+                <CardImg
+                  top
+                  width="100%"
+                  src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"
+                  alt="Card image cap"
+                />
                 <div>
                   <Stars />
                 </div>
@@ -216,10 +252,13 @@ class SearchView extends Component {
 
           <Row>
             <Col sm={'auto'}>
-              <Card
-                className="medium"
-                header={<CardTitle image="img/sample-1.jpg" />}
-              >
+              <Card>
+                <CardImg
+                  top
+                  width="100%"
+                  src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"
+                  alt="Card image cap"
+                />
                 <div>
                   <Stars />
                 </div>
@@ -230,10 +269,13 @@ class SearchView extends Component {
 
           <Row>
             <Col sm={'auto'}>
-              <Card
-                className="medium"
-                header={<CardTitle image="img/sample-1.jpg" />}
-              >
+              <Card>
+                <CardImg
+                  top
+                  width="100%"
+                  src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"
+                  alt="Card image cap"
+                />
                 <div>
                   <Stars />
                 </div>
@@ -244,10 +286,13 @@ class SearchView extends Component {
 
           <Row>
             <Col sm={'auto'}>
-              <Card
-                className="medium"
-                header={<CardTitle image="img/sample-1.jpg" />}
-              >
+              <Card>
+                <CardImg
+                  top
+                  width="100%"
+                  src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"
+                  alt="Card image cap"
+                />
                 <div>
                   <Stars />
                 </div>
