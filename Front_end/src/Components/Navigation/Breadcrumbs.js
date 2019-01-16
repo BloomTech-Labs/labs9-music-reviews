@@ -56,5 +56,4 @@ const Breadcrumbs = ({ location : { pathname }, match }) => {
     </Breadcrumb>
   );
 };
-
 export default Breadcrumbs;
