@@ -23,21 +23,21 @@ class SignUpForm extends React.Component {
         .then((authUser) => {
           const index = this.state.email.indexOf('@');
           const name = this.state.email.slice(0, index);
-          this.props.firebase
-            .doSendVerificationViaEmail(name)
-            .then((res) => {
-              this.props.firebase.auth.onAuthStateChanged((user) => {
-                if (user) {
-                  user.getIdToken().then((idToken) => {
-                    axios
-                      .post('http://localhost:9000/user/create', {
-                        idToken: idToken,
-                      })
-                      .then((res) => console.log(res))
-                      .catch((err) => console.log(err));
-                  });
-                }
-              });
+          this.props.firebase.doSendVerificationViaEmail(name);
+          this.props.firebase.auth
+            .onAuthStateChanged((user) => {
+              if (user) {
+                const email = this.props.firebase.auth.currentUser.email;
+                user.getIdToken().then((idToken) => {
+                  axios
+                    .post('http://localhost:9000/user/create', {
+                      idToken: idToken,
+                      email: email,
+                    })
+                    .then((res) => console.log(res))
+                    .catch((err) => console.log(err));
+                });
+              }
               this.props.history.push('/');
             })
             .catch((err) => console.log(err));

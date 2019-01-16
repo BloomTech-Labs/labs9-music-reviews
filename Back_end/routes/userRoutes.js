@@ -12,6 +12,9 @@ router.post('/create', (req, res) => {
   admin
     .auth()
     .verifyIdToken(req.body.idToken)
-    .then((decodedToken) => console.log(decodedToken.uid))
+    .then((decodedToken) => {
+      console.log(decodedToken.uid);
+      console.log(req.body);
+    })
     .catch((err) => console.log(err));
 });
