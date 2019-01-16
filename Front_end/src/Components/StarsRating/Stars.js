@@ -21,6 +21,7 @@ class Stars extends Component {
         rating={this.state.rating}
         widgetRatedColors="orange"
         changeRating={this.changeRating}
+        style={{ margin: '0 auto' }}
       >
         <Ratings.Widget />
         <Ratings.Widget />
