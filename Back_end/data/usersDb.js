@@ -4,6 +4,7 @@ const db = knex(knexConfig.development);
 
 module.exports = {
   createNewUser,
+  getUser,
 };
 
 function createNewUser(newUser) {
@@ -25,4 +26,7 @@ function createNewUser(newUser) {
         return null;
       }
     });
+}
+function getUser(name) {
+  return db('users').select().where({ userName: name });
 }

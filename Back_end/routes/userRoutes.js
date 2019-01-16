@@ -25,3 +25,10 @@ router.post('/create', (req, res) => {
     })
     .catch((err) => res.status(500).json(err));
 });
+router.get('/get/:name', (req, res) => {
+  const name = req.params.name;
+  dbUsers
+    .getUser(name)
+    .then((user) => res.status(200).json(user[0]))
+    .catch((err) => res.status(404).json(err));
+});
