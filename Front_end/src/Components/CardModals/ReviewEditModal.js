@@ -31,7 +31,7 @@ class ReviewEditModal extends React.Component {
 
   render() {
     return (
-      <Fragment>
+      <Fragment >
         <Button color="danger" onClick={this.toggle}>
           Edit
         </Button>
@@ -69,23 +69,14 @@ class ReviewEditModal extends React.Component {
                   alt="Placeholder album image"
                 />
               </div>
-              <div>
-                <ListGroup>
-                  <ListGroupItem>Track 11</ListGroupItem>
-                  <ListGroupItem>Track 12</ListGroupItem>
-                  <ListGroupItem>Track 13</ListGroupItem>
-                  <ListGroupItem>Track 14</ListGroupItem>
-                  <ListGroupItem>Track 15</ListGroupItem>
-                </ListGroup>
-              </div>
             </Col>
           </Row>
-          <div class="d-flex justify-content-center">
-            <div>
+          <div class="container center-align" style={{ margin: '0 auto'}}>
+            <Row style={{ margin: '0 auto'}}>
               <Stars />
-            </div>
+            </Row>
             <div>
-              <textarea>
+              <textarea maxlength="1500">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -100,6 +91,7 @@ class ReviewEditModal extends React.Component {
             <Button color="primary" onClick={this.toggle}>
               Close
             </Button>{" "}
+            <Button color="secondary">Delete</Button>
             <Button color="secondary">Submit</Button>
           </ModalFooter>
         </Modal>

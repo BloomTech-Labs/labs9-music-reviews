@@ -1,12 +1,16 @@
-import React, { Component } from 'react'
-import { Col, Card, CardTitle, Modal } from 'react-materialize'
-import Ratings from 'react-ratings-declarative'
-import ReviewCardPop from '../ReviewCardPop';
+import React, { Component } from 'react';
+import { Card, CardImg, CardBody, CardTitle, CardSubtitle, CardLink, Col } from 'reactstrap';
+import Ratings from 'react-ratings-declarative';
+
 
 class FeaturedStars extends Component {
   render() {
     return (
-      <Ratings rating={this.props.rating} widgetRatedColors="orange">
+      <Ratings 
+        rating={this.props.rating} 
+        widgetRatedColors="orange"
+        widgetDimensions = "30px"
+        >
         <Ratings.Widget />
         <Ratings.Widget />
         <Ratings.Widget />
@@ -20,27 +24,19 @@ class FeaturedStars extends Component {
 class FcCard extends Component {
   render() {
     return (
-      <Col m={6} s={12} l={3}>
-        <Card
-          className="large"
-          header={<Modal trigger = {<CardTitle image = {this.props.image}></CardTitle>}><h3>{this.props.year} {this.props.make} {this.props.model} {this.props.trim}</h3> <a href="#">
-          @{this.props.reviewer}</a> 
-          <ReviewCardPop image = {this.props.image}/></Modal>}
-          actions={[
-            <a href="#">
-              @{this.props.reviewer}
-            </a>
-          ]}
-        >
-          <div className = 'center-align'>
-            <FeaturedStars rating={this.props.rating} />
-          </div>
-          {this.props.year} {this.props.make} <br /> {this.props.model}{' '}
-          {this.props.trim}
-        </Card>
-      </Col>
+          <Col xs = '12' sm = '6' md = '4' lg = '3'>
+            <Card>
+              <CardImg top width="50%" src={this.props.image} alt={this.props.alt} />
+              <CardBody>
+                <FeaturedStars rating = {this.props.rating}/>
+                <CardTitle>Track: {this.props.track}</CardTitle>
+                <CardSubtitle>Artist: {this.props.artist}</CardSubtitle>
+                <CardLink href= '#'>@{this.props.reviewer}</CardLink>
+              </CardBody>
+            </Card>
+          </Col>
     )
   }
 }
 
-export default FcCard
+export default FcCard;
