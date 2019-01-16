@@ -14,7 +14,7 @@ import ForgotPasswordPage from './Components/ForgotPassword/ForgotPasswordPage';
 class App extends Component {
   render () {
     return (
-      <div className="App">
+      <div className="container-fluid">
         <Route exact path="/" component={LandingPage} />
         <Route path="/search_landing" component={SearchLanding} />
         <Route path="/reviews" component={ReviewList} />

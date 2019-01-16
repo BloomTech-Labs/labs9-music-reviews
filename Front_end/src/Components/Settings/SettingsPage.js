@@ -1,11 +1,15 @@
 import React from 'react';
-import axios from 'axios';
+import { FirebaseContext } from '../Firebase';
+import SettingsContent from './SettingsContent';
 
 class SettingsPage extends React.Component {
-  render () {
+  render() {
     return (
       <div>
         <h1>Account Settings</h1>
+        <FirebaseContext.Consumer>
+          {(firebase) => <SettingsContent firebase={firebase} />}
+        </FirebaseContext.Consumer>
       </div>
     );
   }
