@@ -1,6 +1,7 @@
 //file contains routes for actions to be performed on user models
 
 const express = require('express');
+const dbUsers = require('../data/usersDB.js');
 const admin = require('../firebaseSDK');
 const router = express.Router();
 
@@ -11,10 +12,16 @@ module.exports = router;
 router.post('/create', (req, res) => {
   admin
     .auth()
-    .verifyIdToken(req.body.idToken)
+    .verifyIdToken(req.body.token)
     .then((decodedToken) => {
-      console.log(decodedToken.uid);
-      console.log(req.body);
+      dbUsers
+        .createNewUser(decodedToken)
+        .then((newUser) => {
+          if (newUser !== null) {
+            res.status(201).json(newUser[0]);
+          }
+        })
+        .catch((err) => res.status(500).json(err));
     })
-    .catch((err) => console.log(err));
+    .catch((err) => res.status(500).json(err));
 });

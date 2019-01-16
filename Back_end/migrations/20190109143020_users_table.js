@@ -1,13 +1,14 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('users', function(tbl) {
-    tbl.increments('id');
-    tbl.string('username').notNullable().unique();
-    tbl.string('email').notNullable();
-    tbl.boolean('paid_status').notNullable();
-    tbl.integer('reviewCount').notNullable();
+    tbl.string('userId').primary().unique();
+    tbl.string('userName', 100).unique();
+    tbl.string('emailAddress', 100);
+    tbl.boolean('paidMembership').defaultTo('false');
+    tbl.integer('reviewCount');
+    tbl.datetime('subscriptionExpiration');
   });
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTableIfExists('users');
+  return knex.schema.dropTable('users');
 };

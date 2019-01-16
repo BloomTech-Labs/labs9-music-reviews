@@ -27,12 +27,10 @@ class SignUpForm extends React.Component {
           this.props.firebase.auth
             .onAuthStateChanged((user) => {
               if (user) {
-                const email = this.props.firebase.auth.currentUser.email;
                 user.getIdToken().then((idToken) => {
                   axios
                     .post('http://localhost:9000/user/create', {
-                      idToken: idToken,
-                      email: email,
+                      token: idToken,
                     })
                     .then((res) => console.log(res))
                     .catch((err) => console.log(err));
