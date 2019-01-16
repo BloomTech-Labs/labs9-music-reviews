@@ -18,6 +18,7 @@ const successPayment = data => {
   };
   
 const errorPayment = error => {
+    console.log(error);
     alert('Payment Error');
 };
 
