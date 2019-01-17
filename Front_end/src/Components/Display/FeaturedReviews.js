@@ -17,7 +17,7 @@ class FeaturedReviews extends Component {
       .get('./DummyData/dummyData.json') // JSON File Path
       .then(response => {
         this.setState({
-          data: response.data,
+          data: response.data.tracks,
         })
       })
       .catch(function(error) {
@@ -30,20 +30,23 @@ class FeaturedReviews extends Component {
       <Fragment>
         <h1>Featured Reviews</h1>
         <Row>
-          {this.state.data.map((data, index) => {
-            if (data.rating >= 4)
-            return (
-              <FcCard
-                key={index}
-                reviewer={data.reviewer}
-                year={data.year}
-                track={data.track}
-                artist = {data.artist}
-                rating={data.rating}
-                image={data.image}
-                alt = {data.track}
-              />
-            )
+          {this.state.data.map(data => {
+            return data.artists.map(artist => {
+              if (data.popularity/20 >= 3.75)
+              return (
+                <FcCard
+                  key={data.id}
+                  reviewer={data.album.release_date}
+                  year={data.album.release_date}
+                  track={data.name}
+                  artist = {artist.name}
+                  rating={data.popularity/20}
+                  image={data.album.images[0].url}
+                  alt = {data.name}
+                />
+              )
+            })
+            
           })}
         </Row>
         <Row>

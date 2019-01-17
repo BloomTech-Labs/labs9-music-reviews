@@ -1,12 +1,9 @@
 import React, {Component} from 'react';
-import {withRouter, Route} from 'react-router-dom';
+import {withRouter, Route, Link} from 'react-router-dom';
 import SignOut from '../Signout/SignOut';
 import {
-  
   Navbar,
   Nav,
-  NavItem,
-  NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
