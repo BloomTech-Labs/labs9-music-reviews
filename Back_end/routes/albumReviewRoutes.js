@@ -1,5 +1,5 @@
 const express = require('express');
-const dbReviews = require('../data/reviewsDb.js');
+const dbReviews = require('../data/albumReviewsDb.js');
 const router = express.Router();
 
 router.use(express.json());
@@ -7,7 +7,7 @@ router.use(express.json());
 // need to add middleware to verify user and tie that user to the written review.
 
 // get all reviews
-router.get('/albumReviews', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const reviews = await dbReviews.retrieve();
         res.status(200).json(reviews);
@@ -20,7 +20,7 @@ router.get('/albumReviews', async (req, res) => {
 });
 
 // get review by ID
-router.get('/albumReviews/:albumId', async (req, res) => {
+router.get('/:albumId', async (req, res) => {
     const { albumId } = req.params;
     try {
         const review = await dbReviews.retrieveById(albumId);
@@ -35,7 +35,7 @@ router.get('/albumReviews/:albumId', async (req, res) => {
 
 // create new review
 // need to add middleware
-router.post('/albumReviews', async (req, res) => {
+router.post('/', async (req, res) => {
     //const { userId } = req.params
     const review = req.body;
     if(!review.title || !review.content){
@@ -62,7 +62,7 @@ router.post('/albumReviews', async (req, res) => {
 });
 
 // update selected review
-router.put('/albumReviews/:albumId', async (req, res) => {
+router.put('/:albumId', async (req, res) => {
     const { albumId } = req.params;
     const review = req.body;
     if(!review.title || !review.content){
@@ -83,7 +83,7 @@ router.put('/albumReviews/:albumId', async (req, res) => {
 });
 
 // delete selected review
-router.delete('/albumReviews/:albumId', async (req, res) => {
+router.delete('/:albumId', async (req, res) => {
     const { albumId } = req.params;
     try {
         const removeReview = await dbReviews.remove(albumId);
