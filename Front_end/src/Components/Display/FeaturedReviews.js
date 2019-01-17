@@ -14,7 +14,7 @@ class FeaturedReviews extends Component {
 
   componentDidMount() {
     axios
-      .get('./DummyData/dummyData.json') // JSON File Path
+      .get('https://labs9-car-reviews.herokuapp.com/trackReviews') // JSON File Path
       .then(response => {
         this.setState({
           data: response.data,
@@ -30,20 +30,19 @@ class FeaturedReviews extends Component {
       <Fragment>
         <h1>Featured Reviews</h1>
         <Row>
-          {this.state.data.map((data, index) => {
-            if (data.rating >= 4)
-            return (
-              <FcCard
-                key={index}
-                reviewer={data.reviewer}
-                year={data.year}
-                track={data.track}
-                artist = {data.artist}
-                rating={data.rating}
-                image={data.image}
-                alt = {data.track}
-              />
-            )
+          {this.state.data.map(data => {
+              return (
+                <FcCard
+                  key={data.id}
+                  reviewer={data.dateCreated}
+                  year={data.date}
+                  track={data.trackName}
+                  artist = {data.name}
+                  rating={data.rating}
+                  image={data.image}
+                  alt = {data.name}
+                />
+              )            
           })}
         </Row>
         <Row>

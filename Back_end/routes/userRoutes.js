@@ -2,8 +2,34 @@
 
 const express = require('express');
 const dbUsers = require('../data/usersDb.js');
+const admin = require('../firebaseSDK');
 const router = express.Router();
 
 router.use(express.json());
 
 module.exports = router;
+
+router.post('/create', (req, res) => {
+  admin
+    .auth()
+    .verifyIdToken(req.body.token)
+    .then((decodedToken) => {
+      dbUsers
+        .createNewUser(decodedToken)
+        .then((newUser) => {
+          console.log(newUser);
+          if (newUser !== null) {
+            res.status(201).json(newUser[0]);
+          }
+        })
+        .catch((err) => res.status(500).json(err));
+    })
+    .catch((err) => res.status(500).json(err));
+});
+router.get('/get/:email', (req, res) => {
+  const email = req.params.email;
+  dbUsers
+    .getUser(email)
+    .then((user) => res.status(200).json(user[0]))
+    .catch((err) => res.status(404).json(err));
+});
