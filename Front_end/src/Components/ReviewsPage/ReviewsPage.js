@@ -15,7 +15,8 @@ const Sidebar = styled.div`
     padding-top: 20px;
 `;
 
-const TOKEN_URL = process.env.TOKEN_URL || 'http://localhost:9000/spotify_token'
+// const TOKEN_URL = process.env.TOKEN_URL || 'http://localhost:9000/spotify_token'
+const TOKEN_URL = "https://labs9-spotify-token.herokuapp.com/login"
 
 class ReviewsPage extends Component {
     constructor(props){
@@ -26,37 +27,36 @@ class ReviewsPage extends Component {
             artist: '',
             art: '',
             tracks: [],
-            token: "",
+            token: '',
+            auth: '',
         }
         this.getToken = this.getToken.bind(this);
-        this.getAlbum = this.getAlbum.bind(this);
+        // this.getAlbum = this.getAlbum.bind(this);
     }
     getToken = () => {
         axios.get(TOKEN_URL)
-            .then( data => {
-                this.setState({
-                    token: data.data
-            }, this.getAlbum('0sNOF9WDwhWunNAHPD3Baj', this.state.token))
-            console.log('inside getToken', this.state.token)})
+            .then( res => {
+                console.log(res.data)
+            })
             
             .catch( err => console.log(err) );
     }
-    getAlbum = (id, token) => {
-        console.log('inside getAlbum', token)
-        axios.get(`https://api.spotify.com/v1/albums/${id}`, {
-                Headers: { Authorization: `Bearer ${token}` }
-            })
-            .then( data => {
-                this.setState({
-                    data,
-                    album: data.data.name,
-                    artist: data.data.artists[0]['name'],
-                    art: data.data.images[1]['url'],
-                    tracks: data.data.tracks
-                })
-            })
-            .catch( err => console.log(err) );
-    }
+    // getAlbum = (id, token) => {
+    //     console.log('inside getAlbum', token)
+    //     axios.get(`https://api.spotify.com/v1/albums/${id}`, {
+    //             Headers: { Authorization: `Bearer ${token}` }
+    //         })
+    //         .then( data => {
+    //             this.setState({
+    //                 data,
+    //                 album: data.data.name,
+    //                 artist: data.data.artists[0]['name'],
+    //                 art: data.data.images[1]['url'],
+    //                 tracks: data.data.tracks
+    //             })
+    //         })
+    //         .catch( err => console.log(err) );
+    // }
     componentDidMount(){
         this.getToken();
     }
