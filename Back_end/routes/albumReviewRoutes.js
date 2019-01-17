@@ -1,5 +1,5 @@
 const express = require('express');
-const dbReviews = require('../data/reviewsDb.js');
+const dbReviews = require('../data/albumReviewsDb.js');
 const router = express.Router();
 
 router.use(express.json());
