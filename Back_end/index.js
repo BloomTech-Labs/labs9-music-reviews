@@ -12,9 +12,8 @@ configureRoutes(app);
 
 const trackReviewRoutes = require('./routes/trackReviewRoutes');
 const albumReviewRoutes = require('./routes/albumReviewRoutes');
-// const userRoutes = require('./routes/userRoutes.js');
-const spotifyTokenRoutes = require('./routes/spotifyTokenRoutes')
 const userRoutes = require('./routes/userRoutes.js');
+const spotifyTokenRoutes = require('./routes/spotifyTokenRoutes')
 
 // track reviews route
 app.use('/trackReviews', trackReviewRoutes);
@@ -23,7 +22,7 @@ app.use('/trackReviews', trackReviewRoutes);
 app.use('/albumReviews', albumReviewRoutes);
 
 // user route
-// app.use('/user', userRoutes);
+app.use('/user', userRoutes);
 
 app.use('/spotify_token', spotifyTokenRoutes);
 
