@@ -38,9 +38,9 @@ router.get('/:reviewId', async (req, res) => {
 router.post('/', async (req, res) => {
     //const { userId } = req.params
     const review = req.body;
-    if(!review.title || !review.content){
+    if(!review.reviewText){
         res.status(400).json({
-            message: "Title and content cannot be blank."
+            message: "Review text cannot be blank."
         })
     }
     // else if (!userId){
@@ -65,9 +65,9 @@ router.post('/', async (req, res) => {
 router.put('/:reviewId', async (req, res) => {
     const { reviewId } = req.params;
     const review = req.body;
-    if(!review.title || !review.content){
+    if(!review.reviewText){
         res.status(400).json({
-            message: "Title and content cannot be blank."
+            message: "Review text cannot be blank."
         })
     } else {
         try {
