@@ -34,12 +34,12 @@ router.get('/:albumId', async (req, res) => {
 // create new review
 // need to add middleware
 router.post('/', async (req, res) => {
-  //const { userId } = req.params
-  const review = req.body;
-  if (!review.title || !review.content) {
-    res.status(400).json({
-      message: 'Title and content cannot be blank.',
-    });
+    //const { userId } = req.params
+    const review = req.body;
+    if(!review.reviewText){
+        res.status(400).json({
+            message: "Review text cannot be blank."
+        });
   } else {
     // else if (!userId){
     //     res.status(400).json({
@@ -59,22 +59,24 @@ router.post('/', async (req, res) => {
 
 // update selected review
 router.put('/:albumId', async (req, res) => {
-  const { albumId } = req.params;
-  const review = req.body;
-  if (!review.title || !review.content) {
-    res.status(400).json({
-      message: 'Title and content cannot be blank.',
-    });
-  } else {
-    try {
-      const updatedReview = await dbReviews.edit(albumId, review);
-      res.status(200).json(updatedReview);
-    } catch (err) {
-      res.status(500).json({
-        message: 'Failed to update selected review.',
-      });
-    }
-  }
+    const { albumId } = req.params;
+    const review = req.body;
+    if(!review.reviewText){
+        res.status(400).json({
+            message: "Review text cannot be blank."
+        });
+    } else {
+        try {
+            const updatedReview = await dbReviews.edit(albumId, review);
+            res.status(200).json(updatedReview);
+        }
+        catch (err) {
+            res.status(500).json({
+                message: "Failed to update selected review."
+            })
+        };
+    };
+
 });
 
 // delete selected review
