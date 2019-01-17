@@ -13,13 +13,9 @@ function createNewUser(newUser) {
     .where({ userId: newUser.user_id })
     .then((user) => {
       if (user.length === 0) {
-        const index = newUser.email.indexOf('@');
-        const username = newUser.email.slice(0, index);
         return db('users').insert({
           userId: newUser.user_id,
-          userName: username,
           emailAddress: newUser.email,
-          reviewCount: 0,
           subscriptionExpiration: null,
         });
       } else {
@@ -27,6 +23,6 @@ function createNewUser(newUser) {
       }
     });
 }
-function getUser(name) {
-  return db('users').select().where({ userName: name });
+function getUser(email) {
+  return db('users').select().where({ emailAddress: email });
 }

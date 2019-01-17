@@ -14,12 +14,13 @@ const trackReviewRoutes = require('./routes/trackReviewRoutes');
 const albumReviewRoutes = require('./routes/albumReviewRoutes');
 // const userRoutes = require('./routes/userRoutes.js');
 const spotifyTokenRoutes = require('./routes/spotifyTokenRoutes')
+const userRoutes = require('./routes/userRoutes.js');
 
 // track reviews route
-app.use('/track_reviews', trackReviewRoutes);
+app.use('/trackReviews', trackReviewRoutes);
 
 // album reviews route
-app.use('/album_reviews', albumReviewRoutes);
+app.use('/albumReviews', albumReviewRoutes);
 
 // user route
 // app.use('/user', userRoutes);

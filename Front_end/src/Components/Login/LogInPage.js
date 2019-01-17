@@ -1,14 +1,14 @@
 import React from 'react';
-import {FirebaseContext} from '../Firebase';
+import { FirebaseContext } from '../Firebase';
 import LogInForm from './LogInForm';
 
 class LogInPage extends React.Component {
-  render () {
+  render() {
     return (
       <div>
-        <h1>Log In</h1>
+        <h1>Music Reviews</h1>
         <FirebaseContext.Consumer>
-          {firebase => <LogInForm firebase={firebase} />}
+          {(firebase) => <LogInForm firebase={firebase} />}
         </FirebaseContext.Consumer>
       </div>
     );

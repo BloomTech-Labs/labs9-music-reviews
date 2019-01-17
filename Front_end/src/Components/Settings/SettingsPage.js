@@ -1,18 +1,29 @@
 import React from 'react';
 import { FirebaseContext } from '../Firebase';
 import SettingsContent from './SettingsContent';
-import Navigation from '../Navigation/Navigation'
+import Navigation from '../Navigation/Navigation';
+import styled from 'styled-components';
+
+const SettingsContainer = styled.div`
+  background-color: #f2f2f2;
+  height: 100vh;
+  div {
+    text-align: center;
+    p {
+      padding-top: 10px;
+    }
+  }
+`;
 
 class SettingsPage extends React.Component {
   render() {
     return (
-      <div>
+      <SettingsContainer>
         <Navigation />
-        <h1>Account Settings</h1>
         <FirebaseContext.Consumer>
           {(firebase) => <SettingsContent firebase={firebase} />}
         </FirebaseContext.Consumer>
-      </div>
+      </SettingsContainer>
     );
   }
 }

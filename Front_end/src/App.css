@@ -30,11 +30,4 @@
     transform: rotate(360deg);
   }
 }
-.forgotPassword {
-  color: #999999;
-  cursor:pointer;
-}
-.cancelReset{
-  color:#00635d;
-  cursor:pointer;
-}
+

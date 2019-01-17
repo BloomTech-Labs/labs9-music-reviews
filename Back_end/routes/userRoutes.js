@@ -17,6 +17,7 @@ router.post('/create', (req, res) => {
       dbUsers
         .createNewUser(decodedToken)
         .then((newUser) => {
+          console.log(newUser);
           if (newUser !== null) {
             res.status(201).json(newUser[0]);
           }
@@ -25,10 +26,10 @@ router.post('/create', (req, res) => {
     })
     .catch((err) => res.status(500).json(err));
 });
-router.get('/get/:name', (req, res) => {
-  const name = req.params.name;
+router.get('/get/:email', (req, res) => {
+  const email = req.params.email;
   dbUsers
-    .getUser(name)
+    .getUser(email)
     .then((user) => res.status(200).json(user[0]))
     .catch((err) => res.status(404).json(err));
 });
