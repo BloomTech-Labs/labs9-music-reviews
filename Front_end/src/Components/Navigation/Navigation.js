@@ -43,23 +43,23 @@ class Navigation extends Component {
                   <Icon>menu</Icon>
                 </DropdownToggle>
                 <DropdownMenu right >
-                  <DropdownItem>
-                    My Profile
+                <DropdownItem>
+                  <a href="/">Home</a>
                   </DropdownItem>
                   <DropdownItem>
-                    My Reviews
+                  <a href="/reviews">My Reviews</a>
                   </DropdownItem>
                   <DropdownItem>
-                    Saved Reviews
+                  <a href="/billing">Billing</a>
                   </DropdownItem>
                   <DropdownItem>
-                    Settings
+                  <a href="/settings">Settings</a>
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>
-                  <FirebaseContext.Consumer>	
+                  {/* <FirebaseContext.Consumer>	
                     {firebase => <SignOut firebase={firebase} />}
-                  </FirebaseContext.Consumer>
+                  </FirebaseContext.Consumer> */}
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>

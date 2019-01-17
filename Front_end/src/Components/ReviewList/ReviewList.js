@@ -4,17 +4,7 @@ import axios from "axios";
 import ReviewEditModal from "../CardModals/ReviewEditModal";
 import Navigation from "../Navigation/Navigation";
 import Stars from "../StarsRating/Stars";
-import {
-  Breadcrumb,
-  MenuItem,
-  Row,
-  SideNav,
-  SideNavItem,
-  Button,
-  Icon,
-  Col,
-  Container
-} from "react-materialize";
+import { Row, Col, Container } from "react-materialize";
 
 const ProfileInfo = styled.div`
     position: -webkit-sticky;
@@ -47,30 +37,30 @@ class ReviewList extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   axios
-  //     .get('./DummyData/dummyData.json')
-  //     .then(response => {
-  //       const newReviews = response.data;
-  //       const newState = Object.assign({}, this.state, { reviews: newReviews });
-  //       this.setState(newState);
-  //       console.log(this.state);
-  //     })
-  //     .catch(err => console.log(err));
-  // };
+  componentDidMount() {
+    axios
+      .get('./DummyData/dummyData.json')
+      .then(response => {
+        const newReviews = response.data;
+        const newState = Object.assign({}, this.state, { reviews: newReviews });
+        this.setState(newState);
+        console.log(this.state);
+      })
+      .catch(err => console.log(err));
+  };
 
   handleReviewChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
   render() {
-    const userReviews = this.state.reviews.filter(review => {
-      return (
-        review.review
-          .toLowerCase()
-          .indexOf(this.state.username.toLowerCase()) !== -1
-      );
-    });
+    // const userReviews = this.state.reviews.filter(review => {
+    //   return (
+    //     review.review
+    //       .toLowerCase()
+    //       .indexOf(this.state.username.toLowerCase()) !== -1
+    //   );
+    // });
     return (
       <div>
         <div>
