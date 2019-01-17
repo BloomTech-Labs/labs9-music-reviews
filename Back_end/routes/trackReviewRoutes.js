@@ -7,7 +7,7 @@ router.use(express.json());
 // need to add middleware to verify user and tie that user to the written review.
 
 // get all reviews
-router.get('/', async (req, res) => {
+router.get('/trackReviews', async (req, res) => {
     try {
         const reviews = await dbReviews.retrieve();
         res.status(200).json(reviews);
@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
 });
 
 // get review by ID
-router.get('/:reviewId', async (req, res) => {
+router.get('/trackReviews/:reviewId', async (req, res) => {
     const { reviewId } = req.params;
     try {
         const review = await dbReviews.retrieveById(reviewId);
@@ -35,7 +35,7 @@ router.get('/:reviewId', async (req, res) => {
 
 // create new review
 // need to add middleware
-router.post('/', async (req, res) => {
+router.post('/trackReviews', async (req, res) => {
     //const { userId } = req.params
     const review = req.body;
     if(!review.title || !review.content){
@@ -62,7 +62,7 @@ router.post('/', async (req, res) => {
 });
 
 // update selected review
-router.put('/:reviewId', async (req, res) => {
+router.put('/trackReviews/:reviewId', async (req, res) => {
     const { reviewId } = req.params;
     const review = req.body;
     if(!review.title || !review.content){
@@ -83,7 +83,7 @@ router.put('/:reviewId', async (req, res) => {
 });
 
 // delete selected review
-router.delete('/:reviewId', async (req, res) => {
+router.delete('/trackReviews/:reviewId', async (req, res) => {
     const { reviewId } = req.params;
     try {
         const removeReview = await dbReviews.remove(reviewId);
