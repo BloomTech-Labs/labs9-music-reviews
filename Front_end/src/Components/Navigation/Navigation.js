@@ -53,17 +53,17 @@ class Navigation extends Component {
               <Icon>menu</Icon>
             </DropdownToggle>
             <DropdownMenu right>
-              <DropdownItem>
-                <a href="/">Home</a>
+              <DropdownItem href="/"> 
+                Home
               </DropdownItem>
-              <DropdownItem>
-                <a href="/reviews">My Reviews</a>
+              <DropdownItem href="/reviews">
+                My Reviews
               </DropdownItem>
-              <DropdownItem>
-                <a href="/billing">Billing</a>
+              <DropdownItem href="/billing">
+                Billing
               </DropdownItem>
-              <DropdownItem>
-                <a href="/settings">Settings</a>
+              <DropdownItem href="/settings">
+                Settings
               </DropdownItem>
               <DropdownItem divider />
               <DropdownItem>
