@@ -12,6 +12,8 @@ configureRoutes(app);
 
 const trackReviewRoutes = require('./routes/trackReviewRoutes');
 const albumReviewRoutes = require('./routes/albumReviewRoutes');
+// const userRoutes = require('./routes/userRoutes.js');
+const spotifyTokenRoutes = require('./routes/spotifyTokenRoutes')
 const userRoutes = require('./routes/userRoutes.js');
 
 // track reviews route
@@ -21,9 +23,11 @@ app.use('/trackReviews', trackReviewRoutes);
 app.use('/albumReviews', albumReviewRoutes);
 
 // user route
-app.use('/user', userRoutes);
+// app.use('/user', userRoutes);
 
-app.listen(process.env.PORT || 9000, (error) => {
-  if (error) throw error;
-  console.log(`Server running on port: ${SERVER_CONFIGS.PORT}`);
+app.use('/spotify_token', spotifyTokenRoutes);
+
+app.listen ((process.env.PORT || 9000), error => {
+    if (error) throw error;
+    console.log(`Server running on port: ${SERVER_CONFIGS.PORT}`);
 });
