@@ -4,7 +4,6 @@ import {
   Button,
   Modal,
   ModalHeader,
-  ModalBody,
   ModalFooter,
   ListGroup,
   ListGroupItem,
@@ -17,11 +16,55 @@ class ReviewEditModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: "",
+      reviewText: "",
       modal: false
     };
 
     this.toggle = this.toggle.bind(this);
   }
+
+  componentDidMount() {
+    this.setState( {reviewText: this.props.review.reviewText})
+  }
+
+  editHandler = (event, id) => {
+    event.preventDefault();
+    axios
+      .put(
+        `https://labs9-car-reviews.herokuapp.com/albumReviews/${id}`,
+        {
+          reviewText: this.state.reviewText,
+        }
+      )
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
+      .catch(err => console.log(err));
+    this.setState(
+      {
+        id: this.state.id,
+        reviewText: this.state.reviewText,
+      },
+    );
+  };
+
+  deleteHandler = id => {
+    axios
+      .delete(
+        `https://labs9-car-reviews.herokuapp.com/albumReviews/${id}`
+      )
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
+      .catch(err => console.log(err));
+  };
+
+  handleEditChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
 
   toggle() {
     this.setState({
@@ -30,8 +73,9 @@ class ReviewEditModal extends React.Component {
   }
 
   render() {
+    console.log(this.state.reviewText);
     return (
-      <Fragment >
+      <Fragment>
         <Button color="danger" onClick={this.toggle}>
           Edit
         </Button>
@@ -71,28 +115,36 @@ class ReviewEditModal extends React.Component {
               </div>
             </Col>
           </Row>
-          <div class="container center-align" style={{ margin: '0 auto'}}>
-            <Row style={{ margin: '0 auto'}}>
+          <div class="container center-align" style={{ margin: "0 auto" }}>
+            <Row style={{ margin: "0 auto" }}>
               <Stars />
             </Row>
             <div>
-              <textarea maxlength="1500">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </textarea>
+              <textarea
+                onChange={this.handleEditChange}
+                name="reviewText"
+                value={this.state.reviewText}
+                maxlength="1500"
+                style={{ resize: "none", width: "100%" }}
+              />
             </div>
           </div>
           <ModalFooter>
+            <Button color="secondary" onClick={this.editHandler}>
+              Submit
+            </Button>
+            <Button
+              color="secondary"
+              onClick={event => {
+                this.deleteHandler(this.props.review.id);
+                event.preventDefault();
+              }}
+            >
+              Delete
+            </Button>
             <Button color="primary" onClick={this.toggle}>
               Close
             </Button>{" "}
-            <Button color="secondary">Delete</Button>
-            <Button color="secondary">Submit</Button>
           </ModalFooter>
         </Modal>
       </Fragment>
