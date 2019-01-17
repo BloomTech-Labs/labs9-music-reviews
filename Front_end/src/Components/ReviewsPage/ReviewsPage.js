@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Container, Row, Col, Jumbotron } from 'reactstrap';
 import Navigation from '../Navigation/Navigation';
 import Stars from '../StarsRating/Stars';
+import axios from 'axios';
 
 const Sidebar = styled.div`
     position: -webkit-sticky;
@@ -14,46 +15,78 @@ const Sidebar = styled.div`
     padding-top: 20px;
 `;
 
+const TOKEN_URL = process.env.TOKEN_URL || 'http://localhost:9000/spotify_token'
+
 class ReviewsPage extends Component {
     constructor(props){
         super(props);
+        this.state = {
+            data: [],
+            album: '',
+            artist: '',
+            art: '',
+            tracks: [],
+            token: "",
+        }
+        this.getToken = this.getToken.bind(this);
+        this.getAlbum = this.getAlbum.bind(this);
+    }
+    getToken = () => {
+        axios.get(TOKEN_URL)
+            .then( data => {
+                this.setState({
+                    token: data.data
+            }, this.getAlbum('0sNOF9WDwhWunNAHPD3Baj', this.state.token))
+            console.log('inside getToken', this.state.token)})
+            
+            .catch( err => console.log(err) );
+    }
+    getAlbum = (id, token) => {
+        console.log('inside getAlbum', token)
+        axios.get(`https://api.spotify.com/v1/albums/${id}`, {
+                Headers: { Authorization: `Bearer ${token}` }
+            })
+            .then( data => {
+                this.setState({
+                    data,
+                    album: data.data.name,
+                    artist: data.data.artists[0]['name'],
+                    art: data.data.images[1]['url'],
+                    tracks: data.data.tracks
+                })
+            })
+            .catch( err => console.log(err) );
+    }
+    componentDidMount(){
+        this.getToken();
     }
     render(){
         return (
             <Fragment>
                 <Navigation />
 
-                <Container fluid={true} style={{ display: "flex", margin: "0 auto", maxWidth: "1500px" }}>
+                <Container fluid={true} style={{ display: 'flex', margin: '0 auto', maxWidth: '1500px' }}>
                     <Sidebar>
-                        <Row style={{ display: "flex", justifyContent: "space-evenly" }}>
-                            <div>Album</div>
-                            <div>Artist</div>
+                        <Row style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+                            <div>{this.state.album}</div>
+                            <div>{this.state.artist}</div>
                         </Row>
-                        <p style={{ height: "250px", width: "250px", margin: "0 auto", border: "2px solid black" }}>Album Art</p>{/* img */}
-                        <Row style={{ display: "flex", justifyContent: "space-evenly" }}>
+                        <img src={this.state.art} alt='Album Art' />
+                        <Row style={{ display: 'flex', justifyContent: 'space-evenly' }}>
                             <button>Buy Now</button>
                             <button>Write Review</button>
                         </Row>
                         <Row>
                             <Col sm='5'>
                                 <h5>Tracklist:</h5>
-                                <ul>1</ul>
-                                <ul>2</ul>
-                                <ul>3</ul>
-                                <ul>4</ul>
-                                <ul>5</ul>
-                                <ul>6</ul>
-                                <ul>7</ul>
-                                <ul>8</ul>
-                                <ul>9</ul>
-                                <ul>10</ul>
-                                <ul>11</ul>
-                                <ul>12</ul>
+                                {/* {this.state.tracks.map(track => 
+                                    <ul>{track}</ul> 
+                                )} */}
                             </Col>
                         </Row>
                     </Sidebar>
 
-                    <Container fluid={true} style={{ maxWidth: "1200px"}}>
+                    <Container fluid={true} style={{ maxWidth: '1200px' }}>
                         <Jumbotron fluid style={{ display: 'flex', padding: '1rem' }}>
                             {/* User info */}
                             <Row>
@@ -65,9 +98,9 @@ class ReviewsPage extends Component {
                                     <div>Number of Reviews Written</div>
                                 </Col>
                                 <Col md='10' style={{ padding: '1rem 5rem' }}>
-                                    <Row style={{ display: 'flex'}}>
+                                    <Row style={{ display: 'flex' }}>
                                         <Stars />
-                                        <p style={{ margin: "auto" }}>Date Written: (DATE)</p>
+                                        <p style={{ margin: 'auto' }}>Date Written: (DATE)</p>
                                     </Row>
                                     <Row>
                                         Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
@@ -87,9 +120,9 @@ class ReviewsPage extends Component {
                                     <div>Number of Reviews Written</div>
                                 </Col>
                                 <Col md='10' style={{ padding: '1rem 5rem' }}>
-                                    <Row style={{ display: 'flex'}}>
+                                    <Row style={{ display: 'flex' }}>
                                         <Stars />
-                                        <p style={{ margin: "auto" }}>Date Written: (DATE)</p>
+                                        <p style={{ margin: 'auto' }}>Date Written: (DATE)</p>
                                     </Row>
                                     <Row>
                                         Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
@@ -109,9 +142,9 @@ class ReviewsPage extends Component {
                                     <div>Number of Reviews Written</div>
                                 </Col>
                                 <Col md='10' style={{ padding: '1rem 5rem' }}>
-                                    <Row style={{ display: 'flex'}}>
+                                    <Row style={{ display: 'flex' }}>
                                         <Stars />
-                                        <p style={{ margin: "auto" }}>Date Written: (DATE)</p>
+                                        <p style={{ margin: 'auto' }}>Date Written: (DATE)</p>
                                     </Row>
                                     <Row>
                                         Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum

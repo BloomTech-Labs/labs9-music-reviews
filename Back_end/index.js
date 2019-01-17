@@ -29,5 +29,4 @@ app.use('/spotify_token', spotifyTokenRoutes);
 app.listen ((process.env.PORT || 9000), error => {
     if (error) throw error;
     console.log(`Server running on port: ${SERVER_CONFIGS.PORT}`);
-
 });
