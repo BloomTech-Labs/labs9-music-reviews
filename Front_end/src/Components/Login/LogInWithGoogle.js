@@ -20,7 +20,7 @@ class LogInWithGoogle extends React.Component {
                   .post('http://localhost:9000/user/create', {
                     token: userIdToken,
                   })
-                  .then((res) => console.log(res))
+                  .then((res) => this.props.history.push('/'))
                   .catch((err) => console.log(err));
               })
               .catch((err) => console.log(err));

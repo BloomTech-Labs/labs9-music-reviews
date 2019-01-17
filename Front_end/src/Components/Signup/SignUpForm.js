@@ -32,11 +32,10 @@ class SignUpForm extends React.Component {
                     .post('http://localhost:9000/user/create', {
                       token: idToken,
                     })
-                    .then((res) => console.log(res))
+                    .then((res) => this.props.history.push('/'))
                     .catch((err) => console.log(err));
                 });
               }
-              this.props.history.push('/');
             })
             .catch((err) => console.log(err));
         })
