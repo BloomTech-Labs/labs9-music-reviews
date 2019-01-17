@@ -12,7 +12,7 @@ configureRoutes(app);
 
 const trackReviewRoutes = require('./routes/trackReviewRoutes');
 const albumReviewRoutes = require('./routes/albumReviewRoutes');
-// const userRoutes = require('./routes/userRoutes.js');
+const userRoutes = require('./routes/userRoutes.js');
 
 // track reviews route
 app.use('/track_reviews', trackReviewRoutes);
@@ -21,10 +21,9 @@ app.use('/track_reviews', trackReviewRoutes);
 app.use('/album_reviews', albumReviewRoutes);
 
 // user route
-// app.use('/user', userRoutes);
+app.use('/user', userRoutes);
 
-app.listen ((process.env.PORT || 9000), error => {
-    if (error) throw error;
-    console.log(`Server running on port: ${SERVER_CONFIGS.PORT}`);
-
+app.listen(process.env.PORT || 9000, (error) => {
+  if (error) throw error;
+  console.log(`Server running on port: ${SERVER_CONFIGS.PORT}`);
 });
