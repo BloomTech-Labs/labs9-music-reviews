@@ -1,6 +1,15 @@
 import React from 'react';
 import axios from 'axios';
-import { Button } from 'react-materialize';
+
+import {
+  Container,
+  Col,
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+} from 'reactstrap';
 import { withRouter } from 'react-router-dom';
 
 class SignUpForm extends React.Component {
@@ -32,11 +41,10 @@ class SignUpForm extends React.Component {
                     .post('http://localhost:9000/user/create', {
                       token: idToken,
                     })
-                    .then((res) => console.log(res))
+                    .then((res) => this.props.history.push('/'))
                     .catch((err) => console.log(err));
                 });
               }
-              this.props.history.push('/');
             })
             .catch((err) => console.log(err));
         })
@@ -53,28 +61,51 @@ class SignUpForm extends React.Component {
   };
   render() {
     return (
-      <div>
-        <input
-          type="email"
-          name="email"
-          value={this.state.email}
-          onChange={this.onChangeHandler}
-          placeholder="Email Address"
-        />
-        <input
-          type="password"
-          name="password"
-          value={this.state.password}
-          onChange={this.onChangeHandler}
-          placeholder="Password"
-        />
-        <Button waves="light" onClick={this.onSubmitHandler}>
-          Sign Up
-        </Button>
-        <Button waves="light" onClick={this.redirect}>
-          Already have an account?
-        </Button>
-      </div>
+      <Container>
+        <h2 className="mt-3 mb-3">Sign Up</h2>
+        <Form>
+          <Col>
+            <FormGroup>
+              <Label className="mt-3 mb-3">Email</Label>
+              <Input
+                type="email"
+                name="email"
+                value={this.state.email}
+                onChange={this.onChangeHandler}
+                placeholder="Email Address"
+              />
+            </FormGroup>
+          </Col>
+          <Col>
+            <FormGroup>
+              <Label className="mt-3 mb-3">Password</Label>
+              <Input
+                type="password"
+                name="password"
+                value={this.state.password}
+                onChange={this.onChangeHandler}
+                placeholder="Password"
+              />
+            </FormGroup>
+          </Col>
+          <div className="btn-container">
+            <Button
+              color="primary"
+              className="mr-2 mt-2 mb-3"
+              onClick={this.onSubmitHandler}
+            >
+              Sign Up
+            </Button>
+            <Button
+              color="primary"
+              className="ml-2 mt-2 mb-3"
+              onClick={this.redirect}
+            >
+              Have an account?
+            </Button>
+          </div>
+        </Form>
+      </Container>
     );
   }
 }

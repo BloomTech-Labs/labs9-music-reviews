@@ -1,11 +1,10 @@
 // Update with your config settings.
 
 module.exports = {
-
   development: {
     client: 'sqlite3',
     connection: {
-      filename: './data/reviews.sqlite3'
+      filename: './data/reviews.sqlite3',
     },
     useNullAsDefault: true,
     migrations: {
@@ -13,7 +12,7 @@ module.exports = {
     },
     seeds: {
       directory: './seeds',
-    }
+    },
   },
 
   // staging: {
@@ -32,7 +31,7 @@ module.exports = {
   //   }
   // },
 
-  // production: {
+  //production: {
   //   client: 'postgresql',
   //   connection: {
   //     database: 'my_db',
@@ -47,5 +46,4 @@ module.exports = {
   //     tableName: 'knex_migrations'
   //   }
   // }
-
 };
