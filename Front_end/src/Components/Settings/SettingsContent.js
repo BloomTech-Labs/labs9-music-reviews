@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 
 class SettingsContent extends React.Component {
   constructor() {
@@ -45,10 +46,11 @@ class SettingsContent extends React.Component {
     if (this.state.loading === true && this.state.loaded === false) {
       return <div />;
     } else if (this.state.loading === false && this.state.loaded === false) {
-      return <div>Something went wrong.</div>;
+      return <h2>Something went wrong.</h2>;
     } else if (this.state.loaded === true && this.state.loading === false) {
       return (
         <div>
+          <h1>Account Settings</h1>
           <p>Email address: {this.state.email}</p>
           <p>{this.state.paidStatus == false ? 'tier: free' : 'tier: paid'}</p>
           <p>

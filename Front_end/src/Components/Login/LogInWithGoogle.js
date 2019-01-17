@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
+import { Button } from 'reactstrap';
 
 class LogInWithGoogle extends React.Component {
   constructor(props) {
@@ -36,9 +37,9 @@ class LogInWithGoogle extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.onSubmit}>
-        <button type="submit">Google Sign In</button>
-      </form>
+      <Button color="primary" className="mt-3 mb-3" onClick={this.onSubmit}>
+        Google Log In
+      </Button>
     );
   }
 }

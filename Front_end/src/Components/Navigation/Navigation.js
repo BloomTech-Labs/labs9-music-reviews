@@ -4,8 +4,6 @@ import SignOut from '../Signout/SignOut';
 import {
   Navbar,
   Nav,
-  NavItem,
-  NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
