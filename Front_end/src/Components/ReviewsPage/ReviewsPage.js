@@ -44,7 +44,7 @@ class ReviewsPage extends Component {
     // }
     getAlbum = (albumId, token) => {
         axios.get(`https://api.spotify.com/v1/albums/${albumId}`, {
-                Headers: { Authorization: `Bearer ${token}` }
+                headers: { Authorization: `Bearer ${token}` }
             })
             .then( data => {
                 this.setState({
@@ -62,6 +62,7 @@ class ReviewsPage extends Component {
         this.getAlbum('4aawyAB9vmqN3uQ7FjRGTy', this.state.token)
     }
     render(){
+ 
         return (
             <Fragment>
                 <Navigation />

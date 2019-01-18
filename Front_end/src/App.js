@@ -29,7 +29,7 @@ class App extends Component {
   // refreshToken = () => {
   //   // axios call endpoint to refresh token. to be implemented
   //   // axios.get(REFRESH_TOKEN_URL).then().catch()
-  //   // let hour = 60*60*1000
+  //   // let hour = 60*60*1000 // perhaps beneficial to set time to less than 1 hour, that way we can ensure the token swap is smooth and reduce the impact on user experience
   //   // setTimeout( this.refreshToken(), 60*60*1000) // this will call function every hour
   // }
   // getToken = () => {
