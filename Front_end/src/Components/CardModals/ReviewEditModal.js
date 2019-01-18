@@ -117,7 +117,7 @@ class ReviewEditModal extends React.Component {
           </Row>
           <div class="container center-align" style={{ margin: "0 auto" }}>
             <Row style={{ margin: "0 auto" }}>
-              <Stars rating={props.review.rating}/>
+              <Stars rating={this.props.review.rating}/>
             </Row>
             <div>
               <textarea
