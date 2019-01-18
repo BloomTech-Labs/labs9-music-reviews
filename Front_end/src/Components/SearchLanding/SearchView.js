@@ -5,13 +5,20 @@ import {
   Card,
   Col,
   CardTitle,
+  CardBody,
+  CardText,
   Row,
   Form,
   FormGroup,
   Input,
   CardImg,
+  Label,
+  CardSubtitle,
 } from 'reactstrap'
 import Stars from '../StarsRating/Stars'
+import axios from 'axios'
+import ratings from 'react-ratings-declarative/build/ratings'
+const URL = 'https://labs9-car-reviews.herokuapp.com/user/get/adam@gmail.com'
 
 class SearchView extends Component {
   constructor(props) {
@@ -21,13 +28,63 @@ class SearchView extends Component {
     }
   }
 
+  componentDidMount() {
+    this.getData()
+  }
+
+  getData = () => {
+    axios
+      .get(URL)
+      .then(res => {
+        // this.setState({ carReviews: [this.state.carReviews, res.data] })
+        this.setState({ carReviews: [...this.state.carReviews, res.data] })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value })
   }
 
   render() {
+    console.log(this.state.carReviews)
     return (
       <div className="mainContainer">
+        <div
+          style={{
+            display: 'flex',
+            margin: '0 auto',
+            maxWidth: '1500px',
+            justifyContent: 'space-around',
+          }}
+        >
+          <Row>
+            <Col sm={'auto'}>
+              {this.state.carReviews.map(review =>
+                <Card key={'review.userId'}>
+                  <CardBody>
+                    <CardTitle>Reading from the user table</CardTitle>
+                    <CardSubtitle>
+                      Email:{review.emailAddress}
+                    </CardSubtitle>
+                    <CardSubtitle>
+                      {' '}MembershipStatus:{review.paidMembership}
+                    </CardSubtitle>
+                    <CardSubtitle>
+                      SubscriptionExpiration:{review.subscriptionExpiration}
+                    </CardSubtitle>
+                  </CardBody>
+                  <div>
+                    <Stars />
+                  </div>
+                </Card>,
+              )}
+            </Col>
+          </Row>
+        </div>
+
         <div
           className="mainContainerText"
           style={{
