@@ -3,6 +3,7 @@ import {Route} from 'react-router-dom';
 import ReviewList from './Components/ReviewList/ReviewList';
 import ReviewsPage from './Components/ReviewsPage/ReviewsPage';
 import LandingPage from './Components/LandingPage';
+import SplashPage from './Components/SplashPage/SplashPage';
 import SearchLanding from './Components/SearchLanding/SearchLanding';
 import Billing from './Components/Billing/Billing';
 import SettingsPage from './Components/Settings/SettingsPage';
@@ -25,8 +26,9 @@ axios.get("https://accounts.spotify.com/authorize", {
 class App extends Component {
   render () {
     return (
-      <div className="container-fluid">
-        <Route exact path="/" component={LandingPage} />
+      <div className="container-fluid" style={{ padding: "0"}}>
+        <Route exact path="/" component={SplashPage} />
+        <Route path="/home" component={LandingPage} />
         <Route path="/search_landing" component={SearchLanding} />
         <Route path="/reviews" component={ReviewList} />
         <Route path="/album_reviews" component={ReviewsPage} />
