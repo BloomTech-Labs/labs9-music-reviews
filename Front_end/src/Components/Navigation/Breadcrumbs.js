@@ -9,7 +9,7 @@ const routes = {
   '/settings': 'Settings',
   '/signup': 'Signup',
   '/login': 'Login',
-  '/forgot_password': 'Frogot Password'
+  '/forgot_password': 'Forgot Password'
 };
 
 const findRoute = url => routes[url];
