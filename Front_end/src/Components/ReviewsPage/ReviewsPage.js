@@ -40,7 +40,7 @@ class ReviewsPage extends Component {
         this.getAlbum = this.getAlbum.bind(this);
     }
     // getToken = () => {
-        
+        // will likely use props, state stored in App
     // }
     getAlbum = (albumId, token) => {
         axios.get(`https://api.spotify.com/v1/albums/${albumId}`, {
@@ -62,7 +62,6 @@ class ReviewsPage extends Component {
         this.getAlbum('4aawyAB9vmqN3uQ7FjRGTy', this.state.token)
     }
     render(){
-        console.log(this.state.tracks)
         return (
             <Fragment>
                 <Navigation />
@@ -81,6 +80,15 @@ class ReviewsPage extends Component {
                         <Row>
                             <Col sm='5'>
                                 <h5>Tracklist:</h5>
+                                {Object.keys(this.state.tracks).map( element => {
+                                    if (element === "items") {
+                                        this.state.tracks[element].map( track => {
+                                            return (
+                                                <ul key={track.id}>{track.name}</ul>
+                                            )
+                                        })
+                                    }
+                                })}
                             </Col>
                         </Row>
                     </Sidebar>
