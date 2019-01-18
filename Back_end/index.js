@@ -19,7 +19,6 @@ configureRoutes(app);
 const trackReviewRoutes = require('./routes/trackReviewRoutes');
 const albumReviewRoutes = require('./routes/albumReviewRoutes');
 const userRoutes = require('./routes/userRoutes.js');
-const spotifyTokenRoutes = require('./routes/spotifyTokenRoutes')
 
 // track reviews route
 app.use('/trackReviews', trackReviewRoutes);
@@ -30,7 +29,6 @@ app.use('/albumReviews', albumReviewRoutes);
 // user route
 app.use('/user', userRoutes);
 
-// app.use('/spotify_token', spotifyTokenRoutes);
 
 var client_id = process.env.CLIENT_ID;
 var client_secret = process.env.CLIENT_SECRET;
@@ -102,18 +100,10 @@ app.get('/callback', function(req, res) {
           headers: { 'Authorization': 'Bearer ' + access_token },
           json: true
         };
-
-        // use the access token to access the Spotify Web API
+        
         request.get(options, function(error, response, body) {
           console.log(body);
         });
-
-        // we can also pass the token to the browser to make requests from there
-        // res.redirect('/#' +
-        //   querystring.stringify({
-        //     access_token: access_token,
-        //     refresh_token: refresh_token
-        //   }));
 
         res.cookie("access_token", access_token);
 
