@@ -16,7 +16,8 @@ const Sidebar = styled.div`
 `;
 
 // const TOKEN_URL = process.env.TOKEN_URL || 'http://localhost:9000/spotify_token'
-const TOKEN_URL = "https://labs9-spotify-token.herokuapp.com/login"
+// const TOKEN_URL = "https://labs9-spotify-token.herokuapp.com/login"
+const TOKEN_URL = 'http://localhost:9000/login'
 
 class ReviewsPage extends Component {
     constructor(props){
@@ -34,12 +35,9 @@ class ReviewsPage extends Component {
         // this.getAlbum = this.getAlbum.bind(this);
     }
     getToken = () => {
-        axios.get(TOKEN_URL)
-            .then( res => {
-                console.log(res.data)
-            })
-            
-            .catch( err => console.log(err) );
+        axios.get('http://localhost:9000/login')
+            .then( res => console.log(res))
+            .catch( err => console.log(err) )
     }
     // getAlbum = (id, token) => {
     //     console.log('inside getAlbum', token)
@@ -61,6 +59,7 @@ class ReviewsPage extends Component {
         this.getToken();
     }
     render(){
+        console.log(this.state.token)
         return (
             <Fragment>
                 <Navigation />
