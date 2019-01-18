@@ -19,7 +19,7 @@ const SplashPage = () => {
       </h2>
       <div align="center">
         <a href="/login"><Button color="secondary" size="lg">
-          Start Writing Reviews Now!
+          Start Reading Reviews Now!
         </Button></a>
       </div>
       <div>
