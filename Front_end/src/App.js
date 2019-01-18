@@ -9,9 +9,20 @@ import SettingsPage from './Components/Settings/SettingsPage';
 import SignUpPage from './Components/Signup/SignUpPage';
 import LogInPage from './Components/Login/LogInPage';
 import ForgotPasswordPage from './Components/ForgotPassword/ForgotPasswordPage';
+import axios from 'axios';
 //import './App.css';
+// function to refresh token every hour...
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      token: '',
+    }
+  }
+  refreshToken = () => {
+    // axios call endpoint to refresh token. to be implemented
+  }
   render () {
     return (
       <div className="container-fluid">

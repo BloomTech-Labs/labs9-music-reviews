@@ -4,6 +4,8 @@ import { Container, Row, Col, Jumbotron } from 'reactstrap';
 import Navigation from '../Navigation/Navigation';
 import Stars from '../StarsRating/Stars';
 import axios from 'axios';
+import { instanceOf } from 'prop-types';
+import { withCookies, Cookies } from 'react-cookie';
 
 const Sidebar = styled.div`
     position: -webkit-sticky;
@@ -20,46 +22,47 @@ const Sidebar = styled.div`
 const TOKEN_URL = 'http://localhost:9000/login'
 
 class ReviewsPage extends Component {
+    static propTypes = {
+        cookies: instanceOf(Cookies).isRequired
+    };
     constructor(props){
         super(props);
+        const { cookies } = props;
         this.state = {
             data: [],
             album: '',
             artist: '',
             art: '',
             tracks: [],
-            token: '',
-            auth: '',
+            token: cookies.get('access_token'),
         }
-        this.getToken = this.getToken.bind(this);
-        // this.getAlbum = this.getAlbum.bind(this);
+        // this.getToken = this.getToken.bind(this);
+        this.getAlbum = this.getAlbum.bind(this);
     }
-    getToken = () => {
-        axios.get('http://localhost:9000/login')
-            .then( res => console.log(res))
-            .catch( err => console.log(err) )
-    }
-    // getAlbum = (id, token) => {
-    //     console.log('inside getAlbum', token)
-    //     axios.get(`https://api.spotify.com/v1/albums/${id}`, {
-    //             Headers: { Authorization: `Bearer ${token}` }
-    //         })
-    //         .then( data => {
-    //             this.setState({
-    //                 data,
-    //                 album: data.data.name,
-    //                 artist: data.data.artists[0]['name'],
-    //                 art: data.data.images[1]['url'],
-    //                 tracks: data.data.tracks
-    //             })
-    //         })
-    //         .catch( err => console.log(err) );
+    // getToken = () => {
+        
     // }
+    getAlbum = (albumId, token) => {
+        axios.get(`https://api.spotify.com/v1/albums/${albumId}`, {
+                Headers: { Authorization: `Bearer ${token}` }
+            })
+            .then( data => {
+                this.setState({
+                    data,
+                    album: data.data.name,
+                    artist: data.data.artists[0]['name'],
+                    art: data.data.images[1]['url'],
+                    tracks: data.data.tracks
+                })
+            })
+            .catch( err => console.log(err) );
+    }
     componentDidMount(){
-        this.getToken();
+        // this.getToken();
+        this.getAlbum('4aawyAB9vmqN3uQ7FjRGTy', this.state.token)
     }
     render(){
-        console.log(this.state.token)
+        console.log(this.state.tracks)
         return (
             <Fragment>
                 <Navigation />
@@ -78,9 +81,6 @@ class ReviewsPage extends Component {
                         <Row>
                             <Col sm='5'>
                                 <h5>Tracklist:</h5>
-                                {/* {this.state.tracks.map(track => 
-                                    <ul>{track}</ul> 
-                                )} */}
                             </Col>
                         </Row>
                     </Sidebar>
@@ -159,4 +159,4 @@ class ReviewsPage extends Component {
     }
 }
 
-export default ReviewsPage;
+export default withCookies(ReviewsPage);

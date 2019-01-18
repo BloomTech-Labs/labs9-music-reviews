@@ -34,7 +34,7 @@ app.use('/user', userRoutes);
 
 var client_id = process.env.CLIENT_ID;
 var client_secret = process.env.CLIENT_SECRET;
-var redirect_uri = "http://localhost:9000/callback";
+var redirect_uri = process.env.REDIRECT_URI || "http://localhost:9000/callback";
 let refresh_token, access_token;
 
 var generateRandomString = function(length) {
@@ -115,7 +115,7 @@ app.get('/callback', function(req, res) {
         //     refresh_token: refresh_token
         //   }));
 
-        console.log(access_token);
+        res.cookie("access_token", access_token);
 
         res.status(200).json({
           code: code,
@@ -146,6 +146,7 @@ app.get('/refresh_token', function(req, res) {
   request.post(authOptions, function(error, response, body) {
     if (!error && response.statusCode === 200) {
       var access_token = body.access_token;
+      res.cookie("access_token", access_token);
       res.send({
         'access_token': access_token
       });
