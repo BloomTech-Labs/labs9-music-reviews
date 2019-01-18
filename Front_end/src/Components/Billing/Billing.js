@@ -61,11 +61,11 @@ class Billing extends Component {
                 <div style={{ margin: "2rem 0" }}>
                   <FormGroup check>
                     <Label check>
-                      <Input type="radio" name="yearSub" /> 1 Year Subscription = $9.99
+                      <Input type="radio" name="yearSub" /> 1 Year Subscription $9.99
                     </Label>
                     <br/>
                     <Label check>
-                      <Input type="radio" name="monthSub" /> 1 Month Subscription = $9.99
+                      <Input type="radio" name="monthSub" /> 1 Month Subscription $0.99
                     </Label>
                   </FormGroup>
                 </div>

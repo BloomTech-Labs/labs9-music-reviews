@@ -10,20 +10,37 @@ import SettingsPage from './Components/Settings/SettingsPage';
 import SignUpPage from './Components/Signup/SignUpPage';
 import LogInPage from './Components/Login/LogInPage';
 import ForgotPasswordPage from './Components/ForgotPassword/ForgotPasswordPage';
-//import './App.css';
 import axios from 'axios';
-
-var clientId = "b56e28cbf84e4c38aec748a3f8891a29";
-axios.get("https://accounts.spotify.com/authorize", {
-      client_id: clientId,
-      response_type: "code",
-      redirect_uri: "http://localhost:3000",
-      scope: "user-read-private user-read-email"
-    })
-    .then( res => console.log("RESPONSE: ", res) )
-    .catch(err => console.log(err) );
+import { instanceOf } from 'prop-types';
+import { withCookies, Cookies } from 'react-cookie';
+//import './App.css';
+// function to refresh token every hour...
 
 class App extends Component {
+  static propTypes = {
+    cookies: instanceOf(Cookies).isRequired
+  };
+  constructor(props){
+    super(props);
+    this.state = {
+      token: '',
+    }
+  }
+  // refreshToken = () => {
+  //   // axios call endpoint to refresh token. to be implemented
+  //   // axios.get(REFRESH_TOKEN_URL).then().catch()
+  //   // let hour = 60*60*1000 // perhaps beneficial to set time to less than 1 hour, that way we can ensure the token swap is smooth and reduce the impact on user experience
+  //   // setTimeout( this.refreshToken(), 60*60*1000) // this will call function every hour
+  // }
+  // getToken = () => {
+  //   axios.get(TOKEN_URL)
+  //     .then( res => this.setState({ token: cookies.get}) )
+  //     .catch( err => console.log(err) )
+  // }
+  // componentDidMount(){
+  //   this.getToken();
+  //   this.setState({})
+  // }
   render () {
     return (
       <div className="container-fluid" style={{ padding: "0"}}>
@@ -42,4 +59,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withCookies(App);

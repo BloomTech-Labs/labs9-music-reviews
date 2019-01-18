@@ -4,6 +4,8 @@ import { Container, Row, Col, Jumbotron } from 'reactstrap';
 import Navigation from '../Navigation/Navigation';
 import Stars from '../StarsRating/Stars';
 import axios from 'axios';
+import { instanceOf } from 'prop-types';
+import { withCookies, Cookies } from 'react-cookie';
 
 const Sidebar = styled.div`
     position: -webkit-sticky;
@@ -16,51 +18,51 @@ const Sidebar = styled.div`
 `;
 
 // const TOKEN_URL = process.env.TOKEN_URL || 'http://localhost:9000/spotify_token'
-const TOKEN_URL = "https://labs9-spotify-token.herokuapp.com/login"
+// const TOKEN_URL = "https://labs9-spotify-token.herokuapp.com/login"
+const TOKEN_URL = 'http://localhost:9000/login'
 
 class ReviewsPage extends Component {
+    static propTypes = {
+        cookies: instanceOf(Cookies).isRequired
+    };
     constructor(props){
         super(props);
+        const { cookies } = props;
         this.state = {
             data: [],
             album: '',
             artist: '',
             art: '',
             tracks: [],
-            token: '',
-            auth: '',
+            token: cookies.get('access_token'),
         }
-        this.getToken = this.getToken.bind(this);
-        // this.getAlbum = this.getAlbum.bind(this);
+        // this.getToken = this.getToken.bind(this);
+        this.getAlbum = this.getAlbum.bind(this);
     }
-    getToken = () => {
-        axios.get(TOKEN_URL)
-            .then( res => {
-                console.log(res.data)
+    // getToken = () => {
+        // will likely use props, state stored in App
+    // }
+    getAlbum = (albumId, token) => {
+        axios.get(`https://api.spotify.com/v1/albums/${albumId}`, {
+                headers: { Authorization: `Bearer ${token}` }
             })
-            
+            .then( data => {
+                this.setState({
+                    data,
+                    album: data.data.name,
+                    artist: data.data.artists[0]['name'],
+                    art: data.data.images[1]['url'],
+                    tracks: data.data.tracks
+                })
+            })
             .catch( err => console.log(err) );
     }
-    // getAlbum = (id, token) => {
-    //     console.log('inside getAlbum', token)
-    //     axios.get(`https://api.spotify.com/v1/albums/${id}`, {
-    //             Headers: { Authorization: `Bearer ${token}` }
-    //         })
-    //         .then( data => {
-    //             this.setState({
-    //                 data,
-    //                 album: data.data.name,
-    //                 artist: data.data.artists[0]['name'],
-    //                 art: data.data.images[1]['url'],
-    //                 tracks: data.data.tracks
-    //             })
-    //         })
-    //         .catch( err => console.log(err) );
-    // }
     componentDidMount(){
-        this.getToken();
+        // this.getToken();
+        this.getAlbum('4aawyAB9vmqN3uQ7FjRGTy', this.state.token)
     }
     render(){
+ 
         return (
             <Fragment>
                 <Navigation />
@@ -79,9 +81,15 @@ class ReviewsPage extends Component {
                         <Row>
                             <Col sm='5'>
                                 <h5>Tracklist:</h5>
-                                {/* {this.state.tracks.map(track => 
-                                    <ul>{track}</ul> 
-                                )} */}
+                                {Object.keys(this.state.tracks).map( element => {
+                                    if (element === "items") {
+                                        this.state.tracks[element].map( track => {
+                                            return (
+                                                <ul key={track.id}>{track.name}</ul>
+                                            )
+                                        })
+                                    }
+                                })}
                             </Col>
                         </Row>
                     </Sidebar>
@@ -160,4 +168,4 @@ class ReviewsPage extends Component {
     }
 }
 
-export default ReviewsPage;
+export default withCookies(ReviewsPage);
