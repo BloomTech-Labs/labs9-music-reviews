@@ -61,7 +61,7 @@ router.post('/', async (req, res) => {
 router.put('/:albumReviewID', async (req, res) => {
     const { albumReviewID } = req.params;
     const review = req.body;
-    if(!review.reviewText){
+    if(!review.review){
         res.status(400).json({
             message: "Review text cannot be blank."
         });
