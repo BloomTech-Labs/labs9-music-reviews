@@ -17,8 +17,6 @@ const Sidebar = styled.div`
     padding-top: 20px;
 `;
 
-const TOKEN_URL = process.env.REACT_APP_TOKEN_URL || 'http://localhost:9000/login'
-
 class ReviewsPage extends Component {
     static propTypes = {
         cookies: instanceOf(Cookies).isRequired
@@ -32,17 +30,8 @@ class ReviewsPage extends Component {
             artist: '',
             art: '',
             tracks: [],
-            token: cookies.get('access_token'),
         }
-        this.getToken = this.getToken.bind(this);
         this.getAlbum = this.getAlbum.bind(this);
-    }
-    getToken = () => {
-        axios.get(TOKEN_URL)
-            .then( res => this.setState({
-                token: this.props.cookies.get('access_token'),
-            }))
-            .catch( err => console.log(err) )
     }
     getAlbum = (albumId, token) => {
         axios.get(`https://api.spotify.com/v1/albums/${albumId}`, {
@@ -60,10 +49,9 @@ class ReviewsPage extends Component {
             .catch( err => console.log(err) );
     }
     componentDidMount(){
-        this.getToken();
-        this.getAlbum('4aawyAB9vmqN3uQ7FjRGTy', this.state.token)
+        this.getAlbum('4aawyAB9vmqN3uQ7FjRGTy', this.props.cookies.get('access_token'))
     }
-    render(){
+    render(){ 
         return (
             <Fragment>
                 <Navigation />
