@@ -3,6 +3,7 @@ import Navigation from './Navigation/Navigation';
 import FeaturedReviews from './Display/FeaturedReviews';
 import PopularCars from './Display/PopularCars';
 import PopularReviewers from './Display/PopularReviewers';
+import Albums from './Display/Albums';
 
 
 
@@ -11,6 +12,7 @@ const LandingPage = () => {
         <div>
             <Navigation />
             <FeaturedReviews />
+            <Albums />
             <PopularCars />
             <PopularReviewers />
         </div>
