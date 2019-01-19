@@ -16,6 +16,10 @@ import { withCookies, Cookies } from 'react-cookie';
 //import './App.css';
 // function to refresh token every hour...
 
+let refreshTime = 50*60*1000; // 50 mins
+const TOKEN_URL = process.env.REACT_APP_TOKEN_URL || 'http://localhost:9000/login';
+const REFRESH_TOKEN_URL = process.env.REACT_APP_TOKEN_URL || 'http://localhost:9000/refresh_token';
+
 class App extends Component {
   static propTypes = {
     cookies: instanceOf(Cookies).isRequired
@@ -23,24 +27,22 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      token: '',
     }
   }
-  // refreshToken = () => {
-  //   // axios call endpoint to refresh token. to be implemented
-  //   // axios.get(REFRESH_TOKEN_URL).then(this.setState({ token: cookies.get('access_token') })).catch()
-  //   // let hour = 60*60*1000 // perhaps beneficial to set time to less than 1 hour, that way we can ensure the token swap is smooth and reduce the impact on user experience
-  //   // setTimeout( this.refreshToken(), 60*60*1000) // this will call function every hour
-  // }
   getToken = () => {
-    axios.get(TOKEN_URL)
-      .then( res => this.setState({ token: cookies.get('access_token') }) )
+    axios.get(TOKEN_URL, { headers: { secure: true, withCredentials: true } })
+        .catch( err => console.log(err) )
+  }
+  refreshToken = () => {
+    // axios call endpoint to refresh token. to be implemented
+    axios.get(REFRESH_TOKEN_URL)
+      .then( res => this.props.cookies.set('access_token', res.data.access_token) )
       .catch( err => console.log(err) )
   }
-  // componentDidMount(){
-  //   this.getToken();
-  //   this.setState({})
-  // }
+  componentDidMount(){
+    this.getToken();
+    setInterval(this.refreshToken, refreshTime); 
+  }
   render () {
     return (
       <div className="container-fluid" style={{ padding: "0"}}>
