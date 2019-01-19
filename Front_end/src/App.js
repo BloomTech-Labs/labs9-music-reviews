@@ -17,7 +17,7 @@ import { withCookies, Cookies } from 'react-cookie';
 // function to refresh token every hour...
 
 let refreshTime = 50*60*1000; // 50 mins
-const TOKEN_URL = process.env.REACT_APP_TOKEN_URL || 'http://localhost:9000/login';
+const TOKEN_URL = process.env.REACT_APP_TOKEN_URL || 'http://localhost:9000/get_token';
 const REFRESH_TOKEN_URL = process.env.REACT_APP_TOKEN_URL || 'http://localhost:9000/refresh_token';
 
 class App extends Component {
@@ -30,7 +30,8 @@ class App extends Component {
     }
   }
   getToken = () => {
-    axios.get(TOKEN_URL, { headers: { secure: true, withCredentials: true } })
+    axios.get(TOKEN_URL)
+        .then( res => this.props.cookies.set('access_token', res.data.access_token) )
         .catch( err => console.log(err) )
   }
   refreshToken = () => {
