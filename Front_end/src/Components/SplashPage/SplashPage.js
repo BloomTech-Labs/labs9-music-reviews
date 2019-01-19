@@ -7,7 +7,7 @@ const SplashPage = () => {
   return (
     <div className="splashpage">
       <Navigation />
-      <div align="center" style={{ margin: "50px 0" }}>
+      <div align="center" style={{ margin: "50px 0", maxHeight: "350px" }}>
         <img
           src={require("../../Images/SongbirdLogo1.png")}
           alt="Songbird logo"
@@ -32,6 +32,7 @@ const SplashPage = () => {
             margin: "50px auto",
             padding: "5px",
             height: "30px",
+            maxWidth: "800px",
             backgroundColor: "#495057",
             color: "#fff",
             width: "50%"
