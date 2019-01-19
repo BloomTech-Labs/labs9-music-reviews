@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {Route} from 'react-router-dom';
 import ReviewList from './Components/ReviewList/ReviewList';
 import ReviewsPage from './Components/ReviewsPage/ReviewsPage';
-import LandingPage from './Components/LandingPage';
-import SplashPage from './Components/SplashPage/SplashPage';
+import HomePage from './Components/HomePage';
+import LandingPage from './Components/LandingPage/LandingPage';
 import SearchLanding from './Components/SearchLanding/SearchLanding';
 import Billing from './Components/Billing/Billing';
 import SettingsPage from './Components/Settings/SettingsPage';
@@ -32,11 +32,11 @@ class App extends Component {
   //   // let hour = 60*60*1000 // perhaps beneficial to set time to less than 1 hour, that way we can ensure the token swap is smooth and reduce the impact on user experience
   //   // setTimeout( this.refreshToken(), 60*60*1000) // this will call function every hour
   // }
-  // getToken = () => {
-  //   axios.get(TOKEN_URL)
-  //     .then( res => this.setState({ token: cookies.get('access_token') }) )
-  //     .catch( err => console.log(err) )
-  // }
+  getToken = () => {
+    axios.get(TOKEN_URL)
+      .then( res => this.setState({ token: cookies.get('access_token') }) )
+      .catch( err => console.log(err) )
+  }
   // componentDidMount(){
   //   this.getToken();
   //   this.setState({})
@@ -44,8 +44,8 @@ class App extends Component {
   render () {
     return (
       <div className="container-fluid" style={{ padding: "0"}}>
-        <Route exact path="/" component={SplashPage} />
-        <Route path="/home" component={LandingPage} />
+        <Route exact path="/" component={LandingPage} />
+        <Route path="/home" component={HomePage} />
         <Route path="/search_landing" component={SearchLanding} />
         <Route path="/reviews" component={ReviewList} />
         <Route path="/album_reviews" component={ReviewsPage} />
