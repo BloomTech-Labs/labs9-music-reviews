@@ -34,7 +34,7 @@ class App extends Component {
   // }
   // getToken = () => {
   //   axios.get(TOKEN_URL)
-  //     .then( res => this.setState({ token: cookies.get}) )
+  //     .then( res => this.setState({ token: cookies.get('access_token') }) )
   //     .catch( err => console.log(err) )
   // }
   // componentDidMount(){
