@@ -10,9 +10,9 @@ const corsOptions = {
             : callback(new Error('Not allowed by CORS'))
 };
 
-const configureServer = app => {
-    app.use(cors(corsOptions));
-    app.use(bodyParser.json());
-}
+// const configureServer = app => {
+//     app.use(cors(corsOptions));
+//     app.use(bodyParser.json());
+// }
 
-module.exports = configureServer;
+module.exports = corsOptions;
