@@ -17,7 +17,7 @@ app.use(express.json())
     .use(session({
       // cookie: { domain: 'https://labs9carreviews.netlify.com' }
       secret: 'LambdaLabsCS12MusicReviews',
-      cookie: { domain: 'localhost:3000' }
+      cookie: { domain: 'labs9carreviews.netlify.com' }
     }));
 
 configureRoutes(app);
