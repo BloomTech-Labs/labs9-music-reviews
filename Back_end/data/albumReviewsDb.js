@@ -16,23 +16,23 @@ function retrieve() {
 
 function retrieveById(id) {
     return db('albumReview')
-            .where({ id: Number(id) });
+            .where({ albumId: id });
 };
 
 function write(review) {
     return db('albumReview')
             .insert(review)
-            .then(ids => ({ id: ids[0] }));
+            .then(ids => ({ albumId: ids[0] }));
 };
 
 function edit(id, review) {
     return db('albumReview')
-            .where('id', Number(id))
+            .where({ albumId : id })
             .update(review);
 };
 
 function remove(id) {
     return db('albumReview')
-            .where('id', Number(id))
+            .where({ albumId : id })
             .del();
 }
