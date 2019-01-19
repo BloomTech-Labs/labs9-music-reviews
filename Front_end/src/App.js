@@ -28,13 +28,13 @@ class App extends Component {
   }
   // refreshToken = () => {
   //   // axios call endpoint to refresh token. to be implemented
-  //   // axios.get(REFRESH_TOKEN_URL).then().catch()
+  //   // axios.get(REFRESH_TOKEN_URL).then(this.setState({ token: cookies.get('access_token') })).catch()
   //   // let hour = 60*60*1000 // perhaps beneficial to set time to less than 1 hour, that way we can ensure the token swap is smooth and reduce the impact on user experience
   //   // setTimeout( this.refreshToken(), 60*60*1000) // this will call function every hour
   // }
   // getToken = () => {
   //   axios.get(TOKEN_URL)
-  //     .then( res => this.setState({ token: cookies.get}) )
+  //     .then( res => this.setState({ token: cookies.get('access_token') }) )
   //     .catch( err => console.log(err) )
   // }
   // componentDidMount(){

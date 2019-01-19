@@ -1,5 +1,5 @@
 const express = require('express');
-const app = express();
+const session = require('express-session');
 const cors = require('cors');
 const SERVER_CONFIGS = require('./constants/server');
 var request = require('request');
@@ -9,10 +9,16 @@ require('dotenv').load();
 
 const configureRoutes = require('./routes');
 
+const app = express();
 app.use(express.json())
     .use(express.static(__dirname + '/public'))
     .use(cors())
-    .use(cookieParser());
+    .use(cookieParser())
+    .use(session({
+      // cookie: { domain: 'https://labs9carreviews.netlify.com' }
+      secret: 'LambdaLabsCS12MusicReviews',
+      cookie: { domain: 'labs9carreviews.netlify.com' }
+    }));
 
 configureRoutes(app);
 
@@ -108,7 +114,6 @@ app.get('/callback', function(req, res) {
         res.cookie("access_token", access_token);
 
         res.status(200).json({
-          code: code,
           access_token: access_token
         })
       } else {
