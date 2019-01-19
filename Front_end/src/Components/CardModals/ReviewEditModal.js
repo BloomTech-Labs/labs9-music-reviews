@@ -16,25 +16,34 @@ class ReviewEditModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: "",
+      albumId: "",
       reviewText: "",
-      modal: false
+      modal: false,
+      nestedModal: false,
+      closeAll: false
     };
 
     this.toggle = this.toggle.bind(this);
+    this.toggleNested = this.toggleNested.bind(this);
+    this.toggleAll = this.toggleAll.bind(this);
   }
 
   componentDidMount() {
-    this.setState( {reviewText: this.props.review.reviewText})
+    this.setState({
+      reviewText: this.props.review.reviewText,
+      rating: this.props.review.rating
+    });
   }
 
-  editHandler = (event, id) => {
+  editHandler = event => {
     event.preventDefault();
     axios
       .put(
-        `https://labs9-car-reviews.herokuapp.com/albumReviews/${id}`,
+        `https://labs9-car-reviews.herokuapp.com/albumReviews/${
+          this.props.review.albumId
+        }`,
         {
-          reviewText: this.state.reviewText,
+          reviewText: this.state.reviewText
         }
       )
       .then(res => {
@@ -42,19 +51,14 @@ class ReviewEditModal extends React.Component {
         console.log(res.data);
       })
       .catch(err => console.log(err));
-    this.setState(
-      {
-        id: this.state.id,
-        reviewText: this.state.reviewText,
-      },
-    );
+    this.setState({
+      reviewText: this.state.reviewText
+    });
   };
 
   deleteHandler = id => {
     axios
-      .delete(
-        `https://labs9-car-reviews.herokuapp.com/albumReviews/${id}`
-      )
+      .delete(`https://labs9-car-reviews.herokuapp.com/albumReviews/${id}`)
       .then(res => {
         console.log(res);
         console.log(res.data);
@@ -72,8 +76,22 @@ class ReviewEditModal extends React.Component {
     });
   }
 
+  toggleNested() {
+    this.setState({
+      nestedModal: !this.state.nestedModal,
+      closeAll: false
+    });
+  }
+
+  toggleAll() {
+    this.setState({
+      nestedModal: !this.state.nestedModal,
+      closeAll: true
+    });
+  }
+
   render() {
-    console.log(this.state.reviewText);
+    console.log(this.props.review);
     return (
       <Fragment>
         <Button color="danger" onClick={this.toggle}>
@@ -117,7 +135,7 @@ class ReviewEditModal extends React.Component {
           </Row>
           <div class="container center-align" style={{ margin: "0 auto" }}>
             <Row style={{ margin: "0 auto" }}>
-              <Stars rating={this.props.review.rating}/>
+              <Stars rating={this.props.review.rating} />
             </Row>
             <div>
               <textarea
@@ -133,15 +151,35 @@ class ReviewEditModal extends React.Component {
             <Button color="secondary" onClick={this.editHandler}>
               Submit
             </Button>
-            <Button
-              color="secondary"
-              onClick={event => {
-                this.deleteHandler(this.props.review.id);
-                event.preventDefault();
-              }}
-            >
+            <Button color="secondary" onClick={this.toggleNested}>
               Delete
             </Button>
+            <Modal
+              isOpen={this.state.nestedModal}
+              toggle={this.toggleNested}
+              style={{
+                top: "50%"
+              }}
+              onClosed={this.state.closeAll ? this.toggle : undefined}
+            >
+              <ModalHeader>
+                Are you sure you want to DELETE this review?
+              </ModalHeader>
+              <ModalFooter>
+                <Button
+                  color="secondary"
+                  onClick={event => {
+                    this.deleteHandler(this.props.review.albumId);
+                    this.toggleAll();
+                  }}
+                >
+                  Delete
+                </Button>
+                <Button color="primary" onClick={this.toggleNested}>
+                  Cancel
+                </Button>{" "}
+              </ModalFooter>
+            </Modal>
             <Button color="primary" onClick={this.toggle}>
               Close
             </Button>{" "}
