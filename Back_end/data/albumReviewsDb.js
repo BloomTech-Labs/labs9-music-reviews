@@ -16,18 +16,18 @@ function retrieve() {
 
 function retrieveById(id) {
     return db('albumReview')
-            .where({ albumId: id });
+            .where({ albumReviewID: id });
 };
 
 function write(review) {
     return db('albumReview')
             .insert(review)
-            .then(ids => ({ albumId: ids[0] }));
+            .then(ids => ({ albumID: ids[0] }));
 };
 
 function edit(id, review) {
     return db('albumReview')
-            .where({ albumId : id })
+            .where({ albumID : id })
             .update(review);
 };
 

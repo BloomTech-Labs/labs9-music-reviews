@@ -64,7 +64,6 @@ class ReviewsPage extends Component {
         this.getAlbum('4aawyAB9vmqN3uQ7FjRGTy', this.state.token)
     }
     render(){
- 
         return (
             <Fragment>
                 <Navigation />

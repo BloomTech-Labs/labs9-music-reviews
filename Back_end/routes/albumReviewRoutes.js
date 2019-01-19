@@ -36,9 +36,9 @@ router.get('/:albumId', async (req, res) => {
 router.post('/', async (req, res) => {
     //const { userId } = req.params
     const review = req.body;
-    if(!review.reviewText){
+    if(!review.review){
         res.status(400).json({
-            message: "Review text cannot be blank."
+            message: "Review cannot be blank."
         });
   } else {
     // else if (!userId){
