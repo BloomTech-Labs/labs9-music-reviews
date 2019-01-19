@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router} from 'react-router-dom';
+import { CookiesProvider } from 'react-cookie';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as serviceWorker from './serviceWorker';
@@ -9,7 +10,9 @@ import Firebase, {FirebaseContext} from './Components/Firebase';
 ReactDOM.render (
   <FirebaseContext.Provider value={new Firebase ()}>
     <Router>
-      <App />
+      <CookiesProvider>
+        <App />
+      </CookiesProvider>
     </Router>
   </FirebaseContext.Provider>,
   document.getElementById ('root')

@@ -1,12 +1,29 @@
 import React from 'react';
-import axios from 'axios';
+import { FirebaseContext } from '../Firebase';
+import SettingsContent from './SettingsContent';
+import Navigation from '../Navigation/Navigation';
+import styled from 'styled-components';
+
+const SettingsContainer = styled.div`
+  background-color: #f2f2f2;
+  height: 100vh;
+  div {
+    text-align: center;
+    p {
+      padding-top: 10px;
+    }
+  }
+`;
 
 class SettingsPage extends React.Component {
-  render () {
+  render() {
     return (
-      <div>
-        <h1>Account Settings</h1>
-      </div>
+      <SettingsContainer>
+        <Navigation />
+        <FirebaseContext.Consumer>
+          {(firebase) => <SettingsContent firebase={firebase} />}
+        </FirebaseContext.Consumer>
+      </SettingsContainer>
     );
   }
 }

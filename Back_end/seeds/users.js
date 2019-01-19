@@ -22,7 +22,7 @@ exports.seed = function(knex, Promise) {
         paidMembership: 'true',
         reviewCount: '3',
         subscriptionExpiration: '3/14/2019',
-        nickName: 'Dylan',
+        nickName: 'DylanJoJo',
       },
       {
         emailAddress: 'adfaris@gmail.com',

@@ -1,14 +1,15 @@
 import React from 'react';
 import SignUpForm from './SignUpForm';
-import {FirebaseContext} from '../Firebase';
+import { FirebaseContext } from '../Firebase';
+import './Signup.css';
 
 class SignUpPage extends React.Component {
-  render () {
+  render() {
     return (
       <div>
-        <h1>Sign Up</h1>
+        <h1>Music Reviews</h1>
         <FirebaseContext.Consumer>
-          {firebase => <SignUpForm firebase={firebase} />}
+          {(firebase) => <SignUpForm firebase={firebase} />}
         </FirebaseContext.Consumer>
       </div>
     );

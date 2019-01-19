@@ -8,28 +8,28 @@ exports.seed = function(knex, Promise) {
         dateModified: '1/18/2019',
         rating: 3,
         review: 'class MaxStack{constructor(){this.stack = new Stack()',
-        spotifyID: '382ObEPsp2rxGrnsizN5TX',
+        spotifyTrackID: '382ObEPsp2rxGrnsizN5TX',
       },
       {
         dateCreated: '1/18/2019',
         dateModified: '1/18/2019',
         rating: 3,
         review: 'class MaxStack{constructor(){this.stack = new Stack()',
-        spotifyID: '382ObEPsp2rxGrnsizN5TX',
+        spotifyTrackID: '382ObEPsp2rxGrnsizN5TX',
       },
       {
         dateCreated: '1/18/2019',
         dateModified: '1/18/2019',
         rating: 3,
         review: 'class MaxStack{constructor(){this.stack = new Stack()',
-        spotifyID: '382ObEPsp2rxGrnsizN5TX',
+        spotifyTrackID: '382ObEPsp2rxGrnsizN5TX',
       },
       {
         dateCreated: '1/18/2019',
         dateModified: '1/18/2019',
         rating: 3,
         review: 'class MaxStack{constructor(){this.stack = new Stack()',
-        spotifyID: '382ObEPsp2rxGrnsizN5TX',
+        spotifyTrackID: '382ObEPsp2rxGrnsizN5TX',
       },
     ])
   })
