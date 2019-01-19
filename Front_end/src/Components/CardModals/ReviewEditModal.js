@@ -54,6 +54,7 @@ class ReviewEditModal extends React.Component {
     this.setState({
       reviewText: this.state.reviewText
     });
+    window.location.reload()
   };
 
   deleteHandler = id => {
@@ -171,6 +172,7 @@ class ReviewEditModal extends React.Component {
                   onClick={event => {
                     this.deleteHandler(this.props.review.albumId);
                     this.toggleAll();
+                    window.location.reload();
                   }}
                 >
                   Delete
