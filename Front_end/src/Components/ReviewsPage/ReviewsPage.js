@@ -17,9 +17,7 @@ const Sidebar = styled.div`
     padding-top: 20px;
 `;
 
-// const TOKEN_URL = process.env.TOKEN_URL || 'http://localhost:9000/spotify_token'
-// const TOKEN_URL = "https://labs9-spotify-token.herokuapp.com/login"
-// const TOKEN_URL = 'http://localhost:9000/login'
+const TOKEN_URL = process.env.REACT_APP_TOKEN_URL || 'http://localhost:9000/login'
 
 class ReviewsPage extends Component {
     static propTypes = {
@@ -40,7 +38,7 @@ class ReviewsPage extends Component {
         this.getAlbum = this.getAlbum.bind(this);
     }
     getToken = () => {
-        axios.get('https://labs9-car-reviews.herokuapp.com/login')
+        axios.get(TOKEN_URL)
             .then( res => console.log(res) )
             .catch( err => console.log(err) )
     }
