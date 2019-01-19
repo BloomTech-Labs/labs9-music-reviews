@@ -151,6 +151,12 @@ app.get('/refresh_token', function(req, res) {
   });
 });
 
+app.get('/get_token', function(req, res) {
+  res.send({
+    'access_token': access_token
+  });
+});
+
 app.listen ((process.env.PORT || 9000), error => {
     if (error) throw error;
     console.log(`Server running on port: ${SERVER_CONFIGS.PORT}`);
