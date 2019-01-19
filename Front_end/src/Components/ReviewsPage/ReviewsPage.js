@@ -39,7 +39,9 @@ class ReviewsPage extends Component {
     }
     getToken = () => {
         axios.get(TOKEN_URL)
-            .then( res => console.log(res) )
+            .then( res => this.setState({
+                token: this.props.cookies.get('access_token'),
+            }))
             .catch( err => console.log(err) )
     }
     getAlbum = (albumId, token) => {
