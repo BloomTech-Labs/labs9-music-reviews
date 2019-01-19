@@ -20,10 +20,10 @@ router.get('/', async (req, res) => {
 });
 
 // get review by ID
-router.get('/:reviewId', async (req, res) => {
-    const { reviewId } = req.params;
+router.get('/:trackReviewID', async (req, res) => {
+    const { trackReviewID } = req.params;
     try {
-        const review = await dbReviews.retrieveById(reviewId);
+        const review = await dbReviews.retrieveById(trackReviewID);
         res.status(200).json(review);
     }
     catch (err) {
@@ -38,9 +38,9 @@ router.get('/:reviewId', async (req, res) => {
 router.post('/', async (req, res) => {
     //const { userId } = req.params
     const review = req.body;
-    if(!review.reviewText){
+    if(!review.review){
         res.status(400).json({
-            message: "Review text cannot be blank."
+            message: "Review cannot be blank."
         })
     }
     // else if (!userId){
@@ -62,16 +62,16 @@ router.post('/', async (req, res) => {
 });
 
 // update selected review
-router.put('/:reviewId', async (req, res) => {
-    const { reviewId } = req.params;
+router.put('/:trackReviewID', async (req, res) => {
+    const { trackReviewID } = req.params;
     const review = req.body;
-    if(!review.reviewText){
+    if(!review.review){
         res.status(400).json({
             message: "Review text cannot be blank."
         })
     } else {
         try {
-            const updatedReview = await dbReviews.edit(reviewId, review);
+            const updatedReview = await dbReviews.edit(trackReviewID, review);
             res.status(200).json(updatedReview);
         }
         catch (err) {
@@ -83,10 +83,10 @@ router.put('/:reviewId', async (req, res) => {
 });
 
 // delete selected review
-router.delete('/:reviewId', async (req, res) => {
-    const { reviewId } = req.params;
+router.delete('/:trackReviewID', async (req, res) => {
+    const { trackReviewID } = req.params;
     try {
-        const removeReview = await dbReviews.remove(reviewId);
+        const removeReview = await dbReviews.remove(trackReviewID);
         res.status(200).json({
             message: "Review deleted."
         })

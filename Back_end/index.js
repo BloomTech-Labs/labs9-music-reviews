@@ -2,24 +2,26 @@ const express = require('express');
 const session = require('express-session');
 const cors = require('cors');
 const SERVER_CONFIGS = require('./constants/server');
+// const corsOptions = require('./server')
 var request = require('request');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 require('dotenv').load();
 
-const configureRoutes = require('./routes');
-
 const app = express();
-app.use(express.json())
-    .use(express.static(__dirname + '/public'))
-    .use(cors())
-    .use(cookieParser())
-    .use(session({
-      // cookie: { domain: 'https://labs9carreviews.netlify.com' }
-      secret: 'LambdaLabsCS12MusicReviews',
-      cookie: { domain: 'labs9carreviews.netlify.com' }
-    }));
 
+app.use(cors())
+  .use(express.json())
+  .use(express.static(__dirname + '/public'))
+  .use(cookieParser())
+  .use(session({
+    // cookie: { domain: 'https://labs9carreviews.netlify.com' }
+    secret: 'LambdaLabsCS12MusicReviews',
+    cookie: { domain: 'labs9carreviews.netlify.com' }
+}));
+
+
+const configureRoutes = require('./routes');
 configureRoutes(app);
 
 const trackReviewRoutes = require('./routes/trackReviewRoutes');

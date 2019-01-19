@@ -17,9 +17,7 @@ const Sidebar = styled.div`
     padding-top: 20px;
 `;
 
-// const TOKEN_URL = process.env.TOKEN_URL || 'http://localhost:9000/spotify_token'
-// const TOKEN_URL = "https://labs9-spotify-token.herokuapp.com/login"
-const TOKEN_URL = 'http://localhost:9000/login'
+const TOKEN_URL = process.env.REACT_APP_TOKEN_URL || 'http://localhost:9000/login'
 
 class ReviewsPage extends Component {
     static propTypes = {
@@ -36,12 +34,16 @@ class ReviewsPage extends Component {
             tracks: [],
             token: cookies.get('access_token'),
         }
-        // this.getToken = this.getToken.bind(this);
+        this.getToken = this.getToken.bind(this);
         this.getAlbum = this.getAlbum.bind(this);
     }
-    // getToken = () => {
-        // will likely use props, state stored in App
-    // }
+    getToken = () => {
+        axios.get(TOKEN_URL)
+            .then( res => this.setState({
+                token: this.props.cookies.get('access_token'),
+            }))
+            .catch( err => console.log(err) )
+    }
     getAlbum = (albumId, token) => {
         axios.get(`https://api.spotify.com/v1/albums/${albumId}`, {
                 headers: { Authorization: `Bearer ${token}` }
@@ -58,11 +60,10 @@ class ReviewsPage extends Component {
             .catch( err => console.log(err) );
     }
     componentDidMount(){
-        // this.getToken();
+        this.getToken();
         this.getAlbum('4aawyAB9vmqN3uQ7FjRGTy', this.state.token)
     }
     render(){
- 
         return (
             <Fragment>
                 <Navigation />

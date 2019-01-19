@@ -6,10 +6,10 @@ exports.up = function(knex, Promise) {
       usr.boolean('paidMembership').defaultTo('false')
       usr.integer('reviewCount')
       usr.datetime('subscriptionExpiration')
-      usr.string('nickName')
+      usr.string('nickname').unique()
     })
     .createTable('albumReview', function(alb) {
-      alb.increments('albumID').primary()
+      alb.increments('albumReviewID').primary()
       alb.datetime('dateCreated')
       alb.datetime('dateModified')
       alb.integer('rating')
@@ -25,7 +25,7 @@ exports.up = function(knex, Promise) {
         .index()
     })
     .createTable('trackReview', function(trk) {
-      trk.increments('reviewID').primary()
+      trk.increments('trackReviewID').primary()
       trk.datetime('dateCreated')
       trk.datetime('dateModified')
       trk.integer('rating')

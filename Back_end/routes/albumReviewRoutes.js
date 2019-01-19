@@ -19,10 +19,10 @@ router.get('/', async (req, res) => {
 });
 
 // get review by ID
-router.get('/:albumId', async (req, res) => {
-  const { albumId } = req.params;
+router.get('/:albumReviewID', async (req, res) => {
+  const { albumReviewID } = req.params;
   try {
-    const review = await dbReviews.retrieveById(albumId);
+    const review = await dbReviews.retrieveById(albumReviewID);
     res.status(200).json(review);
   } catch (err) {
     res.status(500).json({
@@ -36,9 +36,9 @@ router.get('/:albumId', async (req, res) => {
 router.post('/', async (req, res) => {
     //const { userId } = req.params
     const review = req.body;
-    if(!review.reviewText){
+    if(!review.review){
         res.status(400).json({
-            message: "Review text cannot be blank."
+            message: "Review cannot be blank."
         });
   } else {
     // else if (!userId){
@@ -58,16 +58,16 @@ router.post('/', async (req, res) => {
 });
 
 // update selected review
-router.put('/:albumId', async (req, res) => {
-    const { albumId } = req.params;
+router.put('/:albumReviewID', async (req, res) => {
+    const { albumReviewID } = req.params;
     const review = req.body;
-    if(!review.reviewText){
+    if(!review.review){
         res.status(400).json({
             message: "Review text cannot be blank."
         });
     } else {
         try {
-            const updatedReview = await dbReviews.edit(albumId, review);
+            const updatedReview = await dbReviews.edit(albumReviewID, review);
             res.status(200).json(updatedReview);
         }
         catch (err) {
@@ -80,10 +80,10 @@ router.put('/:albumId', async (req, res) => {
 });
 
 // delete selected review
-router.delete('/:albumId', async (req, res) => {
-  const { albumId } = req.params;
+router.delete('/:albumReviewID', async (req, res) => {
+  const { albumReviewID } = req.params;
   try {
-    const removeReview = await dbReviews.remove(albumId);
+    const removeReview = await dbReviews.remove(albumReviewID);
     res.status(200).json({
       message: 'Review deleted.',
     });
