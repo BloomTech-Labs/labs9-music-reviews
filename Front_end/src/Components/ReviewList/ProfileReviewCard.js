@@ -29,11 +29,12 @@ const ProfileReviewCard = props => {
             <ViewStars
               rating={props.review.rating}
             />
-            <p style={{ padding: "0 20px" }}>Date Written: (DATE)</p>
+            <p style={{ padding: "0 20px" }}>Date Created: {props.review.dateCreated}</p>
+            <p style={{ padding: "0 20px" }}>Updated On: {props.review.dateModified}</p>
           </Row>
           <Row>
             <div align="left">
-              <p>{props.review.reviewText}</p>
+              <p>{props.review.review}</p>
             </div>
           </Row>
         </Col>
