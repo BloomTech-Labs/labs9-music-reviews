@@ -17,8 +17,8 @@ import { withCookies, Cookies } from 'react-cookie';
 // function to refresh token every hour...
 
 let refreshTime = 50*60*1000; // 50 mins
-const TOKEN_URL = process.env.REACT_APP_TOKEN_URL || 'http://localhost:9000/get_token';
-const REFRESH_TOKEN_URL = process.env.REACT_APP_TOKEN_URL || 'http://localhost:9000/refresh_token';
+const TOKEN_URL = process.env.REACT_APP_TOKEN_URL;
+const REFRESH_TOKEN_URL = process.env.REFRESH_TOKEN_URL;
 
 class App extends Component {
   static propTypes = {
