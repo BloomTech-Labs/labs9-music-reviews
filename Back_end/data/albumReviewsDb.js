@@ -11,28 +11,28 @@ module.exports = {
 };
 
 function retrieve() {
-    return db('reviews');
+    return db('albumReview');
 };
 
 function retrieveById(id) {
-    return db('reviews')
-            .where({ id: Number(id) });
+    return db('albumReview')
+            .where({ albumReviewID: id });
 };
 
 function write(review) {
-    return db('reviews')
+    return db('albumReview')
             .insert(review)
-            .then(ids => ({ id: ids[0] }));
+            .then(ids => ({ albumReviewID: ids[0] }));
 };
 
 function edit(id, review) {
-    return db('reviews')
-            .where('id', Number(id))
+    return db('albumReview')
+            .where({ albumReviewID : id })
             .update(review);
 };
 
 function remove(id) {
-    return db('reviews')
-            .where('id', Number(id))
+    return db('albumReview')
+            .where({ albumReviewID : id })
             .del();
 }
