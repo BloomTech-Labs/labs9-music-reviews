@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Route} from 'react-router-dom';
+import Navigation from './Components/Navigation/Navigation';
 import ReviewList from './Components/ReviewList/ReviewList';
 import ReviewsPage from './Components/ReviewsPage/ReviewsPage';
 import HomePage from './Components/HomePage';
@@ -10,13 +11,13 @@ import SettingsPage from './Components/Settings/SettingsPage';
 import SignUpPage from './Components/Signup/SignUpPage';
 import LogInPage from './Components/Login/LogInPage';
 import ForgotPasswordPage from './Components/ForgotPassword/ForgotPasswordPage';
+import { Container } from 'reactstrap';
 import axios from 'axios';
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
 //import './App.css';
-// function to refresh token every hour...
 
-let refreshTime = 50*60*1000; // 50 mins
+let refreshTime = 29*60*1000; // 29 mins
 // const TOKEN_URL = process.env.REACT_APP_TOKEN_URL;
 // const REFRESH_TOKEN_URL = process.env.REFRESH_TOKEN_URL;
 
@@ -37,7 +38,6 @@ class App extends Component {
         .catch( err => console.log(err) )
   }
   refreshToken = () => {
-    // axios call endpoint to refresh token. to be implemented
     axios.get('https://labs9-car-reviews.herokuapp.com/refresh_token')
     .then( res => {
       this.props.cookies.set('access_token', res.data.access_token)
@@ -47,12 +47,12 @@ class App extends Component {
   }
   componentDidMount(){
     this.getToken();
-    // may need to set a shorter refresh time as heroku server times out after 30 mins of inactivity
     setInterval(this.refreshToken, refreshTime); 
   }
   render () {
     return (
-      <div className="container-fluid" style={{ padding: "0"}}>
+      <Container fluid style={{ padding: "0" }}>
+        <Navigation />
         <Route exact path="/" component={LandingPage} />
         <Route path="/home" component={HomePage} />
         <Route path="/search_landing" component={SearchLanding} />
@@ -63,7 +63,7 @@ class App extends Component {
         <Route path="/signup" component={SignUpPage} />
         <Route path="/login" component={LogInPage} />
         <Route path="/forgot_password" component={ForgotPasswordPage} />
-      </div>
+      </Container>
     );
   }
 }

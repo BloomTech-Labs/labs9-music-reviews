@@ -1,7 +1,6 @@
 import React from 'react';
 import { FirebaseContext } from '../Firebase';
 import SettingsContent from './SettingsContent';
-import Navigation from '../Navigation/Navigation';
 import styled from 'styled-components';
 
 const SettingsContainer = styled.div`
@@ -19,7 +18,6 @@ class SettingsPage extends React.Component {
   render() {
     return (
       <SettingsContainer>
-        <Navigation />
         <FirebaseContext.Consumer>
           {(firebase) => <SettingsContent firebase={firebase} />}
         </FirebaseContext.Consumer>

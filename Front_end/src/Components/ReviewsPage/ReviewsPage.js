@@ -16,9 +16,8 @@ const Sidebar = styled.div`
     padding-top: 80px;
     display: flex;
     flex-direction: column;
-    alig-items: 'center';
+    align-items: 'center';
 `;
-
 
 class ReviewsPage extends Component {
     static propTypes = {
@@ -54,6 +53,7 @@ class ReviewsPage extends Component {
         this.getAlbum('4aawyAB9vmqN3uQ7FjRGTy', this.props.cookies.get('access_token'))
     }
     render(){
+        console.log(this.state.data.images)
         return (
             <Fragment>
                 <Navigation />
@@ -79,15 +79,15 @@ class ReviewsPage extends Component {
                                 {this.state.tracks.map( track => {
                                     return (
                                         <Row style={{ display: 'flex', justifyContent: 'space-between'}} >
-                                            <Col md='1'>
+                                            <Col xs='1'>
                                                 <h6>{track.track_number}</h6>
                                             </Col>
-                                            <Col md='9'>
+                                            <Col xs='9'>
                                                 <ul style={{ fontSize: '0.8rem' }} key={track.id}>{track.name}</ul>
                                             </Col>
-                                            <Col md='2'>
+                                            <Col xs='2'>
                                                 <span style={{ color: 'red', fontWeight: '800'}}>
-                                                    {track.explicit === true? 'E' : ' '}
+                                                    {track.explicit === true ? 'E' : ' '}
                                                 </span>
                                             </Col>
                                         </Row>

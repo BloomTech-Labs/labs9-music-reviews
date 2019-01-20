@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { withRouter, Route } from 'react-router-dom';
 import SignOut from '../Signout/SignOut';
 import {
@@ -65,12 +65,23 @@ class Navigation extends Component {
               <DropdownItem href="/settings">
                 Settings
               </DropdownItem>
-              <DropdownItem divider />
-              <DropdownItem>
-                <FirebaseContext.Consumer>
-                  {(firebase) => <SignOut firebase={firebase} />}
-                </FirebaseContext.Consumer>
-              </DropdownItem>
+              {this.props.loggedIn === true ? 
+                <DropdownItem>
+                  <DropdownItem divider />
+                  <FirebaseContext.Consumer>
+                    {(firebase) => <SignOut firebase={firebase} />}
+                  </FirebaseContext.Consumer>
+                </DropdownItem> : 
+                <Fragment>
+                  <DropdownItem divider />
+                  <DropdownItem href="/signup">
+                    Sign Up
+                  </DropdownItem>
+                  <DropdownItem href="/login">
+                    Sign In
+                  </DropdownItem>
+                </Fragment>
+              }
             </DropdownMenu>
           </UncontrolledDropdown>
           <a>
