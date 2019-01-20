@@ -1,38 +1,33 @@
-const knex = require('knex');
-const knexConfig = require('../knexfile.js');
-const db = knex(knexConfig.development);
+const knex = require('knex')
+const knexConfig = require('../knexfile.js')
+const db = knex(knexConfig.development)
 
 module.exports = {
-    retrieve,
-    retrieveById,
-    write,
-    edit,
-    remove,
-};
+  retrieve,
+  retrieveById,
+  write,
+  edit,
+  remove,
+}
 
 function retrieve() {
-    return db('albumReview');
-};
+  return db('albumReview')
+}
 
 function retrieveById(id) {
-    return db('albumReview')
-            .where({ albumReviewID: id });
-};
+  return db('albumReview').where({ albumReviewID: Number(id) })
+}
 
 function write(review) {
-    return db('albumReview')
-            .insert(review)
-            .then(ids => ({ albumReviewID: ids[0] }));
-};
+  return db('albumReview')
+    .insert(review)
+    .then(ids => ({ albumReviewID: ids[0] }))
+}
 
 function edit(id, review) {
-    return db('albumReview')
-            .where({ albumReviewID : id })
-            .update(review);
-};
+  return db('albumReview').where({ 'albumReviewID': Number(id) }).update(review)
+}
 
 function remove(id) {
-    return db('albumReview')
-            .where({ albumReviewID : id })
-            .del();
+  return db('albumReview').where({ 'albumReviewID': Number(id) }).del()
 }

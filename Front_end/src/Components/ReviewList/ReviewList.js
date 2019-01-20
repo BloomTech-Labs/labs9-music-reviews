@@ -1,21 +1,20 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import NewReviewModalCard from "../CardModals/NewReviewModalCard";
-import EditReviewModalCard from "../CardModals/EditReviewModalCard";
-import ViewReviewModalCard from "../CardModals/ViewReviewModalCard";
-import {
-  Breadcrumb,
-  MenuItem,
-  Row,
-  SideNav,
-  SideNavItem,
-  Button,
-  Icon
-} from "react-materialize";
+import ReviewEditModal from "../CardModals/ReviewEditModal";
+import Navigation from "../Navigation/Navigation";
+import Stars from "../StarsRating/Stars";
+import { Row, Col, Container } from "reactstrap";
+import ProfileReviewCard from "./ProfileReviewCard";
 
-const BreadcrumbDiv = styled.div`
-  text-align: left;
+const ProfileInfo = styled.div`
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  overflow-x: hidden;
+  height: 100%;
+  padding-top: 20px;
 `;
 
 class ReviewList extends Component {
@@ -23,141 +22,64 @@ class ReviewList extends Component {
     super(props);
     this.state = {
       reviews: [],
-      review: {
-        id: null,
-        username: "",
-        year: "",
-        make: "",
-        model: "",
-        trim: "",
-        reviewText: "",
-        modifiedTime: ""
-      },
       input: "",
-      loggedIn: false
+      loggedIn: true,
+      username: ""
     };
   }
 
-  // componentDidMount() {
-  //   axios
-  //     .get('./DummyData/dummyData.json')
-  //     .then(response => {
-  //       const newReviews = response.data;
-  //       const newState = Object.assign({}, this.state, { reviews: newReviews });
-  //       this.setState(newState);
-  //       console.log(this.state);
-  //     })
-  //     .catch(err => console.log(err));
-  // };
+  componentDidMount() {
+    axios
+      .get("https://labs9-car-reviews.herokuapp.com/albumReviews")
+      .then(response => {
+        const userReviews = response.data;
+        const newState = Object.assign({}, this.state, { reviews: userReviews });
+        this.setState(newState);
+      })
+      .catch(err => console.log(err));
+  }
 
   handleReviewChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
   render() {
-    const userReviews = this.state.reviews.filter(review => {
-      return (
-        review.review
-          .toLowerCase()
-          .indexOf(this.state.username.toLowerCase()) !== -1
-      );
-    });
+    // const userReviews = this.state.reviews.filter(review => {
+    //   return (
+    //     review.review
+    //       .toLowerCase()
+    //       .indexOf(this.state.username.toLowerCase()) !== -1
+    //   );
+    // });
     return (
       <div>
-        <BreadcrumbDiv>
-          {/* Breadcrumb*/}
-          <Breadcrumb>
-            <MenuItem>
-              <a href="/">Home</a>
-            </MenuItem>
-            <MenuItem>My Reviews</MenuItem>
-          </Breadcrumb>
-        </BreadcrumbDiv>
-
-        {/* If no reviews on account display prompt for new review otherwise display all reviews on account */}
-
-        <div style={{ display: "flex" }}>
-          {/* <SideNav style={{ position: "relative", height: "800px" }}>
-            <SideNavItem
-              userView
-              user={{
-                background: "img/image.jpg",
-                image: "img/image.jpg",
-                name: "Name Surname",
-                email: "gmailk@gmail.com"
-              }}
-            />
-            <SideNavItem icon="search">Search</SideNavItem>
-            <SideNavItem icon="rate_review">My Reviews</SideNavItem>
-            <SideNavItem icon="attach_money">Billing</SideNavItem>
-            <SideNavItem icon="settings">Settings</SideNavItem>
-            <SideNavItem divider />
-            <SideNavItem icon="cancel">Sign Out</SideNavItem>
-          </SideNav> */}
-          <SideNav
-            trigger={
-              <Button
-                style={{ background: "#ee6e73", hover: "none", border: "none" }}
-              >
-                <Icon medium>menu</Icon>
-              </Button>
-            }
-            options={{ closeOnClick: true }}
+        <div>
+          <Navigation />
+        </div>
+        <div>
+          <Container
+            fluid={true}
+            style={{
+              display: "flex",
+              justifyItems: "space-around",
+              margin: "0 auto"
+            }}
           >
-            <SideNavItem icon="search">Search</SideNavItem>
-            <SideNavItem icon="rate_review">My Reviews</SideNavItem>
-            <SideNavItem icon="attach_money">Billing</SideNavItem>
-            <SideNavItem icon="settings">Settings</SideNavItem>
-            <SideNavItem divider />
-            <SideNavItem icon="cancel">Sign Out</SideNavItem>
-          </SideNav>
-          <Row>
-            {1 === 0 ? (
-              <div>
-                {/* Create a new Review */}
-                <NewReviewModalCard
-                  reviews={this.state.reviews}
-                  handleReviewChange={this.handleReviewChange}
-                  input={this.state.input}
-                  loggedIn={this.state.loggedIn}
-                />
-              </div>
-            ) : (
-              <div>
-                {/* Review Card Map */}
-                {this.state.loggedIn === false ? (
-                  <div>
-                    {/* {userReviews.map(review => ( */}
-                      <ViewReviewModalCard
-                        reviews={this.state.reviews}
-                        handleReviewChange={this.handleReviewChange}
-                        input={this.state.input}
-                        loggedIn={this.state.loggedIn}
-                      />
-                    {/* ))} */}
-                  </div>
-                ) : (
-                  <div>
-                    {/* {userReviews.map(review => ( */}
-                      <EditReviewModalCard
-                        reviews={this.state.reviews}
-                        handleReviewChange={this.handleReviewChange}
-                        input={this.state.input}
-                        loggedIn={this.state.loggedIn}
-                      />
-                    {/* ))} */}
-                    {/* Create a new Review */}
-                    <NewReviewModalCard
-                      reviews={this.state.reviews}
-                      handleReviewChange={this.handleReviewChange}
-                      input={this.state.input}
-                      loggedIn={this.state.loggedIn}
-                    />
-                  </div>
-                )}
-              </div>
-            )}
-          </Row>
+            <ProfileInfo>
+              <img
+                src="https://wakarukana.com/UserPictures/default.png"
+                alt="Default profile image"
+              />
+              <p>Status</p>
+              <p>Username</p>
+              <p>Reviews: {this.state.reviews.length}</p>
+            </ProfileInfo>
+          </Container>
+          <Container fluid={true}>
+            {this.state.reviews.map(review => (
+              <ProfileReviewCard review={review} loggedIn={this.state.loggedIn} key={review.id}/>
+            ))}
+          </Container>
         </div>
       </div>
     );

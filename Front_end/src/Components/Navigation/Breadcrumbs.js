@@ -9,7 +9,7 @@ const routes = {
   '/settings': 'Settings',
   '/signup': 'Signup',
   '/login': 'Login',
-  '/forgot_password': 'Frogot Password'
+  '/forgot_password': 'Forgot Password'
 };
 
 const findRoute = url => routes[url];
@@ -34,10 +34,10 @@ const BreadcrumbsItem = ({ match }) => {
     return (
       match.isExact ?
       (
-        <BreadcrumbItem active>{routeName}</BreadcrumbItem>
+        <BreadcrumbItem active style ={{backgroundColor: '#343a40'}}>{routeName}</BreadcrumbItem>
       ) :
       (
-        <BreadcrumbItem>
+        <BreadcrumbItem style ={{backgroundColor: '#343a40'}}>
           <Link to={match.url || ''}>
             {routeName}
           </Link>
@@ -51,9 +51,9 @@ const BreadcrumbsItem = ({ match }) => {
 const Breadcrumbs = ({ location : { pathname }, match }) => {
   const paths = getPaths(pathname);
   return (
-    <Breadcrumb>
+    <ol className = 'breadcrumb' style ={{backgroundColor: '#343a40', padding: '0'}}>
       {paths.map(path => <Route path={path} component={BreadcrumbsItem} />)}
-    </Breadcrumb>
+    </ol>
   );
 };
 export default Breadcrumbs;
