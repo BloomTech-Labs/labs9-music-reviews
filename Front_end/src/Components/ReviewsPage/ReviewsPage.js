@@ -49,7 +49,7 @@ class ReviewsPage extends Component {
             .catch( err => console.log(err) );
     }
     componentDidMount(){
-        this.getAlbum('4aawyAB9vmqN3uQ7FjRGTy', this.props.cookies.get('access_token'))
+        this.getAlbum('4aawyAB9vmqN3uQ7FjRGTy', cookies.get('access_token'))
     }
     render(){ 
         return (

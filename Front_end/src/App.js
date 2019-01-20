@@ -30,7 +30,7 @@ class App extends Component {
     }
   }
   getToken = () => {
-    axios.get(TOKEN_URL)
+    axios.get('http://labs9-car-reviews.herokuapp.com/get_token')
         .then( res => this.props.cookies.set('access_token', res.data.access_token) )
         .catch( err => console.log(err) )
   }
