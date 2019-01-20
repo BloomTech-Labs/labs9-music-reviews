@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import ReviewEditModal from "../CardModals/ReviewEditModal";
 import Navigation from "../Navigation/Navigation";
-import Stars from "../StarsRating/Stars";
-import { Row, Col, Container } from "reactstrap";
+import { Container } from "reactstrap";
 import ProfileReviewCard from "./ProfileReviewCard";
+import ReviewCreateModal from "../CardModals/ReviewCreateModal";
 
 const ProfileInfo = styled.div`
   position: -webkit-sticky;
@@ -73,6 +72,7 @@ class ReviewList extends Component {
               <p>Status</p>
               <p>Username</p>
               <p>Reviews: {this.state.reviews.length}</p>
+              <ReviewCreateModal />
             </ProfileInfo>
           </Container>
           <Container fluid={true}>
