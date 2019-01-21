@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import Navigation from "../Navigation/Navigation";
-import { Container } from "reactstrap";
+import ReviewEditModal from "../CardModals/ReviewEditModal";
+import Stars from "../StarsRating/Stars";
+import { Row, Col, Container } from "reactstrap";
 import ProfileReviewCard from "./ProfileReviewCard";
 import ReviewCreateModal from "../CardModals/ReviewCreateModal";
 
@@ -52,9 +53,6 @@ class ReviewList extends Component {
     // });
     return (
       <div>
-        <div>
-          <Navigation />
-        </div>
         <div>
           <Container
             fluid={true}

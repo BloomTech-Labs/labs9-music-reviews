@@ -23,6 +23,7 @@ function createNewUser(newUser) {
       }
     });
 }
+
 function getUser(email) {
   return db('users').select().where({ emailAddress: email });
 }
