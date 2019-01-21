@@ -1,5 +1,7 @@
 import React, { Fragment } from "react";
 import axios from "axios";
+import { instanceOf } from "prop-types";
+import { withCookies, Cookies } from "react-cookie";
 import {
   Button,
   Modal,
@@ -15,15 +17,18 @@ import ViewStars from "../StarsRating/ViewStars";
 import { type } from "os";
 
 class ReviewCreateModal extends React.Component {
+  static propTypes = {
+    cookies: instanceOf(Cookies).isRequired
+  };
   constructor(props) {
     super(props);
+    const { cookies } = props;
     this.state = {
       dateCreated: "",
       rating: 0,
       review: "",
-      spotifyAlbumID: "382ObEPsp2rxGrnsizN5TX",
+      spotifyAlbumID: "",
       userID: 1,
-      writeReview: false,
       modal: false,
       nestedModal: false,
       closeAll: false
@@ -35,25 +40,14 @@ class ReviewCreateModal extends React.Component {
     this.writeToggle = this.writeToggle.bind(this);
   }
 
-  //   componentDidMount() {
-  //     this.setState({
-  //       userID: this.props.userID,
-  //       spotifyAlbumID: this.props.spotifyAlbumID
-  //     });
-  //   }
-
-//   componentDidMount() {
-//     let currentDate = new Date();
-//     let date = currentDate.getDate();
-//     let month = currentDate.getMonth();
-//     let year = currentDate.getFullYear();
-//     let dateString = month + 1 + "/" + date + "/" + year;
-//     console.log("CDM Date", dateString);
-//     this.setState({ dateModified: dateString });
-//   }
+  componentDidMount() {
+    this.setState({
+      spotifyAlbumID: this.props.id
+    });
+  }
 
   addHandler = event => {
-    // event.preventDefault();    
+    // event.preventDefault();
     this.dateStamp();
     axios
       .post(`https://labs9-car-reviews.herokuapp.com/albumReviews`, {
@@ -111,11 +105,14 @@ class ReviewCreateModal extends React.Component {
     let date = currentDate.getDate();
     let month = currentDate.getMonth();
     let year = currentDate.getFullYear();
-    let dateString = month + 1 + "/" + date + "/" + year;    
-    this.setState({ dateCreated: dateString }, () => console.log("Function Date",this.state.dateCreated));
+    let dateString = month + 1 + "/" + date + "/" + year;
+    this.setState({ dateCreated: dateString }, () =>
+      console.log("Function Date", this.state.dateCreated)
+    );
   }
 
   render() {
+    console.log("Album ID", this.props.id)
     return (
       <Fragment>
         <Button color="danger" onClick={this.toggle}>
@@ -130,30 +127,22 @@ class ReviewCreateModal extends React.Component {
           <Row className="d-flex justify-content-around">
             <Col className="container">
               <div>
-                <ModalHeader>Album</ModalHeader>
-                <ModalHeader>Artist</ModalHeader>
+                <ModalHeader>{this.props.album}</ModalHeader>
+                <ModalHeader>{this.props.artist}</ModalHeader>
               </div>
               <div>
                 <ListGroup>
-                  <ListGroupItem>Track 1</ListGroupItem>
-                  <ListGroupItem>Track 2</ListGroupItem>
-                  <ListGroupItem>Track 3</ListGroupItem>
-                  <ListGroupItem>Track 4</ListGroupItem>
-                  <ListGroupItem>Track 5</ListGroupItem>
-                  <ListGroupItem>Track 6</ListGroupItem>
-                  <ListGroupItem>Track 7</ListGroupItem>
-                  <ListGroupItem>Track 8</ListGroupItem>
-                  <ListGroupItem>Track 9</ListGroupItem>
-                  <ListGroupItem>Track 10</ListGroupItem>
+                  {this.props.tracks.map(track => (
+                    <ListGroupItem>
+                      {track.track_number}. {track.name}
+                    </ListGroupItem>
+                  ))}
                 </ListGroup>
               </div>
             </Col>
             <Col className="container">
               <div>
-                <img
-                  src="http://bobjames.com/wp-content/themes/soundcheck/images/default-album-artwork.png"
-                  alt="Placeholder album image"
-                />
+                <img src={this.props.art} alt="Album cover art" />
               </div>
             </Col>
           </Row>
@@ -169,32 +158,19 @@ class ReviewCreateModal extends React.Component {
               )}
             </Row>
             <div>
-              {this.state.writeReview === true ? (
-                <textarea
-                  onChange={this.handleEditChange}
-                  name="review"
-                  value={this.state.review}
-                  maxlength="1500"
-                  style={{ resize: "none", width: "100%" }}
-                />
-              ) : null}
+              <textarea
+                onChange={this.handleEditChange}
+                name="review"
+                value={this.state.review}
+                maxlength="1500"
+                style={{ resize: "none", width: "100%" }}
+              />
             </div>
           </div>
           <ModalFooter>
-            {this.state.writeReview === false ? (
-              <Button color="primary" onClick={this.editHandler}>
-                Read
-              </Button>
-            ) : null}
-            {this.state.writeReview === false ? (
-              <Button color="primary" onClick={this.writeToggle}>
-                Review
-              </Button>
-            ) : (
-              <Button color="primary" onClick={this.toggleNested}>
-                Submit
-              </Button>
-            )}
+            <Button color="primary" onClick={this.toggleNested}>
+              Submit
+            </Button>
             <Modal
               isOpen={this.state.nestedModal}
               toggle={this.toggleNested}
