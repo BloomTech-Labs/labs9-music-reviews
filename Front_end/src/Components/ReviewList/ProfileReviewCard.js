@@ -1,46 +1,112 @@
-import React from "react";
+import React, { Component } from "react";
 import ReviewEditModal from "../CardModals/ReviewEditModal";
 import ViewStars from "../StarsRating/ViewStars";
 import { Row, Col } from "reactstrap";
+import axios from "axios";
+import { instanceOf } from "prop-types";
+import { withCookies, Cookies } from "react-cookie";
 
-const ProfileReviewCard = props => {
-  return (
-    <div>
-      <Row style={{ display: "flex", padding: "3rem 1rem" }}>
-        {/* User info */}
-        <Col md="3" style={{ margin: "auto 0" }}>
-          <img
-            src="http://bobjames.com/wp-content/themes/soundcheck/images/default-album-artwork.png"
-            alt="Placeholder album image"
-          />
-          <div>{props.review.albumName}</div>
-          <div>Artist</div>
-          {props.review.trackName ? <div>{props.review.trackName}</div> : null}
-          {/* If logged in edit button shows otherwise null */}
-          {props.loggedIn === true ? (
-            <ReviewEditModal review={props.review}
-            handleEditChange={props.handleEditChange}
-            editHandler={props.editHandler}
-            deleteHandler={props.deleteHandler}/>
-          ) : null}
-        </Col>
-        <Col md="9" style={{ padding: "1rem 5rem" }}>
-          <Row style={{ display: "flex" }}>
-            <ViewStars
-              rating={props.review.rating}
-            />
-            <p style={{ padding: "0 20px" }}>Date Created: {props.review.dateCreated}</p>
-            <p style={{ padding: "0 20px" }}>Updated On: {props.review.dateModified}</p>
-          </Row>
-          <Row>
-            <div align="left">
-              <p>{props.review.review}</p>
-            </div>
-          </Row>
-        </Col>
-      </Row>
-    </div>
-  );
-};
+class ProfileReviewCard extends Component {
+  static propTypes = {
+    cookies: instanceOf(Cookies).isRequired
+  };
+  constructor(props) {
+    super(props);
+    const { cookies } = props;
+    this.state = {
+      data: [],
+      album: "",
+      artist: "",
+      art: "",
+      tracks: []
+    };
+    this.getAlbum = this.getAlbum.bind(this);
+  }
 
-export default ProfileReviewCard;
+  getAlbum = (albumId, token) => {
+    axios
+      .get(`https://api.spotify.com/v1/albums/${albumId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      .then(data => {
+        this.setState({
+          data,
+          album: data.data.name,
+          artist: data.data.artists[0]["name"],
+          art: data.data.images[1]["url"],
+          tracks: data.data.tracks
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
+  // getTracks = (albumId, token) => {
+  //   axios
+  //     .get(`https://api.spotify.com/v1/albums/${albumId}/tracks`, {
+  //       headers: { Authorization: `Bearer ${token}` }
+  //     })
+  //     .then(data => {
+  //       this.setState({
+  //         tracks: data.data.items
+  //       });
+  //     })
+  //     .catch(err => console.log(err));
+  // };
+
+  componentDidMount() {
+    this.getAlbum(
+      this.props.review.spotifyAlbumID,
+      this.props.cookies.get("access_token")
+    );
+    // this.getTracks(
+    //   this.props.review.spotifyAlbumID,
+    //   this.props.cookies.get("access_token")
+    // );
+  }
+  render() {
+    console.log(this.state.tracks);
+    return (
+      <div>
+        <Row style={{ display: "flex", padding: "3rem 1rem" }}>
+          {/* User info */}
+          <Col md="3" style={{ margin: "auto 0" }}>
+            <img src={this.state.art} alt="Album cover art" />
+            <div>{this.state.album}</div>
+            <div>{this.state.artist}</div>
+            {/* {this.props.review.trackName ? (
+              <div>{this.props.review.trackName}</div>
+            ) : null} */}
+            {/* If logged in edit button shows otherwise null */}
+            {this.props.loggedIn === true ? (
+              <ReviewEditModal
+                {...this.props}
+                album={this.state.album}
+                artist={this.state.artist}
+                art={this.state.art}
+                tracks={this.state.tracks}
+              />
+            ) : null}
+          </Col>
+          <Col md="9" style={{ padding: "1rem 5rem" }}>
+            <Row style={{ display: "flex" }}>
+              <ViewStars rating={this.props.review.rating} />
+              <p style={{ padding: "0 20px" }}>
+                Date Created: {this.props.review.dateCreated}
+              </p>
+              <p style={{ padding: "0 20px" }}>
+                Updated On: {this.props.review.dateModified}
+              </p>
+            </Row>
+            <Row>
+              <div align="left">
+                <p>{this.props.review.review}</p>
+              </div>
+            </Row>
+          </Col>
+        </Row>
+      </div>
+    );
+  }
+}
+
+export default withCookies(ProfileReviewCard);
