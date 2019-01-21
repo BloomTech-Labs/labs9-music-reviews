@@ -8,9 +8,8 @@ import {
   Label
 } from "reactstrap";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Checkout from "./Checkout";
-import Navigation from "../Navigation/Navigation";
 
 const Payment = styled.div`
   padding: 3rem;
@@ -34,7 +33,6 @@ class Billing extends Component {
   render() {
     return (
       <div>
-        <Navigation />
         <Container>
           <Row>
             <Col className="col s2">
@@ -52,12 +50,6 @@ class Billing extends Component {
             <Col className="valign-wrapper s10">
               <Payment>
                 <h2 style={{ textAlign: "left" }}> Billing </h2>
-                {/* <Card title="Payment Info" className="large" style={{ padding: "3rem 10rem 3rem 0", textAlign: "left" }}>
-                                <Input placeholder="Credit Card #" /><br />
-                                <Input placeholder="Expiration Date" /><br />
-                                <Input placeholder="CVV" />
-                            </Card> */}
-                {/* <Button waves='light' large={true}>Buy Now</Button> */}
                 <div style={{ margin: "2rem 0" }}>
                   <FormGroup check>
                     <Label check>

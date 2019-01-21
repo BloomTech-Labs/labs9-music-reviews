@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
-import { Container, Row, Col, Jumbotron } from 'reactstrap';
+import { Container, Row, Col, Jumbotron, CardImg, Button } from 'reactstrap';
 import Navigation from '../Navigation/Navigation';
 import Stars from '../StarsRating/Stars';
 import axios from 'axios';
@@ -12,9 +12,11 @@ const Sidebar = styled.div`
     position: sticky;
     top: 0;
     z-index: 1;
-    overflow-x: hidden;
     height: 100%;
-    padding-top: 20px;
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: 'center';
 `;
 
 class ReviewsPage extends Component {
@@ -23,7 +25,6 @@ class ReviewsPage extends Component {
     };
     constructor(props){
         super(props);
-        const { cookies } = props;
         this.state = {
             data: [],
             album: '',
@@ -39,11 +40,11 @@ class ReviewsPage extends Component {
             })
             .then( data => {
                 this.setState({
-                    data,
+                    data: data.data,
                     album: data.data.name,
                     artist: data.data.artists[0]['name'],
-                    art: data.data.images[1]['url'],
-                    tracks: data.data.tracks
+                    art: data.data.images[1].url,
+                    tracks: data.data.tracks.items
                 })
             })
             .catch( err => console.log(err) );
@@ -51,39 +52,52 @@ class ReviewsPage extends Component {
     componentDidMount(){
         this.getAlbum('4aawyAB9vmqN3uQ7FjRGTy', this.props.cookies.get('access_token'))
     }
-    render(){ 
+    render(){
+        console.log(this.state.data.images)
         return (
             <Fragment>
                 <Navigation />
 
-                <Container fluid={true} style={{ display: 'flex', margin: '0 auto', maxWidth: '1500px' }}>
+                <Container fluid={true} style={{ display: 'flex', margin: '0 auto', maxWidth: '1600px' }}>
                     <Sidebar>
-                        <Row style={{ display: 'flex', justifyContent: 'space-evenly' }}>
-                            <div>{this.state.album}</div>
-                            <div>{this.state.artist}</div>
+                        <Row style={{ alignSelf: 'center' }}>
+                            <h3>{this.state.album}</h3>
                         </Row>
-                        <img src={this.state.art} alt='Album Art' />
-                        <Row style={{ display: 'flex', justifyContent: 'space-evenly' }}>
-                            <button>Buy Now</button>
-                            <button>Write Review</button>
+                        <Row style={{ alignSelf: 'center' }}>
+                            <h5>{this.state.artist}</h5>
+                        </Row>
+                        {/* can add logic to render different size of album art based on screen size: stacked ternary */}
+                        {/* need to find a way to manipulate the img object from res.data */}
+                        <CardImg src={this.state.art} alt='Album Art' />
+                        <Row style={{ display: 'flex', justifyContent: 'space-evenly', padding: '1rem' }}>
+                            <Button>Buy Now</Button>
+                            <Button>Write Review</Button>
                         </Row>
                         <Row>
-                            <Col sm='5'>
-                                <h5>Tracklist:</h5>
-                                {Object.keys(this.state.tracks).map( element => {
-                                    if (element === "items") {
-                                        this.state.tracks[element].map( track => {
-                                            return (
-                                                <ul key={track.id}>{track.name}</ul>
-                                            )
-                                        })
-                                    }
+                            <Col>
+                                <h5 style={{ padding: '1rem' }}>Tracklist</h5>
+                                {this.state.tracks.map( track => {
+                                    return (
+                                        <Row style={{ display: 'flex', justifyContent: 'space-between'}} >
+                                            <Col xs='1'>
+                                                <h6>{track.track_number}</h6>
+                                            </Col>
+                                            <Col xs='9'>
+                                                <ul style={{ fontSize: '0.8rem' }} key={track.id}>{track.name}</ul>
+                                            </Col>
+                                            <Col xs='2'>
+                                                <span style={{ color: 'red', fontWeight: '800'}}>
+                                                    {track.explicit === true ? 'E' : ' '}
+                                                </span>
+                                            </Col>
+                                        </Row>
+                                    )
                                 })}
                             </Col>
                         </Row>
                     </Sidebar>
 
-                    <Container fluid={true} style={{ maxWidth: '1200px' }}>
+                    <Container fluid={true} style={{ maxWidth: '1150px' }}>
                         <Jumbotron fluid style={{ display: 'flex', padding: '1rem' }}>
                             {/* User info */}
                             <Row>
