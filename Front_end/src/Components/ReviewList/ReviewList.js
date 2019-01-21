@@ -70,7 +70,6 @@ class ReviewList extends Component {
               <p>Status</p>
               <p>Username</p>
               <p>Reviews: {this.state.reviews.length}</p>
-              <ReviewCreateModal />
             </ProfileInfo>
           </Container>
           <Container fluid={true}>

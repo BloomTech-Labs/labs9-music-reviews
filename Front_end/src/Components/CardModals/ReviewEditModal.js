@@ -21,12 +21,14 @@ class ReviewEditModal extends React.Component {
       dateModified: "",
       rating: 0,
       modal: false,
-      nestedModal: false,
+      delNestedModal: false,
+      editNestedModal: false,
       closeAll: false
     };
 
     this.toggle = this.toggle.bind(this);
-    this.toggleNested = this.toggleNested.bind(this);
+    this.toggleDelNested = this.toggleDelNested.bind(this);
+    this.toggleEditNested = this.toggleEditNested.bind(this);
     this.toggleAll = this.toggleAll.bind(this);
   }
 
@@ -83,9 +85,16 @@ class ReviewEditModal extends React.Component {
     });
   }
 
-  toggleNested() {
+  toggleDelNested() {
     this.setState({
-      nestedModal: !this.state.nestedModal,
+      delNestedModal: !this.state.delNestedModal,
+      closeAll: false
+    });
+  }
+
+  toggleEditNested() {
+    this.setState({
+      editNestedModal: !this.state.editNestedModal,
       closeAll: false
     });
   }
@@ -108,6 +117,7 @@ class ReviewEditModal extends React.Component {
   }
 
   render() {
+    console.log(this.props.tracks.items);
     return (
       <Fragment>
         <Button color="danger" onClick={this.toggle}>
@@ -122,35 +132,31 @@ class ReviewEditModal extends React.Component {
           <Row class="d-flex justify-content-around">
             <Col class="container">
               <div>
-                <ModalHeader>Album</ModalHeader>
-                <ModalHeader>Artist</ModalHeader>
+                {/* Edit Modal Album and Artist Headers */}
+                <ModalHeader>Album: {this.props.album}</ModalHeader>
+                <ModalHeader>Artist: {this.props.artist}</ModalHeader>
               </div>
               <div>
-                <ListGroup>
-                  <ListGroupItem>Track 1</ListGroupItem>
-                  <ListGroupItem>Track 2</ListGroupItem>
-                  <ListGroupItem>Track 3</ListGroupItem>
-                  <ListGroupItem>Track 4</ListGroupItem>
-                  <ListGroupItem>Track 5</ListGroupItem>
-                  <ListGroupItem>Track 6</ListGroupItem>
-                  <ListGroupItem>Track 7</ListGroupItem>
-                  <ListGroupItem>Track 8</ListGroupItem>
-                  <ListGroupItem>Track 9</ListGroupItem>
-                  <ListGroupItem>Track 10</ListGroupItem>
-                </ListGroup>
+                {/* Edit Modal Track List */}
+                {Object.keys(this.props.tracks).map(element => {
+                  if (element === "items") {
+                    this.props.tracks[element].map(track => {
+                      return <ul key={track.id}>{track.name}</ul>;
+                    });
+                  }
+                })}
               </div>
             </Col>
             <Col class="container">
+              {/* Edit Modal Album Art */}
               <div>
-                <img
-                  src="http://bobjames.com/wp-content/themes/soundcheck/images/default-album-artwork.png"
-                  alt="Placeholder album image"
-                />
+                <img src={this.props.art} alt="Album cover art" />
               </div>
             </Col>
           </Row>
           <div class="container center-align" style={{ margin: "0 auto" }}>
             <Row style={{ margin: "0 auto" }}>
+              {/* Editable Star Rating  */}
               <EditStars
                 rating={this.props.review.rating}
                 updateRating={this.updateRating}
@@ -167,21 +173,43 @@ class ReviewEditModal extends React.Component {
             </div>
           </div>
           <ModalFooter>
-            <Button
-              color="primary"
-              onClick={event => {
-                this.editHandler();
-                this.dateStamp();
-              }}
-            >
+            <Button color="primary" onClick={this.toggleEditNested}>
               Submit
             </Button>
-            <Button color="primary" onClick={this.toggleNested}>
+            {/* Edit Submit Confirmation Nested Modal */}
+            <Modal
+              isOpen={this.state.editNestedModal}
+              toggle={this.toggleEditNested}
+              style={{
+                top: "50%"
+              }}
+              onClosed={this.state.closeAll ? this.toggle : undefined}
+            >
+              <ModalHeader>
+                Are you sure you want to SUBMIT this review?
+              </ModalHeader>
+              <ModalFooter>
+                <Button
+                  color="primary"
+                  onClick={event => {
+                    this.editHandler();
+                    this.dateStamp();
+                  }}
+                >
+                  Submit
+                </Button>
+                <Button color="secondary" onClick={this.toggleNested}>
+                  Cancel
+                </Button>
+              </ModalFooter>
+            </Modal>
+            <Button color="primary" onClick={this.toggleDelNested}>
               Delete
             </Button>
+            {/* Delete Confirmation Nested Modal */}
             <Modal
-              isOpen={this.state.nestedModal}
-              toggle={this.toggleNested}
+              isOpen={this.state.delNestedModal}
+              toggle={this.toggleDelNested}
               style={{
                 top: "50%"
               }}
@@ -191,6 +219,7 @@ class ReviewEditModal extends React.Component {
                 Are you sure you want to DELETE this review?
               </ModalHeader>
               <ModalFooter>
+                {/* Delete Review Button */}
                 <Button
                   color="primary"
                   onClick={event => {
