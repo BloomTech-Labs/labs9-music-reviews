@@ -13,6 +13,7 @@ import ForgotPasswordPage from './Components/ForgotPassword/ForgotPasswordPage';
 import axios from 'axios';
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
+import Search from './Components/Search/Search';
 //import './App.css';
 // function to refresh token every hour...
 
@@ -57,6 +58,7 @@ class App extends Component {
         <Route path="/signup" component={SignUpPage} />
         <Route path="/login" component={LogInPage} />
         <Route path="/forgot_password" component={ForgotPasswordPage} />
+        <Route path="/search" component={Search} />
       </div>
     );
   }
