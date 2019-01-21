@@ -11,15 +11,19 @@ import {
   Row
 } from "reactstrap";
 import EditStars from "../StarsRating/EditStars";
+import ViewStars from "../StarsRating/ViewStars";
+import { type } from "os";
 
-class ReviewEditModal extends React.Component {
+class ReviewCreateModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      albumReviewID: "",
-      review: "",
-      dateModified: "",
+      dateCreated: "",
       rating: 0,
+      review: "",
+      spotifyAlbumID: "382ObEPsp2rxGrnsizN5TX",
+      userID: 1,
+      writeReview: false,
       modal: false,
       nestedModal: false,
       closeAll: false
@@ -28,53 +32,52 @@ class ReviewEditModal extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.toggleNested = this.toggleNested.bind(this);
     this.toggleAll = this.toggleAll.bind(this);
+    this.writeToggle = this.writeToggle.bind(this);
   }
 
-  componentDidMount() {
-    this.setState({
-      review: this.props.review.review,
-      rating: this.props.review.rating
-    });
-  }
+  //   componentDidMount() {
+  //     this.setState({
+  //       userID: this.props.userID,
+  //       spotifyAlbumID: this.props.spotifyAlbumID
+  //     });
+  //   }
 
-  editHandler = event => {
-    // event.preventDefault();
+//   componentDidMount() {
+//     let currentDate = new Date();
+//     let date = currentDate.getDate();
+//     let month = currentDate.getMonth();
+//     let year = currentDate.getFullYear();
+//     let dateString = month + 1 + "/" + date + "/" + year;
+//     console.log("CDM Date", dateString);
+//     this.setState({ dateModified: dateString });
+//   }
+
+  addHandler = event => {
+    // event.preventDefault();    
+    this.dateStamp();
     axios
-      .put(
-        `https://labs9-car-reviews.herokuapp.com/albumReviews/${
-          this.props.review.albumReviewID
-        }`,
-        {
-          review: this.state.review,
-          rating: this.state.rating,
-          dateModified: this.state.dateModified
-        }
-      )
+      .post(`https://labs9-car-reviews.herokuapp.com/albumReviews`, {
+        dateCreated: this.state.dateCreated,
+        dateModified: this.state.dateCreated,
+        rating: this.state.rating,
+        review: this.state.review,
+        spotifyAlbumID: this.state.spotifyAlbumID,
+        userID: this.state.userID
+      })
       .then(res => {
         console.log(res);
         console.log(res.data);
         window.location.reload();
       })
       .catch(err => console.log(err));
-  };
-
-  deleteHandler = id => {
-    axios
-      .delete(`https://labs9-car-reviews.herokuapp.com/albumReviews/${id}`)
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-        window.location.reload();
-      })
-      .catch(err => console.log(err));
-  };
-
-  updateRating = newRating => {
-    this.setState({ rating: newRating });
   };
 
   handleEditChange = event => {
     this.setState({ [event.target.name]: event.target.value });
+  };
+
+  updateRating = newRating => {
+    this.setState({ rating: newRating });
   };
 
   toggle() {
@@ -97,21 +100,26 @@ class ReviewEditModal extends React.Component {
     });
   }
 
+  writeToggle() {
+    this.setState({
+      writeReview: !this.state.writeReview
+    });
+  }
+
   dateStamp() {
     let currentDate = new Date();
     let date = currentDate.getDate();
     let month = currentDate.getMonth();
     let year = currentDate.getFullYear();
-    let dateString = month + 1 + "/" + date + "/" + year;
-    console.log(dateString);
-    this.setState({ dateModified: dateString });
+    let dateString = month + 1 + "/" + date + "/" + year;    
+    this.setState({ dateCreated: dateString }, () => console.log("Function Date",this.state.dateCreated));
   }
 
   render() {
     return (
       <Fragment>
         <Button color="danger" onClick={this.toggle}>
-          Edit
+          Create New Review
         </Button>
         <Modal
           isOpen={this.state.modal}
@@ -119,8 +127,8 @@ class ReviewEditModal extends React.Component {
           className={this.props.className}
           backdrop={true}
         >
-          <Row class="d-flex justify-content-around">
-            <Col class="container">
+          <Row className="d-flex justify-content-around">
+            <Col className="container">
               <div>
                 <ModalHeader>Album</ModalHeader>
                 <ModalHeader>Artist</ModalHeader>
@@ -140,7 +148,7 @@ class ReviewEditModal extends React.Component {
                 </ListGroup>
               </div>
             </Col>
-            <Col class="container">
+            <Col className="container">
               <div>
                 <img
                   src="http://bobjames.com/wp-content/themes/soundcheck/images/default-album-artwork.png"
@@ -149,36 +157,44 @@ class ReviewEditModal extends React.Component {
               </div>
             </Col>
           </Row>
-          <div class="container center-align" style={{ margin: "0 auto" }}>
+          <div className="container center-align" style={{ margin: "0 auto" }}>
             <Row style={{ margin: "0 auto" }}>
-              <EditStars
-                rating={this.props.review.rating}
-                updateRating={this.updateRating}
-              />
+              {this.state.writeReview === false ? (
+                <ViewStars rating={this.state.rating} />
+              ) : (
+                <EditStars
+                  rating={this.state.rating}
+                  updateRating={this.updateRating}
+                />
+              )}
             </Row>
             <div>
-              <textarea
-                onChange={this.handleEditChange}
-                name="review"
-                value={this.state.review}
-                maxlength="1500"
-                style={{ resize: "none", width: "100%" }}
-              />
+              {this.state.writeReview === true ? (
+                <textarea
+                  onChange={this.handleEditChange}
+                  name="review"
+                  value={this.state.review}
+                  maxlength="1500"
+                  style={{ resize: "none", width: "100%" }}
+                />
+              ) : null}
             </div>
           </div>
           <ModalFooter>
-            <Button
-              color="primary"
-              onClick={event => {
-                this.editHandler();
-                this.dateStamp();
-              }}
-            >
-              Submit
-            </Button>
-            <Button color="primary" onClick={this.toggleNested}>
-              Delete
-            </Button>
+            {this.state.writeReview === false ? (
+              <Button color="primary" onClick={this.editHandler}>
+                Read
+              </Button>
+            ) : null}
+            {this.state.writeReview === false ? (
+              <Button color="primary" onClick={this.writeToggle}>
+                Review
+              </Button>
+            ) : (
+              <Button color="primary" onClick={this.toggleNested}>
+                Submit
+              </Button>
+            )}
             <Modal
               isOpen={this.state.nestedModal}
               toggle={this.toggleNested}
@@ -188,24 +204,32 @@ class ReviewEditModal extends React.Component {
               onClosed={this.state.closeAll ? this.toggle : undefined}
             >
               <ModalHeader>
-                Are you sure you want to DELETE this review?
+                Are you sure you want to SUBMIT this review?
               </ModalHeader>
               <ModalFooter>
                 <Button
                   color="primary"
                   onClick={event => {
-                    this.deleteHandler(this.props.review.albumReviewID);
+                    this.addHandler();
                     this.toggleAll();
                   }}
                 >
-                  Delete
+                  Submit
                 </Button>
                 <Button color="secondary" onClick={this.toggleNested}>
                   Cancel
                 </Button>
               </ModalFooter>
             </Modal>
-            <Button color="secondary" onClick={this.toggle}>
+            <Button
+              color="secondary"
+              onClick={event => {
+                this.toggle();
+                if (this.state.writeReview === true) {
+                  this.writeToggle();
+                }
+              }}
+            >
               Close
             </Button>
           </ModalFooter>
@@ -215,4 +239,4 @@ class ReviewEditModal extends React.Component {
   }
 }
 
-export default ReviewEditModal;
+export default ReviewCreateModal;
