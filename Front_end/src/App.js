@@ -1,53 +1,63 @@
-import React, {Component} from 'react';
-import {Route} from 'react-router-dom';
-import ReviewList from './Components/ReviewList/ReviewList';
-import ReviewsPage from './Components/ReviewsPage/ReviewsPage';
-import HomePage from './Components/HomePage';
-import LandingPage from './Components/LandingPage/LandingPage';
-import SearchLanding from './Components/SearchLanding/SearchLanding';
-import Billing from './Components/Billing/Billing';
-import SettingsPage from './Components/Settings/SettingsPage';
-import SignUpPage from './Components/Signup/SignUpPage';
-import LogInPage from './Components/Login/LogInPage';
-import ForgotPasswordPage from './Components/ForgotPassword/ForgotPasswordPage';
-import axios from 'axios';
-import { instanceOf } from 'prop-types';
-import { withCookies, Cookies } from 'react-cookie';
-import Search from './Components/Search/Search';
+import React, { Component } from "react";
+import { Route } from "react-router-dom";
+import Navigation from "./Components/Navigation/Navigation";
+import ReviewList from "./Components/ReviewList/ReviewList";
+import ReviewsPage from "./Components/ReviewsPage/ReviewsPage";
+import HomePage from "./Components/HomePage";
+import LandingPage from "./Components/LandingPage/LandingPage";
+import SearchLanding from "./Components/SearchLanding/SearchLanding";
+import Billing from "./Components/Billing/Billing";
+import SettingsPage from "./Components/Settings/SettingsPage";
+import SignUpPage from "./Components/Signup/SignUpPage";
+import ArtistPage from "./Components/ArtistPage/ArtistPage"
+import LogInPage from "./Components/Login/LogInPage";
+import ForgotPasswordPage from "./Components/ForgotPassword/ForgotPasswordPage";
+import { Container } from "reactstrap";
+import axios from "axios";
+import { instanceOf } from "prop-types";
+import { withCookies, Cookies } from "react-cookie";
+import Search from "./Components/Search/Search";
 //import './App.css';
-// function to refresh token every hour...
 
-let refreshTime = 50*60*1000; // 50 mins
-const TOKEN_URL = process.env.REACT_APP_TOKEN_URL;
-const REFRESH_TOKEN_URL = process.env.REFRESH_TOKEN_URL;
+let refreshTime = 29 * 60 * 1000; // 29 mins
+// const TOKEN_URL = process.env.REACT_APP_TOKEN_URL;
+// const REFRESH_TOKEN_URL = process.env.REFRESH_TOKEN_URL;
 
 class App extends Component {
   static propTypes = {
     cookies: instanceOf(Cookies).isRequired
   };
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = {
-    }
+    this.state = {};
+    this.getToken = this.getToken.bind(this);
+    this.refreshToken = this.refreshToken.bind(this);
   }
   getToken = () => {
-    axios.get('https://labs9-car-reviews.herokuapp.com/get_token')
-        .then( res => this.props.cookies.set('access_token', res.data.access_token) )
-        .catch( err => console.log(err) )
-  }
+    axios
+      .get("https://labs9-car-reviews.herokuapp.com/get_token")
+      .then(res =>
+        this.props.cookies.set("access_token", res.data.access_token)
+      )
+      .catch(err => console.log(err));
+  };
   refreshToken = () => {
-    // axios call endpoint to refresh token. to be implemented
-    axios.get(REFRESH_TOKEN_URL)
-      .then( res => this.props.cookies.set('access_token', res.data.access_token) )
-      .catch( err => console.log(err) )
-  }
-  componentDidMount(){
+    axios
+      .get("https://labs9-car-reviews.herokuapp.com/refresh_token")
+      .then(res => {
+        this.props.cookies.set("access_token", res.data.access_token);
+        console.log("Token Refreshed");
+      })
+      .catch(err => console.log(err));
+  };
+  componentDidMount() {
     this.getToken();
-    setInterval(this.refreshToken, refreshTime); 
+    setInterval(this.refreshToken, refreshTime);
   }
-  render () {
+  render() {
     return (
-      <div className="container-fluid" style={{ padding: "0"}}>
+      <Container fluid style={{ padding: "0" }}>
+        <Navigation />
         <Route exact path="/" component={LandingPage} />
         <Route path="/home" component={HomePage} />
         <Route path="/search_landing" component={SearchLanding} />
@@ -59,7 +69,25 @@ class App extends Component {
         <Route path="/login" component={LogInPage} />
         <Route path="/forgot_password" component={ForgotPasswordPage} />
         <Route path="/search" component={Search} />
-      </div>
+        <Route
+          path="/album/:id"
+          render={props => (
+            <ReviewsPage {...props}/>
+          )}
+        />
+        <Route
+          path="/track/:id"
+          render={props => (
+            <ReviewsPage {...props} id="75IN3CtuZwTHTnZvYM4qnJ" />
+          )}
+        />
+        <Route
+          path="/artist/:id"
+          render={props => (
+            <ArtistPage {...props}/>
+          )}
+        />
+      </Container>
     );
   }
 }

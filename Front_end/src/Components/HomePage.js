@@ -9,7 +9,6 @@ import PopularReviewers from './Display/PopularReviewers';
 const LandingPage = () => {
     return(
         <div>
-            <Navigation />
             <FeaturedReviews />
             <PopularCars />
             <PopularReviewers />

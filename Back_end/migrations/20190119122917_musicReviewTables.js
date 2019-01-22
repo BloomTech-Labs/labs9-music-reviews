@@ -4,7 +4,7 @@ exports.up = function (knex, Promise) {
       usr.increments('userID').primary()
       usr.string('emailAddress', 100)
       usr.boolean('paidMembership').defaultTo('false')
-      usr.integer('reviewCount')
+      usr.integer('reviewCount').defaultTo(0)
       usr.datetime('subscriptionExpiration')
       usr.string('nickname').unique()
     })

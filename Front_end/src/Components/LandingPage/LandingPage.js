@@ -4,7 +4,7 @@ import { Input, Button } from "reactstrap";
 import Navigation from "../Navigation/Navigation";
 import Search from "../Search/Search";
 
-const SplashPage = () => {
+const LandingPage = () => {
   return (
     <div className="splashpage" style = {{overflow: 'hidden'}}>
       <Navigation />
@@ -15,13 +15,15 @@ const SplashPage = () => {
           width="75%"
         />
       </div>
-      <h2 style={{ color: "white", margin: "25px 0" }}>
+      <h2 style={{ color: "white" }}>
         There are a million songs out there. <br />Let your opinions on them take flight...
       </h2>
       <div align="center">
-        <a href="/login"><Button color="secondary" size="lg">
-          Start Reading Reviews Now!
-        </Button></a>
+        <a href="/login">
+          <Button color="secondary" size="lg">
+            Start Reading Reviews Now!
+          </Button>
+        </a>
       </div>
       <div>
         <Search />
@@ -41,8 +43,8 @@ const SplashPage = () => {
           }}
         /> */}
       </div>
-    </div>
+    </Container>
   );
 };
 
-export default SplashPage;
+export default LandingPage;

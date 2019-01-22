@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import ReviewEditModal from "../CardModals/ReviewEditModal";
-import Navigation from "../Navigation/Navigation";
 import Stars from "../StarsRating/Stars";
 import { Row, Col, Container } from "reactstrap";
 import ProfileReviewCard from "./ProfileReviewCard";
+import ReviewCreateModal from "../CardModals/ReviewCreateModal";
 
 const ProfileInfo = styled.div`
   position: -webkit-sticky;
@@ -29,6 +29,10 @@ class ReviewList extends Component {
   }
 
   componentDidMount() {
+    this.getAlbumReviews();
+  }
+
+  getAlbumReviews() {
     axios
       .get("https://labs9-car-reviews.herokuapp.com/albumReviews")
       .then(response => {
@@ -52,10 +56,7 @@ class ReviewList extends Component {
     //   );
     // });
     return (
-      <div>
-        <div>
-          <Navigation />
-        </div>
+      <Fragment>
         <div>
           <Container
             fluid={true}
@@ -81,7 +82,7 @@ class ReviewList extends Component {
             ))}
           </Container>
         </div>
-      </div>
+      </Fragment>
     );
   }
 }
