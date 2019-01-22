@@ -27,7 +27,7 @@ function write(review) {
 
 function edit(id, review) {
   return db('likeTrackReview')
-    .where({ likedTraclReviewID: id })
+    .where({ likedTrackReviewID: id })
     .update(review);
 };
 

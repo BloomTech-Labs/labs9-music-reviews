@@ -2,6 +2,7 @@ exports.up = function (knex, Promise) {
   return knex.schema
     .createTable('users', function (usr) {
       usr.increments('userID').primary()
+      usr.string('firebaseUID')
       usr.string('emailAddress', 100)
       usr.boolean('paidMembership').defaultTo('false')
       usr.integer('reviewCount').defaultTo(0)
