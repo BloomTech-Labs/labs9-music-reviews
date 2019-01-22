@@ -51,7 +51,7 @@ class ProfileReviewCard extends Component {
     return (
       <Fragment>
         <Container>
-          <Row style={{ display: "flex", padding: "3rem 1rem" }}>
+          <Row style={{ display: "flex", padding: "1rem" }}>
             {/* User info */}
             <Col md="3" style={{ margin: "auto 0" }}>
               <img src={this.state.art} alt="Album cover art" />

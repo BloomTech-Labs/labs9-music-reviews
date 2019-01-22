@@ -95,7 +95,6 @@ class ReviewList extends Component {
                   padding: "1rem"
                 }}
               >
-                <Button>Buy Now</Button>
               </Row>
             </Sidebar>
           </Container>
