@@ -9,6 +9,7 @@ import SearchLanding from "./Components/SearchLanding/SearchLanding";
 import Billing from "./Components/Billing/Billing";
 import SettingsPage from "./Components/Settings/SettingsPage";
 import SignUpPage from "./Components/Signup/SignUpPage";
+import ArtistPage from "./Components/ArtistPage/ArtistPage"
 import LogInPage from "./Components/Login/LogInPage";
 import ForgotPasswordPage from "./Components/ForgotPassword/ForgotPasswordPage";
 import { Container } from "reactstrap";
@@ -82,6 +83,12 @@ class App extends Component {
           path="/track/:id"
           render={props => (
             <ReviewsPage {...props} id="75IN3CtuZwTHTnZvYM4qnJ" />
+          )}
+        />
+        <Route
+          path="/artist/:id"
+          render={props => (
+            <ArtistPage {...props}/>
           )}
         />
       </Container>

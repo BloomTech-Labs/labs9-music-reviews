@@ -42,7 +42,7 @@ class ReviewCreateModal extends React.Component {
 
   componentDidMount() {
     this.setState({
-      spotifyAlbumID: this.props.id
+      spotifyAlbumID: this.props.match.params.id
     });
   }
 
@@ -112,7 +112,7 @@ class ReviewCreateModal extends React.Component {
   }
 
   render() {
-    console.log("Album ID", this.props.id)
+    console.log("Album ID", this.props.match.params.id)
     return (
       <Fragment>
         <Button color="danger" onClick={this.toggle}>
