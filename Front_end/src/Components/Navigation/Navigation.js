@@ -87,7 +87,11 @@ class Navigation extends Component {
             </DropdownMenu>
           </UncontrolledDropdown>
           <a>
-            <Icon>account_box</Icon>
+          <img
+                src={require("../../Images/RecordThumb.png")}
+                alt="Default profile image"
+                style={{ maxWidth: '30px', maxHeight: "30" }}
+              />
           </a>
         </Nav>
       </Navbar>

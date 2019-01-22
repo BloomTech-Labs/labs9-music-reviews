@@ -38,8 +38,9 @@ class AlbumReviewCard extends Component {
               >
                 <div>
                   <img
-                    src="https://wakarukana.com/UserPictures/default.png"
+                    src={require("../../Images/RecordThumb.png")}
                     alt="Default profile image"
+                    style={{ maxWidth: '150px'}}
                   />
                 </div>
                 <div>Member status</div>
