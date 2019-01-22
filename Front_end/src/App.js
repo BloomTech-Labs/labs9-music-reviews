@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import Navigation from "./Components/Navigation/Navigation";
 import ReviewList from "./Components/ReviewList/ReviewList";
-import ReviewsPage from "./Components/ReviewsPage/ReviewsPage";
+import AlbumReviewsPage from "./Components/ReviewsPage/AlbumReviewsPage";
+import TrackReviewsPage from "./Components/ReviewsPage/TrackReviewsPage";
 import HomePage from "./Components/HomePage";
 import LandingPage from "./Components/LandingPage/LandingPage";
 import SearchLanding from "./Components/SearchLanding/SearchLanding";
@@ -42,7 +43,7 @@ class App extends Component {
       .catch(err => console.log(err));
   };
   refreshToken = () => {
-    axios.get('https://labs9-car-reviews.herokuapp.com/refresh_token')
+    axios.get(process.env.REACT_APP_REFRESH_TOKEN_URL)
     .then( res => {
       this.props.cookies.set('access_token', res.data.access_token)
       console.log("Token Refreshed")
@@ -63,10 +64,9 @@ class App extends Component {
         <Route exact path="/" component={LandingPage} />
         <Route path="/home" component={HomePage} />
         <Route path="/search_landing" component={SearchLanding} />
-        <Route path="/reviews" component={ReviewList} />
-        <Route path="/album_reviews" component={ReviewsPage} />
-        <Route path="/billing" component={Billing} />
-        <Route path="/settings" component={SettingsPage} />
+        <Route path="/user/reviews" component={ReviewList} />
+        <Route path="/user/billing" component={Billing} />
+        <Route path="/user/settings" component={SettingsPage} />
         <Route path="/signup" component={SignUpPage} />
         <Route path="/login" render={(props) => 
           <LogInPage {...props} changeLogInState={this.changeLogInState} /> }
@@ -74,19 +74,20 @@ class App extends Component {
         <Route path="/forgot_password" component={ForgotPasswordPage} />
         <Route path="/search" component={Search} />
         <Route
-          path="/album/:id"
+          path="/albums/:id"
           render={props => (
-            <ReviewsPage {...props}/>
+            <AlbumReviewsPage {...props}/>
           )}
         />
         <Route
-          path="/track/:id"
+          path="/tracks/:id"
           render={props => (
-            <ReviewsPage {...props} id="75IN3CtuZwTHTnZvYM4qnJ" />
+            <TrackReviewsPage {...props} />
+            // id="75IN3CtuZwTHTnZvYM4qnJ"
           )}
         />
         <Route
-          path="/artist/:id"
+          path="/artists/:id"
           render={props => (
             <ArtistPage {...props}/>
           )}
