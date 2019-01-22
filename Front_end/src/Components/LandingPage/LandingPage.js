@@ -43,7 +43,6 @@ const LandingPage = () => {
           }}
         /> */}
       </div>
-    </Container>
   );
 };
 
