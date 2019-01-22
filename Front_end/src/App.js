@@ -15,6 +15,7 @@ import { Container } from 'reactstrap';
 import axios from 'axios';
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
+import Search from './Components/Search/Search';
 //import './App.css';
 
 let refreshTime = 29*60*1000; // 29 mins
@@ -66,7 +67,9 @@ class App extends Component {
         <Route path="/signup" component={SignUpPage} />
         <Route path="/login" component={LogInPage} />
         <Route path="/forgot_password" component={ForgotPasswordPage} />
+        <Route path="/search" component={Search} />
       </Container>
+
     );
   }
 }
