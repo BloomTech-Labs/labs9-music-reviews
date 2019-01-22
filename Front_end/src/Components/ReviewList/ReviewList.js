@@ -29,7 +29,7 @@ class ReviewList extends Component {
 
   componentDidMount() {
     this.getAlbumReviews();
-    this.setState({ loggedIn: this.props.match.params.loggedIn });
+    // this.setState({ loggedIn: this.props.match.params.loggedIn });
   }
 
   getAlbumReviews() {
