@@ -1,11 +1,8 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import ReviewEditModal from "../CardModals/ReviewEditModal";
-import Stars from "../StarsRating/Stars";
 import { Row, Col, Container } from "reactstrap";
 import ProfileReviewCard from "./ProfileReviewCard";
-import ReviewCreateModal from "../CardModals/ReviewCreateModal";
 
 const ProfileInfo = styled.div`
   position: -webkit-sticky;
@@ -68,8 +65,9 @@ class ReviewList extends Component {
           >
             <ProfileInfo>
               <img
-                src="https://wakarukana.com/UserPictures/default.png"
+                src={require("../../Images/RecordThumb.png")}
                 alt="Default profile image"
+                style={{ maxWidth: '200px'}}
               />
               <p>Status</p>
               <p>Username</p>
