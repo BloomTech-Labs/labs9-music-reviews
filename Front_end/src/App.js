@@ -71,7 +71,7 @@ class App extends Component {
         <Route
           path="/album/:id"
           render={props => (
-            <ReviewsPage {...props} id={this.props.location.id}/>
+            <ReviewsPage {...props}/>
           )}
         />
         <Route

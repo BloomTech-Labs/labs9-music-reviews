@@ -67,12 +67,12 @@ class ReviewsPage extends Component {
   }
 
   componentDidMount() {
-    this.getAlbum(this.props.id, this.props.cookies.get("access_token"));
+    this.getAlbum(this.props.match.params.id, this.props.cookies.get("access_token"));
     this.getAlbumReviews();
   }
   render() {
     const albumReviews = this.state.reviews.filter(review => {
-      return review.spotifyAlbumID.indexOf(this.props.id) !== -1;
+      return review.spotifyAlbumID.indexOf(this.props.match.params.id) !== -1;
     });
     return (
       <Fragment>
