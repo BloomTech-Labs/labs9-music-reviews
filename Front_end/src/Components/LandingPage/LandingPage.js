@@ -3,9 +3,9 @@ import "./LandingPage.css";
 import { Input, Button } from "reactstrap";
 import Search from "../Search/Search";
 
-const SplashPage = () => {
+const LandingPage = () => {
   return (
-    <div className="landingpage" style={{ overflow: "hidden" }}>
+    <div className="landingpage">
       <div align="center" style={{ margin: "50px 0", maxHeight: "350px" }}>
         <img
           src={require("../../Images/SongbirdLogo1.png")}
@@ -45,4 +45,4 @@ const SplashPage = () => {
     </div>
   );
 };
-export default SplashPage;
+export default LandingPage;

@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
-import { Container, Row, Col, Jumbotron, CardImg, Button } from "reactstrap";
+import { Container, Row, Col, CardImg, Button } from "reactstrap";
 import ReviewCreateModal from "../CardModals/ReviewCreateModal";
 import AlbumReviewCard from "./AlbumReviewCard";
 import axios from "axios";
@@ -16,10 +16,10 @@ const Sidebar = styled.div`
   padding-top: 80px;
   display: flex;
   flex-direction: column;
-  align-items: "center";
+  align-items: center;
 `;
 
-class ReviewsPage extends Component {
+class AlbumReviewsPage extends Component {
   static propTypes = {
     cookies: instanceOf(Cookies).isRequired
   };
@@ -149,4 +149,4 @@ class ReviewsPage extends Component {
   }
 }
 
-export default withCookies(ReviewsPage);
+export default withCookies(AlbumReviewsPage);

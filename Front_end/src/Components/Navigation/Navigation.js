@@ -53,20 +53,20 @@ class Navigation extends Component {
               <Icon>menu</Icon>
             </DropdownToggle>
             <DropdownMenu right>
-              <DropdownItem href="/home"> 
-                Home
-              </DropdownItem>
-              <DropdownItem href="/reviews">
-                My Reviews
-              </DropdownItem>
-              <DropdownItem href="/billing">
-                Billing
-              </DropdownItem>
-              <DropdownItem href="/settings">
-                Settings
-              </DropdownItem>
               {this.props.loggedIn === true ? 
                 <Fragment>
+                  <DropdownItem href="/home"> 
+                    Home
+                  </DropdownItem>
+                  <DropdownItem href="/reviews">
+                    My Reviews
+                  </DropdownItem>
+                  <DropdownItem href="/billing">
+                    Billing
+                  </DropdownItem>
+                  <DropdownItem href="/settings">
+                    Settings
+                  </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem href="/">
                     <FirebaseContext.Consumer>
@@ -75,7 +75,6 @@ class Navigation extends Component {
                   </DropdownItem>
                 </Fragment> : 
                 <Fragment>
-                  <DropdownItem divider />
                   <DropdownItem href="/signup">
                     Sign Up
                   </DropdownItem>
