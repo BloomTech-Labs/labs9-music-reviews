@@ -1,3 +1,4 @@
+import React from "react";
 import "./LandingPage.css";
 import { Input, Button } from "reactstrap";
 import Navigation from "../Navigation/Navigation";
