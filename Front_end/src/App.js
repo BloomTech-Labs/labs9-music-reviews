@@ -74,20 +74,20 @@ class App extends Component {
         <Route path="/forgot_password" component={ForgotPasswordPage} />
         <Route path="/search" component={Search} />
         <Route
-          path="/album/:id"
+          path="/albums/:id"
           render={props => (
             <AlbumReviewsPage {...props}/>
           )}
         />
         <Route
-          path="/track/:id"
+          path="/tracks/:id"
           render={props => (
             <TrackReviewsPage {...props} />
             // id="75IN3CtuZwTHTnZvYM4qnJ"
           )}
         />
         <Route
-          path="/artist/:id"
+          path="/artists/:id"
           render={props => (
             <ArtistPage {...props}/>
           )}

@@ -26,30 +26,33 @@ class TrackReviewsPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
-      album: "",
-      track: "",
-      artist: "",
-      art: "",
-      tracks: [],
-      reviews: []
+        data: [],
+        album: "",
+        albumId: "",
+        track: "",
+        artist: "",
+        art: "",
+        tracks: [],
+        reviews: []
     };
     this.getTrack = this.getTrack.bind(this);
   }
-  getTrack = (albumId, token) => {
+  getTrack = (trackId, token) => {
     axios
-      .get(`https://api.spotify.com/v1/albums/${albumId}`, {
+      .get(`https://api.spotify.com/v1/tracks/${trackId}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
-      .then(data => {
-        // this.setState({
-        //   data: data.data,
-        //   album: data.data.name,
-        //   artist: data.data.artists[0]["name"],
-        //   art: data.data.images[1].url,
-        //   tracks: data.data.tracks.items
-        //});
-        console.log(data)
+      .then(res => {
+        this.setState({
+          data: res.data,
+          album: res.data.album.name,
+          albumId: res.data.album.id,
+          artist: res.data.artists[0]["name"],
+        //   art: res.data.images[1].url,
+        // tracks: res.data.tracks.items,
+          track: res.data.name,
+        });
+        console.log(res.data)
       })
       .catch(err => console.log(err));
   };

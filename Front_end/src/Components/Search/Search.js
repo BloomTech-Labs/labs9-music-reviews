@@ -71,7 +71,7 @@ class Search extends Component {
                               <div className="d-flex flex-row flex-nowrap align-items-center" style = {{overflow: 'auto', WebkitOverflowScrolling: 'touch'}} >
                               {this.state.albums.map(album => {
 
-                                    return  <NavLink to={`/album/${album.id}`} style={{ textDecoration: 'none' }}><Col>
+                                    return  <NavLink to={`/albums/${album.id}`} style={{ textDecoration: 'none' }}><Col>
                                                 <Card key = {album.id} style = {{width: '10rem', textAlign: 'center', border: 'none'}}>
                                                   <CardImg src= {!album.images[0] ?  image : album.images[0].url}  alt = {album.name} style = {{borderRadius: '50%', width: '7rem'}}/>
                                                   <CardBody>
@@ -90,7 +90,7 @@ class Search extends Component {
                             
                               <div className="d-flex flex-row flex-nowrap align-items-center" style ={{overflow: 'auto', WebkitOverflowScrolling: 'touch'}}>
                               {this.state.artists.map(artist => {
-                                    return  artist.images.length === 0 ? null : <NavLink to={`/artist/${artist.id}`}><Col>
+                                    return  artist.images.length === 0 ? null : <NavLink to={`/artists/${artist.id}`}><Col>
                                                 <Card key = {artist.id} style = {{width: '10rem', textAlign: 'center', border: 'none'}}>
                                                   <CardImg src= {!artist.images[0] ? image : artist.images[0].url}  alt = {artist.name} style = {{borderRadius: '50%', width: '7rem'}}/>
                                                   <CardBody>
@@ -117,8 +117,8 @@ class Search extends Component {
                               {this.state.tracks.map(track => {
                                 const seconds = this.convertToSeconds(track.duration_ms);
                                   return track.album.images.length === 0 ? null : 
-                                   <NavLink to={`/track/${track.id}`}>
-                                    <Row key = {track.id} style = {{ maxWidth: '1600px', textAlign: 'center' }}>
+                                   <NavLink to={`/tracks/${track.id}`}>
+                                    <Row key = {track.id} style = {{ maxWidth: '1600px', textAlign: 'center', padding: '1rem' }}>
                                         <Col sm={2}>
                                           <CardImg src= {!track.album.images[0] ? image : track.album.images[0].url}
                                                   alt = {track.name} style = {{borderRadius: '50%', width: '7rem'}}

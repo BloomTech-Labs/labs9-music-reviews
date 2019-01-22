@@ -40,13 +40,13 @@ class AlbumReviewsPage extends Component {
       .get(`https://api.spotify.com/v1/albums/${albumId}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
-      .then(data => {
+      .then(res => {
         this.setState({
-          data: data.data,
-          album: data.data.name,
-          artist: data.data.artists[0]["name"],
-          art: data.data.images[1].url,
-          tracks: data.data.tracks.items
+          data: res.data,
+          album: res.data.name,
+          artist: res.data.artists[0]["name"],
+          art: res.data.images[1].url,
+          tracks: res.data.tracks.items
         });
       })
       .catch(err => console.log(err));
