@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 import { Form, Input, Row, Col, ListGroup, ListGroupItem, Container } from 'reactstrap';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
@@ -61,7 +62,9 @@ class Search extends Component {
                                 <ListGroup>
                                   <h1>Matching albums for {this.state.query}</h1>
                                 {this.state.albums.map(album => {
-                                    return <ListGroupItem><img src= {album.images[2].url} className="rounded float-left" /> {album.name}</ListGroupItem>
+                                    return <Link to={`/album/${album.id}`}>
+                                      <ListGroupItem><img src= {album.images[2].url} className="rounded float-left" /> {album.name}</ListGroupItem>
+                                    </Link>
                                   })
                                 }
                                 </ListGroup>
