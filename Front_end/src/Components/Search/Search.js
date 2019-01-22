@@ -62,7 +62,7 @@ class Search extends Component {
                             
                               <div className="d-flex flex-row overflow-auto" >
                               {this.state.albums.map(album => {
-                                    return  <NavLink to={`/album/${album.id}`}><Col>
+                                    return  <NavLink to={`/album/${album.id}`} style={{ textDecoration: 'none' }}><Col>
                                                 <Card key = {album.id} style = {{width: '10rem', textAlign: 'center', border: 'none'}}>
                                                   <CardImg src= {!album.images[0] ?  image : album.images[0].url}  alt = {album.name} style = {{borderRadius: '50%', width: '7rem'}}/>
                                                   <CardBody>
