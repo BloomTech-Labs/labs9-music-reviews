@@ -51,8 +51,8 @@ class ReviewCreateModal extends React.Component {
     this.dateStamp();
     axios
       .post(`https://labs9-car-reviews.herokuapp.com/albumReviews`, {
-        dateCreated: this.state.dateCreated,
-        dateModified: this.state.dateCreated,
+        created_at: this.state.dateCreated,
+        updated_at: this.state.dateCreated,
         rating: this.state.rating,
         review: this.state.review,
         spotifyAlbumID: this.state.spotifyAlbumID,
