@@ -8,6 +8,7 @@ import {
   Label
 } from "reactstrap";
 import styled from "styled-components";
+import SubInfoModal from './SubInfoModal'
 // import { Link } from "react-router-dom";
 import Checkout from "./Checkout";
 
@@ -60,6 +61,7 @@ class Billing extends Component {
                       <Input type="radio" name="monthSub" /> 1 Month Subscription $0.99
                     </Label>
                   </FormGroup>
+                  <SubInfoModal />
                 </div>
                 <Checkout
                   name={"Testing"}

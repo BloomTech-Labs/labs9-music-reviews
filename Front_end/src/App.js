@@ -92,6 +92,12 @@ class App extends Component {
             <ArtistPage {...props}/>
           )}
         />
+        <Route
+          path="/user/reviews/:id"
+          render={props => (
+            <ReviewList {...props} loggedIn={this.state.loggedIn}/>
+          )}
+        />
       </Container>
     );
   }
