@@ -10,51 +10,54 @@ import {
   Col,
   Row
 } from "reactstrap";
-import Stars from "../StarsRating/Stars";
+import EditStars from "../StarsRating/EditStars";
 
 class ReviewEditModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      albumId: "",
-      reviewText: "",
+      albumReviewID: "",
+      review: "",
+      dateModified: "",
+      rating: 0,
       modal: false,
-      nestedModal: false,
+      delNestedModal: false,
+      editNestedModal: false,
       closeAll: false
     };
 
     this.toggle = this.toggle.bind(this);
-    this.toggleNested = this.toggleNested.bind(this);
+    this.toggleDelNested = this.toggleDelNested.bind(this);
+    this.toggleEditNested = this.toggleEditNested.bind(this);
     this.toggleAll = this.toggleAll.bind(this);
   }
 
   componentDidMount() {
     this.setState({
-      reviewText: this.props.review.reviewText,
+      review: this.props.review.review,
       rating: this.props.review.rating
     });
   }
 
   editHandler = event => {
-    event.preventDefault();
+    // event.preventDefault();
     axios
       .put(
         `https://labs9-car-reviews.herokuapp.com/albumReviews/${
-          this.props.review.albumId
+          this.props.review.albumReviewID
         }`,
         {
-          reviewText: this.state.reviewText
+          review: this.state.review,
+          rating: this.state.rating,
+          updated_at: this.state.dateModified
         }
       )
       .then(res => {
         console.log(res);
         console.log(res.data);
+        window.location.reload();
       })
       .catch(err => console.log(err));
-    this.setState({
-      reviewText: this.state.reviewText
-    });
-    window.location.reload()
   };
 
   deleteHandler = id => {
@@ -63,8 +66,13 @@ class ReviewEditModal extends React.Component {
       .then(res => {
         console.log(res);
         console.log(res.data);
+        window.location.reload();
       })
       .catch(err => console.log(err));
+  };
+
+  updateRating = newRating => {
+    this.setState({ rating: newRating });
   };
 
   handleEditChange = event => {
@@ -77,9 +85,16 @@ class ReviewEditModal extends React.Component {
     });
   }
 
-  toggleNested() {
+  toggleDelNested() {
     this.setState({
-      nestedModal: !this.state.nestedModal,
+      delNestedModal: !this.state.delNestedModal,
+      closeAll: false
+    });
+  }
+
+  toggleEditNested() {
+    this.setState({
+      editNestedModal: !this.state.editNestedModal,
       closeAll: false
     });
   }
@@ -91,8 +106,18 @@ class ReviewEditModal extends React.Component {
     });
   }
 
+  dateStamp() {
+    let currentDate = new Date();
+    let date = currentDate.getDate();
+    let month = currentDate.getMonth();
+    let year = currentDate.getFullYear();
+    let dateString = month + 1 + "/" + date + "/" + year;
+    console.log(dateString);
+    this.setState({ dateModified: dateString });
+  }
+
   render() {
-    console.log(this.props.review);
+    console.log(this.props.tracks);
     return (
       <Fragment>
         <Button color="danger" onClick={this.toggle}>
@@ -106,58 +131,109 @@ class ReviewEditModal extends React.Component {
         >
           <Row class="d-flex justify-content-around">
             <Col class="container">
+              <Col>
+                <div>
+                  {/* Edit Modal Album and Artist Headers */}
+                  <ModalHeader>Album: {this.props.album}</ModalHeader>
+                  <ModalHeader>Artist: {this.props.artist}</ModalHeader>
+                </div>
+              </Col>
+              <Col class="container">
+                {/* Edit Modal Album Art */}
+                <div>
+                  <img src={this.props.art} alt="Album cover art" />
+                </div>
+              </Col>
               <div>
-                <ModalHeader>Album</ModalHeader>
-                <ModalHeader>Artist</ModalHeader>
-              </div>
-              <div>
-                <ListGroup>
-                  <ListGroupItem>Track 1</ListGroupItem>
-                  <ListGroupItem>Track 2</ListGroupItem>
-                  <ListGroupItem>Track 3</ListGroupItem>
-                  <ListGroupItem>Track 4</ListGroupItem>
-                  <ListGroupItem>Track 5</ListGroupItem>
-                  <ListGroupItem>Track 6</ListGroupItem>
-                  <ListGroupItem>Track 7</ListGroupItem>
-                  <ListGroupItem>Track 8</ListGroupItem>
-                  <ListGroupItem>Track 9</ListGroupItem>
-                  <ListGroupItem>Track 10</ListGroupItem>
-                </ListGroup>
-              </div>
-            </Col>
-            <Col class="container">
-              <div>
-                <img
-                  src="http://bobjames.com/wp-content/themes/soundcheck/images/default-album-artwork.png"
-                  alt="Placeholder album image"
-                />
+                {/* Edit Modal Track List */}
+                <Row>
+                  <Col>
+                    <h5 style={{ padding: "1rem" }}>Tracklist</h5>
+                    {this.props.tracks.map(track => {
+                      return (
+                        <Row
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between"
+                          }}
+                        >
+                          <Col xs="1">
+                            <h6>{track.track_number}</h6>
+                          </Col>
+                          <Col xs="9">
+                            <ul style={{ fontSize: "0.8rem" }} key={track.id}>
+                              {track.name}
+                            </ul>
+                          </Col>
+                          <Col xs="2">
+                            <span style={{ color: "red", fontWeight: "800" }}>
+                              {track.explicit === true ? "E" : " "}
+                            </span>
+                          </Col>
+                        </Row>
+                      );
+                    })}
+                  </Col>
+                </Row>
               </div>
             </Col>
           </Row>
           <div class="container center-align" style={{ margin: "0 auto" }}>
             <Row style={{ margin: "0 auto" }}>
-              <Stars rating={this.props.review.rating} />
+              {/* Editable Star Rating  */}
+              <EditStars
+                rating={this.props.review.rating}
+                updateRating={this.updateRating}
+              />
             </Row>
             <div>
               <textarea
                 onChange={this.handleEditChange}
-                name="reviewText"
-                value={this.state.reviewText}
+                name="review"
+                value={this.state.review}
                 maxlength="1500"
                 style={{ resize: "none", width: "100%" }}
               />
             </div>
           </div>
           <ModalFooter>
-            <Button color="secondary" onClick={this.editHandler}>
+            <Button color="primary" onClick={this.toggleEditNested}>
               Submit
             </Button>
-            <Button color="secondary" onClick={this.toggleNested}>
+            {/* Edit Submit Confirmation Nested Modal */}
+            <Modal
+              isOpen={this.state.editNestedModal}
+              toggle={this.toggleEditNested}
+              style={{
+                top: "50%"
+              }}
+              onClosed={this.state.closeAll ? this.toggle : undefined}
+            >
+              <ModalHeader>
+                Are you sure you want to SUBMIT this review?
+              </ModalHeader>
+              <ModalFooter>
+                <Button
+                  color="primary"
+                  onClick={event => {
+                    this.editHandler();
+                    this.dateStamp();
+                  }}
+                >
+                  Submit
+                </Button>
+                <Button color="secondary" onClick={this.toggleNested}>
+                  Cancel
+                </Button>
+              </ModalFooter>
+            </Modal>
+            <Button color="primary" onClick={this.toggleDelNested}>
               Delete
             </Button>
+            {/* Delete Confirmation Nested Modal */}
             <Modal
-              isOpen={this.state.nestedModal}
-              toggle={this.toggleNested}
+              isOpen={this.state.delNestedModal}
+              toggle={this.toggleDelNested}
               style={{
                 top: "50%"
               }}
@@ -167,24 +243,24 @@ class ReviewEditModal extends React.Component {
                 Are you sure you want to DELETE this review?
               </ModalHeader>
               <ModalFooter>
+                {/* Delete Review Button */}
                 <Button
-                  color="secondary"
+                  color="primary"
                   onClick={event => {
-                    this.deleteHandler(this.props.review.albumId);
+                    this.deleteHandler(this.props.review.albumReviewID);
                     this.toggleAll();
-                    window.location.reload();
                   }}
                 >
                   Delete
                 </Button>
-                <Button color="primary" onClick={this.toggleNested}>
+                <Button color="secondary" onClick={this.toggleNested}>
                   Cancel
-                </Button>{" "}
+                </Button>
               </ModalFooter>
             </Modal>
-            <Button color="primary" onClick={this.toggle}>
+            <Button color="secondary" onClick={this.toggle}>
               Close
-            </Button>{" "}
+            </Button>
           </ModalFooter>
         </Modal>
       </Fragment>

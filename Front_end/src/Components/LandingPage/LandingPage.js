@@ -1,13 +1,11 @@
 import React from "react";
 import "./LandingPage.css";
 import { Input, Button } from "reactstrap";
-import Navigation from "../Navigation/Navigation";
 import Search from "../Search/Search";
 
 const SplashPage = () => {
   return (
-    <div className="splashpage" style = {{overflow: 'hidden'}}>
-      <Navigation />
+    <div className="landingpage" style={{ overflow: "hidden" }}>
       <div align="center" style={{ margin: "50px 0", maxHeight: "350px" }}>
         <img
           src={require("../../Images/SongbirdLogo1.png")}
@@ -16,12 +14,15 @@ const SplashPage = () => {
         />
       </div>
       <h2 style={{ color: "white", margin: "25px 0" }}>
-        There are a million songs out there. <br />Let your opinions on them take flight...
+        There are a million songs out there. <br />
+        Let your opinions on them take flight...
       </h2>
-      <div align="center">
-        <a href="/login"><Button color="secondary" size="lg">
-          Start Reading Reviews Now!
-        </Button></a>
+      <div align="center" style={{ margin: "15px auto" }}>
+        <a href="/login">
+          <Button color="secondary" size="lg">
+            Start Reading Reviews Now!
+          </Button>
+        </a>
       </div>
       <div>
         <Search />
@@ -44,5 +45,4 @@ const SplashPage = () => {
     </div>
   );
 };
-
 export default SplashPage;

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { withRouter, Route } from 'react-router-dom';
 import SignOut from '../Signout/SignOut';
 import {
@@ -17,8 +17,8 @@ import { FirebaseContext } from '../Firebase/index.js';
 import Breadcrumbs from './Breadcrumbs';
 
 class Navigation extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       isOpen: false,
     };
@@ -65,12 +65,25 @@ class Navigation extends Component {
               <DropdownItem href="/settings">
                 Settings
               </DropdownItem>
-              <DropdownItem divider />
-              <DropdownItem>
-                <FirebaseContext.Consumer>
-                  {(firebase) => <SignOut firebase={firebase} />}
-                </FirebaseContext.Consumer>
-              </DropdownItem>
+              {this.props.loggedIn === true ? 
+                <Fragment>
+                  <DropdownItem divider />
+                  <DropdownItem href="/">
+                    <FirebaseContext.Consumer>
+                      {(firebase) => <SignOut firebase={firebase} />}
+                    </FirebaseContext.Consumer>
+                  </DropdownItem>
+                </Fragment> : 
+                <Fragment>
+                  <DropdownItem divider />
+                  <DropdownItem href="/signup">
+                    Sign Up
+                  </DropdownItem>
+                  <DropdownItem href="/login">
+                    Sign In
+                  </DropdownItem>
+                </Fragment>
+              }
             </DropdownMenu>
           </UncontrolledDropdown>
           <a>

@@ -70,8 +70,9 @@ class Search extends Component {
                             
                               <div className="d-flex flex-row flex-nowrap align-items-center" style = {{overflow: 'auto', WebkitOverflowScrolling: 'touch'}} >
                               {this.state.albums.map(album => {
-                                    return  <NavLink to={`/album/${album.id}`} style={{ textDecoration: 'none' }}><Col justify-content-center>
-                                                <Card key = {album.id} style = {{width: '10rem', border: 'none'}}>
+
+                                    return  <NavLink to={`/album/${album.id}`} style={{ textDecoration: 'none' }}><Col>
+                                                <Card key = {album.id} style = {{width: '10rem', textAlign: 'center', border: 'none'}}>
                                                   <CardImg src= {!album.images[0] ?  image : album.images[0].url}  alt = {album.name} style = {{borderRadius: '50%', width: '7rem'}}/>
                                                   <CardBody>
                                                     <CardTitle>{album.name}</CardTitle>
@@ -88,9 +89,9 @@ class Search extends Component {
                             </Row>
                             
                               <div className="d-flex flex-row flex-nowrap align-items-center" style ={{overflow: 'auto', WebkitOverflowScrolling: 'touch'}}>
-                              {this.state.artists.map(artist => {
-                                    return  artist.images.length === 0 ? null : <NavLink to={`/artist/${artist.id}`}><Col justify-content-center>
-                                                <Card key = {artist.id} style = {{width: '10rem', border: 'none'}}>
+                              {this.state.artists.map(artist => {=======
+                                    return  artist.images.length === 0 ? null : <NavLink to={`/artist/${artist.id}`}><Col>
+                                                <Card key = {artist.id} style = {{width: '10rem', textAlign: 'center', border: 'none'}}>
                                                   <CardImg src= {!artist.images[0] ? image : artist.images[0].url}  alt = {artist.name} style = {{borderRadius: '50%', width: '7rem'}}/>
                                                   <CardBody>
                                                     <CardTitle>{artist.name}</CardTitle>
