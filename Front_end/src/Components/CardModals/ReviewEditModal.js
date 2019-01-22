@@ -49,7 +49,7 @@ class ReviewEditModal extends React.Component {
         {
           review: this.state.review,
           rating: this.state.rating,
-          dateModified: this.state.dateModified
+          updated_at: this.state.dateModified
         }
       )
       .then(res => {
