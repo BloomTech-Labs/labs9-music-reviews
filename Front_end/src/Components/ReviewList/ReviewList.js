@@ -22,7 +22,7 @@ class ReviewList extends Component {
     this.state = {
       reviews: [],
       input: "",
-      loggedIn: false,
+      loggedIn: true,
       username: ""
     };
   }
