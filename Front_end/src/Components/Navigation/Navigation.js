@@ -12,6 +12,7 @@ import {
   NavbarBrand,
 } from 'reactstrap';
 import { Icon } from 'react-materialize';
+import PlansModal from './PlansModal'
 
 import { FirebaseContext } from '../Firebase/index.js';
 import Breadcrumbs from './Breadcrumbs';
@@ -35,6 +36,7 @@ class Navigation extends Component {
           navbar
           style={{ alignContent: 'center', alignItems: 'center' }}
         >
+        {this.props.loggedIn === true ? null : <PlansModal />}        
           <Input
             type="search"
             name="search"
