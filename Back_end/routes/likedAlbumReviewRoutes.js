@@ -46,12 +46,33 @@ router.post('/', async (req, res) => {
 })
 
 // update selected liked review
-router.put('/', (req, res) => {
-const {id} = req.params;
-const  likedAlbumReview = req.body
-dbLikedAlbumReviews.edit(id, likedAlbumReview).then()
-
+router.put('/:likedAlbumReviewID', async (req, res) => {
+  const { likedAlbumReviewID } = req.params;
+  const likedAlbumReview = req.body
+  if (!likedAlbumReview) {
+    res.status(400).json({
+      message: 'what you are editing cannot be blank'
+    })
+  } else {
+    try {
+      const updatedLikedAlbumReview = await dbLikedAlbumReviews.edit(likedAlbumReviewID, likedAlbumReview);
+      res.status(200).json(updatedLikedAlbumReview)
+    }
+    catch (err) {
+      res.status(500).json({ message: "failed to update liked album review" })
+    }
+  }
 })
-
+// delete selected liked album review
+router.delete('/:likedAlbumReviewID', async (req, res) => {
+  const { likedAlbumReviewID } = req.params
+  try {
+    const removedReview = await dbLikedAlbumReviews.remove(likedAlbumReviewID)
+    res.status(200).json({ message: 'liked review deleted' })
+  }
+  catch (err) {
+    res.status(500).json(err.message)
+  }
+})
 
 module.exports = router
