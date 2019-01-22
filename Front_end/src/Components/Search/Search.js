@@ -78,7 +78,7 @@ class Search extends Component {
                                                   </CardBody>
                                                 </Card>
                                             </Col>
-                                            </NavLink>
+                                            
                                   })
                                 }
                             </div>
@@ -97,7 +97,7 @@ class Search extends Component {
                                                   </CardBody>
                                                 </Card>
                                             </Col>
-                                          </NavLink>
+                                          
                                   })
                                 }
                             </div>
