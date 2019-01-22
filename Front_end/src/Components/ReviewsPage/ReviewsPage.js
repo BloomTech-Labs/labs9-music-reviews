@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import { Container, Row, Col, Jumbotron, CardImg, Button } from "reactstrap";
-import Navigation from "../Navigation/Navigation";
 import ReviewCreateModal from "../CardModals/ReviewCreateModal";
 import AlbumReviewCard from "./AlbumReviewCard";
 import axios from "axios";
@@ -77,7 +76,6 @@ class ReviewsPage extends Component {
     });
     return (
       <Fragment>
-        <Navigation />
         <Container
           fluid={true}
           style={{ display: "flex", margin: "0 auto", maxWidth: "1600px" }}
