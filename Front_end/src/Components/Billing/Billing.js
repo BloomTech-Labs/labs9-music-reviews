@@ -39,8 +39,9 @@ class Billing extends Component {
             <Col className="col s2">
               <ProfileInfo>
                 <img
-                  src="https://wakarukana.com/UserPictures/default.png"
+                  src={require("../../Images/RecordThumb.png")}
                   alt="Default profile image"
+                  style={{ maxWidth: "200px" }}
                 />
                 <p>Status</p>
                 <p>Username</p>

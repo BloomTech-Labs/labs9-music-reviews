@@ -10,7 +10,7 @@ import {
   ListGroupItem
 } from "reactstrap";
 
-class SubInfoModal extends React.Component {
+class PlansModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,14 +34,13 @@ class SubInfoModal extends React.Component {
           color="info"
           onClick={this.toggle}
           style={{
-            maxWidth: "100px",
-            maxHeight: "20px",
-            fontSize: "11px",
-            padding: "0 5px",
-            margin: "15px"
+            backgroundColor: "#495057",
+            color: "#fff",
+            fontSize: "12px",
+            margin: " 0 15px"
           }}
         >
-          Subscription Info
+          Upgrade
         </Button>
         <Modal
           isOpen={this.state.modal}
@@ -50,7 +49,9 @@ class SubInfoModal extends React.Component {
         >
           <Row>
             <Col>
-              <ModalBody><h3>1 Year Subscription</h3></ModalBody>
+              <ModalBody>
+                <h3>1 Year Subscription</h3>
+              </ModalBody>
               <ModalBody>
                 <ListGroup>
                   <ListGroupItem>Thing 1</ListGroupItem>
@@ -63,10 +64,14 @@ class SubInfoModal extends React.Component {
                   <ListGroupItem>Thing 8</ListGroupItem>
                 </ListGroup>
               </ModalBody>
-              <ModalBody><h3>$9.99 /mo</h3></ModalBody>
+              <ModalBody>
+                <h3>$9.99 /mo</h3>
+              </ModalBody>
             </Col>
             <Col>
-              <ModalBody><h3>1 Month Subscription</h3></ModalBody>
+              <ModalBody>
+                <h3>1 Month Subscription</h3>
+              </ModalBody>
               <ModalBody>
                 <ListGroup>
                   <ListGroupItem>Thing 1</ListGroupItem>
@@ -79,11 +84,17 @@ class SubInfoModal extends React.Component {
                   <ListGroupItem>Thing 8</ListGroupItem>
                 </ListGroup>
               </ModalBody>
-              <ModalBody><h3>$0.99 /mo</h3></ModalBody>
+              <ModalBody>
+                <h3>$0.99 /mo</h3>
+              </ModalBody>
             </Col>
           </Row>
 
-          <ModalFooter>
+          <ModalFooter style={{ display: "flex", justifyContent: 'space-between'}} >
+              <a href="/billing">
+            <Button color="primary" onClick={this.toggle}>
+              Upgrade
+            </Button></a>
             <Button color="secondary" onClick={this.toggle}>
               Close
             </Button>
@@ -94,4 +105,4 @@ class SubInfoModal extends React.Component {
   }
 }
 
-export default SubInfoModal;
+export default PlansModal;
