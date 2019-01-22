@@ -58,13 +58,13 @@ class Navigation extends Component {
                   <DropdownItem href="/home"> 
                     Home
                   </DropdownItem>
-                  <DropdownItem href="/reviews">
+                  <DropdownItem href="/user/reviews">
                     My Reviews
                   </DropdownItem>
-                  <DropdownItem href="/billing">
+                  <DropdownItem href="/user/billing">
                     Billing
                   </DropdownItem>
-                  <DropdownItem href="/settings">
+                  <DropdownItem href="/user/settings">
                     Settings
                   </DropdownItem>
                   <DropdownItem divider />
