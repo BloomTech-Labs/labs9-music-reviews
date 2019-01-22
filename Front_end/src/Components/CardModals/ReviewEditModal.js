@@ -117,7 +117,7 @@ class ReviewEditModal extends React.Component {
   }
 
   render() {
-    console.log(this.props.tracks.items);
+    console.log(this.props.tracks);
     return (
       <Fragment>
         <Button color="danger" onClick={this.toggle}>
@@ -131,26 +131,50 @@ class ReviewEditModal extends React.Component {
         >
           <Row class="d-flex justify-content-around">
             <Col class="container">
-              <div>
-                {/* Edit Modal Album and Artist Headers */}
-                <ModalHeader>Album: {this.props.album}</ModalHeader>
-                <ModalHeader>Artist: {this.props.artist}</ModalHeader>
-              </div>
+              <Col>
+                <div>
+                  {/* Edit Modal Album and Artist Headers */}
+                  <ModalHeader>Album: {this.props.album}</ModalHeader>
+                  <ModalHeader>Artist: {this.props.artist}</ModalHeader>
+                </div>
+              </Col>
+              <Col class="container">
+                {/* Edit Modal Album Art */}
+                <div>
+                  <img src={this.props.art} alt="Album cover art" />
+                </div>
+              </Col>
               <div>
                 {/* Edit Modal Track List */}
-                {Object.keys(this.props.tracks).map(element => {
-                  if (element === "items") {
-                    this.props.tracks[element].map(track => {
-                      return <ul key={track.id}>{track.name}</ul>;
-                    });
-                  }
-                })}
-              </div>
-            </Col>
-            <Col class="container">
-              {/* Edit Modal Album Art */}
-              <div>
-                <img src={this.props.art} alt="Album cover art" />
+                <Row>
+                  <Col>
+                    <h5 style={{ padding: "1rem" }}>Tracklist</h5>
+                    {this.props.tracks.map(track => {
+                      return (
+                        <Row
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between"
+                          }}
+                        >
+                          <Col xs="1">
+                            <h6>{track.track_number}</h6>
+                          </Col>
+                          <Col xs="9">
+                            <ul style={{ fontSize: "0.8rem" }} key={track.id}>
+                              {track.name}
+                            </ul>
+                          </Col>
+                          <Col xs="2">
+                            <span style={{ color: "red", fontWeight: "800" }}>
+                              {track.explicit === true ? "E" : " "}
+                            </span>
+                          </Col>
+                        </Row>
+                      );
+                    })}
+                  </Col>
+                </Row>
               </div>
             </Col>
           </Row>

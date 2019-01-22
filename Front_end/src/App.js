@@ -57,6 +57,9 @@ class App extends Component {
         <Route path="/home" component={HomePage} />
         <Route path="/search_landing" component={SearchLanding} />
         <Route path="/reviews" component={ReviewList} />
+        <Route path="/album/:id" render={props => (
+            <ReviewsPage {...props} id="4m2880jivSbbyEGAKfITCa"/>
+          )}/>
         <Route path="/album_reviews" component={ReviewsPage} />
         <Route path="/billing" component={Billing} />
         <Route path="/settings" component={SettingsPage} />
