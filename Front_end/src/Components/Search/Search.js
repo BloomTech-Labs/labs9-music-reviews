@@ -89,7 +89,7 @@ class Search extends Component {
                             </Row>
                             
                               <div className="d-flex flex-row flex-nowrap align-items-center" style ={{overflow: 'auto', WebkitOverflowScrolling: 'touch'}}>
-                              {this.state.artists.map(artist => {=======
+                              {this.state.artists.map(artist => {
                                     return  artist.images.length === 0 ? null : <NavLink to={`/artist/${artist.id}`}><Col>
                                                 <Card key = {artist.id} style = {{width: '10rem', textAlign: 'center', border: 'none'}}>
                                                   <CardImg src= {!artist.images[0] ? image : artist.images[0].url}  alt = {artist.name} style = {{borderRadius: '50%', width: '7rem'}}/>
