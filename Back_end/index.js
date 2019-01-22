@@ -18,16 +18,17 @@ app.use(cors())
     // cookie: { domain: 'https://labs9carreviews.netlify.com' }
     secret: 'LambdaLabsCS12MusicReviews',
     cookie: { domain: '.labs9carreviews.netlify.com' }
-}));
+  }));
 
 
 const configureRoutes = require('./routes');
 configureRoutes(app);
 
-const trackReviewRoutes = require('./routes/trackReviewRoutes');
-const albumReviewRoutes = require('./routes/albumReviewRoutes');
+const trackReviewRoutes = require('./routes/trackReviewRoutes.js');
+const albumReviewRoutes = require('./routes/albumReviewRoutes.js');
 const userRoutes = require('./routes/userRoutes.js');
-
+const likedAlbumReviewRoutes = require('./routes/likedAlbumReviewRoutes.js');
+const likedTrackReviewRoutes = require('./routes/likedTrackReviewRoutes.js')
 // track reviews route
 app.use('/trackReviews', trackReviewRoutes);
 
@@ -37,17 +38,23 @@ app.use('/albumReviews', albumReviewRoutes);
 // user route
 app.use('/user', userRoutes);
 
+//Liked albums route
+app.use('/likedAlbumReview', likedAlbumReviewRoutes);
+
+app.use('/likedTrackReview', likedTrackReviewRoutes);
+
+
 
 var client_id = process.env.CLIENT_ID;
 var client_secret = process.env.CLIENT_SECRET;
 var redirect_uri = process.env.REDIRECT_URI || "http://localhost:9000/callback";
 let refresh_token, access_token;
 
-var generateRandomString = function(length) {
+var generateRandomString = function (length) {
   var text = '';
   var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-  for (var i = 0; i < length; i++) {
+  for (var i = 0;i < length;i++) {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
   }
   return text;
@@ -55,7 +62,7 @@ var generateRandomString = function(length) {
 
 var stateKey = 'spotify_auth_state';
 
-app.get('/login', function(req, res) {
+app.get('/login', function (req, res) {
 
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
@@ -71,7 +78,7 @@ app.get('/login', function(req, res) {
     }));
 });
 
-app.get('/callback', function(req, res) {
+app.get('/callback', function (req, res) {
 
   var code = req.query.code || null;
   var state = req.query.state || null;
@@ -97,19 +104,19 @@ app.get('/callback', function(req, res) {
       json: true
     };
 
-    request.post(authOptions, function(error, response, body) {
+    request.post(authOptions, function (error, response, body) {
       if (!error && response.statusCode === 200) {
 
         access_token = body.access_token,
-        refresh_token = body.refresh_token;
+          refresh_token = body.refresh_token;
 
         var options = {
           url: 'https://api.spotify.com/v1/me',
           headers: { 'Authorization': 'Bearer ' + access_token },
           json: true
         };
-        
-        request.get(options, function(error, response, body) {
+
+        request.get(options, function (error, response, body) {
           console.log(body);
         });
 
@@ -128,7 +135,7 @@ app.get('/callback', function(req, res) {
   }
 });
 
-app.get('/refresh_token', function(req, res) {
+app.get('/refresh_token', function (req, res) {
 
   var authOptions = {
     url: 'https://accounts.spotify.com/api/token',
@@ -140,7 +147,7 @@ app.get('/refresh_token', function(req, res) {
     json: true
   };
 
-  request.post(authOptions, function(error, response, body) {
+  request.post(authOptions, function (error, response, body) {
     if (!error && response.statusCode === 200) {
       access_token = body.access_token;
       res.cookie("access_token", access_token);
@@ -151,13 +158,13 @@ app.get('/refresh_token', function(req, res) {
   });
 });
 
-app.get('/get_token', function(req, res) {
+app.get('/get_token', function (req, res) {
   res.send({
     'access_token': access_token
   });
 });
 
-app.listen ((process.env.PORT || 9000), error => {
-    if (error) throw error;
-    console.log(`Server running on port: ${SERVER_CONFIGS.PORT}`);
+app.listen((process.env.PORT || 9000), error => {
+  if (error) throw error;
+  console.log(`Server running on port: ${SERVER_CONFIGS.PORT}`);
 });
