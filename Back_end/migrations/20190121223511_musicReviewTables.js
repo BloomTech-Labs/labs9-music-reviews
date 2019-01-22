@@ -34,7 +34,7 @@ exports.up = function (knex, Promise) {
       lar.integer('albumReviewID').unsigned().notNullable().references('albumReviewID').inTable('albumReview').onDelete('cascade').index()
     })
     .createTable('likedTrackReview', function (ltr) {
-      ltr.increments('likedTrackReview').primary()
+      ltr.increments('likedTrackReviewID').primary()
       ltr.boolean('like')
       ltr.boolean('dislike')
       ltr.integer('userID').unsigned().notNullable().references('userID').inTable('users').onDelete('cascade').index()

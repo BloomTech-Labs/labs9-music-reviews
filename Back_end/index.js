@@ -41,6 +41,9 @@ app.use('/user', userRoutes);
 //Liked albums route
 app.use('/likedAlbumReview', likedAlbumReviewRoutes);
 
+app.use('/likedTrackReview', likedTrackReviewRoutes);
+
+
 
 var client_id = process.env.CLIENT_ID;
 var client_secret = process.env.CLIENT_SECRET;

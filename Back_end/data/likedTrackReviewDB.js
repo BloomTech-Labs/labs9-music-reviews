@@ -26,7 +26,7 @@ function write(review) {
 };
 
 function edit(id, review) {
-  return db('likeTrackReview')
+  return db('likedTrackReview')
     .where({ likedTrackReviewID: id })
     .update(review);
 };
