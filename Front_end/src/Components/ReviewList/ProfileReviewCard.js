@@ -34,7 +34,7 @@ class ProfileReviewCard extends Component {
           album: data.data.name,
           artist: data.data.artists[0]["name"],
           art: data.data.images[1]["url"],
-          tracks: data.data.tracks
+          tracks: data.data.tracks.items
         });
       })
       .catch(err => console.log(err));
@@ -71,8 +71,8 @@ class ProfileReviewCard extends Component {
           {/* User info */}
           <Col md="3" style={{ margin: "auto 0" }}>
             <img src={this.state.art} alt="Album cover art" />
-            <div>{this.state.album}</div>
-            <div>{this.state.artist}</div>
+            <div>Album: {this.state.album}</div>
+            <div>Artist: {this.state.artist}</div>
             {/* {this.props.review.trackName ? (
               <div>{this.props.review.trackName}</div>
             ) : null} */}

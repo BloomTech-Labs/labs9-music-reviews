@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import ReviewEditModal from "../CardModals/ReviewEditModal";
@@ -29,6 +29,10 @@ class ReviewList extends Component {
   }
 
   componentDidMount() {
+    this.getAlbumReviews();
+  }
+
+  getAlbumReviews() {
     axios
       .get("https://labs9-car-reviews.herokuapp.com/albumReviews")
       .then(response => {
@@ -52,7 +56,7 @@ class ReviewList extends Component {
     //   );
     // });
     return (
-      <div>
+      <Fragment>
         <div>
           <Container
             fluid={true}
@@ -78,7 +82,7 @@ class ReviewList extends Component {
             ))}
           </Container>
         </div>
-      </div>
+      </Fragment>
     );
   }
 }
