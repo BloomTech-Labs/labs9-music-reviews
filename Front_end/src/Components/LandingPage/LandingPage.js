@@ -2,10 +2,11 @@ import React from "react";
 import "./LandingPage.css";
 import { Input, Button } from "reactstrap";
 import Navigation from "../Navigation/Navigation";
+import Search from "../Search/Search";
 
 const SplashPage = () => {
   return (
-    <div className="splashpage">
+    <div className="splashpage" style = {{overflow: 'hidden'}}>
       <Navigation />
       <div align="center" style={{ margin: "50px 0", maxHeight: "350px" }}>
         <img
@@ -23,7 +24,8 @@ const SplashPage = () => {
         </Button></a>
       </div>
       <div>
-        <Input
+        <Search />
+        {/* <Input
           type="search"
           name="search"
           id="search"
@@ -37,7 +39,7 @@ const SplashPage = () => {
             color: "#fff",
             width: "50%"
           }}
-        />
+        /> */}
       </div>
     </div>
   );
