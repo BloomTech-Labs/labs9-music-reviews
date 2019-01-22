@@ -10,13 +10,14 @@ module.exports = {
 function createNewUser(newUser) {
   return db('users')
     .select()
-    .where({ userID: newUser.user_id })
+    .where({ firebaseUID: newUser.user_id })
     .then((user) => {
       if (user.length === 0) {
         return db('users').insert({
-          userID: newUser.user_id,
+          firebaseUID: newUser.user_id,
           emailAddress: newUser.email,
           subscriptionExpiration: null,
+          nickname: newUser.email.split("@", 1).join()
         });
       } else {
         return null;

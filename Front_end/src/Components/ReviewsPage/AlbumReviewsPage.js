@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
-import { Container, Row, Col, Jumbotron, CardImg, Button } from "reactstrap";
+import { Container, Row, Col, CardImg, Button } from "reactstrap";
 import ReviewCreateModal from "../CardModals/ReviewCreateModal";
 import AlbumReviewCard from "./AlbumReviewCard";
 import axios from "axios";
@@ -16,10 +16,10 @@ const Sidebar = styled.div`
   padding-top: 80px;
   display: flex;
   flex-direction: column;
-  align-items: "center";
+  align-items: center;
 `;
 
-class ReviewsPage extends Component {
+class AlbumReviewsPage extends Component {
   static propTypes = {
     cookies: instanceOf(Cookies).isRequired
   };
@@ -40,13 +40,13 @@ class ReviewsPage extends Component {
       .get(`https://api.spotify.com/v1/albums/${albumId}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
-      .then(data => {
+      .then(res => {
         this.setState({
-          data: data.data,
-          album: data.data.name,
-          artist: data.data.artists[0]["name"],
-          art: data.data.images[1].url,
-          tracks: data.data.tracks.items
+          data: res.data,
+          album: res.data.name,
+          artist: res.data.artists[0]["name"],
+          art: res.data.images[1].url,
+          tracks: res.data.tracks.items
         });
       })
       .catch(err => console.log(err));
@@ -149,4 +149,4 @@ class ReviewsPage extends Component {
   }
 }
 
-export default withCookies(ReviewsPage);
+export default withCookies(AlbumReviewsPage);
