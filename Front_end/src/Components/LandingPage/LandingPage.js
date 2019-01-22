@@ -1,12 +1,11 @@
-import React from "react";
 import "./LandingPage.css";
 import { Input, Button } from "reactstrap";
 import Navigation from "../Navigation/Navigation";
 import Search from "../Search/Search";
 
-const LandingPage = () => {
+const SplashPage = () => {
   return (
-    <div className="splashpage" style = {{overflow: 'hidden'}}>
+    <div className="splashpage" style={{ overflow: "hidden" }}>
       <Navigation />
       <div align="center" style={{ margin: "50px 0", maxHeight: "350px" }}>
         <img
@@ -15,8 +14,9 @@ const LandingPage = () => {
           width="75%"
         />
       </div>
-      <h2 style={{ color: "white" }}>
-        There are a million songs out there. <br />Let your opinions on them take flight...
+      <h2 style={{ color: "white", margin: "25px 0" }}>
+        There are a million songs out there. <br />
+        Let your opinions on them take flight...
       </h2>
       <div align="center">
         <a href="/login">
@@ -43,7 +43,7 @@ const LandingPage = () => {
           }}
         /> */}
       </div>
+    </div>
   );
 };
-
-export default LandingPage;
+export default SplashPage;
