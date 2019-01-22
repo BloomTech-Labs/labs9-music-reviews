@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import { Form, Input, Row, Col, Container, Card, CardImg, CardBody, CardTitle } from 'reactstrap';
+import { NavLink } from 'react-router-dom';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
 
@@ -69,7 +70,7 @@ class Search extends Component {
                             
                               <div className="d-flex flex-row flex-nowrap align-items-center" style = {{overflow: 'auto', WebkitOverflowScrolling: 'touch'}} >
                               {this.state.albums.map(album => {
-                                    return  <Col justify-content-center>
+                                    return  <NavLink to={`/album/${album.id}`} style={{ textDecoration: 'none' }}><Col justify-content-center>
                                                 <Card key = {album.id} style = {{width: '10rem', border: 'none'}}>
                                                   <CardImg src= {!album.images[0] ?  image : album.images[0].url}  alt = {album.name} style = {{borderRadius: '50%', width: '7rem'}}/>
                                                   <CardBody>
@@ -77,6 +78,7 @@ class Search extends Component {
                                                   </CardBody>
                                                 </Card>
                                             </Col>
+                                            </NavLink>
                                   })
                                 }
                             </div>
@@ -87,7 +89,7 @@ class Search extends Component {
                             
                               <div className="d-flex flex-row flex-nowrap align-items-center" style ={{overflow: 'auto', WebkitOverflowScrolling: 'touch'}}>
                               {this.state.artists.map(artist => {
-                                    return  artist.images.length === 0 ? null : <Col justify-content-center>
+                                    return  artist.images.length === 0 ? null : <NavLink to={`/artist/${artist.id}`}><Col justify-content-center>
                                                 <Card key = {artist.id} style = {{width: '10rem', border: 'none'}}>
                                                   <CardImg src= {!artist.images[0] ? image : artist.images[0].url}  alt = {artist.name} style = {{borderRadius: '50%', width: '7rem'}}/>
                                                   <CardBody>
@@ -95,6 +97,7 @@ class Search extends Component {
                                                   </CardBody>
                                                 </Card>
                                             </Col>
+                                            </NavLink>
                                   })
                                 }
                             </div>
