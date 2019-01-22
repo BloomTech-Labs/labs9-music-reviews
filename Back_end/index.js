@@ -15,7 +15,6 @@ app.use(cors())
   .use(express.static(__dirname + '/public'))
   .use(cookieParser())
   .use(session({
-    // cookie: { domain: 'https://labs9carreviews.netlify.com' }
     secret: 'LambdaLabsCS12MusicReviews',
     cookie: { domain: '.labs9carreviews.netlify.com' }
 }));

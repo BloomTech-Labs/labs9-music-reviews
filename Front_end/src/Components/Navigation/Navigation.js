@@ -17,8 +17,8 @@ import { FirebaseContext } from '../Firebase/index.js';
 import Breadcrumbs from './Breadcrumbs';
 
 class Navigation extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       isOpen: false,
     };
@@ -66,12 +66,14 @@ class Navigation extends Component {
                 Settings
               </DropdownItem>
               {this.props.loggedIn === true ? 
-                <DropdownItem>
+                <Fragment>
                   <DropdownItem divider />
-                  <FirebaseContext.Consumer>
-                    {(firebase) => <SignOut firebase={firebase} />}
-                  </FirebaseContext.Consumer>
-                </DropdownItem> : 
+                  <DropdownItem href="/">
+                    <FirebaseContext.Consumer>
+                      {(firebase) => <SignOut firebase={firebase} />}
+                    </FirebaseContext.Consumer>
+                  </DropdownItem>
+                </Fragment> : 
                 <Fragment>
                   <DropdownItem divider />
                   <DropdownItem href="/signup">

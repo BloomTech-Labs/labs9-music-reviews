@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
 import { Container, Row, Col, Jumbotron, CardImg, Button } from 'reactstrap';
-import Navigation from '../Navigation/Navigation';
 import Stars from '../StarsRating/Stars';
 import axios from 'axios';
 import { instanceOf } from 'prop-types';
@@ -53,10 +52,8 @@ class ReviewsPage extends Component {
         this.getAlbum('4aawyAB9vmqN3uQ7FjRGTy', this.props.cookies.get('access_token'))
     }
     render(){
-        console.log(this.state.data.images)
         return (
             <Fragment>
-                <Navigation />
 
                 <Container fluid={true} style={{ display: 'flex', margin: '0 auto', maxWidth: '1600px' }}>
                     <Sidebar>
