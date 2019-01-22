@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
-import { Form, Input, Row, Col, Container, Card, CardImg, CardBody, CardTitle, ListGroup, ListGroupItem } from 'reactstrap';
-import {NavLink} from 'react-router-dom';
+import { Form, Input, Row, Col, Container, Card, CardImg, CardBody, CardTitle } from 'reactstrap';
+import { NavLink } from 'react-router-dom';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
 
@@ -53,6 +53,14 @@ class Search extends Component {
     })
   }
 
+
+
+  convertToSeconds = (ms) => {
+    let minutes = Math.floor(ms / 60000);
+    let seconds = ((ms % 60000) / 1000).toFixed(0);
+    return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+  }
+
   render() {
     const image = '../../Images/songbird.png';
     const renderSearch = <Container style = {{marginTop: '30px'}}>
@@ -60,8 +68,9 @@ class Search extends Component {
                               <h3>Albums</h3>
                             </Row>
                             
-                              <div className="d-flex flex-row overflow-auto" >
+                              <div className="d-flex flex-row flex-nowrap align-items-center" style = {{overflow: 'auto', WebkitOverflowScrolling: 'touch'}} >
                               {this.state.albums.map(album => {
+
                                     return  <NavLink to={`/album/${album.id}`} style={{ textDecoration: 'none' }}><Col>
                                                 <Card key = {album.id} style = {{width: '10rem', textAlign: 'center', border: 'none'}}>
                                                   <CardImg src= {!album.images[0] ?  image : album.images[0].url}  alt = {album.name} style = {{borderRadius: '50%', width: '7rem'}}/>
@@ -79,7 +88,7 @@ class Search extends Component {
                               <h3>Artists</h3>
                             </Row>
                             
-                              <div className="d-flex flex-row overflow-auto">
+                              <div className="d-flex flex-row flex-nowrap align-items-center" style ={{overflow: 'auto', WebkitOverflowScrolling: 'touch'}}>
                               {this.state.artists.map(artist => {
                                     return  artist.images.length === 0 ? null : <NavLink to={`/artist/${artist.id}`}><Col>
                                                 <Card key = {artist.id} style = {{width: '10rem', textAlign: 'center', border: 'none'}}>
@@ -89,18 +98,21 @@ class Search extends Component {
                                                   </CardBody>
                                                 </Card>
                                             </Col>
-                                          </NavLink>
+                                            </NavLink>
                                   })
                                 }
                             </div>
                             </Row>
-                            <Row>
+                            <Row style={{marginTop: '30px'}}>
                               <h3>Tracks</h3>
                             </Row>
                             <Row>
                               <Col>
+                              <Row style = {{marginBottom: '20px'}}><Col sm={2}>Art</Col><Col sm={5}>Track Name</Col><Col sm={3} className = 'd-none d-md-block'>Album Name</Col><Col sm={2} className = 'd-none d-lg-block'>Track Time</Col></Row>
                                 {this.state.tracks.map(track => {
-                                    return track.album.images.length === 0 ? null : <Row key = {track.id} align-middle = 'true'><Col><img src= {track.album.images[2].url} alt = {track.name} className="rounded-circle"/></Col> <Col>{track.name}</Col><Col>{track.album.name}</Col><Col>{(track.duration_ms/60000).toFixed(2)} minutes</Col></Row>
+
+                                  const seconds = this.convertToSeconds(track.duration_ms);
+                                    return track.album.images.length === 0 ? null : <Row key = {track.id} style = {{borderBottom: '1px solid grey', padding: '5px 0 5px 0'}}><Col sm={2} align-middle = 'true'><img src= {track.album.images[2].url} alt = {track.name} className="rounded-circle"/></Col><Col sm={5} align-middle = 'true'>{track.name}</Col><Col sm={3} className = 'd-none d-md-block' align-middle = 'true'>{track.album.name}</Col><Col sm={2} className = 'd-none d-lg-block' align-middle = 'true'>{seconds}</Col></Row>
                                   })
                                 }
                               </Col>
