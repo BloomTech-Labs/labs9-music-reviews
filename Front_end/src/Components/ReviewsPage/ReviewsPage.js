@@ -49,7 +49,6 @@ class ReviewsPage extends Component {
           art: data.data.images[1].url,
           tracks: data.data.tracks.items
         });
-        console.log(data.data);
       })
       .catch(err => console.log(err));
   };
