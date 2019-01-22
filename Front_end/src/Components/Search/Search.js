@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
+import { Form, Input, Row, Col, Container, Card, CardImg, CardBody, CardTitle, ListGroup, ListGroupItem } from 'reactstrap';
 import {NavLink} from 'react-router-dom';
-import { Form, Input, Row, Col, ListGroup, ListGroupItem, Container } from 'reactstrap';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
 
@@ -47,71 +47,88 @@ class Search extends Component {
       query: this.search.value
     }, () => {
       if (this.state.query && this.state.query.length > 1) {
-        if (this.state.query.length % 2 === 0) {
           this.renderAlbumArtistTrack()
-        }
-      } else if (!this.state.query) {
+        } else if (!this.state.query) {
       }
     })
   }
 
   render() {
-    const renderSearh = <Fragment>
+    const image = '../../Images/songbird.png';
+    const renderSearch = <Container style = {{marginTop: '30px'}}>
                             <Row>
-                              <Col>
-                                <ListGroup>
-                                  <h1>Matching albums for {this.state.query}</h1>
-                                {this.state.albums.map(album => {
-                                    return <NavLink to={`/album/${album.id}`}>
-                                      <ListGroupItem><img src= {album.images[2].url} className="rounded float-left" /> {album.name}</ListGroupItem>
-                                    </NavLink>
+                              <h3>Albums</h3>
+                            </Row>
+                            
+                              <div className="d-flex flex-row overflow-auto" >
+                              {this.state.albums.map(album => {
+                                    return  <NavLink to={`/album/${album.id}`}><Col>
+                                                <Card key = {album.id} style = {{width: '10rem', textAlign: 'center', border: 'none'}}>
+                                                  <CardImg src= {!album.images[0] ?  image : album.images[0].url}  alt = {album.name} style = {{borderRadius: '50%', width: '7rem'}}/>
+                                                  <CardBody>
+                                                    <CardTitle>{album.name}</CardTitle>
+                                                  </CardBody>
+                                                </Card>
+                                            </Col>
+                                            </NavLink>
                                   })
                                 }
-                                </ListGroup>
-                              </Col>
+                            </div>
+                            <Row>
+                            <Row style = {{marginTop: '20px'}}>
+                              <h3>Artists</h3>
+                            </Row>
+                            
+                              <div className="d-flex flex-row overflow-auto">
+                              {this.state.artists.map(artist => {
+                                    return  artist.images.length === 0 ? null : <NavLink to={`/artist/${artist.id}`}><Col>
+                                                <Card key = {artist.id} style = {{width: '10rem', textAlign: 'center', border: 'none'}}>
+                                                  <CardImg src= {!artist.images[0] ? image : artist.images[0].url}  alt = {artist.name} style = {{borderRadius: '50%', width: '7rem'}}/>
+                                                  <CardBody>
+                                                    <CardTitle>{artist.name}</CardTitle>
+                                                  </CardBody>
+                                                </Card>
+                                            </Col>
+                                          </NavLink>
+                                  })
+                                }
+                            </div>
                             </Row>
                             <Row>
-                                <Col>
-                                  <ListGroup>
-                                    <h1>Matching artists for {this.state.query}</h1>
-                                  {this.state.artists.map(artist=> {
-                                      return artist.images.length === 0 ? null :<NavLink to={`/artist/${artist.id}`}><ListGroupItem> <img src={artist.images[2].url} className="rounded float-left" /> {artist.name}</ListGroupItem></NavLink>
-                                    })
-                                  }
-                                
-                                
-                                  </ListGroup>
-                                </Col>
-                              </Row>
+                              <h3>Tracks</h3>
+                            </Row>
                             <Row>
                               <Col>
-                                <ListGroup>
-                                  <h1>Matching tracks for {this.state.query}</h1>
                                 {this.state.tracks.map(track => {
-                                    return track.album.images.length === 0 ? null : <ListGroupItem><img src= {track.album.images[2].url}  /> {track.name}</ListGroupItem>
+                                    return track.album.images.length === 0 ? null : <Row key = {track.id} align-middle = 'true'><Col><img src= {track.album.images[2].url} alt = {track.name} className="rounded-circle"/></Col> <Col>{track.name}</Col><Col>{track.album.name}</Col><Col>{(track.duration_ms/60000).toFixed(2)} minutes</Col></Row>
                                   })
                                 }
-                                </ListGroup>
                               </Col>
                             </Row>
-                        </Fragment>
+                        </Container>
                      
 
     return (
       <Container fluid>
-        <Row>
+        <Row >
           <Col xs = '12' sm = '12' md = '12' lg = '12'>
             <Form>
                 <Input
                   placeholder = 'Enter an Album, Artist or Track'
                   innerRef={input => this.search = input}
                   onChange={this.onChange}
+                  style={{
+                    padding: '5px',
+                    height: '30px',
+                    backgroundColor: '#495057',
+                    color: '#fff'
+                  }}
                   />
               </Form>
           </Col>
         </Row>
 
-        {this.state.query.length <= 1 || !this.state.query ? null : renderSearh}
+        {this.state.query.length <= 1 || !this.state.query ? null : renderSearch}
       </Container>
       
     );
