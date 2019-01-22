@@ -18,7 +18,8 @@ class LogInWithGoogle extends React.Component {
               .getIdToken()
               .then((userIdToken) => {
                 axios
-                  .post('https://labs9-car-reviews.herokuapp.com/user/create', {
+                  // .post('https://labs9-car-reviews.herokuapp.com/user/create', {
+                  .post('http://localhost:9000/user/create', {
                     token: userIdToken,
                   })
                   .then((res) => this.props.history.push('/'))
@@ -27,12 +28,13 @@ class LogInWithGoogle extends React.Component {
               .catch((err) => console.log(err));
           }
         });
+        this.props.changeLogInState();
         this.props.history.push('/home');
       })
       .catch((error) => {
         this.setState({ error });
       });
-    e.preventDefault();
+    // e.preventDefault();
   };
 
   render() {

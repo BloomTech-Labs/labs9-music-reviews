@@ -19,9 +19,7 @@ import { withCookies, Cookies } from "react-cookie";
 import Search from "./Components/Search/Search";
 //import './App.css';
 
-let refreshTime = 29 * 60 * 1000; // 29 mins
-// const TOKEN_URL = process.env.REACT_APP_TOKEN_URL;
-// const REFRESH_TOKEN_URL = process.env.REFRESH_TOKEN_URL;
+let refreshTime = 29*60*1000; // 29 mins
 
 class App extends Component {
   static propTypes = {
@@ -29,35 +27,39 @@ class App extends Component {
   };
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      loggedIn: false,
+    }
     this.getToken = this.getToken.bind(this);
     this.refreshToken = this.refreshToken.bind(this);
   }
   getToken = () => {
     axios
-      .get("https://labs9-car-reviews.herokuapp.com/get_token")
+      .get(process.env.REACT_APP_TOKEN_URL)
       .then(res =>
         this.props.cookies.set("access_token", res.data.access_token)
       )
       .catch(err => console.log(err));
   };
   refreshToken = () => {
-    axios
-      .get("https://labs9-car-reviews.herokuapp.com/refresh_token")
-      .then(res => {
-        this.props.cookies.set("access_token", res.data.access_token);
-        console.log("Token Refreshed");
-      })
-      .catch(err => console.log(err));
-  };
-  componentDidMount() {
+    axios.get('https://labs9-car-reviews.herokuapp.com/refresh_token')
+    .then( res => {
+      this.props.cookies.set('access_token', res.data.access_token)
+      console.log("Token Refreshed")
+    })
+    .catch( err => console.log(err) )
+  }
+  changeLogInState = e => {
+      this.setState({ loggedIn: !this.state.loggedIn })
+  }
+  componentDidMount(){
     this.getToken();
     setInterval(this.refreshToken, refreshTime);
   }
   render() {
     return (
       <Container fluid style={{ padding: "0" }}>
-        <Navigation />
+        <Navigation loggedIn={this.state.loggedIn} />
         <Route exact path="/" component={LandingPage} />
         <Route path="/home" component={HomePage} />
         <Route path="/search_landing" component={SearchLanding} />
@@ -66,7 +68,9 @@ class App extends Component {
         <Route path="/billing" component={Billing} />
         <Route path="/settings" component={SettingsPage} />
         <Route path="/signup" component={SignUpPage} />
-        <Route path="/login" component={LogInPage} />
+        <Route path="/login" render={(props) => 
+          <LogInPage {...props} changeLogInState={this.changeLogInState} /> }
+        />
         <Route path="/forgot_password" component={ForgotPasswordPage} />
         <Route path="/search" component={Search} />
         <Route

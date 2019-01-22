@@ -10,11 +10,11 @@ module.exports = {
 function createNewUser(newUser) {
   return db('users')
     .select()
-    .where({ userId: newUser.user_id })
+    .where({ userID: newUser.user_id })
     .then((user) => {
       if (user.length === 0) {
         return db('users').insert({
-          userId: newUser.user_id,
+          userID: newUser.user_id,
           emailAddress: newUser.email,
           subscriptionExpiration: null,
         });

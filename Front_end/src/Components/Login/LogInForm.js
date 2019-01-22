@@ -31,6 +31,7 @@ class LogInForm extends React.Component {
       this.props.firebase
         .doSignInWithEmailAndPassword(this.state.email, this.state.password)
         .then((authUser) => {
+          this.props.changeLogInState();
           this.props.history.push('/');
         })
         .catch((error) => {
@@ -50,7 +51,7 @@ class LogInForm extends React.Component {
         <h2 className="mt-3 mb-3">Log In</h2>
         <Form>
           <FirebaseContext.Consumer>
-            {(firebase) => <LogInWithGoogle firebase={firebase} />}
+            {(firebase) => <LogInWithGoogle firebase={firebase} changeLogInState={this.props.changeLogInState} />}
           </FirebaseContext.Consumer>
           <Col>
             <FormGroup>
