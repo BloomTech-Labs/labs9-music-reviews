@@ -58,13 +58,9 @@ class ProfileReviewCard extends Component {
       this.props.review.spotifyAlbumID,
       this.props.cookies.get("access_token")
     );
-    // this.getTracks(
-    //   this.props.review.spotifyAlbumID,
-    //   this.props.cookies.get("access_token")
-    // );
   }
   render() {
-    console.log(this.state.tracks);
+    console.log(this.state.art);
     return (
       <div>
         <Row style={{ display: "flex", padding: "3rem 1rem" }}>
