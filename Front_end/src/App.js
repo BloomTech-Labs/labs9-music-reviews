@@ -35,7 +35,7 @@ class App extends Component {
   }
   getToken = () => {
     axios
-      .get("https://labs9-car-reviews.herokuapp.com/get_token")
+      .get(process.env.REACT_APP_TOKEN_URL)
       .then(res =>
         this.props.cookies.set("access_token", res.data.access_token)
       )
