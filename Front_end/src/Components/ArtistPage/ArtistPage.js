@@ -63,7 +63,7 @@ class ArtistPage extends Component {
     console.log(this.state.genres);
     const renderData = this.state.albums.map(album => {
       return (
-        <NavLink to={`/album/${album.id}`} style={{ textDecoration: 'none', color: "black" }}>
+        <NavLink to={`/albums/${album.id}`} style={{ textDecoration: 'none', color: "black" }}>
           <AlbumCard
             key={album.id}
             total_tracks={album.total_tracks}
