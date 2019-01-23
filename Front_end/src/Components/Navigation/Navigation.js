@@ -12,6 +12,7 @@ import {
   NavbarBrand,
 } from 'reactstrap';
 import { Icon } from 'react-materialize';
+import PlansModal from './PlansModal'
 
 import { FirebaseContext } from '../Firebase/index.js';
 import Breadcrumbs from './Breadcrumbs';
@@ -35,6 +36,7 @@ class Navigation extends Component {
           navbar
           style={{ alignContent: 'center', alignItems: 'center' }}
         >
+        {this.props.loggedIn === true ? null : <PlansModal />}        
           <Input
             type="search"
             name="search"
@@ -67,6 +69,18 @@ class Navigation extends Component {
               </DropdownItem>
               {this.props.loggedIn === true ? 
                 <Fragment>
+                  <DropdownItem href="/home"> 
+                    Home
+                  </DropdownItem>
+                  <DropdownItem href="/user/reviews">
+                    My Reviews
+                  </DropdownItem>
+                  <DropdownItem href="/user/billing">
+                    Billing
+                  </DropdownItem>
+                  <DropdownItem href="/user/settings">
+                    Settings
+                  </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem href="/">
                     <FirebaseContext.Consumer>
@@ -75,7 +89,6 @@ class Navigation extends Component {
                   </DropdownItem>
                 </Fragment> : 
                 <Fragment>
-                  <DropdownItem divider />
                   <DropdownItem href="/signup">
                     Sign Up
                   </DropdownItem>
@@ -87,7 +100,11 @@ class Navigation extends Component {
             </DropdownMenu>
           </UncontrolledDropdown>
           <a>
-            <Icon>account_box</Icon>
+          <img
+                src={require("../../Images/RecordThumb.png")}
+                alt="Default profile image"
+                style={{ maxWidth: '30px', maxHeight: "30" }}
+              />
           </a>
         </Nav>
       </Navbar>

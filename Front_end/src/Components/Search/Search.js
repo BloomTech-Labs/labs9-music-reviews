@@ -70,8 +70,9 @@ class Search extends Component {
                             
                               <div className="d-flex flex-row flex-nowrap align-items-center" style = {{overflow: 'auto', WebkitOverflowScrolling: 'touch'}} >
                               {this.state.albums.map(album => {
-                                    return  <NavLink to={`/album/${album.id}`} style={{ textDecoration: 'none' }}><Col>
-                                                <Card key = {album.id} style = {{width: '10rem', border: 'none'}}>
+                                    return  <NavLink to={`/albums/${album.id}`} style={{ textDecoration: 'none' }}><Col>
+                                                <Card key = {album.id} style = {{width: '10rem', textAlign: 'center', border: 'none'}}>
+
                                                   <CardImg src= {!album.images[0] ?  image : album.images[0].url}  alt = {album.name} style = {{borderRadius: '50%', width: '7rem'}}/>
                                                   <CardBody>
                                                     <CardTitle>{album.name}</CardTitle>
@@ -89,8 +90,9 @@ class Search extends Component {
                             
                               <div className="d-flex flex-row flex-nowrap align-items-center" style ={{overflow: 'auto', WebkitOverflowScrolling: 'touch'}}>
                               {this.state.artists.map(artist => {
-                                    return  artist.images.length === 0 ? null : <NavLink to={`/artist/${artist.id}`}><Col>
-                                                <Card key = {artist.id} style = {{width: '10rem', border: 'none'}}>
+                                    return  artist.images.length === 0 ? null : <NavLink to={`/artists/${artist.id}`}><Col>
+                                                <Card key = {artist.id} style = {{width: '10rem', textAlign: 'center', border: 'none'}}>
+
                                                   <CardImg src= {!artist.images[0] ? image : artist.images[0].url}  alt = {artist.name} style = {{borderRadius: '50%', width: '7rem'}}/>
                                                   <CardBody>
                                                     <CardTitle>{artist.name}</CardTitle>
@@ -107,13 +109,29 @@ class Search extends Component {
                             </Row>
                             <Row>
                               <Col>
-                              <Row style = {{marginBottom: '20px'}}><Col sm={2}>Art</Col><Col sm={5}>Track Name</Col><Col sm={3} className = 'd-none d-md-block'>Album Name</Col><Col sm={2} className = 'd-none d-lg-block'>Track Time</Col></Row>
-                                {this.state.tracks.map(track => {
-
-                                  const seconds = this.convertToSeconds(track.duration_ms);
-                                    return track.album.images.length === 0 ? null : <Row key = {track.id} style = {{borderBottom: '1px solid grey', padding: '5px 0 5px 0'}}><Col sm={2} align-middle = 'true'><img src= {track.album.images[2].url} alt = {track.name} className="rounded-circle"/></Col><Col sm={5} align-middle = 'true'>{track.name}</Col><Col sm={3} className = 'd-none d-md-block' align-middle = 'true'>{track.album.name}</Col><Col sm={2} className = 'd-none d-lg-block' align-middle = 'true'>{seconds}</Col></Row>
-                                  })
-                                }
+                              <Row style = {{ marginBottom: '20px' }}>
+                                <Col sm={2} style={{ textAlign: 'center' }}>Art</Col>
+                                <Col sm={4} style={{ textAlign: 'left' }}>Track Name</Col>
+                                <Col sm={4} style={{ textAlign: 'left' }}>Album Name</Col>
+                                <Col sm={2} style={{ textAlign: 'left' }}>Track Time</Col>
+                              </Row>
+                              {this.state.tracks.map(track => {
+                                const seconds = this.convertToSeconds(track.duration_ms);
+                                  return track.album.images.length === 0 ? null : 
+                                   <NavLink to={`/tracks/${track.id}`}>
+                                    <Row key = {track.id} style = {{ maxWidth: '1600px', textAlign: 'center', padding: '1rem' }}>
+                                        <Col sm={2}>
+                                          <CardImg src= {!track.album.images[0] ? image : track.album.images[0].url}
+                                                  alt = {track.name} style = {{borderRadius: '50%', width: '7rem'}}
+                                          />  
+                                        </Col>
+                                        <Col sm={4} className="d-flex align-items-center">{track.name}</Col>
+                                        <Col sm={4} className="d-flex align-items-center">{track.album.name}</Col>
+                                        <Col sm={2} className="d-flex align-items-center">{seconds}</Col>
+                                    </Row>
+                                   </NavLink>
+                                })
+                              }
                               </Col>
                             </Row>
                         </Container>
