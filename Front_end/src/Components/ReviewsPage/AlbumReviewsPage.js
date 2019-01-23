@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import { Container, Row, Col, CardImg } from "reactstrap";
-import ReviewCreateModal from "../CardModals/ReviewCreateModal";
+import AlbumReviewCreateModal from "../CardModals/AlbumReviewCreateModal";
 import AlbumReviewCard from "./AlbumReviewCard";
 import axios from "axios";
 import { Link } from 'react-router-dom';
@@ -103,61 +103,60 @@ class AlbumReviewsPage extends Component {
               width="380" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media">
               </iframe>
 
-              <Row
-                style={{
-                  display: "flex",
-                  justifyContent: "space-evenly",
-                  padding: "1rem"
-                }}
-              >
-                {/* Write Review Button Modal */}
-                <ReviewCreateModal
-                  {...this.props}
-                  album={this.state.album}
-                  artist={this.state.artist}
-                  art={this.state.art}
-                  tracks={this.state.tracks}
-                />
-              </Row>
-              <Row>
-                <Col>
-                  <h5 style={{ padding: "1rem" }}>Tracklist</h5>
-                  {this.state.tracks.map(track => {
-                    return (
-                      <Link to={`/tracks/${track.id}`}>
-                        <Row
-                          className="align-items-center" 
-                          style={{ display: "flex", justifyContent: "space-between" }}
-                        >
-                          <Col xs="1">
-                            <h6>{track.track_number}</h6>
-                          </Col>
-                          <Col xs="10`">
-                            <ul className="align-items-center" style={{ fontSize: "0.8rem", alignItems: "center" }} key={track.id}>
-                              {track.name}
-                            </ul>
-                          </Col>
-                          <Col xs="1">
-                            <p className="align-items-center" style={{ color: "red", fontWeight: "800" }}>
-                              {track.explicit === true ? "E" : " "}
-                            </p>
-                          </Col>
-                        </Row>
-                      </Link>
-                    );
-                  })}
-                </Col>
-              </Row>
-            </Sidebar>
-
-          
-          </Col>
+            <Row
+              style={{
+                display: "flex",
+                justifyContent: "space-evenly",
+                padding: "1rem"
+              }}
+            >
+              {/* Write Review Button Modal */}
+              <AlbumReviewCreateModal
+                {...this.props}
+                album={this.state.album}
+                artist={this.state.artist}
+                art={this.state.art}
+                tracks={this.state.tracks}
+                userID={this.props.userID}
+              />
+            </Row>
+            <Row>
+              <Col>
+                <h5 style={{ padding: "1rem" }}>Tracklist</h5>
+                {this.state.tracks.map(track => {
+                  return (
+                    <Link to={`/tracks/${track.id}`}>
+                      <Row
+                        className="align-items-center" 
+                        style={{ display: "flex", justifyContent: "space-between" }}
+                      >
+                        <Col xs="1">
+                          <h6>{track.track_number}</h6>
+                        </Col>
+                        <Col xs="10`">
+                          <ul className="align-items-center" style={{ fontSize: "0.8rem", alignItems: "center" }} key={track.id}>
+                            {track.name}
+                          </ul>
+                        </Col>
+                        <Col xs="1">
+                          <p className="align-items-center" style={{ color: "red", fontWeight: "800" }}>
+                            {track.explicit === true ? "E" : " "}
+                          </p>
+                        </Col>
+                      </Row>
+                    </Link>
+                  );
+                })}
+              </Col>
+            </Row>
+          </Sidebar>
           
           <Container fluid={true} style={{ maxWidth: "1150px" }}>
             {albumReviews.map(review => (
               <AlbumReviewCard review={review}/>
             ))}
           </Container>
+          </Col>
         </Container>
       </Fragment>
     );

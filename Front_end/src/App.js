@@ -105,17 +105,18 @@ class App extends Component {
         }
       })
     });
+    console.log(this.state.userID)
     this.getToken();
     setInterval(this.refreshToken, refreshTime);
   }
   render() {
     return (
       <Container fluid style={{ padding: "0" }}>
-        <Navigation loggedIn={this.state.loggedIn} signout={this.signout}/>
+        <Navigation loggedIn={this.state.loggedIn} signout={this.signout} userID={this.state.userID}/>
         <Route exact path="/" component={LandingPage} />
         <Route path="/home" component={HomePage} />
         <Route path="/search_landing" component={SearchLanding} />
-        <Route path="/user/reviews" component={UserReviewList} />
+        {/* <Route path="/user/reviews" component={UserReviewList} /> */}
         <Route path="/user/billing" component={Billing} />
         <Route path="/user/settings" component={SettingsPage} />
         <Route path="/signup" component={SignUpPage} />
@@ -127,13 +128,13 @@ class App extends Component {
         <Route
           path="/albums/:id"
           render={props => (
-            <AlbumReviewsPage {...props}/>
+            <AlbumReviewsPage {...props} userID={this.state.userID}/>
           )}
         />
         <Route
           path="/tracks/:id"
           render={props => (
-            <TrackReviewsPage {...props} />
+            <TrackReviewsPage {...props} userID={this.state.userID}/>
             // id="75IN3CtuZwTHTnZvYM4qnJ"
           )}
         />
@@ -146,7 +147,7 @@ class App extends Component {
         <Route
           path="/user/reviews/:id"
           render={props => (
-            <UserReviewList {...props} loggedIn={this.state.loggedIn}/>
+            <UserReviewList {...props} loggedIn={this.state.loggedIn} userID={this.state.userID}/>
           )}
         />
       </Container>

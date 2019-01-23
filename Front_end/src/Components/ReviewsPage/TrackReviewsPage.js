@@ -141,6 +141,7 @@ class TrackReviewsPage extends Component {
                   art={this.state.art}
                   track={this.state.track}
                   trackId={this.state.trackId}
+                  userID={this.props.userID}
                 />
               </Row>
               <Row>
