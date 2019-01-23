@@ -87,7 +87,7 @@ class AlbumReviewsPage extends Component {
             <Row style={{ alignSelf: "center" }}>
               <h3>{this.state.album}</h3>
             </Row>
-            <Link to={`/artists/${this.state.artistIdgit }`}>
+            <Link to={`/artists/${this.state.artistId}`}>
               <Row style={{ alignSelf: "center" }}>
                 <h5>{this.state.artist}</h5>
               </Row>
