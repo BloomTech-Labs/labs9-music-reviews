@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { withRouter, Route } from 'react-router-dom';
+import { withRouter, Route, Link } from 'react-router-dom';
 import SignOut from '../Signout/SignOut';
 import {
   Navbar,
@@ -57,31 +57,33 @@ class Navigation extends Component {
             <DropdownMenu right>
               {this.props.loggedIn === true ? 
                 <Fragment>
-                  <DropdownItem href="/home"> 
-                    Home
+                  <DropdownItem> 
+                    <Link to="/home">Home</Link>
                   </DropdownItem>
-                  <DropdownItem href="/user/reviews">
-                    My Reviews
+                  <DropdownItem>
+                    <Link to="/user/reviews">My Reviews</Link>
                   </DropdownItem>
-                  <DropdownItem href="/user/billing">
-                    Billing
+                  <DropdownItem>
+                    <Link to="/user/billing">Billing</Link>
                   </DropdownItem>
-                  <DropdownItem href="/user/settings">
-                    Settings
+                  <DropdownItem>
+                    <Link to="/user/settings">Settings</Link>
                   </DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem href="/">
-                    <FirebaseContext.Consumer>
-                      {(firebase) => <SignOut firebase={firebase} signout={this.props.signout}/>}
-                    </FirebaseContext.Consumer>
+                  <DropdownItem>
+                    <Link to="/">
+                      <FirebaseContext.Consumer>
+                        {(firebase) => <SignOut firebase={firebase} signout={this.props.signout} />}
+                      </FirebaseContext.Consumer>
+                    </Link>
                   </DropdownItem>
                 </Fragment> : 
                 <Fragment>
-                  <DropdownItem href="/signup">
-                    Sign Up
+                  <DropdownItem>
+                    <Link to="/signup">Sign Up</Link>
                   </DropdownItem>
-                  <DropdownItem href="/login">
-                    Sign In
+                  <DropdownItem>
+                    <Link to="/login">Log In</Link>
                   </DropdownItem>
                 </Fragment>
               }
