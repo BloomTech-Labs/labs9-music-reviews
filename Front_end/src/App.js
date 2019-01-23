@@ -46,7 +46,7 @@ class App extends Component {
   }
   getUser = (email) => {
     axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}user/get/${email}`)
+      .get(`${process.env.REACT_APP_BACKEND_URL}users/get/${email}`)
       .then((res) => {
         this.setState({
           userID: res.data.userID,
@@ -59,6 +59,7 @@ class App extends Component {
           loading: false,
         });
       })
+      
       .catch((err) => this.setState({ loaded: false, loading: false }, console.log(err)));
   }
   getToken = () => {
@@ -108,12 +109,10 @@ class App extends Component {
         }
       })
     });
-    console.log(this.state.userID)
     this.getToken();
     setInterval(this.refreshToken, refreshTime);
   }
   render() {
-    console.log(this.state.loggedIn)
     let loginState = localStorage.getItem("loggedIn") === "false" ? true : false;
     return (
       <Container fluid style={{ padding: "0" }}>
@@ -121,7 +120,6 @@ class App extends Component {
         <Route exact path="/" component={LandingPage} />
         <Route path="/home" component={HomePage} />
         <Route path="/search_landing" component={SearchLanding} />
-        {/* <Route path="/user/reviews" component={UserReviewList} /> */}
         <Route path="/user/billing" component={Billing} />
         <Route path="/user/settings" component={SettingsPage} />
         <Route path="/signup" component={SignUpPage} />
@@ -146,7 +144,7 @@ class App extends Component {
         <Route
           path="/artists/:id"
           render={props => (
-            <ArtistPage {...props}/>
+            <ArtistPage {...props} userID={this.state.userID}/>
           )}
         />
         <Route
