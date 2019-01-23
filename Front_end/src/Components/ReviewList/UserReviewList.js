@@ -16,7 +16,7 @@ const Sidebar = styled.div`
   align-items: "center";
 `;
 
-class ReviewList extends Component {
+class UserReviewList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -112,4 +112,4 @@ class ReviewList extends Component {
   }
 }
 
-export default ReviewList;
+export default UserReviewList;
