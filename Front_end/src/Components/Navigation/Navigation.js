@@ -53,7 +53,7 @@ class Navigation extends Component {
               <Icon>menu</Icon>
             </DropdownToggle>
             <DropdownMenu right>
-              <DropdownItem href="/home"> 
+              <DropdownItem href="/home">
                 Home
               </DropdownItem>
               <DropdownItem href="/reviews">
