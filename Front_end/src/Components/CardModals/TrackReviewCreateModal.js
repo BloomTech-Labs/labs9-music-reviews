@@ -25,7 +25,7 @@ class TrackReviewCreateModal extends React.Component {
     const { cookies } = props;
     this.state = {
       dateCreated: "",
-      rating: 0,
+      rating: 1,
       review: "",
       spotifyTrackID: "",
       userID: 1,

@@ -25,7 +25,7 @@ class AlbumReviewCreateModal extends React.Component {
     const { cookies } = props;
     this.state = {
       dateCreated: "",
-      rating: 0,
+      rating: 1,
       review: "",
       spotifyAlbumID: "",
       userID: 0,
