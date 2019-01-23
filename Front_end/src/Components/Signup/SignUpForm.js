@@ -42,12 +42,15 @@ class SignUpForm extends React.Component {
                 user.getIdToken().then((idToken) => {
                   axios
                     .post(
-                      'https://labs9-car-reviews.herokuapp.com/user/create',
+                      `${process.env.REACT_APP_BACKEND_URL}users/create`,
                       {
                         token: idToken,
                       }
                     )
-                    .then((res) => this.props.history.push('/'))
+                    .then((res) => {
+                      this.props.changeLoginState()
+                      this.props.history.push('/')
+                    })
                     .catch((err) => console.log(err));
                 });
               }

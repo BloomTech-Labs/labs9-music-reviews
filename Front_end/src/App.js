@@ -69,7 +69,7 @@ class App extends Component {
         if ( !this.props.cookies.get("access_token") ){
           this.props.cookies.remove("access_token")
           console.log("token removed")
-          this.props.cookies.set("access_token", res.data.access_token)
+          this.refreshToken();
         } else {
           this.props.cookies.set("access_token", res.data.access_token)
         }
@@ -87,11 +87,11 @@ class App extends Component {
   }
   login = (boolean) => {
     localStorage.setItem("loggedIn", boolean);
-    this.setState({ loggedIn: boolean })
+    this.setState({ loggedIn: Boolean(boolean) })
   }
   signout = (boolean) => {
     localStorage.setItem("loggedIn", boolean);
-    this.setState({ loggedIn: boolean });
+    this.setState({ loggedIn: Boolean(boolean) });
   }
   componentDidMount(){
     this.setState({ loading: true }, () => {
@@ -113,18 +113,19 @@ class App extends Component {
     setInterval(this.refreshToken, refreshTime);
   }
   render() {
-    let loginState = localStorage.getItem("loggedIn") === "false" ? true : false;
     return (
       <Container fluid style={{ padding: "0" }}>
-        <Navigation loggedIn={this.state.loggedIn} signout={() => this.signout(loginState)} userID={this.state.userID}/>
+        <Navigation loggedIn={this.state.loggedIn} signout={() => this.signout("false")} userID={this.state.userID}/>
         <Route exact path="/" component={LandingPage} />
         <Route path="/home" component={HomePage} />
         <Route path="/search_landing" component={SearchLanding} />
         <Route path="/user/billing" component={Billing} />
         <Route path="/user/settings" component={SettingsPage} />
-        <Route path="/signup" component={SignUpPage} />
+        <Route path="/signup" render={(props) =>
+          <SignUpPage {...props} changeLogInState={() => this.login("true")} /> }
+        />
         <Route path="/login" render={(props) => 
-          <LogInPage {...props} changeLogInState={() => this.login(loginState)} /> }
+          <LogInPage {...props} changeLogInState={() => this.login("true")} /> }
         />
         <Route path="/forgot_password" component={ForgotPasswordPage} />
         <Route path="/search" component={Search} />
