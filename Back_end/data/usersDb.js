@@ -5,6 +5,8 @@ const db = knex(knexConfig.development);
 module.exports = {
   createNewUser,
   getUser,
+  edit,
+  retrieve,
 };
 
 function createNewUser(newUser) {
@@ -27,3 +29,13 @@ function createNewUser(newUser) {
 function getUser(email) {
   return db('users').select().where({ emailAddress: email });
 }
+
+function edit(id, date) {
+  return db('users')
+    .where({ userID: id })
+    .update(date);
+};
+
+function retrieve() {
+  return db('users');
+};
