@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import { Container, Row, Col, CardImg, Button } from "reactstrap";
-import ReviewCreateModal from "../CardModals/ReviewCreateModal";
+// import TrackReviewCreateModal from "../CardModals/TrackReviewCreateModal";
 // import AlbumReviewCard from "./AlbumReviewCard";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
 
@@ -29,9 +30,10 @@ class TrackReviewsPage extends Component {
         data: [],
         album: "",
         albumId: "",
-        track: "",
         artist: "",
         art: "",
+        track: "",
+        trackId: "",
         tracks: [],
         reviews: []
     };
@@ -48,31 +50,41 @@ class TrackReviewsPage extends Component {
           album: res.data.album.name,
           albumId: res.data.album.id,
           artist: res.data.artists[0]["name"],
-        //   art: res.data.images[1].url,
-        // tracks: res.data.tracks.items,
           track: res.data.name,
-        });
+          trackId: res.data.id,
+        }, () => this.getAlbum(this.state.albumId, token));
         console.log(res.data)
       })
       .catch(err => console.log(err));
   };
-
-//   getTrackReviews() {
-//     axios
-//       .get("https://labs9-car-reviews.herokuapp.com/trackReviews")
-//       .then(response => {
-//         const userReviews = response.data;
-//         const newState = Object.assign({}, this.state, {
-//           reviews: userReviews
-//         });
-//         this.setState(newState);
-//       })
-//       .catch(err => console.log(err));
-//   }
-
+  getAlbum = (albumId, token) => {
+    axios
+      .get(`https://api.spotify.com/v1/albums/${albumId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      .then(res => {
+        this.setState({
+          art: res.data.images[1].url,
+          tracks: res.data.tracks.items
+        });
+      })
+      .catch(err => console.log(err));
+  };
+  getTrackReviews() {
+    axios
+      .get("https://labs9-car-reviews.herokuapp.com/trackReviews")
+      .then(response => {
+        const userReviews = response.data;
+        const newState = Object.assign({}, this.state, {
+          reviews: userReviews
+        });
+        this.setState(newState);
+      })
+      .catch(err => console.log(err));
+  }
   componentDidMount() {
     this.getTrack(this.props.match.params.id, this.props.cookies.get("access_token"));
-    // this.getTrackReviews();
+    this.getTrackReviews();
   }
   render() {
     // console.log(this.props.match.params.id)
@@ -104,16 +116,17 @@ class TrackReviewsPage extends Component {
             >
               <Button>Buy Now</Button>
               {/* Write Review Button Modal */}
-              <ReviewCreateModal
+              {/* <TrackReviewCreateModal
                 {...this.props}
                 album={this.state.album}
                 artist={this.state.artist}
                 art={this.state.art}
-                tracks={this.state.tracks}
-              />
+                track={this.state.track}
+                trackId={this.state.trackId}
+              /> */}
             </Row>
             <Row>
-              {/* <Col>
+              <Col>
                 <h5 style={{ padding: "1rem" }}>Tracklist</h5>
                 {this.state.tracks.map(track => {
                   return (
@@ -139,10 +152,13 @@ class TrackReviewsPage extends Component {
                     </Row>
                   );
                 })}
-              </Col> */}
+              </Col>
             </Row>
           </Sidebar>
           
+          <Container fluid={true}>
+                <h2>Track: {this.state.track}</h2>
+          </Container>
           {/* <Container fluid={true} style={{ maxWidth: "1150px" }}>
             {albumReviews.map(review => (
               <AlbumReviewCard review={review}/>
