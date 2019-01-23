@@ -38,15 +38,6 @@ router.post('/create', (req, res) => {
     .catch((err) => res.status(500).json(err));
 });
 
-router.get('/', async (req, res) => {
-  try {
-    const users = await dbUsers.retrieve()
-    res.status(200).json(users)
-  } catch (err) {
-    res.status(500).json(err.message)
-  }
-})
-
 router.get('/get/:email', (req, res) => {
   const email = req.params.email;
   dbUsers

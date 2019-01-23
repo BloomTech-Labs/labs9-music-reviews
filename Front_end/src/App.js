@@ -31,7 +31,7 @@ class App extends Component {
     this.state = {
       loading: false,
       loaded: false,
-      loggedIn: false,
+      loggedIn: Boolean(localStorage.getItem("loggedIn")),
       userID: "",
       firebaseUID: "",
       email: "",
@@ -61,21 +61,22 @@ class App extends Component {
       })
       .catch((err) => this.setState({ loaded: false, loading: false }, console.log(err)));
   }
-  // checkToken = () => {
-  //   if (!this.props.cookies("access_token")){
-
-  //   }
-
-  // }
   getToken = () => {
     axios
       .get(process.env.REACT_APP_TOKEN_URL)
-      .then(res =>
-        this.props.cookies.set("access_token", res.data.access_token)
-      )
+      .then(res => {
+        if ( !this.props.cookies.get("access_token") ){
+          this.props.cookies.remove("access_token")
+          console.log("token removed")
+          this.props.cookies.set("access_token", res.data.access_token)
+        } else {
+          this.props.cookies.set("access_token", res.data.access_token)
+        }
+      })
       .catch(err => console.log(err));
   };
   refreshToken = () => {
+    this.props.cookies.remove("access_token");
     axios.get(process.env.REACT_APP_REFRESH_TOKEN_URL)
       .then( res => {
         this.props.cookies.set('access_token', res.data.access_token)
@@ -83,11 +84,13 @@ class App extends Component {
       })
       .catch( err => console.log(err) )
   }
-  login = () => {
-      this.setState({ loggedIn: true })
+  login = (boolean) => {
+    localStorage.setItem("loggedIn", boolean);
+    this.setState({ loggedIn: boolean })
   }
-  signout = () => {
-      this.setState({ loggedIn: false })
+  signout = (boolean) => {
+    localStorage.setItem("loggedIn", boolean);
+    this.setState({ loggedIn: boolean });
   }
   componentDidMount(){
     this.setState({ loading: true }, () => {
@@ -110,9 +113,11 @@ class App extends Component {
     setInterval(this.refreshToken, refreshTime);
   }
   render() {
+    console.log(this.state.loggedIn)
+    let loginState = localStorage.getItem("loggedIn") === "false" ? true : false;
     return (
       <Container fluid style={{ padding: "0" }}>
-        <Navigation loggedIn={this.state.loggedIn} signout={this.signout} userID={this.state.userID}/>
+        <Navigation loggedIn={this.state.loggedIn} signout={() => this.signout(loginState)} userID={this.state.userID}/>
         <Route exact path="/" component={LandingPage} />
         <Route path="/home" component={HomePage} />
         <Route path="/search_landing" component={SearchLanding} />
@@ -121,7 +126,7 @@ class App extends Component {
         <Route path="/user/settings" component={SettingsPage} />
         <Route path="/signup" component={SignUpPage} />
         <Route path="/login" render={(props) => 
-          <LogInPage {...props} changeLogInState={this.login} /> }
+          <LogInPage {...props} changeLogInState={() => this.login(loginState)} /> }
         />
         <Route path="/forgot_password" component={ForgotPasswordPage} />
         <Route path="/search" component={Search} />

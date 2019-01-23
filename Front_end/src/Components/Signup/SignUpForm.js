@@ -27,7 +27,6 @@ class SignUpForm extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
   onSubmitHandler = () => {
-    console.log(process.env);
     const validUser = this.isValid();
     if (validUser) {
       this.setState({invalidUser: false})
