@@ -61,7 +61,7 @@ class Navigation extends Component {
                     <Link to="/home">Home</Link>
                   </DropdownItem>
                   <DropdownItem>
-                    <Link to="/user/reviews">My Reviews</Link>
+                    <Link to={`/user/reviews/${this.props.userID}`}>My Reviews</Link>
                   </DropdownItem>
                   <DropdownItem>
                     <Link to="/user/billing">Billing</Link>

@@ -14,7 +14,6 @@ import {
   Row
 } from "reactstrap";
 import EditStars from "../StarsRating/EditStars";
-import ViewStars from "../StarsRating/ViewStars";
 import { type } from "os";
 
 class TrackReviewCreateModal extends React.Component {
@@ -42,7 +41,8 @@ class TrackReviewCreateModal extends React.Component {
 
   componentDidMount() {
     this.setState({
-      spotifyTrackID: this.props.trackID
+      spotifyTrackID: this.props.trackID,
+      userID: this.props.userID
     });
   }
 

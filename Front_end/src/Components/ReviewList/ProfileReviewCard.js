@@ -47,7 +47,8 @@ class ProfileReviewCard extends Component {
     );
   }
   render() {
-    console.log(this.state.art);
+    console.log("Dynamic ID", this.props.review.userID);
+    console.log("Dynamic ID", this.props.userID);
     return (
       <Fragment>
         <Container>
@@ -61,7 +62,7 @@ class ProfileReviewCard extends Component {
               <div>{this.props.review.trackName}</div>
             ) : null} */}
               {/* If logged in edit button shows otherwise null */}
-              {this.props.loggedIn === true ? (
+              {this.props.loggedIn === true && this.props.review.userID === this.props.userID ? (
                 <ReviewEditModal
                   {...this.props}
                   album={this.state.album}

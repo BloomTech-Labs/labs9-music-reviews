@@ -16,7 +16,7 @@ import EditStars from "../StarsRating/EditStars";
 import ViewStars from "../StarsRating/ViewStars";
 import { type } from "os";
 
-class ReviewCreateModal extends React.Component {
+class AlbumReviewCreateModal extends React.Component {
   static propTypes = {
     cookies: instanceOf(Cookies).isRequired
   };
@@ -28,7 +28,7 @@ class ReviewCreateModal extends React.Component {
       rating: 0,
       review: "",
       spotifyAlbumID: "",
-      userID: 1,
+      userID: 0,
       modal: false,
       nestedModal: false,
       closeAll: false
@@ -41,7 +41,8 @@ class ReviewCreateModal extends React.Component {
 
   componentDidMount() {
     this.setState({
-      spotifyAlbumID: this.props.match.params.id
+      spotifyAlbumID: this.props.match.params.id,
+      userID: this.props.userID
     });
   }
 
@@ -201,4 +202,4 @@ class ReviewCreateModal extends React.Component {
   }
 }
 
-export default ReviewCreateModal;
+export default AlbumReviewCreateModal;
