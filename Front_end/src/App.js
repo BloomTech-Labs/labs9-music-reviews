@@ -59,6 +59,7 @@ class App extends Component {
           loading: false,
         });
       })
+      
       .catch((err) => this.setState({ loaded: false, loading: false }, console.log(err)));
   }
   getToken = () => {
@@ -108,7 +109,6 @@ class App extends Component {
         }
       })
     });
-    console.log(this.state.userID)
     this.getToken();
     setInterval(this.refreshToken, refreshTime);
   }
@@ -120,7 +120,6 @@ class App extends Component {
         <Route exact path="/" component={LandingPage} />
         <Route path="/home" component={HomePage} />
         <Route path="/search_landing" component={SearchLanding} />
-        {/* <Route path="/user/reviews" component={UserReviewList} /> */}
         <Route path="/user/billing" component={Billing} />
         <Route path="/user/settings" component={SettingsPage} />
         <Route path="/signup" render={(props) =>
@@ -147,7 +146,7 @@ class App extends Component {
         <Route
           path="/artists/:id"
           render={props => (
-            <ArtistPage {...props}/>
+            <ArtistPage {...props} userID={this.state.userID}/>
           )}
         />
         <Route

@@ -13,7 +13,6 @@ import {
   Row
 } from "reactstrap";
 import EditStars from "../StarsRating/EditStars";
-import ViewStars from "../StarsRating/ViewStars";
 import { type } from "os";
 
 class AlbumReviewCreateModal extends React.Component {
@@ -25,7 +24,7 @@ class AlbumReviewCreateModal extends React.Component {
     const { cookies } = props;
     this.state = {
       dateCreated: "",
-      rating: 0,
+      rating: 3,
       review: "",
       spotifyAlbumID: "",
       userID: 0,

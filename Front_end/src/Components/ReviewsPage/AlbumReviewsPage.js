@@ -34,7 +34,7 @@ class AlbumReviewsPage extends Component {
       artistId: "",
       art: "",
       tracks: [],
-      reviews: []
+      reviews: [],
     };
     this.getAlbum = this.getAlbum.bind(this);
   }
