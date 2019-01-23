@@ -123,6 +123,12 @@ class TrackReviewsPage extends Component {
               <Link to={`/albums/${this.state.albumId}`}>
                 <CardImg src={this.state.art} alt="Album Art" />
               </Link>
+
+              {/* Spotify Player */}
+              <iframe src={`https://open.spotify.com/embed/album/${this.state.albumId}`}
+              width="380" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media">
+              </iframe>
+
               <Row
                 style={{
                   display: "flex",

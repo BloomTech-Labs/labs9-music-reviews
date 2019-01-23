@@ -29,6 +29,7 @@ class AlbumReviewsPage extends Component {
     this.state = {
       data: [],
       album: "",
+      albumId: "",
       artist: "",
       artistId: "",
       art: "",
@@ -46,11 +47,12 @@ class AlbumReviewsPage extends Component {
         this.setState({
           data: res.data,
           album: res.data.name,
+          albumId: res.data.id,
           artist: res.data.artists[0]["name"],
           artistId: res.data.artists[0]["id"],
           art: res.data.images[1].url,
           tracks: res.data.tracks.items
-        });
+        }, console.log(res.data));
       })
       .catch(err => console.log(err));
   };
@@ -73,7 +75,6 @@ class AlbumReviewsPage extends Component {
     this.getAlbumReviews();
   }
   render() {
-    console.log(this.props.match.params.id)
     const albumReviews = this.state.reviews.filter(review => {
       return review.spotifyAlbumID === this.props.match.params.id;
     });
@@ -95,6 +96,12 @@ class AlbumReviewsPage extends Component {
             {/* can add logic to render different size of album art based on screen size: stacked ternary */}
             {/* need to find a way to manipulate the img object from res.data */}
             <CardImg src={this.state.art} alt="Album Art" />
+
+            {/* Spotify Player */}
+            <iframe src={`https://open.spotify.com/embed/album/${this.state.albumId}`}
+            width="380" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media">
+            </iframe>
+
             <Row
               style={{
                 display: "flex",
