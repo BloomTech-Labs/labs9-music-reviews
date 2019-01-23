@@ -46,7 +46,7 @@ class App extends Component {
   }
   getUser = (email) => {
     axios
-      .get(`https://labs9-car-reviews.herokuapp.com/user/get/${email}`)
+      .get(`${process.env.REACT_APP_BACKEND_URL}user/get/${email}`)
       .then((res) => {
         this.setState({
           userID: res.data.userID,
@@ -61,6 +61,12 @@ class App extends Component {
       })
       .catch((err) => this.setState({ loaded: false, loading: false }, console.log(err)));
   }
+  // checkToken = () => {
+  //   if (!this.props.cookies("access_token")){
+
+  //   }
+
+  // }
   getToken = () => {
     axios
       .get(process.env.REACT_APP_TOKEN_URL)

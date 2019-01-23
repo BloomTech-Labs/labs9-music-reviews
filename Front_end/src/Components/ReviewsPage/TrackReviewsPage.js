@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
-import { Container, Row, Col, CardImg, Button } from "reactstrap";
+import { Container, Row, Col, CardImg } from "reactstrap";
 import TrackReviewCreateModal from "../CardModals/TrackReviewCreateModal";
 import TrackReviewCard from "./TrackReviewCard";
 import axios from "axios";
@@ -115,14 +115,17 @@ class TrackReviewsPage extends Component {
                   <h3>{this.state.album}</h3>
                 </Row>
               </Link>
-              <Row style={{ alignSelf: "center" }}>
-                <h5>{this.state.artist}</h5>
-              </Row>
+              <Link to={`/artists/${this.state.artistId}`}>
+                <Row style={{ alignSelf: "center" }}>
+                  <h5>{this.state.artist}</h5>
+                </Row>
+              </Link>
               {/* can add logic to render different size of album art based on screen size: stacked ternary */}
               {/* need to find a way to manipulate the img object from res.data */}
               <Link to={`/albums/${this.state.albumId}`}>
                 <CardImg src={this.state.art} alt="Album Art" />
               </Link>
+
               <Row
                 style={{
                   display: "flex",
@@ -198,8 +201,11 @@ class TrackReviewsPage extends Component {
           </Col>
           <Col>
             <Container>
-              <Container fluid={true}>
-                <h2 style={{ margin: "25px 0" }}>Track: {this.state.track}</h2>
+              <Container fluid={true} style={{ position: 'absolute', top: '100px' }}> 
+                {/* Spotify Player */}
+                <iframe src={`https://open.spotify.com/embed/track/${this.state.trackId}`}
+                width="1000" height="100" frameborder="0" allowtransparency="true" allow="encrypted-media">
+                </iframe>
               </Container>
               <Container fluid={true} style={{ maxWidth: "1150px" }}>
                 {trackReviews.map(review => (
