@@ -34,6 +34,7 @@ class App extends Component {
     this.getToken = this.getToken.bind(this);
     this.refreshToken = this.refreshToken.bind(this);
     this.login = this.login.bind(this);
+    this.signout = this.signout.bind(this);
   }
   getToken = () => {
     axios
@@ -66,7 +67,6 @@ class App extends Component {
     return (
       <Container fluid style={{ padding: "0" }}>
         <Navigation loggedIn={this.state.loggedIn} signout={this.signout}/>
-        {/* <Navigation loggedIn={this.state.loggedIn} /> */}
         <Route exact path="/" component={LandingPage} />
         <Route path="/home" component={HomePage} />
         <Route path="/search_landing" component={SearchLanding} />
