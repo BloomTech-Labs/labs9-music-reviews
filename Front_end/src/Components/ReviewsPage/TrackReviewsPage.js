@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import { Container, Row, Col, CardImg, Button } from "reactstrap";
-// import TrackReviewCreateModal from "../CardModals/TrackReviewCreateModal";
-// import AlbumReviewCard from "./AlbumReviewCard";
+import TrackReviewCreateModal from "../CardModals/TrackReviewCreateModal";
+import TrackReviewCard from "./TrackReviewCard";
 import axios from "axios";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
 
@@ -89,14 +89,16 @@ class TrackReviewsPage extends Component {
     })
   }
   componentDidMount() {
-    this.getTrack(this.props.match.params.id, this.props.cookies.get("access_token"));
+    this.getTrack(
+      this.props.match.params.id,
+      this.props.cookies.get("access_token")
+    );
     this.getTrackReviews();
   }
   render() {
-    // console.log(this.props.match.params.id)
-    // const albumReviews = this.state.reviews.filter(review => {
-    //   return review.spotifyAlbumID === this.props.match.params.id;
-    // });
+    const trackReviews = this.state.reviews.filter(review => {
+      return review.spotifyTrackID === this.props.match.params.id;
+    });
     return (
       <Fragment>
         <Container
@@ -126,14 +128,14 @@ class TrackReviewsPage extends Component {
               }}
             >
               {/* Write Review Button Modal */}
-              {/* <TrackReviewCreateModal
+              <TrackReviewCreateModal
                 {...this.props}
                 album={this.state.album}
                 artist={this.state.artist}
                 art={this.state.art}
                 track={this.state.track}
                 trackId={this.state.trackId}
-              /> */}
+              />
             </Row>
             <Row>
               <Col>
@@ -164,18 +166,19 @@ class TrackReviewsPage extends Component {
                     </Link>
                   );
                 })}
-                </Col>
-              </Row>
-            </Sidebar>
-          </Col>
-          <Container fluid={true}>
-                <h2>Track: {this.state.track}</h2>
+              </Col>
+            </Row>
+          </Sidebar>
+          <Container>
+            <Container fluid={true}>
+              <h2 style={{ margin: "25px 0" }}>Track: {this.state.track}</h2>
+            </Container>
+            <Container fluid={true} style={{ maxWidth: "1150px" }}>
+              {trackReviews.map(review => (
+                <TrackReviewCard review={review} />
+              ))}
+            </Container>
           </Container>
-          {/* <Container fluid={true} style={{ maxWidth: "1150px" }}>
-            {albumReviews.map(review => (
-              <AlbumReviewCard review={review}/>
-            ))}
-          </Container> */}
         </Container>
       </Fragment>
     );
