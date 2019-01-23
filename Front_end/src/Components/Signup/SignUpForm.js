@@ -48,8 +48,8 @@ class SignUpForm extends React.Component {
                       }
                     )
                     .then((res) => {
-                      this.props.changeLoginState()
-                      this.props.history.push('/')
+                      this.props.changeLoginState();
+                      this.props.history.push('/');
                     })
                     .catch((err) => console.log(err));
                 });

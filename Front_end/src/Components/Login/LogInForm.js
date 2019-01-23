@@ -46,6 +46,7 @@ class LogInForm extends React.Component {
     this.props.history.push('/signup');
   };
   render() {
+    console.log(this.state.error)
     return (
       <Container>
         <h2 className="mt-3 mb-3">Log In</h2>
