@@ -54,7 +54,6 @@ class TrackReviewsPage extends Component {
           track: res.data.name,
           trackId: res.data.id,
         }, () => this.getAlbum(this.state.albumId, token));
-        console.log(res.data)
       })
       .catch(err => console.log(err));
   };

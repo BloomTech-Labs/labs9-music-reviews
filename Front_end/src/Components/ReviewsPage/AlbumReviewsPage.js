@@ -50,7 +50,7 @@ class AlbumReviewsPage extends Component {
           artistId: res.data.artists[0]["id"],
           art: res.data.images[1].url,
           tracks: res.data.tracks.items
-        }, console.log(res.data));
+        });
       })
       .catch(err => console.log(err));
   };
@@ -87,7 +87,7 @@ class AlbumReviewsPage extends Component {
             <Row style={{ alignSelf: "center" }}>
               <h3>{this.state.album}</h3>
             </Row>
-            <Link to={`/artists/${this.state.artistId}`}>
+            <Link to={`/artists/${this.state.artistIdgit }`}>
               <Row style={{ alignSelf: "center" }}>
                 <h5>{this.state.artist}</h5>
               </Row>
@@ -116,7 +116,6 @@ class AlbumReviewsPage extends Component {
                 <h5 style={{ padding: "1rem" }}>Tracklist</h5>
                 {this.state.tracks.map(track => {
                   return (
-                    // <Link to={`/tracks/${track.id}`} onClick={() => this.redirectTo(track.id, track.name)}>
                     <Link to={`/tracks/${track.id}`}>
                       <Row
                         className="align-items-center" 
