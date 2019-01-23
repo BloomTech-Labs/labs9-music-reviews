@@ -48,3 +48,5 @@ exports.down = function (knex, Promise) {
     .dropTable('likedAlbumReview')
     .dropTable('likedTrackReview')
 }
+
+
