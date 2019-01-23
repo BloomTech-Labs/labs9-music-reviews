@@ -33,7 +33,7 @@ const onToken = (amount, description) => token => {
     .catch(errorPayment);
 }
 
-const Checkout = ({name, description, amount}) => 
+const Checkout = ({name, description, amount}, props) => 
     // variable to change description to 1 month/1 year subscription?
     <StripeCheckout
         label="Subscribe"
@@ -44,6 +44,7 @@ const Checkout = ({name, description, amount}) =>
         panelLabel='Subscribe'
         amount={convertToCents(amount)}
         stripeKey={STRIPE_PUBLISHABLE_KEY}
+        onClick={props.changeSubscriptionStatus}
     />
 
 export default Checkout;

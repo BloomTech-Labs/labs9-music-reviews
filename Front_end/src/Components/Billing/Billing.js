@@ -11,6 +11,7 @@ import styled from "styled-components";
 import SubInfoModal from './SubInfoModal'
 // import { Link } from "react-router-dom";
 import Checkout from "./Checkout";
+import axios from "axios";
 
 const Payment = styled.div`
   padding: 3rem;
@@ -38,10 +39,12 @@ class Billing extends Component {
     }
   }
   changeSub = e => {
-    this.setState({[e.target.name]: e.target.value}, console.log(this.state.subType))
+    this.setState({[e.target.name]: e.target.value})
   }
+  // changeSubscriptionStatus = () => {
+  //   axios.put(user)
+  // }
   render() {
-    // console.log('subType', this.state.subType)
     return (
       <div>
         <Container>
@@ -80,6 +83,7 @@ class Billing extends Component {
                   name={"Subscription"}
                   description={this.state.subType === "year" ? "1 Year Subscription" : "1 Month Subscription"}
                   amount={this.state.subType === "year" ? 9.99 : 0.99}
+                  changeSubscriptionStatus={this.changeSubscriptionStatus}
                 />
                 {/* <p style={{ color: "lightgray" }}>
                   *Subscriptions are automatically renewed unless specified. To

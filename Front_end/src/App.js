@@ -29,12 +29,37 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: false,
+      loaded: false,
       loggedIn: false,
+      userID: "",
+      firebaseUID: "",
+      email: "",
+      paidStatus: false,
+      subscriptionExpiration: null,
+      nickname: "",
     }
     this.getToken = this.getToken.bind(this);
     this.refreshToken = this.refreshToken.bind(this);
     this.login = this.login.bind(this);
     this.signout = this.signout.bind(this);
+  }
+  getUser = (email) => {
+    axios
+      .get(`https://labs9-car-reviews.herokuapp.com/user/get/${email}`)
+      .then((res) => {
+        this.setState({
+          userID: res.data.userID,
+          firebaseUID: res.data.firebaseUID,
+          email: res.data.emailAddress,
+          paidStatus: res.data.paidMembership,
+          subscriptionExpiration: res.data.subscriptionExpiration,
+          nickname: res.data.nickname,
+          loaded: true,
+          loading: false,
+        });
+      })
+      .catch((err) => this.setState({ loaded: false, loading: false }, console.log(err)));
   }
   getToken = () => {
     axios
@@ -46,11 +71,11 @@ class App extends Component {
   };
   refreshToken = () => {
     axios.get(process.env.REACT_APP_REFRESH_TOKEN_URL)
-    .then( res => {
-      this.props.cookies.set('access_token', res.data.access_token)
-      console.log("Token Refreshed")
-    })
-    .catch( err => console.log(err) )
+      .then( res => {
+        this.props.cookies.set('access_token', res.data.access_token)
+        console.log("Token Refreshed")
+      })
+      .catch( err => console.log(err) )
   }
   login = () => {
       this.setState({ loggedIn: true })
@@ -59,11 +84,26 @@ class App extends Component {
       this.setState({ loggedIn: false })
   }
   componentDidMount(){
+    this.setState({ loading: true }, () => {
+      //when component mounts
+      //check to see if there is a user that has been authenticated
+      this.props.firebase.auth.onAuthStateChanged((user) => {
+        // if there has been make a call to our own database to find user
+        if (user) {
+          //if successful set state with details of the user
+          const email = user.email;
+          this.getUser(email)
+        } else {
+          this.setState({ loaded: false, loading: false });
+          //no user so data has been loaded since there was none to be found.
+        }
+      })
+    });
     this.getToken();
     setInterval(this.refreshToken, refreshTime);
   }
   render() {
-    console.log(this.state.loggedIn)
+    console.log(this.state)
     return (
       <Container fluid style={{ padding: "0" }}>
         <Navigation loggedIn={this.state.loggedIn} signout={this.signout}/>
