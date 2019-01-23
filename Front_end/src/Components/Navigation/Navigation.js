@@ -72,7 +72,7 @@ class Navigation extends Component {
                   <DropdownItem divider />
                   <DropdownItem href="/">
                     <FirebaseContext.Consumer>
-                      {(firebase) => <SignOut firebase={firebase} />}
+                      {(firebase) => <SignOut firebase={firebase} signout={this.props.signout}/>}
                     </FirebaseContext.Consumer>
                   </DropdownItem>
                 </Fragment> : 

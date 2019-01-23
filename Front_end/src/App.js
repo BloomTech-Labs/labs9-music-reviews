@@ -53,14 +53,18 @@ class App extends Component {
   login = () => {
       this.setState({ loggedIn: true })
   }
+  signout = () => {
+      this.setState({ loggedIn: false })
+  }
   componentDidMount(){
     this.getToken();
     setInterval(this.refreshToken, refreshTime);
   }
   render() {
+    console.log(this.state.loggedIn)
     return (
       <Container fluid style={{ padding: "0" }}>
-        <Navigation loggedIn={this.state.loggedIn} />
+        <Navigation loggedIn={this.state.loggedIn} signout={this.signout}/>
         <Route exact path="/" component={LandingPage} />
         <Route path="/home" component={HomePage} />
         <Route path="/search_landing" component={SearchLanding} />
