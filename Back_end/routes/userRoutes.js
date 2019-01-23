@@ -9,6 +9,17 @@ router.use(express.json());
 
 module.exports = router;
 
+router.get('/', async (req, res) => {
+  try {
+    const users = await dbUsers.getAllUsers();
+    res.status(200).json(users);
+  } catch ( err ){
+    res.status(500).json({
+      message: 'failed to retrieve users data.'
+    })
+  }
+})
+
 router.post('/create', (req, res) => {
   admin
     .auth()

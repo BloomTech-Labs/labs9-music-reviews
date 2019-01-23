@@ -50,8 +50,8 @@ class App extends Component {
     })
     .catch( err => console.log(err) )
   }
-  changeLogInState = e => {
-      this.setState({ loggedIn: !this.state.loggedIn })
+  login = () => {
+      this.setState({ loggedIn: true })
   }
   componentDidMount(){
     this.getToken();
@@ -69,7 +69,7 @@ class App extends Component {
         <Route path="/user/settings" component={SettingsPage} />
         <Route path="/signup" component={SignUpPage} />
         <Route path="/login" render={(props) => 
-          <LogInPage {...props} changeLogInState={this.changeLogInState} /> }
+          <LogInPage {...props} changeLogInState={this.login} /> }
         />
         <Route path="/forgot_password" component={ForgotPasswordPage} />
         <Route path="/search" component={Search} />
