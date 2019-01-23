@@ -1,7 +1,7 @@
 import React from 'react';
 import Navigation from './Navigation/Navigation';
 import FeaturedReviews from './Display/FeaturedReviews';
-import PopularCars from './Display/PopularCars';
+import PopularTracks from './Display/PopularTracks';
 import PopularReviewers from './Display/PopularReviewers';
 import Newest from './Display/Newest';
 
@@ -12,7 +12,7 @@ const LandingPage = () => {
         <div>
             <Newest />
             <FeaturedReviews />
-            <PopularCars />
+            <PopularTracks />
             <PopularReviewers />
         </div>
     )
