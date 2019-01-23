@@ -2,68 +2,46 @@
 
 const express = require('express');
 const dbUsers = require('../data/usersDb.js');
+const admin = require('../firebaseSDK');
 const router = express.Router();
 
 router.use(express.json());
 
-router.get('/view/all', async (req, res) => {
+module.exports = router;
+
+router.get('/', async (req, res) => {
   try {
     const users = await dbUsers.getAllUsers();
     res.status(200).json(users);
-  } catch (err) {
+  } catch ( err ){
     res.status(500).json({
-      message: 'failed to retrieve users data.',
-    });
+      message: 'failed to retrieve users data.'
+    })
   }
+})
+
+router.post('/create', (req, res) => {
+  admin
+    .auth()
+    .verifyIdToken(req.body.token)
+    .then((decodedToken) => {
+      dbUsers
+        .createNewUser(decodedToken)
+        .then((newUser) => {
+          console.log(newUser);
+          if (newUser !== null) {
+            res.status(201).json(newUser[0]);
+          }
+        })
+        .catch((err) => res.status(500).json(err));
+    })
+    .catch((err) => res.status(500).json(err));
 });
-router.post('/signup', async (req, res) => {
-  const newUser = req.body;
-  if (!newUser.username || !newUser.password) {
-    res.status(400).json({
-      message: 'All accounts must have both a username and password.',
-    });
-  } else {
-    try {
-      const createdUser = await dbUsers.signUp(newUser);
-      res.status(201).json(createdUser);
-    } catch (err) {
-      res.status(500).json({
-        message: 'Something went wrong.',
-      });
-    }
-  }
+
+router.get('/get/:email', (req, res) => {
+  const email = req.params.email;
+  dbUsers
+    .getUser(email)
+    .then((user) => res.status(200).json(user[0]))
+    .catch((err) => res.status(404).json(err));
 });
-router.post('/login', async (req, res) => {
-  const user = req.body;
-  if (!user.username || !user.password) {
-    res.status(400).json({
-      message: 'Invalid credentials.',
-    });
-  } else {
-    try {
-      const loggedInUser = await dbUsers.signIn(user);
-      res.status(200).json(loggedInUser);
-    } catch (err) {
-      res.status(500).json({
-        message: 'Something went wrong.',
-      });
-    }
-  }
-});
-router.post('/change_password', async (req, res) => {
-  const user = req.body;
-  if (!user.username || !user.password) {
-    res.status(400).json({
-      message: 'Invalid credentials.',
-    });
-  } else {
-    try {
-      const changedUser = await dbUsers.changePassword(user);
-      res.status(200).json(changedUser);
-    } catch (err) {
-      res.status(500).json({ message: 'Something went wrong.' });
-    }
-  }
-});
-router.post('');
-module.exports = router;

@@ -3,24 +3,33 @@ const knexConfig = require('../knexfile.js');
 const db = knex(knexConfig.development);
 
 module.exports = {
-  signUp,
-  signIn,
-  changePassword,
   getAllUsers,
+  createNewUser,
+  getUser,
 };
 
-function signUp(user) {
-  return db('users').insert(user).then((ids) => ({ id: ids[0] }));
-}
-function signIn(user) {
-  return db('users').where({
-    username: user.username,
-    password: user.password,
-  });
-}
-function changePassword(user) {
-  return db('users').where({ username: user.username }).update(user);
-}
-function getAllUsers() {
+function getAllUsers(){
   return db('users');
+}
+
+function createNewUser(newUser) {
+  return db('users')
+    .select()
+    .where({ firebaseUID: newUser.user_id })
+    .then((user) => {
+      if (user.length === 0) {
+        return db('users').insert({
+          firebaseUID: newUser.user_id,
+          emailAddress: newUser.email,
+          subscriptionExpiration: null,
+          nickname: newUser.email.split("@", 1).join()
+        });
+      } else {
+        return null;
+      }
+    });
+}
+
+function getUser(email) {
+  return db('users').select().where({ emailAddress: email });
 }

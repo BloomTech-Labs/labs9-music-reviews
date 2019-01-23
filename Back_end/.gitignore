@@ -1,5 +1,9 @@
 .gitignore
 
+.env
+
+serviceAccountKey.json
+
 # Logs
 logs
 *.log
@@ -64,3 +68,4 @@ typings/
 
 # VSCode settings
 .vscode/
+
