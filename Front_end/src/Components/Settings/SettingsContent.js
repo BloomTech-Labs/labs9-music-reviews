@@ -27,7 +27,7 @@ class SettingsContent extends React.Component {
           //if successful set state with details of the user
           const email = user.email;
           axios
-            .get(`https://labs9-car-reviews.herokuapp.com/user/get/${email}`)
+            .get(`${process.env.REACT_APP_BACKEND_URL}users/get/${email}`)
             .then((res) => {
               this.setState({
                 userID: res.data.userID,
