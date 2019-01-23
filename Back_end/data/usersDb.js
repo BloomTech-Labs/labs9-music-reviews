@@ -3,13 +3,13 @@ const knexConfig = require('../knexfile.js');
 const db = knex(knexConfig.development);
 
 module.exports = {
-  retrieve,
+  getAllUsers,
   createNewUser,
   getUser,
   edit,
 };
 
-function retrieve() {
+function getAllUsers() {
   return db('users');
 }
 

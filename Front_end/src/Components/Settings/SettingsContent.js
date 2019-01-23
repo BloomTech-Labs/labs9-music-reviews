@@ -1,14 +1,17 @@
 import React from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 
 class SettingsContent extends React.Component {
   constructor() {
     super();
     this.state = {
+      userID: "",
+      firebaseUID: "",
       email: '',
       paidStatus: false,
       subscriptionExpiration: null,
+      nickname: "",
       loading: false,
       loaded: false,
     };
@@ -26,9 +29,12 @@ class SettingsContent extends React.Component {
             .get(`https://labs9-car-reviews.herokuapp.com/user/get/${email}`)
             .then((res) => {
               this.setState({
+                userID: res.data.userID,
+                firebaseUID: res.data.firebaseUID,
                 email: res.data.emailAddress,
                 paidStatus: res.data.paidMembership,
                 subscriptionExpiration: res.data.subscriptionExpiration,
+                nickname: res.data.nickname,
                 loaded: true,
                 loading: false,
               });
@@ -51,8 +57,11 @@ class SettingsContent extends React.Component {
       return (
         <div>
           <h1>Account Settings</h1>
+          <p>User ID: {this.state.userID}</p>
+          <p>Firebase UID: {this.state.firebaseUID}</p>
+          <p>Nickname: {this.state.nickname}</p>
           <p>Email address: {this.state.email}</p>
-          <p>{this.state.paidStatus == false ? 'tier: free' : 'tier: paid'}</p>
+          <p>{this.state.paidStatus == false ? 'Tier: Free' : 'Tier: Paid'}</p>
           <p>
             {this.state.subscriptionExpiration == null ? (
               ''

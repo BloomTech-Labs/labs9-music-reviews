@@ -16,29 +16,47 @@ const Sidebar = styled.div`
   align-items: "center";
 `;
 
-class ReviewList extends Component {
+class UserReviewList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      reviews: [],
+      albumReviews: [],
+      trackReviews: [],
       input: "",
       loggedIn: false,
+      userID: 0,
       username: ""
     };
   }
 
   componentDidMount() {
     this.getAlbumReviews();
-    this.setState({ loggedIn: this.props.match.params.loggedIn });
+    this.setState({ 
+      loggedIn: this.props.loggedIn,
+      userID: this.props.userID
+    });
   }
 
   getAlbumReviews() {
     axios
       .get("https://labs9-car-reviews.herokuapp.com/albumReviews")
       .then(response => {
-        const userReviews = response.data;
+        const userAlbumReviews = response.data;
         const newState = Object.assign({}, this.state, {
-          reviews: userReviews
+          reviews: userAlbumReviews
+        });
+        this.setState(newState);
+      })
+      .catch(err => console.log(err));
+  }
+
+  getTrackReviews() {
+    axios
+      .get("https://labs9-car-reviews.herokuapp.com/trackReviews")
+      .then(response => {
+        const userTrackReviews = response.data;
+        const newState = Object.assign({}, this.state, {
+          reviews: userTrackReviews
         });
         this.setState(newState);
       })
@@ -50,13 +68,15 @@ class ReviewList extends Component {
   };
 
   render() {
-    console.log(this.props.match);
-    console.log(this.props);
-    const userReviews = this.state.reviews.filter(review => {
+    console.log(this.props.match.params)
+    const userAlbumReviews = this.state.albumReviews.filter(review => {
       return (
-        review.review
-          .toLowerCase()
-          .indexOf(this.state.username.toLowerCase()) !== -1
+        review.userID.indexOf(this.props.match.params.id)
+      );
+    });
+    const userTrackReviews = this.state.trackReviews.filter(review => {
+      return (
+        review.userID.indexOf(this.props.match.params.id)
       );
     });
     return (
@@ -83,7 +103,7 @@ class ReviewList extends Component {
                 <h5>Status</h5>
               </Row>
               <Row style={{ alignSelf: "center" }}>
-                <h5>Reviews: {this.state.reviews.length}</h5>
+                <h5>Reviews: {(this.state.albumReviews.length) + (this.state.trackReviews.length)}</h5>
               </Row>
               {/* can add logic to render different size of album art based on screen size: stacked ternary */}
               {/* need to find a way to manipulate the img object from res.data */}
@@ -99,10 +119,19 @@ class ReviewList extends Component {
             </Sidebar>
           </Container>
           <Container fluid={true} style={{ maxWidth: "1150px" }}>
-            {userReviews.map(review => (
+            {userAlbumReviews.map(review => (
               <ProfileReviewCard
                 review={review}
                 loggedIn={this.state.loggedIn}
+                userID={this.props.userID}
+                key={review.id}
+              />
+            ))}
+            {userTrackReviews.map(review => (
+              <ProfileReviewCard
+                review={review}
+                loggedIn={this.state.loggedIn}
+                userID={this.props.userID}
                 key={review.id}
               />
             ))}
@@ -112,4 +141,4 @@ class ReviewList extends Component {
   }
 }
 
-export default ReviewList;
+export default UserReviewList;

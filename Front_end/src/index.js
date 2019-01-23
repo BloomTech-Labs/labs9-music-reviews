@@ -11,7 +11,9 @@ ReactDOM.render (
   <FirebaseContext.Provider value={new Firebase ()}>
     <Router>
       <CookiesProvider>
-        <App />
+        <FirebaseContext.Consumer>
+          {(firebase) => <App firebase={firebase} />}
+        </FirebaseContext.Consumer>
       </CookiesProvider>
     </Router>
   </FirebaseContext.Provider>,

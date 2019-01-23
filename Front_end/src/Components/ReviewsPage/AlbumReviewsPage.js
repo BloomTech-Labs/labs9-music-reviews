@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
-import { Container, Row, Col, Jumbotron, CardImg, Button } from "reactstrap";
-import ReviewCreateModal from "../CardModals/ReviewCreateModal";
+import { Container, Row, Col, CardImg } from "reactstrap";
+import AlbumReviewCreateModal from "../CardModals/AlbumReviewCreateModal";
 import AlbumReviewCard from "./AlbumReviewCard";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
 
@@ -16,10 +17,10 @@ const Sidebar = styled.div`
   padding-top: 80px;
   display: flex;
   flex-direction: column;
-  align-items: "center";
+  align-items: center;
 `;
 
-class ReviewsPage extends Component {
+class AlbumReviewsPage extends Component {
   static propTypes = {
     cookies: instanceOf(Cookies).isRequired
   };
@@ -28,7 +29,9 @@ class ReviewsPage extends Component {
     this.state = {
       data: [],
       album: "",
+      albumId: "",
       artist: "",
+      artistId: "",
       art: "",
       tracks: [],
       reviews: []
@@ -40,14 +43,16 @@ class ReviewsPage extends Component {
       .get(`https://api.spotify.com/v1/albums/${albumId}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
-      .then(data => {
+      .then(res => {
         this.setState({
-          data: data.data,
-          album: data.data.name,
-          artist: data.data.artists[0]["name"],
-          art: data.data.images[1].url,
-          tracks: data.data.tracks.items
-        });
+          data: res.data,
+          album: res.data.name,
+          albumId: res.data.id,
+          artist: res.data.artists[0]["name"],
+          artistId: res.data.artists[0]["id"],
+          art: res.data.images[1].url,
+          tracks: res.data.tracks.items
+        }, console.log(res.data));
       })
       .catch(err => console.log(err));
   };
@@ -70,7 +75,6 @@ class ReviewsPage extends Component {
     this.getAlbumReviews();
   }
   render() {
-    console.log(this.props.match.params.id)
     const albumReviews = this.state.reviews.filter(review => {
       return review.spotifyAlbumID === this.props.match.params.id;
     });
@@ -80,16 +84,25 @@ class ReviewsPage extends Component {
           fluid={true}
           style={{ display: "flex", margin: "0 auto", maxWidth: "1600px" }}
         >
-          <Sidebar>
-            <Row style={{ alignSelf: "center" }}>
-              <h3>{this.state.album}</h3>
-            </Row>
-            <Row style={{ alignSelf: "center" }}>
-              <h5>{this.state.artist}</h5>
-            </Row>
-            {/* can add logic to render different size of album art based on screen size: stacked ternary */}
-            {/* need to find a way to manipulate the img object from res.data */}
-            <CardImg src={this.state.art} alt="Album Art" />
+          <Col xs="12" md="4">
+            <Sidebar>
+              <Row style={{ alignSelf: "center" }}>
+                <h3>{this.state.album}</h3>
+              </Row>
+              <Link to={`/artists/${this.state.artistId}`}>
+                <Row style={{ alignSelf: "center" }}>
+                  <h5>{this.state.artist}</h5>
+                </Row>
+              </Link>
+              {/* can add logic to render different size of album art based on screen size: stacked ternary */}
+              {/* need to find a way to manipulate the img object from res.data */}
+              <CardImg src={this.state.art} alt="Album Art" />
+
+              {/* Spotify Player */}
+              <iframe src={`https://open.spotify.com/embed/album/${this.state.albumId}`}
+              width="380" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media">
+              </iframe>
+
             <Row
               style={{
                 display: "flex",
@@ -97,14 +110,14 @@ class ReviewsPage extends Component {
                 padding: "1rem"
               }}
             >
-              <Button>Buy Now</Button>
               {/* Write Review Button Modal */}
-              <ReviewCreateModal
+              <AlbumReviewCreateModal
                 {...this.props}
                 album={this.state.album}
                 artist={this.state.artist}
                 art={this.state.art}
                 tracks={this.state.tracks}
+                userID={this.props.userID}
               />
             </Row>
             <Row>
@@ -112,26 +125,26 @@ class ReviewsPage extends Component {
                 <h5 style={{ padding: "1rem" }}>Tracklist</h5>
                 {this.state.tracks.map(track => {
                   return (
-                    <Row
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between"
-                      }}
-                    >
-                      <Col xs="1">
-                        <h6>{track.track_number}</h6>
-                      </Col>
-                      <Col xs="9">
-                        <ul style={{ fontSize: "0.8rem" }} key={track.id}>
-                          {track.name}
-                        </ul>
-                      </Col>
-                      <Col xs="2">
-                        <span style={{ color: "red", fontWeight: "800" }}>
-                          {track.explicit === true ? "E" : " "}
-                        </span>
-                      </Col>
-                    </Row>
+                    <Link to={`/tracks/${track.id}`}>
+                      <Row
+                        className="align-items-center" 
+                        style={{ display: "flex", justifyContent: "space-between" }}
+                      >
+                        <Col xs="1">
+                          <h6>{track.track_number}</h6>
+                        </Col>
+                        <Col xs="10`">
+                          <ul className="align-items-center" style={{ fontSize: "0.8rem", alignItems: "center" }} key={track.id}>
+                            {track.name}
+                          </ul>
+                        </Col>
+                        <Col xs="1">
+                          <p className="align-items-center" style={{ color: "red", fontWeight: "800" }}>
+                            {track.explicit === true ? "E" : " "}
+                          </p>
+                        </Col>
+                      </Row>
+                    </Link>
                   );
                 })}
               </Col>
@@ -143,10 +156,11 @@ class ReviewsPage extends Component {
               <AlbumReviewCard review={review}/>
             ))}
           </Container>
+          </Col>
         </Container>
       </Fragment>
     );
   }
 }
 
-export default withCookies(ReviewsPage);
+export default withCookies(AlbumReviewsPage);

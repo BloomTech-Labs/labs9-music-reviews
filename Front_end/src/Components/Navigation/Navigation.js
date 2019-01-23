@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { withRouter, Route } from 'react-router-dom';
+import { withRouter, Route, Link } from 'react-router-dom';
 import SignOut from '../Signout/SignOut';
 import {
   Navbar,
@@ -12,6 +12,7 @@ import {
   NavbarBrand,
 } from 'reactstrap';
 import { Icon } from 'react-materialize';
+import PlansModal from './PlansModal'
 
 import { FirebaseContext } from '../Firebase/index.js';
 import Breadcrumbs from './Breadcrumbs';
@@ -35,6 +36,7 @@ class Navigation extends Component {
           navbar
           style={{ alignContent: 'center', alignItems: 'center' }}
         >
+        {this.props.loggedIn === true ? null : <PlansModal />}        
           <Input
             type="search"
             name="search"
@@ -53,34 +55,35 @@ class Navigation extends Component {
               <Icon>menu</Icon>
             </DropdownToggle>
             <DropdownMenu right>
-              <DropdownItem href="/home"> 
-                Home
-              </DropdownItem>
-              <DropdownItem href="/reviews">
-                My Reviews
-              </DropdownItem>
-              <DropdownItem href="/billing">
-                Billing
-              </DropdownItem>
-              <DropdownItem href="/settings">
-                Settings
-              </DropdownItem>
               {this.props.loggedIn === true ? 
                 <Fragment>
+                  <DropdownItem> 
+                    <Link to="/home">Home</Link>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <Link to={`/user/reviews/${this.props.userID}`}>My Reviews</Link>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <Link to="/user/billing">Billing</Link>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <Link to="/user/settings">Settings</Link>
+                  </DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem href="/">
-                    <FirebaseContext.Consumer>
-                      {(firebase) => <SignOut firebase={firebase} />}
-                    </FirebaseContext.Consumer>
+                  <DropdownItem>
+                    <Link to="/">
+                      <FirebaseContext.Consumer>
+                        {(firebase) => <SignOut firebase={firebase} signout={this.props.signout} />}
+                      </FirebaseContext.Consumer>
+                    </Link>
                   </DropdownItem>
                 </Fragment> : 
                 <Fragment>
-                  <DropdownItem divider />
-                  <DropdownItem href="/signup">
-                    Sign Up
+                  <DropdownItem>
+                    <Link to="/signup">Sign Up</Link>
                   </DropdownItem>
-                  <DropdownItem href="/login">
-                    Sign In
+                  <DropdownItem>
+                    <Link to="/login">Log In</Link>
                   </DropdownItem>
                 </Fragment>
               }

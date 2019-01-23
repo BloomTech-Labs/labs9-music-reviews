@@ -7,16 +7,16 @@ import {
   Modal,
   ModalHeader,
   ModalFooter,
+  ModalBody,
   ListGroup,
   ListGroupItem,
   Col,
   Row
 } from "reactstrap";
 import EditStars from "../StarsRating/EditStars";
-import ViewStars from "../StarsRating/ViewStars";
 import { type } from "os";
 
-class ReviewCreateModal extends React.Component {
+class TrackReviewCreateModal extends React.Component {
   static propTypes = {
     cookies: instanceOf(Cookies).isRequired
   };
@@ -27,7 +27,7 @@ class ReviewCreateModal extends React.Component {
       dateCreated: "",
       rating: 0,
       review: "",
-      spotifyAlbumID: "",
+      spotifyTrackID: "",
       userID: 1,
       modal: false,
       nestedModal: false,
@@ -37,12 +37,12 @@ class ReviewCreateModal extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.toggleNested = this.toggleNested.bind(this);
     this.toggleAll = this.toggleAll.bind(this);
-    this.writeToggle = this.writeToggle.bind(this);
   }
 
   componentDidMount() {
     this.setState({
-      spotifyAlbumID: this.props.match.params.id
+      spotifyTrackID: this.props.trackID,
+      userID: this.props.userID
     });
   }
 
@@ -50,12 +50,12 @@ class ReviewCreateModal extends React.Component {
     // event.preventDefault();
     this.dateStamp();
     axios
-      .post(`https://labs9-car-reviews.herokuapp.com/albumReviews`, {
+      .post(`https://labs9-car-reviews.herokuapp.com/trackReviews`, {
         created_at: this.state.dateCreated,
         updated_at: this.state.dateCreated,
         rating: this.state.rating,
         review: this.state.review,
-        spotifyAlbumID: this.state.spotifyAlbumID,
+        spotifyTrackID: this.props.trackId,
         userID: this.state.userID
       })
       .then(res => {
@@ -94,12 +94,6 @@ class ReviewCreateModal extends React.Component {
     });
   }
 
-  writeToggle() {
-    this.setState({
-      writeReview: !this.state.writeReview
-    });
-  }
-
   dateStamp() {
     let currentDate = new Date();
     let date = currentDate.getDate();
@@ -112,7 +106,7 @@ class ReviewCreateModal extends React.Component {
   }
 
   render() {
-    console.log("Album ID", this.props.match.params.id)
+      console.log(this.props.trackId)
     return (
       <Fragment>
         <Button color="danger" onClick={this.toggle}>
@@ -126,36 +120,29 @@ class ReviewCreateModal extends React.Component {
         >
           <Row className="d-flex justify-content-around">
             <Col className="container">
-              <div>
-                <ModalHeader>{this.props.album}</ModalHeader>
-                <ModalHeader>{this.props.artist}</ModalHeader>
-              </div>
-              <div>
-                <ListGroup>
-                  {this.props.tracks.map(track => (
-                    <ListGroupItem>
-                      {track.track_number}. {track.name}
-                    </ListGroupItem>
-                  ))}
-                </ListGroup>
-              </div>
-            </Col>
-            <Col className="container">
-              <div>
-                <img src={this.props.art} alt="Album cover art" />
-              </div>
+              <Row>
+                <Col className="container d-flex justify-content-center" style={{ }}>
+                  <img src={this.props.art} alt="Album cover art" style={{ margin: '15px 0', align: 'center'}}/>
+                </Col>
+              </Row>
+              <Row>
+                <ModalBody>
+                  <h2 style={{ margin: '0'}}>{this.props.track}</h2>
+                </ModalBody>
+              </Row>
+              <Row>
+                <ModalBody>
+                  <h4 style={{ textAlign:"center"}}>{this.props.artist} - {this.props.album}</h4>
+                </ModalBody>
+              </Row>
             </Col>
           </Row>
           <div className="container center-align" style={{ margin: "0 auto" }}>
-            <Row style={{ margin: "0 auto" }}>
-              {this.state.writeReview === false ? (
-                <ViewStars rating={this.state.rating} />
-              ) : (
-                <EditStars
-                  rating={this.state.rating}
-                  updateRating={this.updateRating}
-                />
-              )}
+            <Row style={{ justifyContent: "center", margin: "15px 0" }}>
+              <EditStars
+                rating={this.state.rating}
+                updateRating={this.updateRating}
+              />
             </Row>
             <div>
               <textarea
@@ -201,9 +188,6 @@ class ReviewCreateModal extends React.Component {
               color="secondary"
               onClick={event => {
                 this.toggle();
-                if (this.state.writeReview === true) {
-                  this.writeToggle();
-                }
               }}
             >
               Close
@@ -215,4 +199,4 @@ class ReviewCreateModal extends React.Component {
   }
 }
 
-export default ReviewCreateModal;
+export default TrackReviewCreateModal;

@@ -37,7 +37,12 @@ app.use('/likedAlbumReview', likedAlbumReviewRoutes);
 
 app.use('/likedTrackReview', likedTrackReviewRoutes);
 
+login = () => {
+  request.get('http://localhost:9000/spotify/login')
+}
+
 app.listen((process.env.PORT || 9000), error => {
   if (error) throw error;
   console.log(`Server running on port: ${SERVER_CONFIGS.PORT}`);
+  // login();
 });
