@@ -2,12 +2,11 @@ exports.up = function (knex, Promise) {
   return knex.schema
     .createTable('users', function (usr) {
       usr.increments('userID').primary()
-      usr.string('firebaseUID')
+      usr.string('firebaseUID').unique()
       usr.string('emailAddress', 100)
       usr.boolean('paidMembership').defaultTo('false')
-      usr.integer('reviewCount').defaultTo(0)
-      usr.datetime('subscriptionExpiration').defaultTo(knex.fn.now())
-      usr.string('nickname').unique()
+      usr.datetime('subscriptionExpiration')
+      usr.string('nickname')
     })
     .createTable('albumReview', function (alb) {
       alb.increments('albumReviewID').primary()
