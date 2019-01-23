@@ -3,9 +3,14 @@ const knexConfig = require('../knexfile.js');
 const db = knex(knexConfig.development);
 
 module.exports = {
+  getAllUsers,
   createNewUser,
   getUser,
 };
+
+function getAllUsers(){
+  return db('users');
+}
 
 function createNewUser(newUser) {
   return db('users')

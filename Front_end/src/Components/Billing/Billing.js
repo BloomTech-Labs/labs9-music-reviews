@@ -11,6 +11,7 @@ import styled from "styled-components";
 import SubInfoModal from './SubInfoModal'
 // import { Link } from "react-router-dom";
 import Checkout from "./Checkout";
+import axios from "axios";
 
 const Payment = styled.div`
   padding: 3rem;
@@ -31,6 +32,18 @@ const ProfileInfo = styled.div`
 `;
 
 class Billing extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      subType: ''
+    }
+  }
+  changeSub = e => {
+    this.setState({[e.target.name]: e.target.value})
+  }
+  // changeSubscriptionStatus = () => {
+  //   axios.put(user)
+  // }
   render() {
     return (
       <div>
@@ -55,24 +68,27 @@ class Billing extends Component {
                 <div style={{ margin: "2rem 0" }}>
                   <FormGroup check>
                     <Label check>
-                      <Input type="radio" name="yearSub" /> 1 Year Subscription $9.99
+                      <Input type="radio" name="subType" value="year" onClick={this.changeSub}/>{' '}
+                      1 Year Subscription $9.99
                     </Label>
                     <br/>
                     <Label check>
-                      <Input type="radio" name="monthSub" /> 1 Month Subscription $0.99
+                      <Input type="radio" name="subType" value="month" onClick={this.changeSub}/>
+                      1 Month Subscription $0.99
                     </Label>
                   </FormGroup>
                   <SubInfoModal />
                 </div>
                 <Checkout
-                  name={"Testing"}
-                  description={"Running a test"}
-                  amount={1}
+                  name={"Subscription"}
+                  description={this.state.subType === "year" ? "1 Year Subscription" : "1 Month Subscription"}
+                  amount={this.state.subType === "year" ? 9.99 : 0.99}
+                  changeSubscriptionStatus={this.changeSubscriptionStatus}
                 />
-                <p style={{ color: "lightgray" }}>
+                {/* <p style={{ color: "lightgray" }}>
                   *Subscriptions are automatically renewed unless specified. To
                   edit subscription preferences, please navigate to ""
-                </p>
+                </p> */}
               </Payment>
             </Col>
           </Row>
