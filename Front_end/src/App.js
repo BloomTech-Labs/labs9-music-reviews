@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import Navigation from "./Components/Navigation/Navigation";
-import UserReviewList from "./Components/ReviewList/ReviewList";
+import UserReviewList from "./Components/ReviewList/UserReviewList";
 import AlbumReviewsPage from "./Components/ReviewsPage/AlbumReviewsPage";
 import TrackReviewsPage from "./Components/ReviewsPage/TrackReviewsPage";
 import HomePage from "./Components/HomePage";
