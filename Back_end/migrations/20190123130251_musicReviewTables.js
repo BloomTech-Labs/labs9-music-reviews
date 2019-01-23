@@ -5,7 +5,6 @@ exports.up = function (knex, Promise) {
       usr.string('firebaseUID').unique()
       usr.string('emailAddress', 100)
       usr.boolean('paidMembership').defaultTo('false')
-      usr.integer('reviewCount').defaultTo(0)
       usr.datetime('subscriptionExpiration')
       usr.string('nickname')
     })
