@@ -31,7 +31,7 @@ class App extends Component {
     this.state = {
       loading: false,
       loaded: false,
-      loggedIn: Boolean(localStorage.getItem("loggedIn")),
+      loggedIn: false,
       userID: "",
       firebaseUID: "",
       email: "",
@@ -87,11 +87,11 @@ class App extends Component {
   }
   login = (boolean) => {
     localStorage.setItem("loggedIn", boolean);
-    this.setState({ loggedIn: Boolean(boolean) })
+    this.setState({ loggedIn: true })
   }
   signout = (boolean) => {
     localStorage.setItem("loggedIn", boolean);
-    this.setState({ loggedIn: Boolean(boolean) });
+    this.setState({ loggedIn: false });
   }
   componentDidMount(){
     this.setState({ loading: true }, () => {
