@@ -70,7 +70,7 @@ class Search extends Component {
                             
                               <div className="d-flex flex-row flex-nowrap align-items-center" style = {{overflow: 'auto', WebkitOverflowScrolling: 'touch'}} >
                               {this.state.albums.map(album => {
-                                    return  <NavLink to={`/album/${album.id}`} style={{ textDecoration: 'none' }}><Col justify-content-center>
+                                    return  <NavLink to={`/album/${album.id}`} style={{ textDecoration: 'none' }}><Col>
                                                 <Card key = {album.id} style = {{width: '10rem', border: 'none'}}>
                                                   <CardImg src= {!album.images[0] ?  image : album.images[0].url}  alt = {album.name} style = {{borderRadius: '50%', width: '7rem'}}/>
                                                   <CardBody>
@@ -89,7 +89,7 @@ class Search extends Component {
                             
                               <div className="d-flex flex-row flex-nowrap align-items-center" style ={{overflow: 'auto', WebkitOverflowScrolling: 'touch'}}>
                               {this.state.artists.map(artist => {
-                                    return  artist.images.length === 0 ? null : <NavLink to={`/artist/${artist.id}`}><Col justify-content-center>
+                                    return  artist.images.length === 0 ? null : <NavLink to={`/artist/${artist.id}`}><Col>
                                                 <Card key = {artist.id} style = {{width: '10rem', border: 'none'}}>
                                                   <CardImg src= {!artist.images[0] ? image : artist.images[0].url}  alt = {artist.name} style = {{borderRadius: '50%', width: '7rem'}}/>
                                                   <CardBody>
