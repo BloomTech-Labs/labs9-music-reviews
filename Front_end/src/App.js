@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import Navigation from "./Components/Navigation/Navigation";
-import ReviewList from "./Components/ReviewList/ReviewList";
+import UserReviewList from "./Components/ReviewList/UserReviewList";
 import AlbumReviewsPage from "./Components/ReviewsPage/AlbumReviewsPage";
 import TrackReviewsPage from "./Components/ReviewsPage/TrackReviewsPage";
 import HomePage from "./Components/HomePage";
@@ -64,7 +64,7 @@ class App extends Component {
         <Route exact path="/" component={LandingPage} />
         <Route path="/home" component={HomePage} />
         <Route path="/search_landing" component={SearchLanding} />
-        <Route path="/user/reviews" component={ReviewList} />
+        <Route path="/user/reviews" component={UserReviewList} />
         <Route path="/user/billing" component={Billing} />
         <Route path="/user/settings" component={SettingsPage} />
         <Route path="/signup" component={SignUpPage} />
@@ -95,7 +95,7 @@ class App extends Component {
         <Route
           path="/user/reviews/:id"
           render={props => (
-            <ReviewList {...props} loggedIn={this.state.loggedIn}/>
+            <UserReviewList {...props} loggedIn={this.state.loggedIn}/>
           )}
         />
       </Container>
