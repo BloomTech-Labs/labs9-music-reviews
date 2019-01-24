@@ -205,7 +205,7 @@ class TrackReviewsPage extends Component {
               <Container fluid={true} style={{ position: 'absolute', top: '100px' }}> 
                 {/* Spotify Player */}
                 <iframe src={`https://open.spotify.com/embed/track/${this.state.trackId}`}
-                width="1000" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media">
+                width="800" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media">
                 </iframe>
               </Container>
               <Container fluid={true} style={{ maxWidth: "1150px" }}>

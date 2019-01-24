@@ -20,7 +20,7 @@ import { withCookies, Cookies } from "react-cookie";
 import Search from "./Components/Search/Search";
 //import './App.css';
 
-let refreshTime = 29*60*1000; // 29 mins
+let refreshTime = 15*60*1000; // 15 mins
 
 class App extends Component {
   static propTypes = {
@@ -66,7 +66,7 @@ class App extends Component {
     axios
       .get(process.env.REACT_APP_TOKEN_URL)
       .then(res => {
-        if ( !this.props.cookies.get("access_token") ){
+        if ( typeof this.props.cookies.get("access_token") == undefined ){
           this.props.cookies.remove("access_token")
           console.log("token removed")
           this.getToken();
@@ -108,15 +108,6 @@ class App extends Component {
     this.getToken();
     setInterval(this.refreshToken, refreshTime);
   }
-
- updateSearch = (data) => {
-    this.setState({
-      query: data
-    })
-  }
-
-
-
   render() {
     console.log('From appjs', this.state.query)
     return (
@@ -125,7 +116,7 @@ class App extends Component {
         <Route exact path="/" component={LandingPage} />
         <Route path="/home" component={HomePage} />
         <Route path="/search_landing" component={SearchLanding} />
-        <Route path="/user/billing" component={Billing} />
+        <Route path="/user/billing" render={(props) => ( <Billing {...props} userID={this.state.userID} /> )} />
         <Route path="/user/settings" component={SettingsPage} />
         <Route path="/signup" render={(props) =>
           <SignUpPage {...props} changeLogInState={() => this.changeLoginState(true)} /> }
