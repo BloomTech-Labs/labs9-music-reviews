@@ -57,7 +57,6 @@ class Billing extends Component {
     .catch(err => { console.log(err) })
   }
   render() {
-    console.log(this.state.subType)
     return (
       <div>
         <Container>
