@@ -33,6 +33,19 @@ router.get('/:trackReviewID', async (req, res) => {
     };
 });
 
+// get all album reviews written by a single user
+router.get('/:userID', async (req, res) => {
+    const { userID } = req.params;
+    try {
+      const myReviews = await dbReviews.retrieveByUserId(userID);
+      res.status(200).json(myReviews);
+    } catch (err) {
+      res.status(500).json({
+        message: 'failed to retrieve track reviews with the specific User ID.'
+      })
+    }
+  });
+
 // create new review
 // need to add middleware
 router.post('/', async (req, res) => {

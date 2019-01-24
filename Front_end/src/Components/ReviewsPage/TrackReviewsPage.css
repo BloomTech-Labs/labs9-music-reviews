@@ -1,0 +1,23 @@
+@media only screen and (min-width: 1824px){
+    .player {
+        width: 1000px;
+    }
+}
+
+@media only screen and (min-width: 1224px){
+    .player {
+        width: 600px;
+    }
+}
+
+@media only screen and (min-width: 768px){
+    .player {
+        width: 375px;
+    }
+}
+
+@media only screen and (min-width: 375px){
+    .player {
+        width: 375px;
+    }
+}
