@@ -37,11 +37,11 @@ componentDidMount() {
     render() {
         console.log(this.state.data)
         const renderData = this.state.data.map(album => {
-            return album.artists.map(artist => {
+            return album.artists.map((artist, index) => {
               return (
                 
                     <NewReleaseCard
-                        key = {album.id} 
+                        key = {index} 
                         album = {album.name}
                         artist = {artist.name}
                         date = {album.release_date}

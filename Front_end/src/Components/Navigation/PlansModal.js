@@ -91,7 +91,7 @@ class PlansModal extends React.Component {
           </Row>
 
           <ModalFooter style={{ display: "flex", justifyContent: 'space-between'}} >
-              <a href="/billing">
+              <a href="/user/billing">
             <Button color="primary" onClick={this.toggle}>
               Upgrade
             </Button></a>

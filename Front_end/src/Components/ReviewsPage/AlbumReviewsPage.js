@@ -78,6 +78,7 @@ class AlbumReviewsPage extends Component {
     const albumReviews = this.state.reviews.filter(review => {
       return review.spotifyAlbumID === this.props.match.params.id;
     });
+    console.log("Album Page Tracks", this.state.tracks)
     return (
       <Fragment>
         <Container
@@ -145,19 +146,19 @@ class AlbumReviewsPage extends Component {
                         </Col>
                       </Row>
                     </Link>
-                  );
-                })}
-              </Col>
-            </Row>
-          </Sidebar>
+                      );
+                    })}
+                  </Col>
+                </Row>
+              </Sidebar>
+            </Col>
+          </Container>
           
           <Container fluid={true} style={{ maxWidth: "1150px" }}>
             {albumReviews.map(review => (
               <AlbumReviewCard review={review}/>
             ))}
           </Container>
-          </Col>
-        </Container>
       </Fragment>
     );
   }

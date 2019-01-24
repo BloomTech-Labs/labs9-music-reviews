@@ -7,6 +7,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
+import './TrackReviewsPage.css';
 
 const Sidebar = styled.div`
   position: -webkit-sticky;
@@ -102,119 +103,124 @@ class TrackReviewsPage extends Component {
     const trackReviews = this.state.reviews.filter(review => {
       return review.spotifyTrackID === this.props.match.params.id;
     });
+    console.log(trackReviews)
     return (
       <Fragment>
         <Container
           fluid={true}
           style={{ display: "flex", margin: "0 auto", maxWidth: "1600px" }}
         >
-          <Col xs="12" md="4">
-            <Sidebar>
-              <Link to={`/albums/${this.state.albumId}`}>
-                <Row style={{ alignSelf: "center" }}>
-                  <h3>{this.state.album}</h3>
-                </Row>
-              </Link>
-              <Link to={`/artists/${this.state.artistId}`}>
-                <Row style={{ alignSelf: "center" }}>
-                  <h5>{this.state.artist}</h5>
-                </Row>
-              </Link>
-              {/* can add logic to render different size of album art based on screen size: stacked ternary */}
-              {/* need to find a way to manipulate the img object from res.data */}
-              <Link to={`/albums/${this.state.albumId}`}>
-                <CardImg src={this.state.art} alt="Album Art" />
-              </Link>
+          <Row>
 
-              <Row
-                style={{
-                  display: "flex",
-                  justifyContent: "space-evenly",
-                  padding: "1rem"
-                }}
-              >
-                {/* Write Review Button Modal */}
-                <TrackReviewCreateModal
-                  {...this.props}
-                  album={this.state.album}
-                  artist={this.state.artist}
-                  art={this.state.art}
-                  track={this.state.track}
-                  trackId={this.state.trackId}
-                  userID={this.props.userID}
-                />
-              </Row>
-              <Row>
-                <Col>
-                  <h5 style={{ padding: "1rem" }}>Tracklist</h5>
-                  {this.state.tracks.map(track => {
-                    return (
-                      <Link
-                        to={`/tracks/${track.id}`}
-                        onClick={() => this.redirectTo(track.id, track.name)}
-                      >
-                        <Row
-                          className="align-items-center"
-                          style={
-                            track.id === this.state.trackId
-                              ? {
-                                  display: "flex",
-                                  justifyContent: "space-between",
-                                  border: "3px solid red",
-                                  alignItems: "center"
-                                }
-                              : {
-                                  display: "flex",
-                                  justifyContent: "space-between"
-                                }
-                          }
+            <Col xs="12" md="6">
+              <Sidebar>
+                <Link to={`/albums/${this.state.albumId}`}>
+                  <Row style={{ alignSelf: "center" }}>
+                    <h3>{this.state.album}</h3>
+                  </Row>
+                </Link>
+                <Link to={`/artists/${this.state.artistId}`}>
+                  <Row style={{ alignSelf: "center" }}>
+                    <h5>{this.state.artist}</h5>
+                  </Row>
+                </Link>
+                {/* can add logic to render different size of album art based on screen size: stacked ternary */}
+                {/* need to find a way to manipulate the img object from res.data */}
+                <Link to={`/albums/${this.state.albumId}`}>
+                  <CardImg src={this.state.art} alt="Album Art" />
+                </Link>
+
+                <Row
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-evenly",
+                    padding: "1rem"
+                  }}
+                >
+                  {/* Write Review Button Modal */}
+                  <TrackReviewCreateModal
+                    {...this.props}
+                    album={this.state.album}
+                    artist={this.state.artist}
+                    art={this.state.art}
+                    track={this.state.track}
+                    trackId={this.state.trackId}
+                    userID={this.props.userID}
+                  />
+                </Row>
+                <Row>
+                  <Col>
+                    <h5 style={{ padding: "1rem" }}>Tracklist</h5>
+                    {this.state.tracks.map(track => {
+                      return (
+                        <Link
+                          to={`/tracks/${track.id}`}
+                          onClick={() => this.redirectTo(track.id, track.name)}
                         >
-                          <Col xs="1">
-                            <h6>{track.track_number}</h6>
-                          </Col>
-                          <Col xs="10`">
-                            <ul
-                              className="align-items-center"
-                              style={{
-                                fontSize: "0.8rem",
-                                alignItems: "center"
-                              }}
-                              key={track.id}
-                            >
-                              {track.name}
-                            </ul>
-                          </Col>
-                          <Col xs="1">
-                            <p
-                              className="align-items-center"
-                              style={{ color: "red", fontWeight: "800" }}
-                            >
-                              {track.explicit === true ? "E" : " "}
-                            </p>
-                          </Col>
-                        </Row>
-                      </Link>
-                    );
-                  })}
-                </Col>
-              </Row>
-            </Sidebar>
-          </Col>
-          <Col>
-            <Container>
-              <Container fluid={true} style={{ position: 'absolute', top: '100px' }}> 
-                {/* Spotify Player */}
-                <iframe src={`https://open.spotify.com/embed/track/${this.state.trackId}`}
-                width="1000" height="100" frameborder="0" allowtransparency="true" allow="encrypted-media">
-                </iframe>
+                          <Row
+                            className="align-items-center"
+                            style={
+                              track.id === this.state.trackId
+                                ? {
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    border: "3px solid red",
+                                    alignItems: "center"
+                                  }
+                                : {
+                                    display: "flex",
+                                    justifyContent: "space-between"
+                                  }
+                            }
+                          >
+                            <Col xs="1">
+                              <h6>{track.track_number}</h6>
+                            </Col>
+                            <Col xs="10`">
+                              <ul
+                                className="align-items-center"
+                                style={{
+                                  fontSize: "0.8rem",
+                                  alignItems: "center"
+                                }}
+                                key={track.id}
+                              >
+                                {track.name}
+                              </ul>
+                            </Col>
+                            <Col xs="1">
+                              <p
+                                className="align-items-center"
+                                style={{ color: "red", fontWeight: "800" }}
+                              >
+                                {track.explicit === true ? "E" : " "}
+                              </p>
+                            </Col>
+                          </Row>
+                        </Link>
+                      );
+                    })}
+                  </Col>
+                </Row>
+              </Sidebar>
+            </Col>
+
+            <Col xs="12" md="6">
+              <Container>
+                <Container fluid={true} style={{ position: 'absolute', top: '100px' }}> 
+                  {/* Spotify Player */}
+                  <iframe src={`https://open.spotify.com/embed/track/${this.state.trackId}`}
+                  width="380" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media">
+                  </iframe>
+                </Container>
+                <Container fluid={true} style={{ maxWidth: "1150px" }}>
+                  {trackReviews.map(review => (
+                    <TrackReviewCard review={review} />
+                  ))}
+                </Container>
               </Container>
-              <Container fluid={true} style={{ maxWidth: "1150px" }}>
-                {trackReviews.map(review => (
-                  <TrackReviewCard review={review} />
-                ))}
-              </Container>
-            </Container>
-          </Col>
+            </Col>
+          </Row>
         </Container>
       </Fragment>
     );

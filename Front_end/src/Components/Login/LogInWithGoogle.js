@@ -18,7 +18,7 @@ class LogInWithGoogle extends React.Component {
               .getIdToken()
               .then((userIdToken) => {
                 axios
-                  .post(`${process.env.REACT_APP_BACKEND_URL}user/create`, {
+                  .post(`${process.env.REACT_APP_BACKEND_URL}users/create`, {
                     token: userIdToken,
                   })
                   .then((res) => this.props.history.push('/'))

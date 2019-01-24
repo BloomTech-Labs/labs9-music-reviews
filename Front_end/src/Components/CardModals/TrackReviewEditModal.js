@@ -12,7 +12,7 @@ import {
 } from "reactstrap";
 import EditStars from "../StarsRating/EditStars";
 
-class ReviewEditModal extends React.Component {
+class TrackReviewEditModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -133,6 +133,7 @@ class ReviewEditModal extends React.Component {
               <Col>
                 <div>
                   {/* Edit Modal Album and Artist Headers */}
+                  <ModalHeader>Track: {this.props.track}</ModalHeader>
                   <ModalHeader>Album: {this.props.album}</ModalHeader>
                   <ModalHeader>Artist: {this.props.artist}</ModalHeader>
                 </div>
@@ -143,38 +144,6 @@ class ReviewEditModal extends React.Component {
                   <img src={this.props.art} alt="Album cover art" />
                 </div>
               </Col>
-              <div>
-                {/* Edit Modal Track List */}
-                <Row>
-                  <Col>
-                    <h5 style={{ padding: "1rem" }}>Tracklist</h5>
-                    {this.props.tracks.map(track => {
-                      return (
-                        <Row
-                          style={{
-                            display: "flex",
-                            justifyContent: "space-between"
-                          }}
-                        >
-                          <Col xs="1">
-                            <h6>{track.track_number}</h6>
-                          </Col>
-                          <Col xs="9">
-                            <ul style={{ fontSize: "0.8rem" }} key={track.id}>
-                              {track.name}
-                            </ul>
-                          </Col>
-                          <Col xs="2">
-                            <span style={{ color: "red", fontWeight: "800" }}>
-                              {track.explicit === true ? "E" : " "}
-                            </span>
-                          </Col>
-                        </Row>
-                      );
-                    })}
-                  </Col>
-                </Row>
-              </div>
             </Col>
           </Row>
           <div class="container center-align" style={{ margin: "0 auto" }}>
@@ -267,4 +236,4 @@ class ReviewEditModal extends React.Component {
   }
 }
 
-export default ReviewEditModal;
+export default TrackReviewEditModal;

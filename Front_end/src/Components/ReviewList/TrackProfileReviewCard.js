@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from "react";
-import ReviewEditModal from "../CardModals/ReviewEditModal";
+import TrackReviewEditModal from "../CardModals/TrackReviewEditModal";
 import ViewStars from "../StarsRating/ViewStars";
 import { Row, Col, Container } from "reactstrap";
 import axios from "axios";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
 
-class ProfileReviewCard extends Component {
+class TrackProfileReviewCard extends Component {
   static propTypes = {
     cookies: instanceOf(Cookies).isRequired
   };
@@ -14,41 +14,39 @@ class ProfileReviewCard extends Component {
     super(props);
     const { cookies } = props;
     this.state = {
-      data: [],
       album: "",
       artist: "",
       art: "",
-      tracks: []
+      track: ""      
     };
-    this.getAlbum = this.getAlbum.bind(this);
   }
-
-  getAlbum = (albumId, token) => {
+  getTrack = (trackId, token) => {
     axios
-      .get(`https://api.spotify.com/v1/albums/${albumId}`, {
+      .get(`https://api.spotify.com/v1/tracks/${trackId}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
-      .then(data => {
+      .then(res => {
+        console.log(res.data)
         this.setState({
-          data,
-          album: data.data.name,
-          artist: data.data.artists[0]["name"],
-          art: data.data.images[1]["url"],
-          tracks: data.data.tracks.items
+          track: res.data.name,
+          album: res.data.album.name,
+          artist: res.data.artists[0].name,
+          art: res.data.album.images[1].url
         });
       })
       .catch(err => console.log(err));
   };
 
   componentDidMount() {
-    this.getAlbum(
-      this.props.review.spotifyAlbumID,
+    this.getTrack(
+      this.props.review.spotifyTrackID,
       this.props.cookies.get("access_token")
     );
   }
+
   render() {
-    console.log("Dynamic ID", this.props.review.userID);
-    console.log("Dynamic ID", this.props.userID);
+    console.log(this.props.review.spotifyTrackID);
+    console.log(this.state.track);
     return (
       <Fragment>
         <Container>
@@ -58,17 +56,16 @@ class ProfileReviewCard extends Component {
               <img src={this.state.art} alt="Album cover art" />
               <div>Album: {this.state.album}</div>
               <div>Artist: {this.state.artist}</div>
-              {/* {this.props.review.trackName ? (
-              <div>{this.props.review.trackName}</div>
-            ) : null} */}
+              <div>Track: {this.state.track}</div>
               {/* If logged in edit button shows otherwise null */}
-              {this.props.loggedIn === true && this.props.review.userID === this.props.userID ? (
-                <ReviewEditModal
+              {this.props.loggedIn === true &&
+              this.props.review.userID === this.props.userID ? (
+                <TrackReviewEditModal
                   {...this.props}
                   album={this.state.album}
                   artist={this.state.artist}
                   art={this.state.art}
-                  tracks={this.state.tracks}
+                  track={this.state.track}
                 />
               ) : null}
             </Col>
@@ -95,4 +92,4 @@ class ProfileReviewCard extends Component {
   }
 }
 
-export default withCookies(ProfileReviewCard);
+export default withCookies(TrackProfileReviewCard);

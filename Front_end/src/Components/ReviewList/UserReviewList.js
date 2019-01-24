@@ -2,7 +2,8 @@ import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { Row, Col, Container, CardImg, Button } from "reactstrap";
-import ProfileReviewCard from "./ProfileReviewCard";
+import AlbumProfileReviewCard from "./AlbumProfileReviewCard";
+import TrackProfileReviewCard from "./TrackProfileReviewCard";
 
 const Sidebar = styled.div`
   position: -webkit-sticky;
@@ -30,11 +31,12 @@ class UserReviewList extends Component {
   }
 
   componentDidMount() {
-    this.getAlbumReviews();
-    this.setState({ 
-      loggedIn: this.props.loggedIn,
-      userID: this.props.userID
+    this.setState({
+      userID: this.props.userID,
+      loggedIn: this.props.loggedIn
     });
+    this.getAlbumReviews();
+    this.getTrackReviews();    
   }
 
   getAlbumReviews() {
@@ -43,7 +45,7 @@ class UserReviewList extends Component {
       .then(response => {
         const userAlbumReviews = response.data;
         const newState = Object.assign({}, this.state, {
-          reviews: userAlbumReviews
+          albumReviews: userAlbumReviews
         });
         this.setState(newState);
       })
@@ -56,7 +58,7 @@ class UserReviewList extends Component {
       .then(response => {
         const userTrackReviews = response.data;
         const newState = Object.assign({}, this.state, {
-          reviews: userTrackReviews
+          trackReviews: userTrackReviews
         });
         this.setState(newState);
       })
@@ -68,74 +70,71 @@ class UserReviewList extends Component {
   };
 
   render() {
-    console.log(this.props.match.params)
     const userAlbumReviews = this.state.albumReviews.filter(review => {
-      return (
-        review.userID.indexOf(this.props.match.params.id)
-      );
+      return review.userID === parseInt(this.props.match.params.id);
     });
     const userTrackReviews = this.state.trackReviews.filter(review => {
-      return (
-        review.userID.indexOf(this.props.match.params.id)
-      );
+      return review.userID === parseInt(this.props.match.params.id);
     });
     return (
       <Fragment>
-          <Container
-            fluid={true}
-            style={{
-              display: "flex",
-              justifyItems: "space-around",
-              margin: "0 auto",
-              maxWidth: "1600px"
-            }}
-          >
-            <Sidebar>
-              <CardImg
-                src={require("../../Images/RecordThumb.png")}
-                alt="Default profile image"
-                style={{ maxWidth: "200px" }}
-              />
-              <Row style={{ alignSelf: "center" }}>
-                <h3>Username</h3>
-              </Row>
-              <Row style={{ alignSelf: "center" }}>
-                <h5>Status</h5>
-              </Row>
-              <Row style={{ alignSelf: "center" }}>
-                <h5>Reviews: {(this.state.albumReviews.length) + (this.state.trackReviews.length)}</h5>
-              </Row>
-              {/* can add logic to render different size of album art based on screen size: stacked ternary */}
-              {/* need to find a way to manipulate the img object from res.data */}
+        <Container
+          fluid={true}
+          style={{
+            display: "flex",
+            justifyItems: "space-around",
+            margin: "0 auto",
+            maxWidth: "1600px"
+          }}
+        >
+          <Sidebar>
+            <CardImg
+              src={require("../../Images/RecordThumb.png")}
+              alt="Default profile image"
+              style={{ maxWidth: "200px" }}
+            />
+            <Row style={{ alignSelf: "center" }}>
+              <h3>Username</h3>
+            </Row>
+            <Row style={{ alignSelf: "center" }}>
+              <h5>Status</h5>
+            </Row>
+            <Row style={{ alignSelf: "center" }}>
+              <h5>
+                Reviews:{" "}
+                {userAlbumReviews.length + userTrackReviews.length}
+              </h5>
+            </Row>
+            {/* can add logic to render different size of album art based on screen size: stacked ternary */}
+            {/* need to find a way to manipulate the img object from res.data */}
 
-              <Row
-                style={{
-                  display: "flex",
-                  justifyContent: "space-evenly",
-                  padding: "1rem"
-                }}
-              >
-              </Row>
-            </Sidebar>
-          </Container>
-          <Container fluid={true} style={{ maxWidth: "1150px" }}>
-            {userAlbumReviews.map(review => (
-              <ProfileReviewCard
-                review={review}
-                loggedIn={this.state.loggedIn}
-                userID={this.props.userID}
-                key={review.id}
-              />
-            ))}
-            {userTrackReviews.map(review => (
-              <ProfileReviewCard
-                review={review}
-                loggedIn={this.state.loggedIn}
-                userID={this.props.userID}
-                key={review.id}
-              />
-            ))}
-          </Container>
+            <Row
+              style={{
+                display: "flex",
+                justifyContent: "space-evenly",
+                padding: "1rem"
+              }}
+            />
+          </Sidebar>
+        </Container>
+        <Container fluid={true} style={{ maxWidth: "1150px" }}>
+          {userAlbumReviews.map(review => (
+            <AlbumProfileReviewCard
+              review={review}
+              loggedIn={this.props.loggedIn}
+              userID={this.props.userID}
+              key={review.id}
+            />
+          ))}
+          {userTrackReviews.map(review => (
+            <TrackProfileReviewCard
+              review={review}
+              loggedIn={this.props.loggedIn}
+              userID={this.props.userID}
+              key={review.id}
+            />
+          ))}
+        </Container>
       </Fragment>
     );
   }

@@ -45,3 +45,31 @@ router.get('/get/:email', (req, res) => {
     .then((user) => res.status(200).json(user[0]))
     .catch((err) => res.status(404).json(err));
 });
+
+router.put('/:userID', async (req, res) => {
+  const { userID } = req.params
+  const body = req.body
+  try {
+    const updatedSubscription = await dbUsers.edit(userID, body)
+    res.status(200).json(updatedSubscription)
+  }
+  catch (err) {
+    res.status(500).json(err.message)
+  }
+})
+
+router.put('/:userID/change_nickname', async (req, res) => {
+  const { userID } = req.params
+  const body = req.body
+  if (!body.nickname) {
+    res.status(400).json({ message: 'Please enter new nickname' })
+  } else {
+    try {
+      const updatedNickname = await dbUsers.edit(userID, nickname)
+      res.status(200).json(updatedNickname)
+    }
+    catch (err) {
+      res.status(500).json(err.message)
+    }
+  }
+})
