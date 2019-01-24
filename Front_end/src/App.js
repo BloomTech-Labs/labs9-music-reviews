@@ -41,8 +41,6 @@ class App extends Component {
     }
     this.getToken = this.getToken.bind(this);
     this.refreshToken = this.refreshToken.bind(this);
-    this.login = this.login.bind(this);
-    this.signout = this.signout.bind(this);
   }
   getUser = (email) => {
     axios
@@ -57,6 +55,7 @@ class App extends Component {
           nickname: res.data.nickname,
           loaded: true,
           loading: false,
+          loggedIn: true,
         });
       })
       
@@ -85,13 +84,9 @@ class App extends Component {
       })
       .catch( err => console.log(err) )
   }
-  login = (boolean) => {
+  changeLoginState = (boolean) => {
     localStorage.setItem("loggedIn", boolean);
-    this.setState({ loggedIn: true })
-  }
-  signout = (boolean) => {
-    localStorage.setItem("loggedIn", boolean);
-    this.setState({ loggedIn: false });
+    this.setState({ loggedIn: Boolean(boolean) })
   }
   componentDidMount(){
     this.setState({ loading: true }, () => {
@@ -115,17 +110,17 @@ class App extends Component {
   render() {
     return (
       <Container fluid style={{ padding: "0" }}>
-        <Navigation loggedIn={this.state.loggedIn} signout={() => this.signout("false")} userID={this.state.userID}/>
+        <Navigation loggedIn={this.state.loggedIn} signout={() => this.changeLoginState(false)} userID={this.state.userID}/>
         <Route exact path="/" component={LandingPage} />
         <Route path="/home" component={HomePage} />
         <Route path="/search_landing" component={SearchLanding} />
         <Route path="/user/billing" component={Billing} />
         <Route path="/user/settings" component={SettingsPage} />
         <Route path="/signup" render={(props) =>
-          <SignUpPage {...props} changeLogInState={() => this.login("true")} /> }
+          <SignUpPage {...props} changeLogInState={() => this.changeLoginState(true)} /> }
         />
         <Route path="/login" render={(props) => 
-          <LogInPage {...props} changeLogInState={() => this.login("true")} /> }
+          <LogInPage {...props} changeLogInState={() => this.changeLoginState(true)} /> }
         />
         <Route path="/forgot_password" component={ForgotPasswordPage} />
         <Route path="/search" component={Search} />

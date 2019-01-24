@@ -9,7 +9,7 @@ class SignUpPage extends React.Component {
       <div>
         <h1>Music Reviews</h1>
         <FirebaseContext.Consumer>
-          {(firebase) => <SignUpForm firebase={firebase} changeLoginState={this.props.changeLoginState}/>}
+          {(firebase) => <SignUpForm firebase={firebase} />}
         </FirebaseContext.Consumer>
       </div>
     );
