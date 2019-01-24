@@ -42,7 +42,7 @@ class Navigation extends Component {
 
     console.log('Enter is clicked', data);
     this.props.history.push('/search');
-    
+
     this.setState({
       query: ''
     })
@@ -59,22 +59,22 @@ class Navigation extends Component {
           navbar
           style={{ alignContent: "center", alignItems: "center" }}
         >
-        {this.props.loggedIn === true ? null : <PlansModal />}
-        <Form onSubmit = {this.keyPress}>
-          <Input
-            type="search"
-            name="search"
-            value = {this.state.query}
-            onChange = {this.onChage}
-            placeholder="Enter an Album, Artist or Track"
-            style={{
-              margin: "0 10px 0 0",
-              padding: "5px",
-              height: "30px",
-              backgroundColor: "#495057",
-              color: "#fff"
-            }}
-          />
+          {this.props.loggedIn === true ? null : <PlansModal />}
+          <Form onSubmit={this.keyPress}>
+            <Input
+              type="search"
+              name="search"
+              value={this.state.query}
+              onChange={this.onChage}
+              placeholder="Enter an Album, Artist or Track"
+              style={{
+                margin: "0 3px 0 0",
+                padding: "5px",
+                height: "31px",
+                backgroundColor: "#495057",
+                color: "#fff"
+              }}
+            />
           </Form>
           <UncontrolledDropdown nav inNavbar>
             <DropdownToggle nav>
@@ -92,7 +92,7 @@ class Navigation extends Component {
                   <Link to="/user/billing" style={{ textDecoration: 'none' }}>
                     <DropdownItem>Billing</DropdownItem>
                   </Link>
-                  <Link to="/user/settings"style={{ textDecoration: 'none' }}>
+                  <Link to="/user/settings" style={{ textDecoration: 'none' }}>
                     <DropdownItem>Settings</DropdownItem>
                   </Link>
                   <DropdownItem divider />
@@ -110,15 +110,15 @@ class Navigation extends Component {
                   </NavLink>
                 </Fragment>
               ) : (
-                <Fragment>
-                  <Link to="/signup" style={{ textDecoration: 'none' }}>
-                    <DropdownItem>Sign Up</DropdownItem>
-                  </Link>
-                  <Link to="/login" style={{ textDecoration: 'none' }}>
-                    <DropdownItem>Log In</DropdownItem>
-                  </Link>
-                </Fragment>
-              )}
+                  <Fragment>
+                    <Link to="/signup" style={{ textDecoration: 'none' }}>
+                      <DropdownItem>Sign Up</DropdownItem>
+                    </Link>
+                    <Link to="/login" style={{ textDecoration: 'none' }}>
+                      <DropdownItem>Log In</DropdownItem>
+                    </Link>
+                  </Fragment>
+                )}
             </DropdownMenu>
           </UncontrolledDropdown>
           <a>
