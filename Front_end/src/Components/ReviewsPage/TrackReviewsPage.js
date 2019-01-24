@@ -37,7 +37,8 @@ class TrackReviewsPage extends Component {
       track: "",
       trackId: "",
       tracks: [],
-      reviews: []
+      reviews: [],
+      width: ""
     };
     this.getTrack = this.getTrack.bind(this);
   }
@@ -69,6 +70,7 @@ class TrackReviewsPage extends Component {
       .then(res => {
         this.setState({
           art: res.data.images[1].url,
+          width: res.data.images[1].height,
           tracks: res.data.tracks.items
         });
       })
@@ -112,10 +114,10 @@ class TrackReviewsPage extends Component {
         >
           <Row>
 
-            <Col xs="12" md="6">
+            <Col xs="12" md="4">
               <Sidebar>
                 <Link to={`/albums/${this.state.albumId}`}>
-                  <Row style={{ alignSelf: "center" }}>
+                  <Row style={{ alignSelf: "center", padding: "1rem" }}>
                     <h3>{this.state.album}</h3>
                   </Row>
                 </Link>
@@ -129,6 +131,15 @@ class TrackReviewsPage extends Component {
                 <Link to={`/albums/${this.state.albumId}`}>
                   <CardImg src={this.state.art} alt="Album Art" />
                 </Link>
+
+                <Container fluid={true} style={{ margin: "0 auto" }}> 
+                  {/* Spotify Player */}
+                  <iframe src={`https://open.spotify.com/embed/track/${this.state.trackId}`}
+                    width={this.state.width} height="80" frameborder="0"
+                    allowtransparency="true" allow="encrypted-media"
+                  >
+                  </iframe>
+                </Container>
 
                 <Row
                   style={{
@@ -205,14 +216,8 @@ class TrackReviewsPage extends Component {
               </Sidebar>
             </Col>
 
-            <Col xs="12" md="6">
+            <Col xs="12" md="8">
               <Container>
-                <Container fluid={true} style={{ position: 'absolute', top: '100px' }}> 
-                  {/* Spotify Player */}
-                  <iframe src={`https://open.spotify.com/embed/track/${this.state.trackId}`}
-                  width="380" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media">
-                  </iframe>
-                </Container>
                 <Container fluid={true} style={{ maxWidth: "1150px" }}>
                   {trackReviews.map(review => (
                     <TrackReviewCard review={review} />

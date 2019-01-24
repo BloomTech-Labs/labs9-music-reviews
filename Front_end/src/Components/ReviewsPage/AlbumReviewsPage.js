@@ -34,7 +34,8 @@ class AlbumReviewsPage extends Component {
       artistId: "",
       art: "",
       tracks: [],
-      reviews: []
+      reviews: [],
+      width: "",
     };
     this.getAlbum = this.getAlbum.bind(this);
   }
@@ -51,7 +52,8 @@ class AlbumReviewsPage extends Component {
           artist: res.data.artists[0]["name"],
           artistId: res.data.artists[0]["id"],
           art: res.data.images[1].url,
-          tracks: res.data.tracks.items
+          tracks: res.data.tracks.items,
+          width: res.data.images[0].height,
         }, console.log(res.data));
       })
       .catch(err => console.log(err));
@@ -101,7 +103,7 @@ class AlbumReviewsPage extends Component {
 
               {/* Spotify Player */}
               <iframe src={`https://open.spotify.com/embed/album/${this.state.albumId}`}
-              width="380" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media">
+              width={this.state.width} height="80" frameborder="0" allowtransparency="true" allow="encrypted-media">
               </iframe>
 
             <Row

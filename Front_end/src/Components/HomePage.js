@@ -6,7 +6,7 @@ import Newest from './Display/Newest';
 
 
 
-const LandingPage = () => {
+const HomePage = () => {
     return(
         <div>
             <Newest />
@@ -17,4 +17,4 @@ const LandingPage = () => {
     )
 }
 
-export default LandingPage;
+export default HomePage;
