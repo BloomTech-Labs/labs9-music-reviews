@@ -31,13 +31,6 @@ const ProfileInfo = styled.div`
   padding-top: 20px;
 `;
 
-
-Date.prototype.addDays = days => {
-  var date = new Date(this.valueOf());
-  date.setDate(date.getDate() + days);
-  return date;
-}
-
 class Billing extends Component {
   constructor(props){
     super(props);
@@ -54,7 +47,8 @@ class Billing extends Component {
     return result;
   }
   changeSubscriptionStatus = () => {
-    let subscriptionLength = this.state.subType === 'year' ? 365 : 30;
+    let subscriptionLength = this.state.subType === 'year' ? 366 : 31;
+    console.log(this.state.subType, subscriptionLength)
     let expirationDate = this.addDays(subscriptionLength);
     axios.put(`https://labs9-car-reviews.herokuapp.com/users/${this.props.userID}`, {   
       paidMembership: true,      
@@ -64,6 +58,7 @@ class Billing extends Component {
     .catch(err => { console.log(err) })
   }
   render() {
+    console.log(this.state.subType)
     return (
       <div>
         <Container>
@@ -87,12 +82,12 @@ class Billing extends Component {
                 <div style={{ margin: "2rem 0" }}>
                   <FormGroup check>
                     <Label check>
-                      <Input type="radio" name="subType" value="year" onClick={this.changeSub}/>{' '}
+                      <Input type="radio" name="subType" value="year" onClick={this.changeSub} />
                       1 Year Subscription $9.99
                     </Label>
                     <br/>
                     <Label check>
-                      <Input type="radio" name="subType" value="month" onClick={this.changeSub}/>
+                      <Input type="radio" name="subType" value="month" onClick={this.changeSub} disable />
                       1 Month Subscription $0.99
                     </Label>
                   </FormGroup>

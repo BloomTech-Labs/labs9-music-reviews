@@ -2,8 +2,6 @@
 
 .env
 
-./data/reviews.sqlite3
-
 serviceAccountKey.json
 .data/reviews.sqlite3
 # Logs
