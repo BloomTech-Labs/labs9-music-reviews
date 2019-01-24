@@ -70,7 +70,7 @@ class Navigation extends Component {
             style={{
               margin: "0 10px 0 0",
               padding: "5px",
-              height: "30px",
+              height: "55px",
               backgroundColor: "#495057",
               color: "#fff"
             }}
