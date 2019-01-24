@@ -11,6 +11,7 @@ import {
   DropdownItem,
   Input,
   NavbarBrand,
+  NavLink,
   Form
 } from 'reactstrap';
 import { Icon } from 'react-materialize';
