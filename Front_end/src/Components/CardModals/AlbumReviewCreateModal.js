@@ -7,10 +7,13 @@ import {
   Modal,
   ModalHeader,
   ModalFooter,
-  ListGroup,
-  ListGroupItem,
+  ModalBody,
   Col,
-  Row
+  Row,
+  ButtonDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
 } from "reactstrap";
 import EditStars from "../StarsRating/EditStars";
 import { type } from "os";
@@ -30,12 +33,16 @@ class AlbumReviewCreateModal extends React.Component {
       userID: 0,
       modal: false,
       nestedModal: false,
-      closeAll: false
+      closeAll: false,
+      dropdownOpen: false,
+      discs: [],
+      disc: 1
     };
 
     this.toggle = this.toggle.bind(this);
     this.toggleNested = this.toggleNested.bind(this);
     this.toggleAll = this.toggleAll.bind(this);
+    this.toggleDropdown = this.toggleDropdown.bind(this);
   }
 
   componentDidMount() {
@@ -43,6 +50,13 @@ class AlbumReviewCreateModal extends React.Component {
       spotifyAlbumID: this.props.match.params.id,
       userID: this.props.userID
     });
+    // let highDisc = 0;
+    // let discs = [];
+    // for(let i = 0; i <= this.props.tracks.length; i++) {
+    //   if (this.props.tracks[i].disc_number > highDisc) {
+    //     discs.push(this.props.tracks[i].disc_number)
+    //   }
+    // }
   }
 
   addHandler = event => {
@@ -79,6 +93,12 @@ class AlbumReviewCreateModal extends React.Component {
     });
   }
 
+  toggleDropdown() {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
+    });
+  }
+
   toggleNested() {
     this.setState({
       nestedModal: !this.state.nestedModal,
@@ -105,7 +125,7 @@ class AlbumReviewCreateModal extends React.Component {
   }
 
   render() {
-    console.log("Album ID", this.props.match.params.id);
+    console.log(this.props.tracks[0]);
     return (
       <Fragment>
         <Button color="danger" onClick={this.toggle}>
@@ -116,27 +136,61 @@ class AlbumReviewCreateModal extends React.Component {
           toggle={this.toggle}
           className={this.props.className}
           backdrop={true}
+          size="lg"
         >
-          <Row className="d-flex justify-content-around">
-            <Col className="container">
+          <Row className="d-flex align-items-center">
+            <Col className="container ">
               <div>
-                <ModalHeader>{this.props.album}</ModalHeader>
-                <ModalHeader>{this.props.artist}</ModalHeader>
-              </div>
-              <div>
-                <ListGroup>
-                  {this.props.tracks.map(track => (
-                    <ListGroupItem>
-                      {track.track_number}. {track.name}
-                    </ListGroupItem>
-                  ))}
-                </ListGroup>
+                <ModalBody>
+                  <h3>Album: </h3>
+                  <h5>{this.props.album}</h5>
+                </ModalBody>
+                <ModalBody>
+                  <h3>Artist: </h3>
+                  <h5>{this.props.artist}</h5>
+                </ModalBody>
               </div>
             </Col>
             <Col className="container">
               <div>
-                <img src={this.props.art} alt="Album cover art" />
+                <img
+                  src={this.props.art}
+                  alt="Album cover art"
+                  style={{ margin: "15px" }}
+                />
               </div>
+            </Col>
+          </Row>
+          {/* Disc Select Pulldown */}
+          <Row>
+            <ButtonDropdown
+              isOpen={this.state.dropdownOpen}
+              toggle={this.toggleDropdown}
+            >
+              <DropdownToggle caret>Button Dropdown</DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem header>Header</DropdownItem>
+                <DropdownItem disabled>Action</DropdownItem>
+                <DropdownItem>Another Action</DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem>Another Action</DropdownItem>
+              </DropdownMenu>
+            </ButtonDropdown>
+          </Row>
+          <Row>
+            <Col
+              className="d-flex align-items-start justify-content-space-around flex-column flex-wrap"
+              style={{
+                margin: "15px 25px",
+                maxHeight: "300px",
+                maxWidth: "45%"
+              }}
+            >
+              {this.props.tracks.map(track => (
+                <div style={{ margin: "0 10px" }}>
+                  <strong>{track.track_number}.</strong> {track.name}
+                </div>
+              ))}
             </Col>
           </Row>
           <div className="container center-align" style={{ margin: "0 auto" }}>
