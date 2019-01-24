@@ -87,7 +87,11 @@ class App extends Component {
   }
   changeLoginState = (boolean) => {
     localStorage.setItem("loggedIn", boolean);
-    this.setState({ loggedIn: Boolean(boolean) })
+    this.setState({ loggedIn: Boolean(boolean) }, () => {
+      if (this.state.loggedIn === false){
+        window.location.href="https://labs9carreviews.netlify.com/"
+      }
+    })
   }
   componentDidMount(){
     this.setState({ loading: true }, () => {
@@ -109,7 +113,6 @@ class App extends Component {
     setInterval(this.refreshToken, refreshTime);
   }
   render() {
-    console.log('From appjs', this.state.query)
     return (
       <Container fluid style={{ padding: "0" }}>
         <Navigation loggedIn={this.state.loggedIn} signout={() => this.changeLoginState(false)} userID={this.state.userID}/>

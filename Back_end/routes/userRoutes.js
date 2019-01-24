@@ -60,8 +60,8 @@ router.put('/:userID', async (req, res) => {
 
 router.put('/:userID/change_nickname', async (req, res) => {
   const { userID } = req.params
-  const { nickname } = req.body
-  if (!nickname) {
+  const body = req.body
+  if (!body.nickname) {
     res.status(400).json({ message: 'Please enter new nickname' })
   } else {
     try {
