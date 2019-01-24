@@ -48,7 +48,7 @@ const BreadcrumbsItem = ({ match }) => {
   return null;
 };
 
-const Breadcrumbs = ({ location : { pathname }, match }) => {
+const Breadcrumbs = ({ location : { pathname }, match, ...rest }) => {
   const paths = getPaths(pathname);
   return (
     <ol className = 'breadcrumb' style ={{backgroundColor: '#343a40', padding: '0'}}>

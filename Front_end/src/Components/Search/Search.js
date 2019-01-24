@@ -20,14 +20,13 @@ class Search extends Component {
         data: [],
         albums: [],
         artists: [],
-        tracks: []
+        tracks: [],
       }
   }
 
 
   renderAlbumArtistTrack = () => {
     let access_token = this.props.cookies.get('access_token');
-
     axios.get(`${API_URL}?q=${this.state.query.split(' ').join('%20')}&type=album%2Cartist%2Ctrack`, { 'headers': { 'Authorization': 'Bearer ' + access_token } })
       .then(({ data }) => {
           this.setState({ 
@@ -42,9 +41,9 @@ class Search extends Component {
       })
   }
 
-  onChange = () => {
+  onChange = (event) => {
     this.setState({
-      query: this.search.value
+      query: event.target.value,
     }, () => {
       if (this.state.query && this.state.query.length > 1) {
           this.renderAlbumArtistTrack()
@@ -53,7 +52,9 @@ class Search extends Component {
     })
   }
 
-
+  noEnter = (event) => {
+    event.preventDefault();
+  }
 
   convertToSeconds = (ms) => {
     let minutes = Math.floor(ms / 60000);
@@ -62,6 +63,7 @@ class Search extends Component {
   }
 
   render() {
+    console.log(this.props.query)
     const image = '../../Images/songbird.png';
     const renderSearch = <Container style = {{marginTop: '30px'}}>
                             <Row>
@@ -141,11 +143,13 @@ class Search extends Component {
       <Container fluid>
         <Row >
           <Col xs = '12' sm = '12' md = '12' lg = '12'>
-            <Form>
+            <Form onSubmit={this.noEnter}>
                 <Input
+                  type="search"
+                  name="search"
                   placeholder = 'Enter an Album, Artist or Track'
-                  innerRef={input => this.search = input}
                   onChange={this.onChange}
+                  value = {this.state.query}
                   style={{
                     padding: '5px',
                     height: '30px',
