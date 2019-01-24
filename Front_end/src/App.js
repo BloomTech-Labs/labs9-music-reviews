@@ -109,7 +109,6 @@ class App extends Component {
     setInterval(this.refreshToken, refreshTime);
   }
   render() {
-    console.log('From appjs', this.state.query)
     return (
       <Container fluid style={{ padding: "0" }}>
         <Navigation loggedIn={this.state.loggedIn} signout={() => this.changeLoginState(false)} userID={this.state.userID}/>
