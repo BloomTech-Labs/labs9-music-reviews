@@ -87,7 +87,7 @@ class Billing extends Component {
                     </Label>
                     <br/>
                     <Label check>
-                      <Input type="radio" name="subType" value="month" onClick={this.changeSub} disable />
+                      <Input type="radio" name="subType" value="month" onClick={this.changeSub} />
                       1 Month Subscription $0.99
                     </Label>
                   </FormGroup>
