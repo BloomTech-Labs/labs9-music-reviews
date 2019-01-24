@@ -87,7 +87,11 @@ class App extends Component {
   }
   changeLoginState = (boolean) => {
     localStorage.setItem("loggedIn", boolean);
-    this.setState({ loggedIn: Boolean(boolean) })
+    this.setState({ loggedIn: Boolean(boolean) }, () => {
+      if (this.state.loggedIn === false){
+        window.location.href="https://labs9carreviews.netlify.com/"
+      }
+    })
   }
   componentDidMount(){
     this.setState({ loading: true }, () => {
