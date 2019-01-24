@@ -37,7 +37,7 @@ class PlansModal extends React.Component {
             backgroundColor: "#495057",
             color: "#fff",
             fontSize: "12px",
-            margin: " 8px 15px"
+            margin: " 6px 15px"
           }}
         >
           Upgrade
