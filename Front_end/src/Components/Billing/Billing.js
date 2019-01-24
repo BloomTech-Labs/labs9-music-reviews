@@ -48,10 +48,14 @@ class Billing extends Component {
   changeSub = e => {
     this.setState({[e.target.name]: e.target.value})
   }
+  addDays = (days) => {
+    let result = new Date();
+    result.setDate(result.getDate() + days);
+    return result;
+  }
   changeSubscriptionStatus = () => {
-    var date = new Date();
     let subscriptionLength = this.state.subType === 'year' ? 365 : 30;
-    let expirationDate = date.addDays(subscriptionLength);
+    let expirationDate = this.addDays(subscriptionLength);
     axios.put(`https://labs9-car-reviews.herokuapp.com/users/${this.props.userID}`, {   
       paidMembership: true,      
       subscriptionExpiration: expirationDate
