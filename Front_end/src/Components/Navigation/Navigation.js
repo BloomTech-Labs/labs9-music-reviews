@@ -68,7 +68,7 @@ class Navigation extends Component {
               onChange={this.onChage}
               placeholder="Enter an Album, Artist or Track"
               style={{
-                margin: "0 3px 0 0",
+                margin: "0 0 0 0",
                 padding: "5px",
                 height: "31px",
                 backgroundColor: "#495057",
