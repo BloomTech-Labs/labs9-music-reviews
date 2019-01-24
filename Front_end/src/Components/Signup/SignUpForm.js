@@ -27,7 +27,6 @@ class SignUpForm extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
   onSubmitHandler = () => {
-    console.log(process.env);
     const validUser = this.isValid();
     if (validUser) {
       this.setState({invalidUser: false})
@@ -38,21 +37,23 @@ class SignUpForm extends React.Component {
           const name = this.state.email.slice(0, index);
           this.props.firebase.doSendVerificationViaEmail(name);
           this.props.firebase.auth
-            .onAuthStateChanged((user) => {
-              if (user) {
+          .onAuthStateChanged((user) => {
+            if (user) {
                 user.getIdToken().then((idToken) => {
-                  axios
+                    axios
                     .post(
-                      'https://labs9-car-reviews.herokuapp.com/user/create',
+                      `${process.env.REACT_APP_BACKEND_URL}users/create`,
                       {
                         token: idToken,
                       }
-                    )
-                    .then((res) => this.props.history.push('/'))
-                    .catch((err) => console.log(err));
-                });
-              }
-            })
+                      )
+                      .then((res) => {
+                        this.props.history.push('/');
+                      })
+                      .catch((err) => console.log(err));
+                  });
+              }}
+            )
             .catch((err) => console.log(err));
         })
         .catch((error) => {

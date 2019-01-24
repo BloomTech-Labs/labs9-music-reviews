@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Button } from 'reactstrap';
 // import styled from 'styled-components';
 
 class SettingsContent extends React.Component {
@@ -26,7 +27,7 @@ class SettingsContent extends React.Component {
           //if successful set state with details of the user
           const email = user.email;
           axios
-            .get(`https://labs9-car-reviews.herokuapp.com/user/get/${email}`)
+            .get(`${process.env.REACT_APP_BACKEND_URL}users/get/${email}`)
             .then((res) => {
               this.setState({
                 userID: res.data.userID,
@@ -59,7 +60,7 @@ class SettingsContent extends React.Component {
           <h1>Account Settings</h1>
           <p>User ID: {this.state.userID}</p>
           <p>Firebase UID: {this.state.firebaseUID}</p>
-          <p>Nickname: {this.state.nickname}</p>
+          <p>Nickname: {this.state.nickname}</p><Button>Change Nickname</Button>
           <p>Email address: {this.state.email}</p>
           <p>{this.state.paidStatus == false ? 'Tier: Free' : 'Tier: Paid'}</p>
           <p>

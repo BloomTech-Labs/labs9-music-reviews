@@ -45,3 +45,19 @@ router.get('/get/:email', (req, res) => {
     .then((user) => res.status(200).json(user[0]))
     .catch((err) => res.status(404).json(err));
 });
+
+router.put('/:userID', async (req, res) => {
+  const { userID } = req.params
+  const date = req.body
+  if (date.subscriptionExpiraton) {
+    res.status(400).json({ message: 'date cannot be blank' })
+  } else {
+    try {
+      const updatedSubscription = await dbUsers.edit(userID, date)
+      res.status(200).json(updatedSubscription)
+    }
+    catch (err) {
+      res.status(500).json(err.message)
+    }
+  }
+})
