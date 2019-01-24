@@ -42,7 +42,7 @@ class SignUpForm extends React.Component {
                 user.getIdToken().then((idToken) => {
                     axios
                     .post(
-                      `http://localhost:9000/users/create`,
+                      `${process.env.REACT_APP_BACKEND_URL}users/create`,
                       {
                         token: idToken,
                       }
