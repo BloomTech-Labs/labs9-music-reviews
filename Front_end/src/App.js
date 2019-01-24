@@ -38,6 +38,7 @@ class App extends Component {
       paidStatus: false,
       subscriptionExpiration: null,
       nickname: "",
+      query: ''
     }
     this.getToken = this.getToken.bind(this);
     this.refreshToken = this.refreshToken.bind(this);
@@ -107,7 +108,17 @@ class App extends Component {
     this.getToken();
     setInterval(this.refreshToken, refreshTime);
   }
+
+ updateSearch = (data) => {
+    this.setState({
+      query: data
+    })
+  }
+
+
+
   render() {
+    console.log('From appjs', this.state.query)
     return (
       <Container fluid style={{ padding: "0" }}>
         <Navigation loggedIn={this.state.loggedIn} signout={() => this.changeLoginState(false)} userID={this.state.userID}/>
@@ -123,7 +134,8 @@ class App extends Component {
           <LogInPage {...props} changeLogInState={() => this.changeLoginState(true)} /> }
         />
         <Route path="/forgot_password" component={ForgotPasswordPage} />
-        <Route path="/search" component={Search} />
+        <Route path="/search"  render={(props) => 
+          <Search {...props} query={this.state.query} /> }/>
         <Route
           path="/albums/:id"
           render={props => (
