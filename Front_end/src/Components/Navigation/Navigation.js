@@ -28,21 +28,20 @@ class Navigation extends Component {
     };
   }
 
-  onChage = (event) => {
+  onChange = (event) => {
     this.setState({
       query: event.target.value
     })
   }
 
-  keyPress = (event) => {
+ keyPress = (event) => {
     event.preventDefault();
-
-    let data = this.state.query;
-    this.props.updateSearch(data);
-
-    console.log('Enter is clicked', data);
-    this.props.history.push('/search');
-    
+    console.log('Enter is clicked');
+    if (!this.props.loggedIn){
+    this.props.history.push('/login');
+    } else {
+      this.props.history.push('/search')
+    }
     this.setState({
       query: ''
     })
@@ -65,7 +64,7 @@ class Navigation extends Component {
             type="search"
             name="search"
             value = {this.state.query}
-            onChange = {this.onChage}
+            onChange = {this.onChange}
             placeholder="Enter an Album, Artist or Track"
             style={{
               margin: "0 10px 0 0",

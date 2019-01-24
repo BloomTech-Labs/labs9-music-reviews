@@ -38,7 +38,6 @@ class App extends Component {
       paidStatus: false,
       subscriptionExpiration: null,
       nickname: "",
-      query: ''
     }
     this.getToken = this.getToken.bind(this);
     this.refreshToken = this.refreshToken.bind(this);
@@ -129,7 +128,7 @@ class App extends Component {
         />
         <Route path="/forgot_password" component={ForgotPasswordPage} />
         <Route path="/search"  render={(props) => 
-          <Search {...props} query={this.state.query} /> }/>
+          <Search {...props} loggedIn={this.state.loggedIn} /> }/>
         <Route
           path="/albums/:id"
           render={props => (
