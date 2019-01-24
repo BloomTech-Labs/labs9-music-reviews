@@ -53,8 +53,10 @@ class AlbumReviewCreateModal extends React.Component {
     // let highDisc = 0;
     // let discs = [];
     // for(let i = 0; i <= this.props.tracks.length; i++) {
+    //   console.log(discs)
     //   if (this.props.tracks[i].disc_number > highDisc) {
-    //     discs.push(this.props.tracks[i].disc_number)
+    //     discs.push(this.props.tracks[i].disc_number);
+    //     highDisc = this.props.tracks[i].disc_number;
     //   }
     // }
   }
@@ -125,7 +127,7 @@ class AlbumReviewCreateModal extends React.Component {
   }
 
   render() {
-    console.log(this.props.tracks[0]);
+    console.log(this.props.tracks);
     return (
       <Fragment>
         <Button color="danger" onClick={this.toggle}>
