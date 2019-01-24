@@ -37,7 +37,7 @@ class PlansModal extends React.Component {
             backgroundColor: "#495057",
             color: "#fff",
             fontSize: "12px",
-            margin: " 0 15px"
+            margin: " 8px 15px"
           }}
         >
           Upgrade
@@ -90,10 +90,10 @@ class PlansModal extends React.Component {
             </Col>
           </Row>
 
-          <ModalFooter style={{ display: "flex", justifyContent: 'space-between'}} >
-              <a href="/user/billing">
-            <Button color="primary" onClick={this.toggle}>
-              Upgrade
+          <ModalFooter style={{ display: "flex", justifyContent: 'space-between' }} >
+            <a href="/user/billing">
+              <Button color="primary" onClick={this.toggle}>
+                Upgrade
             </Button></a>
             <Button color="secondary" onClick={this.toggle}>
               Close
