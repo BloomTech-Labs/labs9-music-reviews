@@ -6,9 +6,10 @@ module.exports = {
   getAllUsers,
   createNewUser,
   getUser,
+  edit,
 };
 
-function getAllUsers(){
+function getAllUsers() {
   return db('users');
 }
 
@@ -32,4 +33,11 @@ function createNewUser(newUser) {
 
 function getUser(email) {
   return db('users').select().where({ emailAddress: email });
+}
+
+
+function edit(id, date) {
+  return db('users')
+    .where({ userID: id })
+    .update(date)
 }

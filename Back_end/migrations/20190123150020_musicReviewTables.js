@@ -3,10 +3,9 @@ exports.up = function (knex, Promise) {
     .createTable('users', function (usr) {
       usr.increments('userID').primary()
       usr.string('firebaseUID')
-      usr.string('emailAddress', 100)
+      usr.string('emailAddress', 100).unique()
       usr.boolean('paidMembership').defaultTo('false')
-      usr.integer('reviewCount').defaultTo(0)
-      usr.datetime('subscriptionExpiration').defaultTo(knex.fn.now())
+      usr.datetime('subscriptionExpiration')
       usr.string('nickname').unique()
     })
     .createTable('albumReview', function (alb) {
