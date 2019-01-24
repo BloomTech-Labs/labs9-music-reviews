@@ -205,7 +205,7 @@ class ReviewEditModal extends React.Component {
               isOpen={this.state.editNestedModal}
               toggle={this.toggleEditNested}
               style={{
-                top: "50%"
+                top: "80%"
               }}
               onClosed={this.state.closeAll ? this.toggle : undefined}
             >

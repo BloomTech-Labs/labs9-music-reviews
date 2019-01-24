@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import { Container, Row, Col, Jumbotron, CardImg, Button } from "reactstrap";
+import axios from 'axios';
 import ViewStars from "../StarsRating/ViewStars";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
@@ -12,16 +13,37 @@ class AlbumReviewCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
-      album: "",
-      artist: "",
-      art: "",
-      tracks: []
+      users: [],
+      nickname: ""
     };
   }
 
+  componentDidMount() {
+    this.getUser();    
+    this.getUserNickname();
+  }
+
+  getUser() {
+    axios
+      .get("https://labs9-car-reviews.herokuapp.com/users")
+      .then(response => {
+        const users = response.data;
+        const newState = Object.assign({}, this.state, {
+          users: users
+        });
+        this.setState(newState);
+      })
+      .catch(err => console.log(err));
+  }
+
+  getUserNickname() {
+    const usernickname = this.state.users.filter(user => {
+      return user.userID === this.props.review.userID;
+    });
+      // this.setState({nickname: usernickname.nickname})
+  }
+
   render() {
-    console.log(this.props.review);
     return (
       <Fragment>
         <Container>
@@ -45,7 +67,7 @@ class AlbumReviewCard extends Component {
                 </div>
                 <div>Member status</div>
                 <div>Location</div>
-                <div>Name</div>
+                <div>{this.state.nickname}</div>
                 <div>Number of Reviews Written</div>
               </Col>
               <Col md="8" style={{ padding: "1rem 5rem" }}>
