@@ -31,6 +31,13 @@ const ProfileInfo = styled.div`
   padding-top: 20px;
 `;
 
+
+Date.prototype.addDays = days => {
+  var date = new Date(this.valueOf());
+  date.setDate(date.getDate() + days);
+  return date;
+}
+
 class Billing extends Component {
   constructor(props){
     super(props);
@@ -41,9 +48,17 @@ class Billing extends Component {
   changeSub = e => {
     this.setState({[e.target.name]: e.target.value})
   }
-  // changeSubscriptionStatus = () => {
-  //   axios.put(user)
-  // }
+  changeSubscriptionStatus = () => {
+    var date = new Date();
+    let subscriptionLength = this.state.subType === 'year' ? 365 : 30;
+    let expirationDate = date.addDays(subscriptionLength);
+    axios.put(`https://labs9-car-reviews.herokuapp.com/users/${this.props.userID}`, {   
+      paidMembership: true,      
+      subscriptionExpiration: expirationDate
+    })
+    .then(res => { console.log(res) })
+    .catch(err => { console.log(err) })
+  }
   render() {
     return (
       <div>
