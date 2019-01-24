@@ -68,7 +68,7 @@ class App extends Component {
         if ( !this.props.cookies.get("access_token") ){
           this.props.cookies.remove("access_token")
           console.log("token removed")
-          this.refreshToken();
+          this.getToken();
         } else {
           this.props.cookies.set("access_token", res.data.access_token)
         }
