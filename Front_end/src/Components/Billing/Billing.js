@@ -48,7 +48,6 @@ class Billing extends Component {
   }
   changeSubscriptionStatus = () => {
     let subscriptionLength = this.state.subType === 'year' ? 366 : 31;
-    console.log(this.state.subType, subscriptionLength)
     let expirationDate = this.addDays(subscriptionLength);
     axios.put(`https://labs9-car-reviews.herokuapp.com/users/${this.props.userID}`, {   
       paidMembership: true,      
