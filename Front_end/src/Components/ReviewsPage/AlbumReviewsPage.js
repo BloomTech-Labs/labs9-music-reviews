@@ -78,6 +78,7 @@ class AlbumReviewsPage extends Component {
     const albumReviews = this.state.reviews.filter(review => {
       return review.spotifyAlbumID === this.props.match.params.id;
     });
+    console.log("Album Page Tracks", this.state.tracks)
     return (
       <Fragment>
         <Container

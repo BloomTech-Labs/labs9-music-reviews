@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import ReviewEditModal from "../CardModals/ReviewEditModal";
+import TrackReviewEditModal from "../CardModals/TrackReviewEditModal";
 import ViewStars from "../StarsRating/ViewStars";
 import { Row, Col, Container } from "reactstrap";
 import axios from "axios";
@@ -14,60 +14,39 @@ class TrackProfileReviewCard extends Component {
     super(props);
     const { cookies } = props;
     this.state = {
-      data: [],
       album: "",
       artist: "",
       art: "",
-      tracks: [],
-      track: "",
-      albumId: ""
+      track: ""      
     };
-    this.getAlbum = this.getAlbum.bind(this);
   }
   getTrack = (trackId, token) => {
     axios
       .get(`https://api.spotify.com/v1/tracks/${trackId}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
-      .then(data => {
+      .then(res => {
+        console.log(res.data)
         this.setState({
-          track: data.data.name,
-          albumId: data.data.album.id
+          track: res.data.name,
+          album: res.data.album.name,
+          artist: res.data.artists[0].name,
+          art: res.data.album.images[1].url
         });
       })
       .catch(err => console.log(err));
   };
-
-  getAlbum = (albumId, token) => {
-    axios
-      .get(`https://api.spotify.com/v1/albums/${albumId}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      })
-      .then(data => {
-        this.setState({
-          data,
-          album: data.data.name,
-          artist: data.data.artists[0]["name"],
-          art: data.data.images[1]["url"],
-          tracks: data.data.tracks.items
-        });
-      })
-      .catch(err => console.log(err));
-  };  
 
   componentDidMount() {
     this.getTrack(
       this.props.review.spotifyTrackID,
       this.props.cookies.get("access_token")
     );
-    this.getAlbum(
-        this.state.albumId,
-        this.props.cookies.get("access_token")
-      );
   }
+
   render() {
-      console.log(this.state.albumId)
-      console.log(this.state.data)
+    console.log(this.props.review.spotifyTrackID);
+    console.log(this.state.track);
     return (
       <Fragment>
         <Container>
@@ -79,13 +58,14 @@ class TrackProfileReviewCard extends Component {
               <div>Artist: {this.state.artist}</div>
               <div>Track: {this.state.track}</div>
               {/* If logged in edit button shows otherwise null */}
-              {this.props.loggedIn === true && this.props.review.userID === this.props.userID ? (
-                <ReviewEditModal
+              {this.props.loggedIn === true &&
+              this.props.review.userID === this.props.userID ? (
+                <TrackReviewEditModal
                   {...this.props}
                   album={this.state.album}
                   artist={this.state.artist}
                   art={this.state.art}
-                  tracks={this.state.tracks}
+                  track={this.state.track}
                 />
               ) : null}
             </Col>

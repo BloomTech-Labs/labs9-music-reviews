@@ -31,12 +31,12 @@ class UserReviewList extends Component {
   }
 
   componentDidMount() {
-    this.getAlbumReviews();
-    this.getTrackReviews();
     this.setState({
-      loggedIn: this.props.loggedIn,
-      userID: this.props.userID
+      userID: this.props.userID,
+      loggedIn: this.props.loggedIn
     });
+    this.getAlbumReviews();
+    this.getTrackReviews();    
   }
 
   getAlbumReviews() {
@@ -70,15 +70,12 @@ class UserReviewList extends Component {
   };
 
   render() {
-    console.log(this.state.trackReviews)
-    console.log(this.props.match.params.id)
     const userAlbumReviews = this.state.albumReviews.filter(review => {
       return review.userID === parseInt(this.props.match.params.id);
     });
     const userTrackReviews = this.state.trackReviews.filter(review => {
       return review.userID === parseInt(this.props.match.params.id);
     });
-    
     return (
       <Fragment>
         <Container
@@ -105,8 +102,7 @@ class UserReviewList extends Component {
             <Row style={{ alignSelf: "center" }}>
               <h5>
                 Reviews:{" "}
-                {this.state.albumReviews.length +
-                  this.state.trackReviews.length}
+                {userAlbumReviews.length + userTrackReviews.length}
               </h5>
             </Row>
             {/* can add logic to render different size of album art based on screen size: stacked ternary */}
@@ -125,7 +121,7 @@ class UserReviewList extends Component {
           {userAlbumReviews.map(review => (
             <AlbumProfileReviewCard
               review={review}
-              loggedIn={this.state.loggedIn}
+              loggedIn={this.props.loggedIn}
               userID={this.props.userID}
               key={review.id}
             />
@@ -133,7 +129,7 @@ class UserReviewList extends Component {
           {userTrackReviews.map(review => (
             <TrackProfileReviewCard
               review={review}
-              loggedIn={this.state.loggedIn}
+              loggedIn={this.props.loggedIn}
               userID={this.props.userID}
               key={review.id}
             />
