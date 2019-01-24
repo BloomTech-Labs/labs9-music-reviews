@@ -11,7 +11,6 @@ import {
   DropdownMenu,
   DropdownItem,
   Input,
-  NavbarBrand,
   NavLink,
   Form
 } from 'reactstrap';
