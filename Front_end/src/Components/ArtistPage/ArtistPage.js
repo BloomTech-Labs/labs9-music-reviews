@@ -82,12 +82,12 @@ class ArtistPage extends Component {
             <h1>{this.state.artist}</h1>
             <Row>
               <Col align="right">
-                <h4>Genre:</h4>
+                <h4>Genre(s):</h4>
               </Col>
               <Col>
                 <ListGroup>
-                  {this.state.genres.map(genre => {
-                    return <ListGroupItem>{genre}</ListGroupItem>;
+                  {this.state.genres.map((genre, index) => {
+                    return `${ (index ? ', ' : '') + genre }`;
                   })}
                 </ListGroup>
               </Col>

@@ -6,7 +6,7 @@ import axios from "axios";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
 
-class ProfileReviewCard extends Component {
+class AlbumProfileReviewCard extends Component {
   static propTypes = {
     cookies: instanceOf(Cookies).isRequired
   };
@@ -18,7 +18,7 @@ class ProfileReviewCard extends Component {
       album: "",
       artist: "",
       art: "",
-      tracks: []
+      tracks: [],
     };
     this.getAlbum = this.getAlbum.bind(this);
   }
@@ -47,8 +47,6 @@ class ProfileReviewCard extends Component {
     );
   }
   render() {
-    console.log("Dynamic ID", this.props.review.userID);
-    console.log("Dynamic ID", this.props.userID);
     return (
       <Fragment>
         <Container>
@@ -58,9 +56,6 @@ class ProfileReviewCard extends Component {
               <img src={this.state.art} alt="Album cover art" />
               <div>Album: {this.state.album}</div>
               <div>Artist: {this.state.artist}</div>
-              {/* {this.props.review.trackName ? (
-              <div>{this.props.review.trackName}</div>
-            ) : null} */}
               {/* If logged in edit button shows otherwise null */}
               {this.props.loggedIn === true && this.props.review.userID === this.props.userID ? (
                 <ReviewEditModal
@@ -95,4 +90,4 @@ class ProfileReviewCard extends Component {
   }
 }
 
-export default withCookies(ProfileReviewCard);
+export default withCookies(AlbumProfileReviewCard);
