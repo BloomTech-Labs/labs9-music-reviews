@@ -56,10 +56,10 @@ class TrackProfileReviewCard extends Component {
         <Container>
           <Row style={{ display: "flex", padding: "1rem" }}>
             {/* User info */}
-            <Col md="3" style={{ margin: "auto 0" }}>
+            <Col md="5" style={{ margin: "auto 0" }}>
               <NavLink
                 to={`/albums/${this.state.albumID}`}
-                style={{ textDecoration: "none", color: "black" }}
+                style={{ textDecoration: "none", color: "black", maxWidth: "150px", maxHeight: "150px", }}
               >
                 <img src={this.state.art} alt="Album cover art" />
               </NavLink>
@@ -93,7 +93,7 @@ class TrackProfileReviewCard extends Component {
                 />
               ) : null}
             </Col>
-            <Col md="9" style={{ padding: "1rem 5rem" }}>
+            <Col md="7" style={{ padding: "1rem 5rem" }}>
               <Row style={{ display: "flex" }}>
                 <ViewStars rating={this.props.review.rating} />
                 <p style={{ padding: "0 20px" }}>
