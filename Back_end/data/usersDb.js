@@ -7,7 +7,8 @@ module.exports = {
   createNewUser,
   getUser,
   edit,
-  editNickname
+  editNickname,
+  getNickname
 };
 
 function getAllUsers() {

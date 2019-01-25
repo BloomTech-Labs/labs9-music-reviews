@@ -96,7 +96,7 @@ class AlbumReviewsPage extends Component {
     //     // write a review
     //   }
     // }
-
+    console.log(this.state.tracks)
     return (
       <Fragment>
         <Container fluid={true} style={{ display: "flex", margin: "0 auto", maxWidth: "1600px" }} >
