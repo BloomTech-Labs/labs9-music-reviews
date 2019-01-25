@@ -9,7 +9,7 @@ import { Container } from 'reactstrap'
 
 const HomePage = () => {
     return(
-        <Container fluid>
+        <Container fluid style={{ maxWidth: "1600px", paddingTop: "12rem"}} >
             <Newest />
             <FeaturedReviews />
             <PopularTracks />

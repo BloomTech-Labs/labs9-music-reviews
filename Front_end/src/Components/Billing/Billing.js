@@ -30,7 +30,6 @@ const ProfileInfo = styled.div`
   overflow-x: hidden;
   height: 100%;
   padding-top: 20px;
-  padding-left: 65px;
 `;
 
 class Billing extends Component {
@@ -66,7 +65,7 @@ class Billing extends Component {
   render() {
     return (
       <div>
-        <Container fluid style={{ maxWidth: "1000px" }}>
+        <Container fluid style={{ maxWidth: "1000px", paddingTop: "10rem" }}>
           <Row>
             <Col md="4" sm="12">
               <ProfileInfo>
@@ -74,7 +73,12 @@ class Billing extends Component {
                   <CardImg
                     src={require("../../Images/RecordThumb.png")}
                     alt="Default profile image"
-                    style={{ maxWidth: "250px", maxHeight: "250px", padding: "2rem", margin: "0 auto" }}
+                    style={{ 
+                      maxWidth: "250px",
+                      maxHeight: "250px",
+                      padding: "2rem",
+                      margin: "0 auto",
+                    }}
                   />
                 </Row>
                 <p>Status</p>
@@ -100,12 +104,14 @@ class Billing extends Component {
                   </FormGroup>
                   <SubInfoModal />
                 </div>
-                <Checkout
-                  name={"Subscription"}
-                  description={this.state.subType === "year" ? "1 Year Subscription" : "1 Month Subscription"}
-                  amount={this.state.subType === "year" ? 9.99 : 0.99}
-                  changeSubscriptionStatus={this.changeSubscriptionStatus}
-                />
+                {this.state.subType === '' ? '' 
+                : <Checkout
+                    name={"Subscription"}
+                    description={this.state.subType === "year" ? "1 Year Subscription" : "1 Month Subscription"}
+                    amount={this.state.subType === "year" ? 9.99 : 0.99}
+                    changeSubscriptionStatus={this.changeSubscriptionStatus}
+                  />
+                }   
               </Payment>
             </Col>
           </Row>

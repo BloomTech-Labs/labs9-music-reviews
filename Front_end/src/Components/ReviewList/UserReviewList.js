@@ -99,7 +99,8 @@ class UserReviewList extends Component {
             display: "flex",
             justifyItems: "space-around",
             margin: "0 auto",
-            maxWidth: "1600px"
+            maxWidth: "1600px",
+            paddingTop: "10rem",
           }}
         >
           <Col xs="12" md="4">

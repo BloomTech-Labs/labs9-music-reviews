@@ -75,78 +75,80 @@ class Search extends Component {
 
   render() {
     const image = '../../Images/songbird.png';
-    const renderSearch = <Container style = {{marginTop: '30px'}}>
-                            <Row>
-                              <h3>Albums</h3>
-                            </Row>
-                            
-                              <div className="d-flex flex-row flex-nowrap align-items-center" style = {{overflow: 'auto', WebkitOverflowScrolling: 'touch'}} >
-                              {this.state.albums.map(album => {
-                                    return  <NavLink key={album.id} to={`/albums/${album.id}`} style={{ textDecoration: 'none' }}><Col>
-                                                <Card key = {album.id} style = {{width: '10rem', border: 'none', alignItems: 'center'}}>
+    const renderSearch = 
+    
+    <Container style = {{position: "relative", top: "20rem"}}>
+      <Row>
+        <h3>Albums</h3>
+      </Row>
+      
+        <div className="d-flex flex-row flex-nowrap align-items-center" style = {{overflow: 'auto', WebkitOverflowScrolling: 'touch'}} >
+        {this.state.albums.map(album => {
+              return  <NavLink key={album.id} to={`/albums/${album.id}`} style={{ textDecoration: 'none' }}><Col>
+                          <Card key = {album.id} style = {{width: '10rem', border: 'none', alignItems: 'center'}}>
 
-                                                  <CardImg src= {!album.images[0] ?  image : album.images[0].url}  alt = {album.name} style = {{borderRadius: '50%', width: '7rem'}}/>
-                                                  <CardBody>
-                                                    <CardTitle>{album.name}</CardTitle>
-                                                  </CardBody>
-                                                </Card>
-                                            </Col>
-                                            </NavLink>
-                                  })
-                                }
-                            </div>
-                            <Row>
-                            <Row style = {{marginTop: '20px'}}>
-                              <h3>Artists</h3>
-                            </Row>
-                            
-                              <div className="d-flex flex-row flex-nowrap align-items-center" style ={{overflow: 'auto', WebkitOverflowScrolling: 'touch'}}>
-                              {this.state.artists.map(artist => {
-                                    return  artist.images.length === 0 ? null : <NavLink key ={artist.id}to={`/artists/${artist.id}`}><Col>
-                                                <Card key = {artist.id} style = {{width: '10rem', alignItems: 'center', border: 'none'}}>
+                            <CardImg src= {!album.images[0] ?  image : album.images[0].url}  alt = {album.name} style = {{borderRadius: '50%', width: '7rem'}}/>
+                            <CardBody>
+                              <CardTitle>{album.name}</CardTitle>
+                            </CardBody>
+                          </Card>
+                      </Col>
+                      </NavLink>
+            })
+          }
+      </div>
+      <Row style = {{ marginTop: '20px' }}>
+        <h3>Artists</h3>
+      </Row>
+      <Row style = {{ padding: "1rem" }}>
+      
+        <div className="d-flex flex-row flex-nowrap align-items-center" style ={{overflow: 'auto', WebkitOverflowScrolling: 'touch'}}>
+        {this.state.artists.map(artist => {
+              return  artist.images.length === 0 ? null : <NavLink key ={artist.id}to={`/artists/${artist.id}`}><Col>
+                          <Card key = {artist.id} style = {{width: '10rem', alignItems: 'center', border: 'none'}}>
 
-                                                  <CardImg src= {!artist.images[0] ? image : artist.images[0].url}  alt = {artist.name} style = {{borderRadius: '50%', width: '7rem'}}/>
-                                                  <CardBody>
-                                                    <CardTitle>{artist.name}</CardTitle>
-                                                  </CardBody>
-                                                </Card>
-                                            </Col>
-                                            </NavLink>
-                                  })
-                                }
-                            </div>
-                            </Row>
-                            <Row style={{marginTop: '30px'}}>
-                              <h3>Tracks</h3>
-                            </Row>
-                            <Row>
-                              <Col>
-                              <Row style = {{ marginBottom: '20px' }}>
-                                <Col xs={6} lg={2} xl={2} style={{ textAlign: 'center' }}>Art</Col>
-                                <Col xs={6} lg ={6} xl={4} style={{ textAlign: 'center' }} >Track Name</Col>
-                                <Col md={4} xl={4} className="d-none d-lg-block" style={{ textAlign: 'center' }}>Album Name</Col>
-                                <Col md={2} xl={2} className="d-none d-xl-block" style={{ textAlign: 'center' }}>Track Time</Col>
-                              </Row>
-                              {this.state.tracks.map(track => {
-                                const seconds = this.convertToSeconds(track.duration_ms);
-                                  return track.album.images.length === 0 ? null : 
-                                   <NavLink to={`/tracks/${track.id}`}>
-                                    <Row key = {track.id} style = {{ maxWidth: '1600px', textAlign: 'center', padding: '1rem' }} className="d-flex align-items-center">
-                                        <Col xs={6} lg={2} xl={2}>
-                                          <CardImg src= {!track.album.images[0] ? image : track.album.images[0].url}
-                                                  alt = {track.name} style = {{borderRadius: '50%', width: '7rem'}}
-                                          />  
-                                        </Col>
-                                        <Col xs={6} lg ={6} xl={4}>{track.name}</Col>
-                                        <Col md={4} xl={4} className="d-none d-lg-block">{track.album.name}</Col>
-                                        <Col  md={2} xl={2} className="d-none d-xl-block" >{seconds}</Col>
-                                    </Row>
-                                   </NavLink>
-                                })
-                              }
-                              </Col>
-                            </Row>
-                        </Container>
+                            <CardImg src= {!artist.images[0] ? image : artist.images[0].url}  alt = {artist.name} style = {{borderRadius: '50%', width: '7rem'}}/>
+                            <CardBody>
+                              <CardTitle>{artist.name}</CardTitle>
+                            </CardBody>
+                          </Card>
+                      </Col>
+                      </NavLink>
+            })
+          }
+      </div>
+      </Row>
+      <Row style={{marginTop: '30px'}}>
+        <h3>Tracks</h3>
+      </Row>
+      <Row>
+        <Col>
+        <Row style = {{ marginBottom: '20px' }}>
+          <Col xs={6} lg={2} xl={2} style={{ textAlign: 'center' }}>Art</Col>
+          <Col xs={6} lg ={6} xl={4} style={{ textAlign: 'center' }} >Track Name</Col>
+          <Col md={4} xl={4} className="d-none d-lg-block" style={{ textAlign: 'center' }}>Album Name</Col>
+          <Col md={2} xl={2} className="d-none d-xl-block" style={{ textAlign: 'center' }}>Track Time</Col>
+        </Row>
+        {this.state.tracks.map(track => {
+          const seconds = this.convertToSeconds(track.duration_ms);
+            return track.album.images.length === 0 ? null : 
+              <NavLink to={`/tracks/${track.id}`}>
+              <Row key = {track.id} style = {{ maxWidth: '1600px', textAlign: 'center', padding: '1rem' }} className="d-flex align-items-center">
+                  <Col xs={6} lg={2} xl={2}>
+                    <CardImg src= {!track.album.images[0] ? image : track.album.images[0].url}
+                            alt = {track.name} style = {{borderRadius: '50%', width: '7rem'}}
+                    />  
+                  </Col>
+                  <Col xs={6} lg ={6} xl={4}>{track.name}</Col>
+                  <Col md={4} xl={4} className="d-none d-lg-block">{track.album.name}</Col>
+                  <Col  md={2} xl={2} className="d-none d-xl-block" >{seconds}</Col>
+              </Row>
+              </NavLink>
+          })
+        }
+        </Col>
+      </Row>
+  </Container>
                      
 
     return (

@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 const SettingsContainer = styled.div`
   height: 100vh;
+  padding-top: 10rem
   div {
     text-align: center;
     p {

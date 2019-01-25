@@ -55,7 +55,7 @@ class Navigation extends Component {
 
   render() {
     return (
-        <div className="flex-sm-column" style={{ paddingBottom: "200px" }}>
+        <div className="flex-sm-column">
 
         <Navbar color="dark" fixed="top" dark expand="md"  toggleable="sm" style={{ display: "flex" }}>
           <Col>
