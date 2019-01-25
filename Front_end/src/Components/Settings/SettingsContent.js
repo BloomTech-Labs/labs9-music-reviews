@@ -68,7 +68,6 @@ class SettingsContent extends React.Component {
     );
   }
   render() {
-    console.log("state", this.state.paidStatus)
     if (this.state.loading === true && this.state.loaded === false) {
       return <div />;
     } else if (this.state.loading === false && this.state.loaded === false) {

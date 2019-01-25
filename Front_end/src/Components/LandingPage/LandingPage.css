@@ -1,5 +1,8 @@
 .landingpage{
-  background-image: url("../../Images/LabsBackgroundDark.jpg");
+  /* background-image: url("../../Images/LabsBackgroundDark.jpg"); */
+  /* background-image: linear-gradient(to bottom, #d430ed, #ae25d0, #891ab3, #670e95, #470278); */
+  /* background-image: linear-gradient(to bottom, #590cae, #1e4dd0, #0074e5, #0095ee, #00b4f1, #00b5f4, #00b6f7, #00b7fa, #009aff, #0079ff, #0053f8, #0013e0); */
+  background-image: linear-gradient(to bottom, #9209eb, #7e07d8, #6b05c6, #5802b3, #4600a1);
   height: 100vh;
   width: 100vw;
   background-color: black;
@@ -8,4 +11,66 @@
   background-position: center;
 }
 
+.music-notes {
+  display: block;
+  margin: auto;
+  position: relative;
+  width: 50%;
+  min-width: 300px;
+  height: 200px;
+  border: 0px solid #000;
+}
+
+.note-1,
+.note-2,
+.note-3,
+.note-4 {
+  position: absolute;
+  animation: notes 2s infinite linear;
+  font-size: 35px;
+  opacity: 0;
+}
+
+.note-1 {
+  top: 60px;
+  left: 0;
+  animation-delay: 0.5s;
+}
+
+.note-2 {
+  top: 30px;
+  left: 30%;
+  animation-delay: 1s;
+}
+
+.note-3 {
+  top: 90px;
+  left: 60%;
+  animation-delay: 1.5s;
+}
+
+.note-4 {
+  top: 40px;
+  left: 90%;
+  animation-delay: 2s;
+}
+
+@keyframes notes {
+  0% {
+    transform: scale(1) translate(0, 0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.5) translate(50%, -50%);
+  }
+  80% {
+    opacity: 0;
+    transform: scale(1.5) translate(100%, -100%);
+  }
+  100% {
+    transform: scale(1.5) translate(100%, -100%);
+    opacity: 0;
+  }
+}
 

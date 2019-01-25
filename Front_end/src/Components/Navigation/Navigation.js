@@ -57,7 +57,7 @@ class Navigation extends Component {
     return (
         <div className="flex-sm-column">
 
-        <Navbar color="dark" dark expand="md" sticky="top" toggleable="sm" style={{ display: "flex" }}>
+        <Navbar color="dark" fixed="top" dark expand="md"  toggleable="sm" style={{ display: "flex" }}>
           <Col>
             {/* <NavbarBrand sm="12" className="mr-auto" style={{ background: "white", color: "lightblue", fontSize: "4rem", fontWeight: "700", padding: "0.5rem" }}>
               <Route path="/:path" component={Breadcrumbs} />
