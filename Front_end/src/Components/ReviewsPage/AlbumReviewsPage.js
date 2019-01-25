@@ -163,12 +163,11 @@ class AlbumReviewsPage extends Component {
             </Sidebar>
           </Col>
         </Container>
-
-        <Container fluid={true} style={{ maxWidth: "1150px" }}>
-          {albumReviews.map(review => (
-            <AlbumReviewCard review={review} />
-          ))}
-        </Container>
+          <Container fluid={true} style={{ maxWidth: "1150px" }}>
+            {albumReviews.map(review => (
+              <AlbumReviewCard review={review} userID={this.props.userID}/>
+            ))}
+          </Container>
       </Fragment>
     );
   }

@@ -18,11 +18,6 @@ class AlbumReviewCard extends Component {
     };
   }
 
-  componentDidMount() {
-    this.getUser();    
-    this.getUserNickname();
-  }
-
   getUser() {
     axios
       .get("https://labs9-car-reviews.herokuapp.com/users")
@@ -31,16 +26,20 @@ class AlbumReviewCard extends Component {
         const newState = Object.assign({}, this.state, {
           users: users
         });
-        this.setState(newState);
+        this.setState(newState, () => {this.findNickname()});
       })
       .catch(err => console.log(err));
   }
-
-  getUserNickname() {
-    const usernickname = this.state.users.filter(user => {
-      return user.userID === this.props.review.userID;
+  
+  findNickname() {
+    const currentUser = this.state.users.filter(user => {
+      return user.userID === this.props.review.userID
     });
-      // this.setState({nickname: usernickname.nickname})
+    this.setState({ nickname: currentUser.nickname})
+  }
+
+  componentDidMount() {
+    this.getUser();
   }
 
   render() {
@@ -65,10 +64,9 @@ class AlbumReviewCard extends Component {
                     style={{ maxWidth: '150px'}}
                   />
                 </div>
+                <div><strong>Nickname: </strong>{this.state.nickname}</div>
                 <div>Member status</div>
-                <div>Location</div>
-                <div>{this.state.nickname}</div>
-                <div>Number of Reviews Written</div>
+                <div><strong>Reviews: </strong></div>
               </Col>
               <Col md="8" style={{ padding: "1rem 5rem" }}>
                 <Row style={{ display: "flex" }}>
