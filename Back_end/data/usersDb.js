@@ -48,3 +48,9 @@ function editNickname(id, nickname){
   .where({ userID: id })
   .update(nickname)
 }
+
+function getNickname(id) {
+  return db('users')
+    .select('nickname')
+    .where({ userID: id })
+}
