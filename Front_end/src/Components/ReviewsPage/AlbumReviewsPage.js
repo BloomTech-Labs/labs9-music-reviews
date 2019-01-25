@@ -183,7 +183,7 @@ class AlbumReviewsPage extends Component {
             {albumReviews.length === 0 ?
               <Row><h3>Be the first to write a review for this album!</h3></Row> :
               albumReviews.map(review => (
-              <AlbumReviewCard review={review} userID={this.props.userID}/>
+              <ReviewCard review={review} userID={this.props.userID}/>
               ))
             }
           </Container>

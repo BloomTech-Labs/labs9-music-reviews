@@ -235,7 +235,7 @@ class TrackReviewsPage extends Component {
                   {trackReviews.length === 0 ? 
                     <Row><h3>Be the first to write a review for this track!</h3></Row> :
                     trackReviews.map(review => (
-                      <TrackReviewCard review={review} />
+                      <ReviewCard review={review} />
                     ))
                   }
                 </Container>
