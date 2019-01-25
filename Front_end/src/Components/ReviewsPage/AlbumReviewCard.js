@@ -33,9 +33,9 @@ class AlbumReviewCard extends Component {
   
   getNickname(userID) {
     axios
-      .get(`https://labs9-car-reviews.herokuapp.com/user/${userID}/nickname`)
+      .get(`https://labs9-car-reviews.herokuapp.com/users/${userID}/nickname`)
       .then(response => {
-        const userNickname = response.data;
+        const userNickname = response.data[0].nickname;
         const newState = Object.assign({}, this.state, {
           nickname: userNickname
         });
@@ -46,10 +46,11 @@ class AlbumReviewCard extends Component {
 
   componentDidMount() {
     this.getUser();
-    this.getNickname(this.props.userID);
+    this.getNickname(this.props.review.userID);
   }
 
   render() {
+    console.log(this.props.review)
     return (
       <Fragment>
         <Container>

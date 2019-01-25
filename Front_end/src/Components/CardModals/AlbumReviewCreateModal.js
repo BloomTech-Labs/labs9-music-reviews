@@ -54,7 +54,6 @@ class AlbumReviewCreateModal extends React.Component {
 
   addHandler = event => {
     // event.preventDefault();
-    this.dateStamp();
     axios
       .post(`https://labs9-car-reviews.herokuapp.com/albumReviews`, {
         created_at: this.state.dateCreated,
