@@ -8,17 +8,17 @@ import { Link } from 'react-router-dom';
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
 
-const Sidebar = styled.div`
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  height: 100%;
-  padding-top: 80px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+// const Sidebar = styled.div`
+//   position: -webkit-sticky;
+//   position: sticky;
+//   top: 0;
+//   z-index: 1;
+//   height: 100%;
+//   padding-top: 80px;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// `;
 
 class AlbumReviewsPage extends Component {
   static propTypes = {
@@ -99,9 +99,18 @@ class AlbumReviewsPage extends Component {
 
     return (
       <Fragment>
-        <Container fluid={true} style={{ display: "flex", margin: "0 auto", maxWidth: "1600px" }} >
-          <Col xs="12" md="4">
-            <Sidebar>
+        <Container fluid={true} 
+          style={{
+              display: "flex",
+              margin: "auto",
+              maxWidth: "1600px",
+              position: "relative",
+              top: "8rem" 
+            }} 
+          >
+        <Row>
+          <Col xs="12" md="6" style={{ border: "1px solid red" }}>
+           
               <Row style={{ alignSelf: "center" }}>
                 <h3>{this.state.album}</h3>
               </Row>
@@ -116,7 +125,7 @@ class AlbumReviewsPage extends Component {
 
               {/* Spotify Player */}
               <iframe src={`https://open.spotify.com/embed/album/${this.state.albumId}`}
-              width={this.state.width} height="80" frameborder="0" allowtransparency="true" allow="encrypted-media">
+              width={this.state.width*1.2} height="80" frameborder="0" allowtransparency="true" allow="encrypted-media">
               </iframe>
 
               <Row style={{ display: "flex", justifyContent: "space-evenly", padding: "1rem" }}>
@@ -162,14 +171,17 @@ class AlbumReviewsPage extends Component {
                   })}
                 </Col>
               </Row>
-            </Sidebar>
+
           </Col>
-        </Container>
-          <Container fluid={true} style={{ maxWidth: "1150px" }}>
+        <Col md="6" sm="12">
+          <Container fluid={true} style={{ maxWidth: "1150px", position: "relative", top: "5rem" }}>
             {albumReviews.map(review => (
               <AlbumReviewCard review={review} userID={this.props.userID}/>
-            ))}
+              ))}
           </Container>
+        </Col>  
+        </Row>
+      </Container>
       </Fragment>
     );
   }

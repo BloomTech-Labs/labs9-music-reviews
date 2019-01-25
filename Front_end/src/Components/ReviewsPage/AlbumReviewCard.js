@@ -68,7 +68,12 @@ class AlbumReviewCard extends Component {
                   <img
                     src={require("../../Images/RecordThumb.png")}
                     alt="Default profile image"
-                    style={{ maxWidth: '150px'}}
+                    style={{ 
+                      maxWidth: "250px",
+                      maxHeight: "250px",
+                      padding: "2rem",
+                      margin: "0 auto",
+                    }}
                   />
                 </div>
                 <div><strong>Nickname: </strong>{this.state.nickname}</div>
@@ -77,8 +82,12 @@ class AlbumReviewCard extends Component {
               </Col>
               <Col md="8" style={{ padding: "1rem 5rem" }}>
                 <Row style={{ display: "flex" }}>
-                <ViewStars rating={this.props.review.rating} />
-                  <p style={{ margin: "auto" }}>Date Written: (DATE)</p>
+                  <Col sm="12" md="6">
+                    <ViewStars rating={this.props.review.rating} />
+                  </Col>
+                  <Col sm="12" md="6">
+                    <p style={{ margin: "auto" }}>Date Written: (DATE)</p>
+                  </Col>
                 </Row>
                 <Row>
                   <div align="left">

@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Form, Input, Row, Col, Container, Card, CardImg, CardBody, CardTitle } from 'reactstrap';
+import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
 
+const H3 = styled.h3`
+  color: lightblue;
+  text-shadow:
+    -0.5px -0.5px 0 #000,
+    0.5px -0.5px 0 #000,
+    -0.5px 0.5px 0 #000,
+    0.5px 0.5px 0 #000;
+`
 
 const API_URL = 'https://api.spotify.com/v1/search';
 
@@ -77,16 +86,31 @@ class Search extends Component {
     const image = '../../Images/songbird.png';
     const renderSearch = 
     
-    <Container style = {{position: "relative", top: "20rem"}}>
+    <Container style = {{position: "relative", top: "2rem"}}>
       <Row>
-        <h3>Albums</h3>
+        <H3>Albums</H3>
       </Row>
       
-        <div className="d-flex flex-row flex-nowrap align-items-center" style = {{overflow: 'auto', WebkitOverflowScrolling: 'touch'}} >
+        <div  className="d-flex flex-row flex-nowrap align-items-center" 
+              style = {{
+                height: '20rem', 
+                overflow: 'auto', 
+                WebkitOverflowScrolling: 'touch',
+              }}
+        >
         {this.state.albums.map(album => {
               return  <NavLink key={album.id} to={`/albums/${album.id}`} style={{ textDecoration: 'none' }}><Col>
-                          <Card key = {album.id} style = {{width: '10rem', border: 'none', alignItems: 'center'}}>
-
+                          <Card key = {album.id} 
+                            style = {{ 
+                              width: '12rem',
+                              height: '15rem',
+                              padding: '0.5rem',
+                              margin: '0.5rem',
+                              border: 'none',
+                              alignItems: 'center',
+                              overflow: 'hidden',
+                            }}
+                          >
                             <CardImg src= {!album.images[0] ?  image : album.images[0].url}  alt = {album.name} style = {{borderRadius: '50%', width: '7rem'}}/>
                             <CardBody>
                               <CardTitle>{album.name}</CardTitle>
@@ -97,16 +121,31 @@ class Search extends Component {
             })
           }
       </div>
-      <Row style = {{ marginTop: '20px' }}>
-        <h3>Artists</h3>
+      <Row style = {{ marginTop: '1.5rem' }}>
+        <H3>Artists</H3>
       </Row>
       <Row style = {{ padding: "1rem" }}>
       
-        <div className="d-flex flex-row flex-nowrap align-items-center" style ={{overflow: 'auto', WebkitOverflowScrolling: 'touch'}}>
+        <div  className="d-flex flex-row flex-nowrap align-items-center"
+              style ={{
+                top: '0',
+                height: '20rem', 
+                overflow: 'auto', 
+                WebkitOverflowScrolling: 'touch',
+              }}
+        >
         {this.state.artists.map(artist => {
               return  artist.images.length === 0 ? null : <NavLink key ={artist.id}to={`/artists/${artist.id}`}><Col>
-                          <Card key = {artist.id} style = {{width: '10rem', alignItems: 'center', border: 'none'}}>
-
+                          <Card key = {artist.id} 
+                                style = {{
+                                  width: '12rem',
+                                  height: '15rem',
+                                  padding: '0.5rem',
+                                  margin: '0.5rem',
+                                  border: 'none',
+                                  alignItems: 'center',
+                                  overflow: 'hidden',
+                                }}>
                             <CardImg src= {!artist.images[0] ? image : artist.images[0].url}  alt = {artist.name} style = {{borderRadius: '50%', width: '7rem'}}/>
                             <CardBody>
                               <CardTitle>{artist.name}</CardTitle>
@@ -118,8 +157,8 @@ class Search extends Component {
           }
       </div>
       </Row>
-      <Row style={{marginTop: '30px'}}>
-        <h3>Tracks</h3>
+      <Row style={{marginTop: '1.5rem'}}>
+        <H3>Tracks</H3>
       </Row>
       <Row>
         <Col>
@@ -153,7 +192,7 @@ class Search extends Component {
 
     return (
       <Container fluid>
-        <Row style={{ position: "relative", top: "200px" }}>
+        <Row>
           <Col xs = '12' sm = '12' md = '12' lg = '12'>
             <Form onSubmit={this.noEnter} >
                 <Input
@@ -163,7 +202,7 @@ class Search extends Component {
                   onChange={this.onChange}
                   value = {this.state.query}
                   style={{
-                    padding: '5px',
+                    padding: '1rem',
                     height: '30px',
                     backgroundColor: '#495057',
                     color: '#fff'

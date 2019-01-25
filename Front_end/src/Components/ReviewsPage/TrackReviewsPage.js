@@ -10,7 +10,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
-import './TrackReviewsPage.css';
 
 const Sidebar = styled.div`
   position: -webkit-sticky;
@@ -116,12 +115,17 @@ class TrackReviewsPage extends Component {
       <Fragment>
         <Container
           fluid={true}
-          style={{ display: "flex", margin: "0 auto", maxWidth: "1600px" }}
+          style={{
+            display: "flex",
+            margin: "0 auto",
+            maxWidth: "1600px",
+            position: "relative",
+            top: "6rem"  
+          }}
         >
           <Row>
-
-            <Col xs="12" md="4">
-              <Sidebar>
+            <Col xs="12" md="5">
+              <Sidebar fixed="top">
                 <Link to={`/albums/${this.state.albumId}`}>
                   <Row style={{ alignSelf: "center", padding: "1rem" }}>
                     <h3>{this.state.album}</h3>
@@ -142,7 +146,7 @@ class TrackReviewsPage extends Component {
                 <Container fluid={true} style={{ margin: "0 auto" }}> 
                   {/* Spotify Player */}
                   <iframe src={`https://open.spotify.com/embed/track/${this.state.trackId}`}
-                    width={this.state.width} height="80" frameborder="0"
+                    width={this.state.width*1.1} height="80" frameborder="0"
                     allowtransparency="true" allow="encrypted-media"
                   >
                   </iframe>
@@ -225,7 +229,7 @@ class TrackReviewsPage extends Component {
               </Sidebar>
             </Col>
 
-            <Col xs="12" md="8">
+            <Col xs="12" md="7">
               <Container>
                 <Container fluid={true} style={{ maxWidth: "1150px" }}>
                   {trackReviews.map(review => (
