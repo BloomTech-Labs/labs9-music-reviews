@@ -21,7 +21,7 @@ class LogInWithGoogle extends React.Component {
                   .post(`${process.env.REACT_APP_BACKEND_URL}users/create`, {
                     token: userIdToken,
                   })
-                  .then((res) => this.props.history.push('/'))
+                  .then((res) => this.props.history.push('/home'))
                   .catch((err) => console.log(err));
               })
               .catch((err) => console.log(err));

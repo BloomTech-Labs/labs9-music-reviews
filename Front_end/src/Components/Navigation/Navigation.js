@@ -67,13 +67,13 @@ class Navigation extends Component {
           </Col>
           <Nav
             navbar
-            style={{ display: "flex", justifyContent: "space-around", alignContent: "center" }}
+            style={{ display: "flex", justifyContent: "space-around" }}
           >
           <Col>
           
           
           
-          <Row style={{ display: "flex", justifyContent: "space-between" }}>
+          <Row style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 {/* <Form onSubmit = {this.keyPress}>
                   <Input
                     type="search"

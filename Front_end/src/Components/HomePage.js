@@ -11,7 +11,7 @@ const HomePage = () => {
     return(
         <Container fluid style={{ maxWidth: "1600px", paddingTop: "12rem"}} >
             <Newest />
-            <FeaturedReviews />
+            {/* <FeaturedReviews /> */}
             <PopularTracks />
             {/* <PopularReviewers /> */}
         </Container>
