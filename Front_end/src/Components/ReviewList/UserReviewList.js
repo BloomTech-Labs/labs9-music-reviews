@@ -70,7 +70,7 @@ class UserReviewList extends Component {
     axios
       .get(`https://labs9-car-reviews.herokuapp.com/users/${userID}/nickname`)
       .then(response => {
-        const userNickname = response.data;
+        const userNickname = response.data[0].nickname;
         const newState = Object.assign({}, this.state, {
           nickname: userNickname
         });
@@ -91,6 +91,7 @@ class UserReviewList extends Component {
       return review.userID === parseInt(this.props.match.params.id);
     });
     console.log(this.props.match.params.id)
+    console.log(this.state.nickname)
     return (
       <Fragment>
         <Container
