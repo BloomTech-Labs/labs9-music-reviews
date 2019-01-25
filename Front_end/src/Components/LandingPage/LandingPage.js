@@ -6,25 +6,40 @@ import Search from "../Search/Search";
 const LandingPage = () => {
   return (
     <Container fluid className="landingpage">
-      <div align="center" style={{ maxHeight: "350px" }}>
+      <div align="center" style={{ maxHeight: "350px", position: "relative", top: "10rem" }}>
         <img
           src={require("../../Images/SongbirdLogo1.png")}
           alt="Songbird logo"
           width="75%"
         />
       </div>
-      <h2 style={{ color: "white", margin: "25px 0" }}>
+      {/* animated music notes
+      <div className="music-notes">
+        <div className="note-1">
+          &#9835; &#9833;
+        </div>
+        <div className="note-2">
+          &#9833;
+        </div>
+        <div className="note-3">
+          &#9839; &#9834;
+        </div>
+        <div className="note-4">
+          &#9834;
+        </div>
+      </div> */}
+      <h2 style={{ color: "white", position: "relative", top: "15rem" }}>
         There are a million songs out there. <br />
         Let your opinions on them take flight...
       </h2>
-      <div align="center" style={{ margin: "15px auto" }}>
+      <div align="center" style={{ position: "relative", top: "17rem", padding: "1rem" }}>
         <a href="/login">
           <Button color="secondary" size="lg">
             Start Reading Reviews Now!
           </Button>
         </a>
       </div>
-      <div>
+      <div style={{ position: "relative", top: "19rem", padding: "2rem" }}>
         <Search />
         {/* <Input
           type="search"
@@ -42,6 +57,21 @@ const LandingPage = () => {
           }}
         /> */}
       </div>
+      {/* animated music notes
+      <div className="music-notes">
+        <div className="note-1">
+          &#9835; &#9833;
+        </div>
+        <div className="note-2">
+          &#9833;
+        </div>
+        <div className="note-3">
+          &#9839; &#9834;
+        </div>
+        <div className="note-4">
+          &#9834;
+        </div>
+      </div> */}
     </Container>
   );
 };

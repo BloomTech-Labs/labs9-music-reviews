@@ -8,17 +8,24 @@ import { Link } from 'react-router-dom';
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
 
-const Sidebar = styled.div`
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  height: 100%;
-  padding-top: 80px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+// const Sidebar = styled.div`
+//   position: -webkit-sticky;
+//   position: sticky;
+//   top: 0;
+//   z-index: 1;
+//   height: 100%;
+//   padding-top: 80px;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// `;
+
+const Iframe = styled.iframe`
+  width: 103%;
+  height: 80px;
+  frameborder: 0;
+  align: middle;
+`
 
 class AlbumReviewsPage extends Component {
   static propTypes = {
@@ -99,14 +106,22 @@ class AlbumReviewsPage extends Component {
     console.log(this.state.tracks)
     return (
       <Fragment>
-        <Container fluid={true} style={{ display: "flex", margin: "0 auto", maxWidth: "1600px" }} >
-          <Col xs="12" md="4">
-            <Sidebar>
-              <Row style={{ alignSelf: "center" }}>
+        <Container fluid={true} 
+          style={{
+              display: "flex",
+              margin: "auto",
+              maxWidth: "1600px",
+              position: "relative",
+              top: "8rem" 
+            }} 
+          >
+        <Row>
+          <Col xs="12" md="4" style={{ position: "relative", top: "7rem", margin: "0 auto", paddingBottom: "3rem" }}>
+              <Row style={{ margin: "auto" }}>
                 <h3>{this.state.album}</h3>
               </Row>
               <Link to={`/artists/${this.state.artistId}`}>
-                <Row style={{ alignSelf: "center" }}>
+                <Row style={{ margin: "auto" }}>
                   <h5>{this.state.artist}</h5>
                 </Row>
               </Link>
@@ -115,9 +130,8 @@ class AlbumReviewsPage extends Component {
               <CardImg src={this.state.art} alt="Album Art" />
 
               {/* Spotify Player */}
-              <iframe src={`https://open.spotify.com/embed/album/${this.state.albumId}`}
-              width={this.state.width} height="80" frameborder="0" allowtransparency="true" allow="encrypted-media">
-              </iframe>
+              <Iframe src={`https://open.spotify.com/embed/album/${this.state.albumId}`}
+                allowtransparency="true" allow="encrypted-media" />
 
               <Row style={{ display: "flex", justifyContent: "space-evenly", padding: "1rem" }}>
                 {/* Write Review Button Modal */}
@@ -162,14 +176,20 @@ class AlbumReviewsPage extends Component {
                   })}
                 </Col>
               </Row>
-            </Sidebar>
+
           </Col>
-        </Container>
-          <Container fluid={true} style={{ maxWidth: "1150px" }}>
-            {albumReviews.map(review => (
+        <Col md="6" sm="12">
+          <Container fluid={true} style={{ maxWidth: "1150px", position: "relative", top: "5rem" }}>
+            {albumReviews.length === 0 ?
+              <Row><h3>Be the first to write a review for this album!</h3></Row> :
+              albumReviews.map(review => (
               <ReviewCard review={review} userID={this.props.userID}/>
-            ))}
+              ))
+            }
           </Container>
+        </Col>  
+        </Row>
+      </Container>
       </Fragment>
     );
   }

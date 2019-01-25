@@ -54,9 +54,5 @@ class Checkout extends Component {
         )
     }
 }
-// const Checkout = ({name, description, amount}, props) => 
-//     // variable to change description to 1 month/1 year subscription?
-  
-   
 
 export default withRouter(Checkout);

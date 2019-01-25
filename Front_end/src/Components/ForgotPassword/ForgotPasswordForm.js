@@ -31,7 +31,7 @@ class ForgotPasswordForm extends React.Component {
   };
   render() {
     return (
-      <Container>
+      <Container fluid style={{ position: "relative", top: "10rem" }}>
         <h2 className="mt-3 mb-3">Reset Password</h2>
         <Form>
           <Col>

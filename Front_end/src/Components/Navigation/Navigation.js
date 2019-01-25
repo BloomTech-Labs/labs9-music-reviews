@@ -30,7 +30,6 @@ class Navigation extends Component {
       query: ''
     };
   }
-
   toggle = () => {
     this.setState({ isOpen: !this.state.isOpen })
   }
@@ -39,6 +38,7 @@ class Navigation extends Component {
   //     query: event.target.value
   //   })
   // }
+
   // keyPress = (event) => {
   //   event.preventDefault();
 
@@ -57,12 +57,12 @@ class Navigation extends Component {
     return (
         <div className="flex-sm-column">
 
-        <Navbar color="dark" dark expand="md" sticky="top" toggleable="sm" style={{ display: "flex" }}>
+        <Navbar color="dark" fixed="top" dark expand="md"  toggleable="sm" style={{ display: "flex" }}>
           <Col>
             {/* <NavbarBrand sm="12" className="mr-auto" style={{ background: "white", color: "lightblue", fontSize: "4rem", fontWeight: "700", padding: "0.5rem" }}>
               <Route path="/:path" component={Breadcrumbs} />
             </NavbarBrand> */}
-            <Link to="/" style={{ textDecoration: "none",color: "lightblue", fontSize: "4rem", fontWeight: "700", padding: "0.5rem" }}>SONGBIRD</Link>
+            <Link to="/" style={{ textDecoration: "none",color: "lightblue", fontSize: "4rem", fontWeight: "700"}}>SONGBIRD</Link>
           </Col>
           <Nav
             navbar
@@ -111,7 +111,7 @@ class Navigation extends Component {
                               <DropdownItem>Home</DropdownItem>
                             </Link>
                             <Link to={`/user/reviews/${this.props.userID}`} style={{ textDecoration: 'none', textAlign: "center" }}>
-                              <DropdownItem>My reviews</DropdownItem>
+                              <DropdownItem>My Reviews</DropdownItem>
                             </Link>
                             <Link to="/user/billing" style={{ textDecoration: 'none', textAlign: "center" }}>
                               <DropdownItem>Billing</DropdownItem>
