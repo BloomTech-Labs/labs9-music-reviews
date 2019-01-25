@@ -35,7 +35,7 @@ class Checkout extends Component {
         .then(() => {
             this.successPayment();
             this.props.changeSubscriptionStatus();
-            this.props.history.push('/user/settings')
+            window.location.href='https://labs9carreviews.netlify.com/user/settings'
         })
         .catch(this.errorPayment);
     }
