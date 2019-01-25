@@ -86,7 +86,7 @@ class Search extends Component {
     const image = '../../Images/songbird.png';
     const renderSearch = 
     
-    <Container style = {{position: "relative", top: "2rem"}}>
+    <Container style = {{position: "relative", top: "15rem"}}>
       <Row>
         <H3>Albums</H3>
       </Row>
@@ -194,7 +194,7 @@ class Search extends Component {
       <Container fluid>
         <Row>
           <Col xs = '12' sm = '12' md = '12' lg = '12'>
-            <Form onSubmit={this.noEnter} >
+            <Form onSubmit={this.noEnter} style={{ position: "relative", top: "10rem" }}>
                 <Input
                   type="search"
                   name="search"
@@ -202,8 +202,6 @@ class Search extends Component {
                   onChange={this.onChange}
                   value = {this.state.query}
                   style={{
-                    position: "relative",
-                    top: "12rem",
                     backgroundColor: '#495057',
                     color: '#fff'
                   }}
