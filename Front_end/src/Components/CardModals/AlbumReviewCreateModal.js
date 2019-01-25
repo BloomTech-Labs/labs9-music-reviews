@@ -50,20 +50,10 @@ class AlbumReviewCreateModal extends React.Component {
       spotifyAlbumID: this.props.match.params.id,
       userID: this.props.userID
     });
-    // let highDisc = 0;
-    // let discs = [];
-    // for(let i = 0; i <= this.props.tracks.length; i++) {
-    //   console.log(discs)
-    //   if (this.props.tracks[i].disc_number > highDisc) {
-    //     discs.push(this.props.tracks[i].disc_number);
-    //     highDisc = this.props.tracks[i].disc_number;
-    //   }
-    // }
   }
 
   addHandler = event => {
     // event.preventDefault();
-    this.dateStamp();
     axios
       .post(`https://labs9-car-reviews.herokuapp.com/albumReviews`, {
         created_at: this.state.dateCreated,
@@ -115,17 +105,6 @@ class AlbumReviewCreateModal extends React.Component {
     });
   }
 
-  dateStamp() {
-    let currentDate = new Date();
-    let date = currentDate.getDate();
-    let month = currentDate.getMonth();
-    let year = currentDate.getFullYear();
-    let dateString = month + 1 + "/" + date + "/" + year;
-    this.setState({ dateCreated: dateString }, () =>
-      console.log("Function Date", this.state.dateCreated)
-    );
-  }
-
   render() {
     return (
       <Fragment>
@@ -139,9 +118,9 @@ class AlbumReviewCreateModal extends React.Component {
           backdrop={true}
           size="lg"
         >
-          <Row className="d-flex align-items-center">
-            <Col className="container ">
-              <div>
+          <Row>
+            <Col className="container d-flex align-items-center">
+              <div style={{ padding: "15px 50px" }}>
                 <ModalBody>
                   <h3>Album: </h3>
                   <h5>{this.props.album}</h5>
@@ -153,38 +132,26 @@ class AlbumReviewCreateModal extends React.Component {
               </div>
             </Col>
             <Col className="container">
-              <div>
+              <div className= "d-flex justify-content-center">
                 <img
                   src={this.props.art}
                   alt="Album cover art"
-                  style={{ margin: "15px" }}
+                  style={{ margin: "20px" }}
                 />
               </div>
             </Col>
           </Row>
-          {/* Disc Select Pulldown */}
-          <Row>
-            <ButtonDropdown
-              isOpen={this.state.dropdownOpen}
-              toggle={this.toggleDropdown}
-            >
-              <DropdownToggle caret>Button Dropdown</DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem header>Header</DropdownItem>
-                <DropdownItem disabled>Action</DropdownItem>
-                <DropdownItem>Another Action</DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>Another Action</DropdownItem>
-              </DropdownMenu>
-            </ButtonDropdown>
+          <Row className= "d-flex justify-content-center">
+            <h3>Track List</h3>
           </Row>
-          <Row>
+          <Row className= "d-flex justify-content-center">
             <Col
-              className="d-flex align-items-start justify-content-space-around flex-column flex-wrap"
+              className="d-flex align-items-start justify-content-space-around flex-column"
               style={{
                 margin: "15px 25px",
                 maxHeight: "300px",
-                maxWidth: "45%"
+                maxWidth: "60%",
+                overflow: "auto"
               }}
             >
               {this.props.tracks.map(track => (

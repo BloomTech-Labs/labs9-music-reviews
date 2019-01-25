@@ -3,7 +3,7 @@
 .env
 
 serviceAccountKey.json
-.data/reviews.sqlite3
+
 # Logs
 logs
 *.log

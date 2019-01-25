@@ -35,7 +35,6 @@ componentDidMount() {
     }
 
     render() {
-        console.log(this.state.data)
         const renderData = this.state.data.map(album => {
             return album.artists.map((artist, index) => {
               return (

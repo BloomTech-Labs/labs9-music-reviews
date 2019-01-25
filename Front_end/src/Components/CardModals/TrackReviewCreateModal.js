@@ -48,7 +48,6 @@ class TrackReviewCreateModal extends React.Component {
 
   addHandler = event => {
     // event.preventDefault();
-    this.dateStamp();
     axios
       .post(`https://labs9-car-reviews.herokuapp.com/trackReviews`, {
         created_at: this.state.dateCreated,
@@ -93,18 +92,6 @@ class TrackReviewCreateModal extends React.Component {
       closeAll: true
     });
   }
-
-  dateStamp() {
-    let currentDate = new Date();
-    let date = currentDate.getDate();
-    let month = currentDate.getMonth();
-    let year = currentDate.getFullYear();
-    let dateString = month + 1 + "/" + date + "/" + year;
-    this.setState({ dateCreated: dateString }, () =>
-      console.log("Function Date", this.state.dateCreated)
-    );
-  }
-
   render() {
       console.log(this.props.trackId)
     return (

@@ -5,6 +5,7 @@ import {
   Input,
   Container,
   FormGroup,
+  CardImg,
   Label
 } from "reactstrap";
 import styled from "styled-components";
@@ -42,7 +43,12 @@ class Billing extends Component {
     this.setState({[e.target.name]: e.target.value})
   }
   addDays = (days) => {
-    let result = new Date();
+    let result;
+    if (this.props.subscriptionExpiration == null){
+      result = new Date();
+    } else {
+      result = this.props.subscriptionExpiration;
+    }
     result.setDate(result.getDate() + days);
     return result;
   }
@@ -59,26 +65,33 @@ class Billing extends Component {
   render() {
     return (
       <div>
-        <Container fluid style={{ maxWidth: "1000px" }}>
+        <Container fluid style={{ maxWidth: "1000px", paddingTop: "10rem" }}>
           <Row>
-            <Col md="4">
+            <Col md="4" sm="12">
               <ProfileInfo>
-                <img
-                  src={require("../../Images/RecordThumb.png")}
-                  alt="Default profile image"
-                  style={{ maxWidth: "200px" }}
-                />
+                <Row>
+                  <CardImg
+                    src={require("../../Images/RecordThumb.png")}
+                    alt="Default profile image"
+                    style={{ 
+                      maxWidth: "250px",
+                      maxHeight: "250px",
+                      padding: "2rem",
+                      margin: "0 auto",
+                    }}
+                  />
+                </Row>
                 <p>Status</p>
-                <p>Username</p>
+                <p>{this.props.nickname}</p>
                 <p>Reviews: 1</p>
               </ProfileInfo>
             </Col>
 
-            <Col sm="8">
+            <Col sm="12" md="8">
               <Payment>
                 <h2 style={{ textAlign: "left" }}> Billing </h2>
                 <div style={{ margin: "2rem 0" }}>
-                  <FormGroup check>
+                  <FormGroup check style={{ display: "flex", flexDirection: "column" }}>
                     <Label check>
                       <Input type="radio" name="subType" value="year" onClick={this.changeSub} />
                       1 Year Subscription $9.99
@@ -91,16 +104,14 @@ class Billing extends Component {
                   </FormGroup>
                   <SubInfoModal />
                 </div>
-                <Checkout
-                  name={"Subscription"}
-                  description={this.state.subType === "year" ? "1 Year Subscription" : "1 Month Subscription"}
-                  amount={this.state.subType === "year" ? 9.99 : 0.99}
-                  changeSubscriptionStatus={this.changeSubscriptionStatus}
-                />
-                {/* <p style={{ color: "lightgray" }}>
-                  *Subscriptions are automatically renewed unless specified. To
-                  edit subscription preferences, please navigate to ""
-                </p> */}
+                {this.state.subType === '' ? '' 
+                : <Checkout
+                    name={"Subscription"}
+                    description={this.state.subType === "year" ? "1 Year Subscription" : "1 Month Subscription"}
+                    amount={this.state.subType === "year" ? 9.99 : 0.99}
+                    changeSubscriptionStatus={this.changeSubscriptionStatus}
+                  />
+                }   
               </Payment>
             </Col>
           </Row>
