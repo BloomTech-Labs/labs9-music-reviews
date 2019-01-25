@@ -66,6 +66,7 @@ router.put('/:userID/change_nickname', async (req, res) => {
   } else {
     try {
       const updatedNickname = await dbUsers.edit(userID, nickname)
+
       res.status(200).json(updatedNickname)
     }
     catch (err) {

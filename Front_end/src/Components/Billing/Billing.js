@@ -59,9 +59,9 @@ class Billing extends Component {
   render() {
     return (
       <div>
-        <Container>
+        <Container fluid style={{ maxWidth: "1000px" }}>
           <Row>
-            <Col className="col s2">
+            <Col md="4">
               <ProfileInfo>
                 <img
                   src={require("../../Images/RecordThumb.png")}
@@ -74,7 +74,7 @@ class Billing extends Component {
               </ProfileInfo>
             </Col>
 
-            <Col className="valign-wrapper s10">
+            <Col sm="8">
               <Payment>
                 <h2 style={{ textAlign: "left" }}> Billing </h2>
                 <div style={{ margin: "2rem 0" }}>
