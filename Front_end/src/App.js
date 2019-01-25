@@ -113,6 +113,7 @@ class App extends Component {
     setInterval(this.refreshToken, refreshTime);
   }
   render() {
+    console.log(this.state.userID)
     return (
       <Container fluid style={{ padding: "0" }}>
         <Navigation loggedIn={this.state.loggedIn} signout={() => this.changeLoginState(false)} userID={this.state.userID}/>
@@ -133,13 +134,13 @@ class App extends Component {
         <Route
           path="/albums/:id"
           render={props => (
-            <AlbumReviewsPage {...props} userID={this.state.userID}/>
+            <AlbumReviewsPage {...props} userID={this.state.userID} nickname={this.state.nickname}/>
           )}
         />
         <Route
           path="/tracks/:id"
           render={props => (
-            <TrackReviewsPage {...props} userID={this.state.userID}/>
+            <TrackReviewsPage {...props} userID={this.state.userID} nickname={this.state.nickname}/>
             // id="75IN3CtuZwTHTnZvYM4qnJ"
           )}
         />
@@ -152,7 +153,7 @@ class App extends Component {
         <Route
           path="/user/reviews/:id"
           render={props => (
-            <UserReviewList {...props} loggedIn={this.state.loggedIn} userID={this.state.userID}/>
+            <UserReviewList {...props} loggedIn={this.state.loggedIn} userID={this.state.userID} nickname={this.state.nickname}/>
           )}
         />
       </Container>

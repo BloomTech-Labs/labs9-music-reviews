@@ -78,7 +78,7 @@ class AlbumReviewsPage extends Component {
     const albumReviews = this.state.reviews.filter(review => {
       return review.spotifyAlbumID === this.props.match.params.id;
     });
-    console.log("Album Page Tracks", this.state.tracks)
+    console.log(this.props.userID)
     return (
       <Fragment>
         <Container
@@ -156,7 +156,7 @@ class AlbumReviewsPage extends Component {
           
           <Container fluid={true} style={{ maxWidth: "1150px" }}>
             {albumReviews.map(review => (
-              <AlbumReviewCard review={review}/>
+              <AlbumReviewCard review={review} userID={this.props.userID}/>
             ))}
           </Container>
       </Fragment>
