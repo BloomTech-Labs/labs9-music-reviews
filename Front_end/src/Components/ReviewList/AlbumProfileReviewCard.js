@@ -3,6 +3,7 @@ import ReviewEditModal from "../CardModals/ReviewEditModal";
 import ViewStars from "../StarsRating/ViewStars";
 import { Row, Col, Container } from "reactstrap";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
 
@@ -19,6 +20,7 @@ class AlbumProfileReviewCard extends Component {
       artist: "",
       art: "",
       tracks: [],
+      artistID: ""
     };
     this.getAlbum = this.getAlbum.bind(this);
   }
@@ -33,6 +35,7 @@ class AlbumProfileReviewCard extends Component {
           data,
           album: data.data.name,
           artist: data.data.artists[0]["name"],
+          artistID: data.data.artists[0]["id"],
           art: data.data.images[1]["url"],
           tracks: data.data.tracks.items
         });
@@ -53,11 +56,18 @@ class AlbumProfileReviewCard extends Component {
           <Row style={{ display: "flex", padding: "1rem" }}>
             {/* User info */}
             <Col md="3" style={{ margin: "auto 0" }}>
-              <img src={this.state.art} alt="Album cover art" />
-              <div>Album: {this.state.album}</div>
-              <div>Artist: {this.state.artist}</div>
+              <NavLink to={`/albums/${this.props.review.spotifyAlbumID}`} style={{ textDecoration: 'none', color: 'black' }}>
+                <img src={this.state.art} alt="Album cover art" />
+              </NavLink>
+              <NavLink to={`/albums/${this.props.review.spotifyAlbumID}`} style={{ textDecoration: 'none', color: 'black' }}>
+                <div>Album: {this.state.album}</div>
+              </NavLink>
+              <NavLink to={`/artists/${this.state.artistID}`} style={{ textDecoration: 'none', color: 'black' }}>
+                <div>Artist: {this.state.artist}</div>
+              </NavLink>
               {/* If logged in edit button shows otherwise null */}
-              {this.props.loggedIn === true && this.props.review.userID === this.props.userID ? (
+              {this.props.loggedIn === true &&
+              this.props.review.userID === this.props.userID ? (
                 <ReviewEditModal
                   {...this.props}
                   album={this.state.album}
