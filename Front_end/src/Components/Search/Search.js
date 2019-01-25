@@ -202,8 +202,8 @@ class Search extends Component {
                   onChange={this.onChange}
                   value = {this.state.query}
                   style={{
-                    padding: '1rem',
-                    height: '30px',
+                    position: "relative",
+                    top: "12rem",
                     backgroundColor: '#495057',
                     color: '#fff'
                   }}
