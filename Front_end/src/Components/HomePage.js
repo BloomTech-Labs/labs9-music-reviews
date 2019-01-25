@@ -13,7 +13,7 @@ const HomePage = () => {
             <Newest />
             <FeaturedReviews />
             <PopularTracks />
-            <PopularReviewers />
+            {/* <PopularReviewers /> */}
         </Container>
     )
 }

@@ -7,6 +7,7 @@ import {
   Navbar,
   Nav,
   NavbarBrand,
+  Button,
   Dropdown,
   DropdownToggle,
   DropdownMenu,
@@ -68,8 +69,11 @@ class Navigation extends Component {
             navbar
             style={{ display: "flex", justifyContent: "space-around", alignContent: "center" }}
           >
-
-          <Row style={{ display: "flex", justifyContent: "space-between", margin: "0 0 0 3.5rem" }}>
+          <Col>
+          
+          
+          
+          <Row style={{ display: "flex", justifyContent: "space-between" }}>
                 {/* <Form onSubmit = {this.keyPress}>
                   <Input
                     type="search"
@@ -86,6 +90,9 @@ class Navigation extends Component {
                     }}
                   /> 
                   </Form>*/}
+                  <Link to="/search" style={{ margin: "0 auto" }}>
+                    <Button>Search</Button>
+                  </Link>
                 <div style={{ display: 'flex', justifyContent: "center" }}>
                   <PlansModal />
                 </div>
@@ -148,7 +155,9 @@ class Navigation extends Component {
             
                   </Dropdown>
             </Row>
-            
+
+          </Col>
+
           </Nav>
         </Navbar>
 
