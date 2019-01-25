@@ -62,7 +62,7 @@ class Navigation extends Component {
             {/* <NavbarBrand sm="12" className="mr-auto" style={{ background: "white", color: "lightblue", fontSize: "4rem", fontWeight: "700", padding: "0.5rem" }}>
               <Route path="/:path" component={Breadcrumbs} />
             </NavbarBrand> */}
-            <Link to="/" style={{ textDecoration: "none",color: "lightblue", fontSize: "4rem", fontWeight: "700", padding: "0.5rem" }}>SONGBIRD</Link>
+            <Link to="/" style={{ textDecoration: "none",color: "lightblue", fontSize: "4rem", fontWeight: "700" }}>SONGBIRD</Link>
           </Col>
           <Nav
             navbar

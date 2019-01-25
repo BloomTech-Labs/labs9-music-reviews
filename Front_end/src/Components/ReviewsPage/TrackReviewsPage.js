@@ -23,7 +23,7 @@ import { withCookies, Cookies } from "react-cookie";
 //   align-items: middle;
 // `;
 const Iframe = styled.iframe`
-  width: 380px;
+  width: 364px;
   height: 80px;
   frameborder: 0;
 `
@@ -119,7 +119,7 @@ class TrackReviewsPage extends Component {
     return (
       <Fragment>
         <Container
-          fluid={true}
+          fluid
           style={{
             display: "flex",
             margin: "0 auto",
@@ -129,7 +129,7 @@ class TrackReviewsPage extends Component {
           }}
         >
           <Row>
-            <Col xs="12" md="4" style={{ position: "relative", top: "5rem", border: "1px solid red"}}>
+            <Col xs="10" md="4" style={{ position: "relative", top: "7rem", margin: "0 auto", border: "1px solid red", paddingBottom: "3rem" }}>
               <Link to={`/albums/${this.state.albumId}`}>
                 <Row style={{ alignSelf: "center" }}>
                   <h3>{this.state.album}</h3>
@@ -143,16 +143,13 @@ class TrackReviewsPage extends Component {
               {/* can add logic to render different size of album art based on screen size: stacked ternary */}
               {/* need to find a way to manipulate the img object from res.data */}
               <Link to={`/albums/${this.state.albumId}`}>
-                <CardImg src={this.state.art} alt="Album Art" style={{ alignItems: "center"}}/>
+                <CardImg src={this.state.art} alt="Album Art" style={{ maxWidth: "364px" }}/>
               </Link>
 
-
-              <Container fluid={true}> 
-                {/* Spotify Player */}
-                <Iframe src={`https://open.spotify.com/embed/track/${this.state.trackId}`}
-                  allowtransparency="true" allow="encrypted-media"
-                />
-              </Container>
+              {/* Spotify Player */}
+              <Iframe src={`https://open.spotify.com/embed/track/${this.state.trackId}`}
+                allowtransparency="true" allow="encrypted-media"
+              />
 
               <Row
                 style={{
@@ -176,7 +173,7 @@ class TrackReviewsPage extends Component {
               </Row>
               <Row>
                 <Col>
-                  <h5 style={{ padding: "1rem" }}>Tracklist</h5>
+                  <h5 style={{ padding: "0.8rem" }}>Tracklist</h5>
                   {this.state.tracks.map(track => {
                     return (
                       <Link
