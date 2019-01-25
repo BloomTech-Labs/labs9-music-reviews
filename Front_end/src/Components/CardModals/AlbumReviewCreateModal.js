@@ -163,7 +163,7 @@ class AlbumReviewCreateModal extends React.Component {
             </Col>
           </Row>
           {/* Disc Select Pulldown */}
-          <Row>
+          {/* <Row>
             <ButtonDropdown
               isOpen={this.state.dropdownOpen}
               toggle={this.toggleDropdown}
@@ -177,7 +177,7 @@ class AlbumReviewCreateModal extends React.Component {
                 <DropdownItem>Another Action</DropdownItem>
               </DropdownMenu>
             </ButtonDropdown>
-          </Row>
+          </Row> */}
           <Row>
             <Col
               className="d-flex align-items-start justify-content-space-around flex-column flex-wrap"
