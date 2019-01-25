@@ -20,6 +20,13 @@ import { withCookies, Cookies } from "react-cookie";
 //   align-items: center;
 // `;
 
+const Iframe = styled.iframe`
+  width: 103%;
+  height: 80px;
+  frameborder: 0;
+  align: middle;
+`
+
 class AlbumReviewsPage extends Component {
   static propTypes = {
     cookies: instanceOf(Cookies).isRequired
@@ -109,13 +116,12 @@ class AlbumReviewsPage extends Component {
             }} 
           >
         <Row>
-          <Col xs="12" md="6" style={{ border: "1px solid red" }}>
-           
-              <Row style={{ alignSelf: "center" }}>
+          <Col xs="12" md="4" style={{ position: "relative", top: "7rem", margin: "0 auto", paddingBottom: "3rem" }}>
+              <Row style={{ margin: "auto" }}>
                 <h3>{this.state.album}</h3>
               </Row>
               <Link to={`/artists/${this.state.artistId}`}>
-                <Row style={{ alignSelf: "center" }}>
+                <Row style={{ margin: "auto" }}>
                   <h5>{this.state.artist}</h5>
                 </Row>
               </Link>
@@ -124,9 +130,8 @@ class AlbumReviewsPage extends Component {
               <CardImg src={this.state.art} alt="Album Art" />
 
               {/* Spotify Player */}
-              <iframe src={`https://open.spotify.com/embed/album/${this.state.albumId}`}
-              width={this.state.width*1.2} height="80" frameborder="0" allowtransparency="true" allow="encrypted-media">
-              </iframe>
+              <Iframe src={`https://open.spotify.com/embed/album/${this.state.albumId}`}
+                allowtransparency="true" allow="encrypted-media" />
 
               <Row style={{ display: "flex", justifyContent: "space-evenly", padding: "1rem" }}>
                 {/* Write Review Button Modal */}
@@ -175,9 +180,12 @@ class AlbumReviewsPage extends Component {
           </Col>
         <Col md="6" sm="12">
           <Container fluid={true} style={{ maxWidth: "1150px", position: "relative", top: "5rem" }}>
-            {albumReviews.map(review => (
+            {albumReviews.length === 0 ?
+              <Row><h3>Be the first to write a review for this album!</h3></Row> :
+              albumReviews.map(review => (
               <AlbumReviewCard review={review} userID={this.props.userID}/>
-              ))}
+              ))
+            }
           </Container>
         </Col>  
         </Row>

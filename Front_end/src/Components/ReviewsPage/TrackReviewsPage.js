@@ -23,9 +23,10 @@ import { withCookies, Cookies } from "react-cookie";
 //   align-items: middle;
 // `;
 const Iframe = styled.iframe`
-  width: 364px;
+  width: 103%;
   height: 80px;
   frameborder: 0;
+  align: middle;
 `
 
 class TrackReviewsPage extends Component {
@@ -122,6 +123,7 @@ class TrackReviewsPage extends Component {
           fluid
           style={{
             display: "flex",
+            justifyContent: "center",
             margin: "0 auto",
             maxWidth: "1600px",
             position: "relative",
@@ -129,14 +131,14 @@ class TrackReviewsPage extends Component {
           }}
         >
           <Row>
-            <Col xs="10" md="4" style={{ position: "relative", top: "7rem", margin: "0 auto", border: "1px solid red", paddingBottom: "3rem" }}>
+            <Col xs="12" md="4" style={{ position: "relative", top: "7rem", margin: "0 auto", paddingBottom: "3rem" }}>
               <Link to={`/albums/${this.state.albumId}`}>
-                <Row style={{ alignSelf: "center" }}>
+                <Row style={{ margin: "auto" }}>
                   <h3>{this.state.album}</h3>
                 </Row>
               </Link>
               <Link to={`/artists/${this.state.artistId}`}>
-                <Row style={{ alignSelf: "center" }}>
+                <Row style={{ margin: "auto" }}>
                   <h5>{this.state.artist}</h5>
                 </Row>
               </Link>
@@ -230,9 +232,12 @@ class TrackReviewsPage extends Component {
             <Col xs="12" md="8">
               <Container>
                 <Container fluid={true} style={{ maxWidth: "1150px", position: "relative", top: "5rem" }}>
-                  {trackReviews.map(review => (
-                    <TrackReviewCard review={review} />
-                  ))}
+                  {trackReviews.length === 0 ? 
+                    <Row><h3>Be the first to write a review for this track!</h3></Row> :
+                    trackReviews.map(review => (
+                      <TrackReviewCard review={review} />
+                    ))
+                  }
                 </Container>
               </Container>
             </Col>
