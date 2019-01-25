@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import { Container, Row, Col, Jumbotron, CardImg, Button } from "reactstrap";
-import axios from 'axios';
+import axios from "axios";
 import ViewStars from "../StarsRating/ViewStars";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
@@ -30,7 +30,7 @@ class AlbumReviewCard extends Component {
       })
       .catch(err => console.log(err));
   }
-  
+
   getNickname(userID) {
     axios
       .get(`https://labs9-car-reviews.herokuapp.com/users/${userID}/nickname`)
@@ -50,7 +50,7 @@ class AlbumReviewCard extends Component {
   }
 
   render() {
-    console.log(this.props.review)
+    console.log(this.props.review);
     return (
       <Fragment>
         <Container>
@@ -69,26 +69,40 @@ class AlbumReviewCard extends Component {
                   <img
                     src={require("../../Images/RecordThumb.png")}
                     alt="Default profile image"
+<<<<<<< HEAD:Front_end/src/Components/ReviewsPage/AlbumReviewCard.js
                     style={{ 
                       maxWidth: "250px",
                       maxHeight: "250px",
                       padding: "2rem",
                       margin: "0 auto",
                     }}
+=======
+                    style={{ maxWidth: "150px" }}
+>>>>>>> f48f31f27a8f9456e319c18b6efd6b6e25a2a6aa:Front_end/src/Components/ReviewsPage/ReviewCard.js
                   />
                 </div>
-                <div><strong>Nickname: </strong>{this.state.nickname}</div>
+                <div>
+                  <strong>Nickname: </strong>
+                  {this.state.nickname}
+                </div>
                 <div>Member status</div>
-                <div><strong>Reviews: </strong></div>
+                <div>
+                  <strong>Reviews: </strong>
+                </div>
               </Col>
               <Col md="8" style={{ padding: "1rem 5rem" }}>
                 <Row style={{ display: "flex" }}>
+<<<<<<< HEAD:Front_end/src/Components/ReviewsPage/AlbumReviewCard.js
                   <Col sm="12" md="6">
                     <ViewStars rating={this.props.review.rating} />
                   </Col>
                   <Col sm="12" md="6">
                     <p style={{ margin: "auto" }}>Date Written: (DATE)</p>
                   </Col>
+=======
+                  <ViewStars rating={this.props.review.rating} />
+                  <p style={{ margin: "auto" }}>Date Written: (DATE)</p>
+>>>>>>> f48f31f27a8f9456e319c18b6efd6b6e25a2a6aa:Front_end/src/Components/ReviewsPage/ReviewCard.js
                 </Row>
                 <Row>
                   <div align="left">

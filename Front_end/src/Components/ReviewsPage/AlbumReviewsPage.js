@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import { Container, Row, Col, CardImg } from "reactstrap";
 import AlbumReviewCreateModal from "../CardModals/AlbumReviewCreateModal";
-import AlbumReviewCard from "./AlbumReviewCard";
+import ReviewCard from "./ReviewCard";
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import { instanceOf } from "prop-types";
