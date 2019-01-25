@@ -5,7 +5,7 @@ import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import { Container, Row, Col, CardImg } from "reactstrap";
 import TrackReviewCreateModal from "../CardModals/TrackReviewCreateModal";
-import TrackReviewCard from "./TrackReviewCard";
+import ReviewCard from "./ReviewCard";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { instanceOf } from "prop-types";
@@ -229,7 +229,7 @@ class TrackReviewsPage extends Component {
               <Container>
                 <Container fluid={true} style={{ maxWidth: "1150px" }}>
                   {trackReviews.map(review => (
-                    <TrackReviewCard review={review} />
+                    <ReviewCard review={review} />
                   ))}
                 </Container>
               </Container>
