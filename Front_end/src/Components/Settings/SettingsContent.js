@@ -68,6 +68,7 @@ class SettingsContent extends React.Component {
     );
   }
   render() {
+    console.log("state", this.state.paidStatus)
     if (this.state.loading === true && this.state.loaded === false) {
       return <div />;
     } else if (this.state.loading === false && this.state.loaded === false) {
@@ -90,7 +91,7 @@ class SettingsContent extends React.Component {
             <Button onClick={this.changeNickName}>Change Nickname</Button>
           </Row>
           <p>Email address: {this.state.email}</p>
-          <p>{this.state.paidStatus === false ? 'Tier: Free' : 'Tier: Paid'}</p>
+          <p>{this.state.paidStatus === false || this.state.paidStatus === 0 ? 'Tier: Free' : 'Tier: Paid'}</p>
           <p>
             {this.state.subscriptionExpiration == null ? "You are not subscribed at the moment."
             : `Your subscription will expire on: ${this.state.subscriptionExpiration}`

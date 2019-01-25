@@ -127,7 +127,6 @@ class AlbumReviewCreateModal extends React.Component {
   }
 
   render() {
-    console.log(this.props.tracks);
     return (
       <Fragment>
         <Button color="danger" onClick={this.toggle}>

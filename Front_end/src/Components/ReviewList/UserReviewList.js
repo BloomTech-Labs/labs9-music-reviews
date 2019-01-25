@@ -76,6 +76,7 @@ class UserReviewList extends Component {
     const userTrackReviews = this.state.trackReviews.filter(review => {
       return review.userID === parseInt(this.props.match.params.id);
     });
+    console.log(this.props.nickname)
     return (
       <Fragment>
         <Container
@@ -94,7 +95,7 @@ class UserReviewList extends Component {
               style={{ maxWidth: "200px" }}
             />
             <Row style={{ alignSelf: "center" }}>
-              <h3>Username</h3>
+              <h3><strong>Nickname:</strong> {this.props.nickname}</h3>
             </Row>
             <Row style={{ alignSelf: "center" }}>
               <h5>Status</h5>
@@ -124,6 +125,7 @@ class UserReviewList extends Component {
               loggedIn={this.props.loggedIn}
               userID={this.props.userID}
               key={review.id}
+              nickname={this.props.nickname}
             />
           ))}
           {userTrackReviews.map(review => (
@@ -132,6 +134,7 @@ class UserReviewList extends Component {
               loggedIn={this.props.loggedIn}
               userID={this.props.userID}
               key={review.id}
+              nickname={this.props.nickname}
             />
           ))}
         </Container>
