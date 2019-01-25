@@ -194,7 +194,7 @@ class Search extends Component {
       <Container fluid>
         <Row>
           <Col xs = '12' sm = '12' md = '12' lg = '12'>
-            <Form onSubmit={this.noEnter} style={{ position: "relative", top: "10rem" }}>
+            <Form onSubmit={this.noEnter} style={{ position: "relative", top: "15rem" }}>
                 <Input
                   type="search"
                   name="search"
