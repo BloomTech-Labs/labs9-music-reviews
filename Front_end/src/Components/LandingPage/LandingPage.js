@@ -13,7 +13,7 @@ const LandingPage = () => {
           width="75%"
         />
       </div>
-      {/* animated music notes */}
+      {/* animated music notes
       <div className="music-notes">
         <div className="note-1">
           &#9835; &#9833;
@@ -27,19 +27,19 @@ const LandingPage = () => {
         <div className="note-4">
           &#9834;
         </div>
-      </div>
-      <h2 style={{ color: "white", margin: "25px 0" }}>
+      </div> */}
+      <h2 style={{ color: "white", position: "relative", top: "250px" }}>
         There are a million songs out there. <br />
         Let your opinions on them take flight...
       </h2>
-      <div align="center" style={{ margin: "15px auto" }}>
+      <div align="center" style={{ position: "relative", top: "250px", padding: "1rem" }}>
         <a href="/login">
           <Button color="secondary" size="lg">
             Start Reading Reviews Now!
           </Button>
         </a>
       </div>
-      <div>
+      <div style={{ position: "relative", top: "250px", padding: "2rem" }}>
         <Search />
         {/* <Input
           type="search"
@@ -57,7 +57,7 @@ const LandingPage = () => {
           }}
         /> */}
       </div>
-      {/* animated music notes */}
+      {/* animated music notes
       <div className="music-notes">
         <div className="note-1">
           &#9835; &#9833;
@@ -71,7 +71,7 @@ const LandingPage = () => {
         <div className="note-4">
           &#9834;
         </div>
-      </div>
+      </div> */}
     </Container>
   );
 };

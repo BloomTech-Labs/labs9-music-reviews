@@ -119,7 +119,7 @@ class App extends Component {
         <Route exact path="/" component={LandingPage} />
         <Route path="/home" component={HomePage} />
         <Route path="/search_landing" component={SearchLanding} />
-        <Route path="/user/billing" render={(props) => ( <Billing {...props} userID={this.state.userID} /> )} />
+        <Route path="/user/billing" render={(props) => ( <Billing {...props} userID={this.state.userID} subscriptionExpiration={this.state.subscriptionExpiration} /> )} />
         <Route path="/user/settings" component={SettingsPage} />
         <Route path="/signup" render={(props) =>
           <SignUpPage {...props} changeLogInState={() => this.changeLoginState(true)} /> }

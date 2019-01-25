@@ -42,7 +42,12 @@ class Billing extends Component {
     this.setState({[e.target.name]: e.target.value})
   }
   addDays = (days) => {
-    let result = new Date();
+    let result;
+    if (this.props.subscriptionExpiration == null){
+      result = new Date();
+    } else {
+      result = this.props.subscriptionExpiration;
+    }
     result.setDate(result.getDate() + days);
     return result;
   }
