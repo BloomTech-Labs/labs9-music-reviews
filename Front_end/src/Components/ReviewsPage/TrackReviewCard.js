@@ -62,8 +62,8 @@ class TrackReviewCard extends Component {
               </Col>
               <Col md="8" style={{ padding: "1rem 5rem" }}>
                 <Row style={{ display: "flex" }}>
-                <ViewStars rating={this.props.review.rating} />
-                  <p style={{ margin: "auto" }}>Date Written: (DATE)</p>
+                  <ViewStars rating={this.props.review.rating} />
+                  <Col>style={{ }}>Date Written: (DATE)</Col>
                 </Row>
                 <Row>
                   <div align="left">
