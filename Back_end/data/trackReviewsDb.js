@@ -5,6 +5,7 @@ const db = knex(knexConfig.development);
 module.exports = {
   retrieve,
   retrieveById,
+  retrieveByUserId,
   write,
   edit,
   remove,
@@ -18,6 +19,11 @@ function retrieveById(id) {
   return db('trackReview')
     .where({ trackReviewID: id });
 };
+
+function retrieveByUserId(userId) {
+  return db('trackReview')
+          .where({ userID: userId})
+}
 
 function write(review) {
   return db('trackReview')

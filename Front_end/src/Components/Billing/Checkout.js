@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import StripeCheckout from 'react-stripe-checkout';
-import { Button } from 'reactstrap';
+import { withRouter } from 'react-router-dom';
 
 // may need to modify later, still testing
 const PAYMENT_SERVER_URL = process.env.REACT_APP_PAYMENT_SERVER_URL || "http://localhost:9000/payment";
@@ -35,6 +35,7 @@ class Checkout extends Component {
         .then(() => {
             this.successPayment();
             this.props.changeSubscriptionStatus();
+            this.props.history.push('/user/settings')
         })
         .catch(this.errorPayment);
     }
@@ -58,4 +59,4 @@ class Checkout extends Component {
   
    
 
-export default Checkout;
+export default withRouter(Checkout);

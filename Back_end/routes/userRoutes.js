@@ -49,12 +49,24 @@ router.get('/get/:email', (req, res) => {
 router.put('/:userID', async (req, res) => {
   const { userID } = req.params
   const body = req.body
-  if (body.subscriptionExpiraton) {
-    res.status(400).json({ message: 'date cannot be blank' })
+  try {
+    const updatedSubscription = await dbUsers.edit(userID, body)
+    res.status(200).json(updatedSubscription)
+  }
+  catch (err) {
+    res.status(500).json(err.message)
+  }
+})
+
+router.put('/:userID/change_nickname', async (req, res) => {
+  const { userID } = req.params
+  const body = req.body
+  if (!body.nickname) {
+    res.status(400).json({ message: 'Please enter new nickname' })
   } else {
     try {
-      const updatedSubscription = await dbUsers.edit(userID, body)
-      res.status(200).json(updatedSubscription)
+      const updatedNickname = await dbUsers.edit(userID, nickname)
+      res.status(200).json(updatedNickname)
     }
     catch (err) {
       res.status(500).json(err.message)

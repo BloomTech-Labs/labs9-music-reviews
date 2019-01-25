@@ -1,11 +1,11 @@
 import React from 'react';
 import axios from 'axios';
-import { Button } from 'reactstrap';
+import { Button, Input, Row, Container } from 'reactstrap';
 // import styled from 'styled-components';
 
 class SettingsContent extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       userID: "",
       firebaseUID: "",
@@ -13,9 +13,27 @@ class SettingsContent extends React.Component {
       paidStatus: false,
       subscriptionExpiration: null,
       nickname: "",
+      newNickname: "",
       loading: false,
       loaded: false,
     };
+  }
+  handleChange = e => {
+    e.preventDefault();
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+  changeNickName = () => {
+    if ( this.state.newNickname.length < 4){
+      alert('New nickname must be at least 3 characters long.');
+    } else {
+      axios.put(`https://labs9-car-reviews.herokuapp.com/users/${this.state.userID}/change_nickname`, {
+          nickname: this.state.newNickname
+        })
+        .then( res => { console.log(res) })
+        .error( err => { console.log(err) })
+    }
   }
   componentDidMount() {
     this.setState({ loading: true }, () =>
@@ -56,21 +74,29 @@ class SettingsContent extends React.Component {
       return <h2>Something went wrong.</h2>;
     } else if (this.state.loaded === true && this.state.loading === false) {
       return (
-        <div>
+        <Container fluid style={{ margin: "auto", maxWidth: "1600px" }}>
           <h1>Account Settings</h1>
           <p>User ID: {this.state.userID}</p>
           <p>Firebase UID: {this.state.firebaseUID}</p>
-          <p>Nickname: {this.state.nickname}</p><Button>Change Nickname</Button>
+          <p>Nickname: {this.state.nickname}</p>
+          <Row style={{ display: "flex", justifyContent: "center" }}>
+            <Input 
+              style={{ maxWidth: "400px"}}
+              name="newNickname"
+              value={this.state.newNickname}
+              placeholder="Please enter new nickname" 
+              onChange={this.handleChange}  
+            />
+            <Button onClick={this.changeNickName}>Change Nickname</Button>
+          </Row>
           <p>Email address: {this.state.email}</p>
-          <p>{this.state.paidStatus == false ? 'Tier: Free' : 'Tier: Paid'}</p>
+          <p>{this.state.paidStatus === false ? 'Tier: Free' : 'Tier: Paid'}</p>
           <p>
-            {this.state.subscriptionExpiration == null ? (
-              ''
-            ) : (
-              this.state.subscriptionExpiration
-            )}
+            {this.state.subscriptionExpiration == null ? "You are not subscribed at the moment."
+            : `Your subscription will expire on: ${this.state.subscriptionExpiration}`
+            }
           </p>
-        </div>
+        </Container>
       );
     }
   }

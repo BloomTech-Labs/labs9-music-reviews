@@ -7,6 +7,7 @@ module.exports = {
   createNewUser,
   getUser,
   edit,
+  editNickname
 };
 
 function getAllUsers() {
@@ -40,4 +41,10 @@ function edit(id, date) {
   return db('users')
     .where({ userID: id })
     .update(date)
+}
+
+function editNickname(id, nickname){
+  return db('users')
+  .where({ userID: id })
+  .update(nickname)
 }
