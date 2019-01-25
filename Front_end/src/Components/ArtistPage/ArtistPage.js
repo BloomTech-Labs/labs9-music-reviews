@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Row, Col, ListGroup, ListGroupItem } from "reactstrap";
+import { Row, Col, ListGroup, ListGroupItem, Container } from "reactstrap";
 import AlbumCard from "./AlbumCard";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
@@ -60,7 +60,6 @@ class ArtistPage extends Component {
   }
 
   render() {
-    console.log(this.state.genres);
     const renderData = this.state.albums.map(album => {
       return (
         <NavLink to={`/albums/${album.id}`} style={{ textDecoration: 'none', color: "black" }}>
@@ -76,8 +75,8 @@ class ArtistPage extends Component {
     });
 
     return (
-      <div className="container">
-        <Row>
+      <Container fluid>
+        <Row style={{ position: "relative", top: "15rem" }}>
           <Col xs="4">
             <h1>{this.state.artist}</h1>
             <Row>
@@ -97,10 +96,10 @@ class ArtistPage extends Component {
             <img src={this.state.art} alt="Art of the artist" align="center"  style={{ maxWidth: '500px', maxHeight: "500px" }}/>
           </Col>
         </Row>
-        <h1>Albums</h1>
+        <h1 style={{ position: "relative", top: "15rem" }}>Albums</h1>
 
-        <Row>{renderData}</Row>
-      </div>
+        <Row style={{ position: "relative", top: "15rem" }}>{renderData}</Row>
+      </Container>
     );
   }
 }

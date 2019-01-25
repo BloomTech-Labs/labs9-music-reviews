@@ -55,7 +55,7 @@ class AlbumProfileReviewCard extends Component {
         <Container>
           <Row style={{ display: "flex", padding: "1rem" }}>
             {/* User info */}
-            <Col md="3" style={{ margin: "auto 0", border: "1px solid red" }}>
+            <Col md="5" style={{ margin: "auto 0" }}>
               <NavLink to={`/albums/${this.props.review.spotifyAlbumID}`} style={{ maxWidth: "150px", maxHeight: "150px", textDecoration: 'none', color: 'black' }}>
                 <img src={this.state.art} alt="Album cover art" />
               </NavLink>
@@ -77,7 +77,7 @@ class AlbumProfileReviewCard extends Component {
                 />
               ) : null}
             </Col>
-            <Col md="9" style={{ padding: "1rem 5rem" }}>
+            <Col md="7" style={{ padding: "1rem 5rem" }}>
               <Row style={{ display: "flex" }}>
                 <ViewStars rating={this.props.review.rating} />
                 <p style={{ padding: "0 20px" }}>
