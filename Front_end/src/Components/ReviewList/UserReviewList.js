@@ -26,7 +26,7 @@ class UserReviewList extends Component {
       input: "",
       loggedIn: false,
       userID: 0,
-      username: ""
+      nickname: ""
     };
   }
 
@@ -37,7 +37,7 @@ class UserReviewList extends Component {
     });
     this.getAlbumReviews();
     this.getTrackReviews();
-    this.getNickname(this.state.userID)
+    this.getNickname(this.props.match.params.id)
   }
 
   getAlbumReviews() {
@@ -68,7 +68,7 @@ class UserReviewList extends Component {
 
   getNickname(userID) {
     axios
-      .get(`https://labs9-car-reviews.herokuapp.com/user/${userID}/nickname`)
+      .get(`https://labs9-car-reviews.herokuapp.com/users/${userID}/nickname`)
       .then(response => {
         const userNickname = response.data;
         const newState = Object.assign({}, this.state, {
@@ -90,7 +90,7 @@ class UserReviewList extends Component {
     const userTrackReviews = this.state.trackReviews.filter(review => {
       return review.userID === parseInt(this.props.match.params.id);
     });
-    console.log(this.props.nickname)
+    console.log(this.props.match.params.id)
     return (
       <Fragment>
         <Container
