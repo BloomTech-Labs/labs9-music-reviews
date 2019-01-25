@@ -73,3 +73,18 @@ router.put('/:userID/change_nickname', async (req, res) => {
     }
   }
 })
+
+router.get('/:userID/nickname', async (req, res) => {
+  const { userID } = req.params
+
+  if (!userID) {
+    res.status(400).json({ message: 'userID cannot be empty' })
+  }
+  try {
+    const nickname = await dbUsers.getNickname(userID)
+    res.status(200).json(nickname)
+  }
+  catch (err) {
+    res.status(500).json(err.message)
+  }
+})
