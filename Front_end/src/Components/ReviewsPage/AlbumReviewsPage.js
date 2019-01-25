@@ -53,7 +53,7 @@ class AlbumReviewsPage extends Component {
           artistId: res.data.artists[0]["id"],
           art: res.data.images[1].url,
           tracks: res.data.tracks.items,
-          width: res.data.images[0].height,
+          width: res.data.images[1].height,
         }, console.log(res.data));
       })
       .catch(err => console.log(err));

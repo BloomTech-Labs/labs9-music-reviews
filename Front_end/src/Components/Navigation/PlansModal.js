@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import {
   Button,
   Modal,
@@ -28,7 +28,7 @@ class PlansModal extends React.Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         <Button
           outline
           color="info"
@@ -37,7 +37,9 @@ class PlansModal extends React.Component {
             backgroundColor: "#495057",
             color: "#fff",
             fontSize: "12px",
-            margin: " 0 15px"
+            margin: " 0 15px",
+            maxHeight: "75px",
+            maxWidth: "100px"
           }}
         >
           Upgrade
@@ -100,7 +102,7 @@ class PlansModal extends React.Component {
             </Button>
           </ModalFooter>
         </Modal>
-      </div>
+      </Fragment>
     );
   }
 }
