@@ -1,12 +1,12 @@
 import React from "react";
 import "./LandingPage.css";
-import { Input, Button } from "reactstrap";
+import {Button, Container } from "reactstrap";
 import Search from "../Search/Search";
 
 const LandingPage = () => {
   return (
-    <div className="landingpage">
-      <div align="center" style={{ margin: "50px 0", maxHeight: "350px" }}>
+    <Container fluid className="landingpage">
+      <div align="center" style={{ maxHeight: "350px" }}>
         <img
           src={require("../../Images/SongbirdLogo1.png")}
           alt="Songbird logo"
@@ -42,7 +42,7 @@ const LandingPage = () => {
           }}
         /> */}
       </div>
-    </div>
+    </Container>
   );
 };
 export default LandingPage;
