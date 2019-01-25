@@ -151,7 +151,7 @@ class Search extends Component {
 
     return (
       <Container fluid>
-        <Row >
+        <Row style={{ position: "relative", top: "200px" }}>
           <Col xs = '12' sm = '12' md = '12' lg = '12'>
             <Form onSubmit={this.noEnter} >
                 <Input

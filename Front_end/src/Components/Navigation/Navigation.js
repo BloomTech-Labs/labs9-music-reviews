@@ -55,7 +55,7 @@ class Navigation extends Component {
 
   render() {
     return (
-        <div className="flex-sm-column">
+        <div className="flex-sm-column" style={{ paddingBottom: "200px" }}>
 
         <Navbar color="dark" fixed="top" dark expand="md"  toggleable="sm" style={{ display: "flex" }}>
           <Col>
@@ -111,7 +111,7 @@ class Navigation extends Component {
                               <DropdownItem>Home</DropdownItem>
                             </Link>
                             <Link to={`/user/reviews/${this.props.userID}`} style={{ textDecoration: 'none', textAlign: "center" }}>
-                              <DropdownItem>My reviews</DropdownItem>
+                              <DropdownItem>My Reviews</DropdownItem>
                             </Link>
                             <Link to="/user/billing" style={{ textDecoration: 'none', textAlign: "center" }}>
                               <DropdownItem>Billing</DropdownItem>

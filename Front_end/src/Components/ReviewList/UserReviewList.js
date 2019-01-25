@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { Row, Col, Container, CardImg, Button } from "reactstrap";
+import { Row, Col, Container, CardImg } from "reactstrap";
 import AlbumProfileReviewCard from "./AlbumProfileReviewCard";
 import TrackProfileReviewCard from "./TrackProfileReviewCard";
 
@@ -14,7 +14,7 @@ const Sidebar = styled.div`
   padding-top: 80px;
   display: flex;
   flex-direction: column;
-  align-items: "center";
+  align-items: center;
 `;
 
 class UserReviewList extends Component {
@@ -102,55 +102,52 @@ class UserReviewList extends Component {
             maxWidth: "1600px"
           }}
         >
-          <Sidebar>
-            <CardImg
-              src={require("../../Images/RecordThumb.png")}
-              alt="Default profile image"
-              style={{ maxWidth: "200px" }}
-            />
-            <Row style={{ alignSelf: "center" }}>
-              <h3><strong>Nickname:</strong> {this.state.nickname}</h3>
-            </Row>
-            <Row style={{ alignSelf: "center" }}>
-              <h5>Status</h5>
-            </Row>
-            <Row style={{ alignSelf: "center" }}>
-              <h5>
-                Reviews:{" "}
-                {userAlbumReviews.length + userTrackReviews.length}
-              </h5>
-            </Row>
-            {/* can add logic to render different size of album art based on screen size: stacked ternary */}
-            {/* need to find a way to manipulate the img object from res.data */}
-
-            <Row
-              style={{
-                display: "flex",
-                justifyContent: "space-evenly",
-                padding: "1rem"
-              }}
-            />
-          </Sidebar>
+          <Col xs="12" md="4">
+            <Sidebar>
+              <Row>
+                <CardImg
+                  src={require("../../Images/RecordThumb.png")}
+                  alt="Default profile image"
+                  style={{ maxWidth: "250px", maxHeight: "250px", padding: "2rem", margin: "0 auto" }}
+                />
+              </Row>
+  
+              <div style={{ alignSelf: "center" }}>
+                <h3><strong>Nickname:</strong> {this.state.nickname}</h3>
+              </div>
+              <div style={{ alignSelf: "center" }}>
+                <h5>Status</h5>
+              </div>
+              <div style={{ alignSelf: "center" }}>
+                <h5>
+                  Reviews:{" "}
+                  {userAlbumReviews.length + userTrackReviews.length}
+                </h5>
+              </div>
+            </Sidebar>
+          </Col>
         </Container>
         <Container fluid={true} style={{ maxWidth: "1150px" }}>
-          {userAlbumReviews.map(review => (
-            <AlbumProfileReviewCard
-              review={review}
-              loggedIn={this.props.loggedIn}
-              userID={this.props.userID}
-              key={review.id}
-              nickname={this.props.nickname}
-            />
-          ))}
-          {userTrackReviews.map(review => (
-            <TrackProfileReviewCard
-              review={review}
-              loggedIn={this.props.loggedIn}
-              userID={this.props.userID}
-              key={review.id}
-              nickname={this.props.nickname}
-            />
-          ))}
+          <Col md="8" sm="12">
+            {userAlbumReviews.map(review => (
+              <AlbumProfileReviewCard
+                review={review}
+                loggedIn={this.props.loggedIn}
+                userID={this.props.userID}
+                key={review.id}
+                nickname={this.props.nickname}
+              />
+            ))}
+            {userTrackReviews.map(review => (
+              <TrackProfileReviewCard
+                review={review}
+                loggedIn={this.props.loggedIn}
+                userID={this.props.userID}
+                key={review.id}
+                nickname={this.props.nickname}
+              />
+            ))}  
+          </Col>
         </Container>
       </Fragment>
     );

@@ -5,6 +5,7 @@ import {
   Input,
   Container,
   FormGroup,
+  CardImg,
   Label
 } from "reactstrap";
 import styled from "styled-components";
@@ -29,6 +30,7 @@ const ProfileInfo = styled.div`
   overflow-x: hidden;
   height: 100%;
   padding-top: 20px;
+  padding-left: 65px;
 `;
 
 class Billing extends Component {
@@ -66,24 +68,26 @@ class Billing extends Component {
       <div>
         <Container fluid style={{ maxWidth: "1000px" }}>
           <Row>
-            <Col md="4">
+            <Col md="4" sm="12">
               <ProfileInfo>
-                <img
-                  src={require("../../Images/RecordThumb.png")}
-                  alt="Default profile image"
-                  style={{ maxWidth: "200px" }}
-                />
+                <Row>
+                  <CardImg
+                    src={require("../../Images/RecordThumb.png")}
+                    alt="Default profile image"
+                    style={{ maxWidth: "250px", maxHeight: "250px", padding: "2rem", margin: "0 auto" }}
+                  />
+                </Row>
                 <p>Status</p>
-                <p>Username</p>
+                <p>{this.props.nickname}</p>
                 <p>Reviews: 1</p>
               </ProfileInfo>
             </Col>
 
-            <Col sm="8">
+            <Col sm="12" md="8">
               <Payment>
                 <h2 style={{ textAlign: "left" }}> Billing </h2>
                 <div style={{ margin: "2rem 0" }}>
-                  <FormGroup check>
+                  <FormGroup check style={{ display: "flex", flexDirection: "column" }}>
                     <Label check>
                       <Input type="radio" name="subType" value="year" onClick={this.changeSub} />
                       1 Year Subscription $9.99
@@ -102,10 +106,6 @@ class Billing extends Component {
                   amount={this.state.subType === "year" ? 9.99 : 0.99}
                   changeSubscriptionStatus={this.changeSubscriptionStatus}
                 />
-                {/* <p style={{ color: "lightgray" }}>
-                  *Subscriptions are automatically renewed unless specified. To
-                  edit subscription preferences, please navigate to ""
-                </p> */}
               </Payment>
             </Col>
           </Row>

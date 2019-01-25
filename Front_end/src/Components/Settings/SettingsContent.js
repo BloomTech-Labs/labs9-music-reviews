@@ -74,7 +74,7 @@ class SettingsContent extends React.Component {
       return <h2>Something went wrong.</h2>;
     } else if (this.state.loaded === true && this.state.loading === false) {
       return (
-        <Container fluid style={{ margin: "auto", maxWidth: "1600px" }}>
+        <Container fluid style={{ maxWidth: "1600px" }}>
           <h1>Account Settings</h1>
           <p>User ID: {this.state.userID}</p>
           <p>Firebase UID: {this.state.firebaseUID}</p>
