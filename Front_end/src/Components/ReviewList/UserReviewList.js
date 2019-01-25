@@ -36,7 +36,8 @@ class UserReviewList extends Component {
       loggedIn: this.props.loggedIn
     });
     this.getAlbumReviews();
-    this.getTrackReviews();    
+    this.getTrackReviews();
+    this.getNickname(this.state.userID)
   }
 
   getAlbumReviews() {
@@ -59,6 +60,19 @@ class UserReviewList extends Component {
         const userTrackReviews = response.data;
         const newState = Object.assign({}, this.state, {
           trackReviews: userTrackReviews
+        });
+        this.setState(newState);
+      })
+      .catch(err => console.log(err));
+  }
+
+  getNickname(userID) {
+    axios
+      .get(`https://labs9-car-reviews.herokuapp.com/user/${userID}/nickname`)
+      .then(response => {
+        const userNickname = response.data;
+        const newState = Object.assign({}, this.state, {
+          nickname: userNickname
         });
         this.setState(newState);
       })
@@ -95,7 +109,7 @@ class UserReviewList extends Component {
               style={{ maxWidth: "200px" }}
             />
             <Row style={{ alignSelf: "center" }}>
-              <h3><strong>Nickname:</strong> {this.props.nickname}</h3>
+              <h3><strong>Nickname:</strong> {this.state.nickname}</h3>
             </Row>
             <Row style={{ alignSelf: "center" }}>
               <h5>Status</h5>
