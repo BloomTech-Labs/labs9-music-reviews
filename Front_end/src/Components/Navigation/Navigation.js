@@ -40,7 +40,7 @@ class Navigation extends Component {
     if (!this.props.loggedIn){
     this.props.history.push('/login');
     } else {
-      this.props.history.push('/search')
+      this.props.history.push('/search');
     }
     this.setState({
       query: ''
