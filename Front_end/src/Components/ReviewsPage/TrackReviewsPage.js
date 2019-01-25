@@ -1,3 +1,6 @@
+
+
+
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import { Container, Row, Col, CardImg } from "reactstrap";
@@ -103,7 +106,10 @@ class TrackReviewsPage extends Component {
     const trackReviews = this.state.reviews.filter(review => {
       return review.spotifyTrackID === this.props.match.params.id;
     });
-    console.log(trackReviews)
+    // console.log(trackReviews)
+    const trackReviewFilteredbyUserID = trackReviews.filter(track => {
+      return track.userID = this.props.userID
+    })
     return (
       <Fragment>
         <Container
@@ -138,15 +144,17 @@ class TrackReviewsPage extends Component {
                   }}
                 >
                   {/* Write Review Button Modal */}
-                  <TrackReviewCreateModal
-                    {...this.props}
-                    album={this.state.album}
-                    artist={this.state.artist}
-                    art={this.state.art}
-                    track={this.state.track}
-                    trackId={this.state.trackId}
-                    userID={this.props.userID}
-                  />
+                  {trackReviewFilteredbyUserID.length === 0 ?
+                    <TrackReviewCreateModal
+                      {...this.props}
+                      album={this.state.album}
+                      artist={this.state.artist}
+                      art={this.state.art}
+                      track={this.state.track}
+                      trackId={this.state.trackId}
+                      userID={this.props.userID}
+                    />
+                    : null}
                 </Row>
                 <Row>
                   <Col>
@@ -162,15 +170,15 @@ class TrackReviewsPage extends Component {
                             style={
                               track.id === this.state.trackId
                                 ? {
-                                    display: "flex",
-                                    justifyContent: "space-between",
-                                    border: "3px solid red",
-                                    alignItems: "center"
-                                  }
+                                  display: "flex",
+                                  justifyContent: "space-between",
+                                  border: "3px solid red",
+                                  alignItems: "center"
+                                }
                                 : {
-                                    display: "flex",
-                                    justifyContent: "space-between"
-                                  }
+                                  display: "flex",
+                                  justifyContent: "space-between"
+                                }
                             }
                           >
                             <Col xs="1">
@@ -207,10 +215,10 @@ class TrackReviewsPage extends Component {
 
             <Col xs="12" md="6">
               <Container>
-                <Container fluid={true} style={{ position: 'absolute', top: '100px' }}> 
+                <Container fluid={true} style={{ position: 'absolute', top: '100px' }}>
                   {/* Spotify Player */}
                   <iframe src={`https://open.spotify.com/embed/track/${this.state.trackId}`}
-                  width="380" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media">
+                    width="380" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media">
                   </iframe>
                 </Container>
                 <Container fluid={true} style={{ maxWidth: "1150px" }}>
