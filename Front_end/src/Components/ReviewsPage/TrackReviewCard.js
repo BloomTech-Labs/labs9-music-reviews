@@ -37,7 +37,7 @@ class TrackReviewCard extends Component {
     console.log(this.props.review);
     return (
       <Fragment>
-        <Container>
+        <Container fluid>
           <Jumbotron fluid style={{ display: "flex", padding: "1rem" }}>
             {/* User info */}
             <Row>
