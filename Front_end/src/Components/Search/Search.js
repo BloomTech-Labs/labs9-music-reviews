@@ -24,6 +24,9 @@ class Search extends Component {
       }
   }
 
+  componentDidMount() {
+    this.renderAlbumArtistTrack(this.state.query)
+  }
 
   renderAlbumArtistTrack = () => {
     let access_token = this.props.cookies.get('access_token');
@@ -62,8 +65,15 @@ class Search extends Component {
     return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
   }
 
+  keyPress = (event) => {
+    event.preventDefault();
+    console.log('Enter is clicked');
+    if (!this.props.loggedIn){
+    window.location = '/login';
+    }
+  }
+
   render() {
-    console.log(this.props.query)
     const image = '../../Images/songbird.png';
     const renderSearch = <Container style = {{marginTop: '30px'}}>
                             <Row>
@@ -72,8 +82,8 @@ class Search extends Component {
                             
                               <div className="d-flex flex-row flex-nowrap align-items-center" style = {{overflow: 'auto', WebkitOverflowScrolling: 'touch'}} >
                               {this.state.albums.map(album => {
-                                    return  <NavLink to={`/albums/${album.id}`} style={{ textDecoration: 'none' }}><Col>
-                                                <Card key = {album.id} style = {{width: '10rem', textAlign: 'center', border: 'none'}}>
+                                    return  <NavLink key={album.id} to={`/albums/${album.id}`} style={{ textDecoration: 'none' }}><Col>
+                                                <Card key = {album.id} style = {{width: '10rem', border: 'none', alignItems: 'center'}}>
 
                                                   <CardImg src= {!album.images[0] ?  image : album.images[0].url}  alt = {album.name} style = {{borderRadius: '50%', width: '7rem'}}/>
                                                   <CardBody>
@@ -92,8 +102,8 @@ class Search extends Component {
                             
                               <div className="d-flex flex-row flex-nowrap align-items-center" style ={{overflow: 'auto', WebkitOverflowScrolling: 'touch'}}>
                               {this.state.artists.map(artist => {
-                                    return  artist.images.length === 0 ? null : <NavLink to={`/artists/${artist.id}`}><Col>
-                                                <Card key = {artist.id} style = {{width: '10rem', textAlign: 'center', border: 'none'}}>
+                                    return  artist.images.length === 0 ? null : <NavLink key ={artist.id}to={`/artists/${artist.id}`}><Col>
+                                                <Card key = {artist.id} style = {{width: '10rem', alignItems: 'center', border: 'none'}}>
 
                                                   <CardImg src= {!artist.images[0] ? image : artist.images[0].url}  alt = {artist.name} style = {{borderRadius: '50%', width: '7rem'}}/>
                                                   <CardBody>
@@ -112,24 +122,24 @@ class Search extends Component {
                             <Row>
                               <Col>
                               <Row style = {{ marginBottom: '20px' }}>
-                                <Col sm={2} style={{ textAlign: 'center' }}>Art</Col>
-                                <Col sm={4} style={{ textAlign: 'left' }}>Track Name</Col>
-                                <Col sm={4} style={{ textAlign: 'left' }}>Album Name</Col>
-                                <Col sm={2} style={{ textAlign: 'left' }}>Track Time</Col>
+                                <Col xs={6} lg={2} xl={2} style={{ textAlign: 'center' }}>Art</Col>
+                                <Col xs={6} lg ={6} xl={4} style={{ textAlign: 'center' }} >Track Name</Col>
+                                <Col md={4} xl={4} className="d-none d-lg-block" style={{ textAlign: 'center' }}>Album Name</Col>
+                                <Col md={2} xl={2} className="d-none d-xl-block" style={{ textAlign: 'center' }}>Track Time</Col>
                               </Row>
                               {this.state.tracks.map(track => {
                                 const seconds = this.convertToSeconds(track.duration_ms);
                                   return track.album.images.length === 0 ? null : 
                                    <NavLink to={`/tracks/${track.id}`}>
-                                    <Row key = {track.id} style = {{ maxWidth: '1600px', textAlign: 'center', padding: '1rem' }}>
-                                        <Col sm={2}>
+                                    <Row key = {track.id} style = {{ maxWidth: '1600px', textAlign: 'center', padding: '1rem' }} className="d-flex align-items-center">
+                                        <Col xs={6} lg={2} xl={2}>
                                           <CardImg src= {!track.album.images[0] ? image : track.album.images[0].url}
                                                   alt = {track.name} style = {{borderRadius: '50%', width: '7rem'}}
                                           />  
                                         </Col>
-                                        <Col sm={4} className="d-flex align-items-center">{track.name}</Col>
-                                        <Col sm={4} className="d-flex align-items-center">{track.album.name}</Col>
-                                        <Col sm={2} className="d-flex align-items-center">{seconds}</Col>
+                                        <Col xs={6} lg ={6} xl={4}>{track.name}</Col>
+                                        <Col md={4} xl={4} className="d-none d-lg-block">{track.album.name}</Col>
+                                        <Col  md={2} xl={2} className="d-none d-xl-block" >{seconds}</Col>
                                     </Row>
                                    </NavLink>
                                 })
@@ -143,7 +153,7 @@ class Search extends Component {
       <Container fluid>
         <Row >
           <Col xs = '12' sm = '12' md = '12' lg = '12'>
-            <Form onSubmit={this.noEnter}>
+            <Form onSubmit={this.noEnter} >
                 <Input
                   type="search"
                   name="search"

@@ -30,6 +30,7 @@ class Navigation extends Component {
       query: ''
     };
   }
+
   toggle = () => {
     this.setState({ isOpen: !this.state.isOpen })
   }
@@ -38,7 +39,6 @@ class Navigation extends Component {
   //     query: event.target.value
   //   })
   // }
-
   // keyPress = (event) => {
   //   event.preventDefault();
 
