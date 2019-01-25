@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import { Container, Row, Col, Jumbotron, CardImg, Button } from "reactstrap";
 import ViewStars from "../StarsRating/ViewStars";
+import axios from "axios";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
 
@@ -12,14 +13,26 @@ class TrackReviewCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
-      album: "",
-      artist: "",
-      art: "",
-      tracks: []
+      nickname: ""
     };
   }
 
+  getNickname(userID) {
+    axios
+      .get(`https://labs9-car-reviews.herokuapp.com/user/${userID}/nickname`)
+      .then(response => {
+        const userNickname = response.data;
+        const newState = Object.assign({}, this.state, {
+          nickname: userNickname
+        });
+        this.setState(newState);
+      })
+      .catch(err => console.log(err));
+  }
+
+  componentDidMount() {
+    this.getNickname(this.state.nickname);
+  }
   render() {
     console.log(this.props.review);
     return (
@@ -43,10 +56,9 @@ class TrackReviewCard extends Component {
                     style={{ maxWidth: '150px'}}
                   />
                 </div>
+                <div><strong>Nickname: </strong>{this.state.nickname}</div>
                 <div>Member status</div>
-                <div>Location</div>
-                <div>Name</div>
-                <div>Number of Reviews Written</div>
+                <div><strong>Reviews: </strong></div>
               </Col>
               <Col md="8" style={{ padding: "1rem 5rem" }}>
                 <Row style={{ display: "flex" }}>

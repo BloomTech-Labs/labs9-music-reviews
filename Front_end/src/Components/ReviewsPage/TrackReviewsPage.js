@@ -138,6 +138,7 @@ class TrackReviewsPage extends Component {
                   <CardImg src={this.state.art} alt="Album Art" />
                 </Link>
 
+
                 <Container fluid={true} style={{ margin: "0 auto" }}> 
                   {/* Spotify Player */}
                   <iframe src={`https://open.spotify.com/embed/track/${this.state.trackId}`}

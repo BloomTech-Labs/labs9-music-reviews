@@ -26,20 +26,27 @@ class AlbumReviewCard extends Component {
         const newState = Object.assign({}, this.state, {
           users: users
         });
-        this.setState(newState, () => {this.findNickname()});
+        this.setState(newState);
       })
       .catch(err => console.log(err));
   }
   
-  findNickname() {
-    const currentUser = this.state.users.filter(user => {
-      return user.userID === this.props.review.userID
-    });
-    this.setState({ nickname: currentUser.nickname})
+  getNickname(userID) {
+    axios
+      .get(`https://labs9-car-reviews.herokuapp.com/user/${userID}/nickname`)
+      .then(response => {
+        const userNickname = response.data;
+        const newState = Object.assign({}, this.state, {
+          nickname: userNickname
+        });
+        this.setState(newState);
+      })
+      .catch(err => console.log(err));
   }
 
   componentDidMount() {
     this.getUser();
+    this.getNickname(this.props.userID);
   }
 
   render() {
