@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import { Container, Row, Col, Jumbotron, CardImg, Button } from "reactstrap";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 import ViewStars from "../StarsRating/ViewStars";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
@@ -69,17 +70,19 @@ class AlbumReviewCard extends Component {
                   <img
                     src={require("../../Images/RecordThumb.png")}
                     alt="Default profile image"
-                    style={{ 
+                    style={{
                       maxWidth: "250px",
                       maxHeight: "250px",
                       padding: "2rem",
-                      margin: "0 auto",
+                      margin: "0 auto"
                     }}
                   />
                 </div>
                 <div>
                   <strong>Nickname: </strong>
-                  {this.state.nickname}
+                  <NavLink to={`/user/reviews/${this.props.review.userID}`}>
+                    {this.state.nickname}
+                  </NavLink>
                 </div>
                 <div>Member status</div>
                 <div>
