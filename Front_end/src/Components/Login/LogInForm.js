@@ -7,6 +7,7 @@ import {
   FormGroup,
   Label,
   Input,
+  Card
 } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
 import { FirebaseContext } from '../Firebase';
@@ -47,9 +48,10 @@ class LogInForm extends React.Component {
   };
   render() {
     return (
-      <Container fluid style={{ position: "relative", top: "10rem" }}>
-        <h2 className="mt-3 mb-3">Log In</h2>
-        <Form>
+      <Container fluid style={{ position: "relative", top: "15rem" }}>
+      <Card style={{ border: "2px solid orange", maxWidth: "800px", margin: "0 auto", padding: "5rem 0" }}>
+        <h2>Log In</h2>
+        <Form style={{ margin: "0 auto", padding: "-10rem"}}>
           <FirebaseContext.Consumer>
             {(firebase) => <LogInWithGoogle firebase={firebase} changeLogInState={this.props.changeLogInState} />}
           </FirebaseContext.Consumer>
@@ -77,25 +79,27 @@ class LogInForm extends React.Component {
               />
             </FormGroup>
           </Col>
-          <div className="regLogin mb-3">
+          <div className="regLogin">
             <Button
-              color="primary"
-              className="mr-3"
+              color="warning"
+              style={{ margin: "1rem"}}
               onClick={this.onSubmitHandler}
             >
               Sign In
             </Button>
             <span
               className="forgotPassword"
+              style={{ margin: "1rem" }}
               onClick={() => this.props.history.push('/forgot_password')}
             >
-              Forgot account?
+              Forgot Password?
             </span>
           </div>
-          <Button color="primary" className="mb-3 mr-3" onClick={this.redirect}>
+          <Button color="warning" style={{ margin: "1rem" }} onClick={this.redirect}>
             Don't have an account?
           </Button>
-        </Form>
+          </Form>
+        </Card>
       </Container>
     );
   }

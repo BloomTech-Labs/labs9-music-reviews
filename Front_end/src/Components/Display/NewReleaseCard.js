@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Card, CardImg, CardBody, CardTitle, CardSubtitle, Col } from 'reactstrap';
+import { Card, CardImg, CardBody, CardTitle, Col } from 'reactstrap';
 
 class NewReleaseCard extends Component {
   render() {
     return (
-          <Col xs = '12' sm = '6' md = '4' lg = '3'>
+          <Col sm="12" md="3">
           <NavLink to={`/albums/${this.props.id}`}>
-            <Card>
-              <CardImg top width="100%" src={this.props.image} alt={this.props.alt} />
-              <CardBody>
-                <CardTitle>Album: {this.props.album}</CardTitle>
-                <CardSubtitle>Artist: {this.props.artist}</CardSubtitle>
-                <CardSubtitle>Release Date: {this.props.date}</CardSubtitle>
+            <Card style={{ border: "2px solid #dc9f2e", color: "#4b0082", textDecoration: "none", maxHeight: "500px", maxWidth: "200px" }}>
+              <CardImg top src={this.props.image} alt={this.props.alt} />
+              <CardBody style={{ padding: "1rem" }}>
+                <CardTitle><h6>Album:</h6><p>{this.props.album}</p></CardTitle>
+                <CardTitle><h6>Artist:</h6><p>{this.props.artist}</p></CardTitle>
+                <CardTitle><h6>Release Date:</h6><p>{this.props.date}</p></CardTitle>
               </CardBody>
             </Card>
             </NavLink>

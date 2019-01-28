@@ -1,6 +1,12 @@
-body {
+html, body {
   margin: 0;
   padding: 0;
+  /* background: linear-gradient(to bottom, #4b0082, #a0006c, #ce1d4e, #e06434, #dc9f2e) no-repeat center center fixed;  */
+  background: radial-gradient(circle, #dc9f2e, #e08a2c, #e1742f, #df5c37, #da4440, #d2304a, #c81b54, #bb005d, #a80067, #910072, #73007b, ) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;

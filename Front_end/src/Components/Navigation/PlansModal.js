@@ -34,12 +34,14 @@ class PlansModal extends React.Component {
           color="info"
           onClick={this.toggle}
           style={{
-            backgroundColor: "#495057",
+            backgroundColor: "#dc9f2e",
             color: "#fff",
-            fontSize: "12px",
+            fontSize: "1rem",
             margin: " 0 15px",
             maxHeight: "75px",
-            maxWidth: "100px"
+            maxWidth: "100px",
+            border: "none",
+            textDecoration: "none"
           }}
         >
           Upgrade

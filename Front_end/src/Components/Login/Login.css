@@ -3,13 +3,11 @@ h2{
 }
 h1 {
     text-align:center;
-    padding-top:30px;
 }
 form {
-    max-width:600px;
-    width:100%;
+    max-width: 500px;
     margin:0 auto;
-    border:1px solid #778899;
+    border:1px solid orange;
     display:flex;
     flex-direction:column;
     justify-content:flex-start;
