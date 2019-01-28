@@ -37,7 +37,7 @@ class LogInWithGoogle extends React.Component {
 
   render() {
     return (
-      <Button color="primary" className="mt-3 mb-3" onClick={this.onSubmit}>
+      <Button color="warning" className="mt-3 mb-3" onClick={this.onSubmit}>
         Google Log In
       </Button>
     );

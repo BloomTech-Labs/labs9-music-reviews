@@ -17,8 +17,8 @@ import { Container } from "reactstrap";
 import axios from "axios";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
-import Search from "./Components/Search/Search";
-//import './App.css';
+import SearchResults from "./Components/Search/SearchResults"
+import './App.css';
 
 let refreshTime = 15*60*1000; // 15 mins
 
@@ -112,9 +112,8 @@ class App extends Component {
     setInterval(this.refreshToken, refreshTime);
   }
   render() {
-    console.log(this.state.userID)
     return (
-      <Container fluid style={{ padding: "0" }}>
+      <Container fluid className="background" style={{ padding: "0" }}>
         <Navigation
           loggedIn={this.state.loggedIn}
           signout={() => this.changeLoginState(false)}
@@ -138,7 +137,7 @@ class App extends Component {
         />
         <Route path="/forgot_password" component={ForgotPasswordPage} />
         <Route path="/search"  render={(props) => 
-          <Search {...props} loggedIn={this.state.loggedIn} /> }/>
+          <SearchResults {...props} loggedIn={this.state.loggedIn} /> }/>
         <Route
           path="/albums/:id"
           render={props => (

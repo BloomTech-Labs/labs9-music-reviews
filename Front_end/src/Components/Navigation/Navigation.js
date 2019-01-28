@@ -22,6 +22,7 @@ import { Icon } from 'react-materialize';
 import PlansModal from './PlansModal'
 import { FirebaseContext } from "../Firebase/index.js";
 import Breadcrumbs from "./Breadcrumbs";
+import './Navigation.css';
 
 class Navigation extends Component {
   constructor(props) {
@@ -58,12 +59,12 @@ class Navigation extends Component {
     return (
         <div className="flex-sm-column">
 
-        <Navbar color="dark" fixed="top" dark expand="md"  toggleable="sm" style={{ display: "flex" }}>
-          <Col>
+        <Navbar fixed="top" dark expand="md"  toggleable="sm" style={{ display: "flex", background: "rgba(48, 52, 54, 0.75)" }}>
+          <Col style={{ marginRight: "1rem" }}>
             {/* <NavbarBrand sm="12" className="mr-auto" style={{ background: "white", color: "lightblue", fontSize: "4rem", fontWeight: "700", padding: "0.5rem" }}>
               <Route path="/:path" component={Breadcrumbs} />
             </NavbarBrand> */}
-            <Link to="/" style={{ textDecoration: "none",color: "lightblue", fontSize: "4rem", fontWeight: "700"}}>SONGBIRD</Link>
+            <Link to="/" style={{ textDecoration: "none",color: "#dc9f2e", fontSize: "4rem", fontWeight: "700" }}>SONGBIRD</Link>
           </Col>
           <Nav
             navbar
@@ -73,7 +74,7 @@ class Navigation extends Component {
           
           
           
-          <Row style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <Row style={{ display: "flex", justifyContent: "space-around", alignItems: "center", minWidth: "325px" }}>
                 {/* <Form onSubmit = {this.keyPress}>
                   <Input
                     type="search"
@@ -91,7 +92,7 @@ class Navigation extends Component {
                   /> 
                   </Form>*/}
                   <Link to="/search" style={{ margin: "0 auto" }}>
-                    <Button>Search</Button>
+                    <Button style={{ background:"#dc9f2e" }}>Search</Button>
                   </Link>
                 <div style={{ display: 'flex', justifyContent: "center" }}>
                   <PlansModal />
@@ -111,7 +112,7 @@ class Navigation extends Component {
                         <Icon large>menu</Icon>
                       </DropdownToggle>
 
-                      <DropdownMenu right>
+                      <DropdownMenu right style={{ background: "#dc9f2e", color: "#a0006c" }}>
                         {this.props.loggedIn === true ? (
                           <Fragment>
                             <Link to="/home" style={{ textDecoration: 'none', textAlign: "center" }}>

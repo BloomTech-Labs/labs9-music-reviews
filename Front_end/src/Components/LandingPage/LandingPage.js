@@ -1,46 +1,35 @@
 import React from "react";
 import "./LandingPage.css";
-import {Button, Container } from "reactstrap";
+import {Button, Container, Row } from "reactstrap";
 import Search from "../Search/Search";
 
 const LandingPage = () => {
   return (
-    <Container fluid className="landingpage">
-      <div align="center" style={{ maxHeight: "350px", position: "relative", top: "10rem" }}>
+    <Container fluid style={{ margin: "0 auto" }}>
+      {/* <Row align="center"
+            style={{ maxHeight: "400px", maxWidth: "1600px", margin: "0 auto", position: "relative", top: "13rem" }}
+      >
         <img
           src={require("../../Images/SongbirdLogo1.png")}
           alt="Songbird logo"
-          width="75%"
+          style={{ maxWidth: "1200px", margin: "0 auto", width: "100%" }}
         />
-      </div>
-      {/* animated music notes
-      <div className="music-notes">
-        <div className="note-1">
-          &#9835; &#9833;
-        </div>
-        <div className="note-2">
-          &#9833;
-        </div>
-        <div className="note-3">
-          &#9839; &#9834;
-        </div>
-        <div className="note-4">
-          &#9834;
-        </div>
-      </div> */}
-      <h2 style={{ color: "white", position: "relative", top: "15rem" }}>
+      </Row> */}
+      <h3 style={{ color: "white", position: "relative", textAlign: "center", padding: "13rem 3rem 0 3rem" }}>
         There are a million songs out there. <br />
         Let your opinions on them take flight...
-      </h2>
-      <div align="center" style={{ position: "relative", top: "17rem", padding: "1rem" }}>
+      </h3>
+      <div align="center" style={{ position: "relative", padding: "1rem" }}>
         <a href="/login">
-          <Button color="secondary" size="lg">
-            Start Reading Reviews Now!
-          </Button>
+          <button style={{ padding: "1rem 3rem", borderRadius: "0.5rem", border: "none", background: "#dc9f2e", color: "white", fontWeight: "650" }}>
+            Start Your 14-day Free Trial Now!
+          </button>
         </a>
       </div>
-      <div style={{ position: "relative", top: "19rem", padding: "2rem" }}>
+
+      <div style={{ position: "relative" }}>
         <Search />
+     
         {/* <Input
           type="search"
           name="search"
@@ -57,21 +46,6 @@ const LandingPage = () => {
           }}
         /> */}
       </div>
-      {/* animated music notes
-      <div className="music-notes">
-        <div className="note-1">
-          &#9835; &#9833;
-        </div>
-        <div className="note-2">
-          &#9833;
-        </div>
-        <div className="note-3">
-          &#9839; &#9834;
-        </div>
-        <div className="note-4">
-          &#9834;
-        </div>
-      </div> */}
     </Container>
   );
 };

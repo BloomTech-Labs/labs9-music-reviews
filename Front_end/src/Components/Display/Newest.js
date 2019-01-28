@@ -3,7 +3,7 @@ import axios from 'axios';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
 import NewReleaseCard from './NewReleaseCard';
-
+import { Container, Card } from 'reactstrap';
 
 
 const url = 'https://api.spotify.com/v1/search?q=tag%3Anew&type=album';
@@ -53,12 +53,14 @@ componentDidMount() {
     })
 
         return (
-            <div className = 'container'>
-                <h1>Latest Releases</h1>
-                <div className="d-flex flex-row flex-nowrap align-items-center" style = {{overflow: 'auto', WebkitOverflowScrolling: 'touch'}} >
-                    {renderData}
-                </div>
-            </div>
+            <Container style={{ padding: "1rem" }}>
+                <Card>
+                    <h1 style={{ color: "#dc9f2e" }}>Latest Releases</h1>
+                    <div className="d-flex flex-row flex-nowrap align-items-center" style = {{overflow: 'auto', WebkitOverflowScrolling: 'touch'}} >
+                        {renderData}
+                    </div>
+                </Card>
+            </Container>
         );
     }
 }

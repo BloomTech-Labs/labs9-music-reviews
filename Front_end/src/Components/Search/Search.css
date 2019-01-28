@@ -1,0 +1,21 @@
+input::-webkit-input-placeholder {
+    color:    #fff;
+}
+input:-moz-placeholder {
+    color:    #fff;
+}
+input::-moz-placeholder {
+    color:    #fff;
+}
+input:-ms-input-placeholder {
+    color:    #fff;
+}
+
+input:focus {
+    outline: none;
+}
+
+.scrollbar{
+    -webkit-scrollbar: 12px;
+    background-color: #4b0082;
+}

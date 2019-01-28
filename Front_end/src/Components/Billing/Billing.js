@@ -6,7 +6,8 @@ import {
   Container,
   FormGroup,
   CardImg,
-  Label
+  Label,
+  Card
 } from "reactstrap";
 import styled from "styled-components";
 import SubInfoModal from './SubInfoModal'
@@ -65,54 +66,59 @@ class Billing extends Component {
   render() {
     return (
       <div>
-        <Container fluid style={{ maxWidth: "1000px", paddingTop: "10rem" }}>
+        <Container fluid style={{ maxWidth: "1000px", padding: "15rem 0 5rem 0", color: "#dc9f2e" }}>
           <Row>
             <Col md="4" sm="12">
-              <ProfileInfo>
-                <Row>
-                  <CardImg
-                    src={require("../../Images/RecordThumb.png")}
-                    alt="Default profile image"
-                    style={{ 
-                      maxWidth: "250px",
-                      maxHeight: "250px",
-                      padding: "2rem",
-                      margin: "0 auto",
-                    }}
-                  />
-                </Row>
-                <p>Status</p>
-                <p>{this.props.nickname}</p>
-                <p>Reviews: 1</p>
-              </ProfileInfo>
+              <Card>
+                <ProfileInfo>
+                  <Row>
+                    <CardImg
+                      src={require("../../Images/RecordThumb.png")}
+                      alt="Default profile image"
+                      style={{ 
+                        maxWidth: "250px",
+                        maxHeight: "250px",
+                        padding: "2rem",
+                        margin: "0 auto",
+                      }}
+                    />
+                  </Row>
+                  <p>Status</p>
+                  <p>{this.props.nickname}</p>
+                  <p>Reviews: 1</p>
+                </ProfileInfo>
+              </Card>
             </Col>
 
             <Col sm="12" md="8">
-              <Payment>
-                <h2 style={{ textAlign: "left" }}> Billing </h2>
-                <div style={{ margin: "2rem 0" }}>
-                  <FormGroup check style={{ display: "flex", flexDirection: "column" }}>
-                    <Label check>
-                      <Input type="radio" name="subType" value="year" onClick={this.changeSub} />
-                      1 Year Subscription $9.99
-                    </Label>
-                    <br/>
-                    <Label check>
-                      <Input type="radio" name="subType" value="month" onClick={this.changeSub} />
-                      1 Month Subscription $0.99
-                    </Label>
-                  </FormGroup>
-                  <SubInfoModal />
-                </div>
-                {this.state.subType === '' ? '' 
-                : <Checkout
-                    name={"Subscription"}
-                    description={this.state.subType === "year" ? "1 Year Subscription" : "1 Month Subscription"}
-                    amount={this.state.subType === "year" ? 9.99 : 0.99}
-                    changeSubscriptionStatus={this.changeSubscriptionStatus}
-                  />
-                }   
-              </Payment>
+              <Card style={{ maxHeight: "600px" }}>
+                <Payment>
+                  <h2 style={{ textAlign: "left" }}> Billing </h2>
+                  <div style={{ margin: "2rem 0" }}>
+                    <FormGroup check style={{ display: "flex", flexDirection: "column" }}>
+                      <Label check>
+                        <Input type="radio" name="subType" value="year" onClick={this.changeSub} />
+                        1 Year Subscription $9.99
+                      </Label>
+                      <br/>
+                      <Label check>
+                        <Input type="radio" name="subType" value="month" onClick={this.changeSub} />
+                        1 Month Subscription $0.99
+                      </Label>
+                    </FormGroup>
+                    <SubInfoModal />
+                  </div>
+                  {this.state.subType === '' ? '' 
+                  : <Checkout
+                      name={"Subscription"}
+                      description={this.state.subType === "year" ? "1 Year Subscription" : "1 Month Subscription"}
+                      amount={this.state.subType === "year" ? 9.99 : 0.99}
+                      changeSubscriptionStatus={this.changeSubscriptionStatus}
+                      style={{ color: "#dc9f2e" }}
+                    />
+                  }   
+                </Payment>
+              </Card>
             </Col>
           </Row>
         </Container>
