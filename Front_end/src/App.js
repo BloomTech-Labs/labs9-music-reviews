@@ -19,6 +19,8 @@ import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
 import SearchResults from "./Components/Search/SearchResults"
 import './App.css';
+import { withAuthentication } from '../src/Components/Session'
+
 
 let refreshTime = 15*60*1000; // 15 mins
 
@@ -168,4 +170,5 @@ class App extends Component {
   }
 }
 
-export default withCookies(App);
+// export default withCookies(App);
+export default withAuthentication(withCookies(App));

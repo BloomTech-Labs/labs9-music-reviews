@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
 import './Search.css';
+import { withAuthorization } from '../Session'
 
 const H3 = styled.h3`
   color: #dc9f2e;
@@ -357,6 +358,9 @@ class Search extends Component {
     );
   }
 }
+const condition = authUser => !!authUser
 
-export default withCookies(Search);
+// export default withAuthorization(condition)(withCookies(Search));
+export default withCookies(Search)
+
 
