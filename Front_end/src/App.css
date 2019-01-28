@@ -1,33 +1,32 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
+.background {
+  /* background-image: linear-gradient(to bottom, #4b0082, #a0006c, #ce1d4e, #e06434, #dc9f2e); */
+  /* background-color: black; */
+  background: radial-gradient(circle, #dc9f2e, #e08a2c, #e1742f, #df5c37, #da4440, #d2304a, #c81b54, #bb005d, #a80067, #860269, #73007b, #4b0082) no-repeat center center fixed;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  color:    white;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+ color:    white;
+ opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+ color:    white;
+ opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+ color:    white;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+ color:    white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+::placeholder { /* Most modern browsers support this now. */
+ color:    white;
+ border: none;
 }
-
+button:hover{
+  background: "#dc9f2e"
+}

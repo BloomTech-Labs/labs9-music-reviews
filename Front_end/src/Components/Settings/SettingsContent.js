@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Button, Input, Row, Container } from 'reactstrap';
+import { Button, Input, Row, Container, Card } from 'reactstrap';
 // import styled from 'styled-components';
 
 class SettingsContent extends React.Component {
@@ -71,31 +71,42 @@ class SettingsContent extends React.Component {
     if (this.state.loading === true && this.state.loaded === false) {
       return <div />;
     } else if (this.state.loading === false && this.state.loaded === false) {
-      return <h2>Something went wrong.</h2>;
+      return <h2>You are not logged in.</h2>;
     } else if (this.state.loaded === true && this.state.loading === false) {
       return (
-        <Container fluid style={{ maxWidth: "1600px" }}>
-          <h1>Account Settings</h1>
-          <p>User ID: {this.state.userID}</p>
-          <p>Firebase UID: {this.state.firebaseUID}</p>
-          <p>Nickname: {this.state.nickname}</p>
-          <Row style={{ display: "flex", justifyContent: "center" }}>
-            <Input 
-              style={{ maxWidth: "400px"}}
-              name="newNickname"
-              value={this.state.newNickname}
-              placeholder="Please enter new nickname" 
-              onChange={this.handleChange}  
-            />
-            <Button onClick={this.changeNickName}>Change Nickname</Button>
-          </Row>
-          <p>Email address: {this.state.email}</p>
-          <p>{this.state.paidStatus === false || this.state.paidStatus === 0 ? 'Tier: Free' : 'Tier: Paid'}</p>
-          <p>
-            {this.state.subscriptionExpiration == null ? "You are not subscribed at the moment."
-            : `Your subscription will expire on: ${this.state.subscriptionExpiration}`
-            }
-          </p>
+        <Container fluid style={{ maxWidth: "1600px", color: "#dc9f2e"}}>
+          <Card style={{ maxWidth: "800px", margin: "8rem auto", padding: "3rem", border: "2px solid #dc9f2e"  }}>
+            <h1>Account Settings</h1>
+            <p>User ID: {this.state.userID}</p>
+            <p>Firebase UID: {this.state.firebaseUID}</p>
+            <p>Nickname: {this.state.nickname}</p>
+            <Row style={{ display: "flex", justifyContent: "center" }}>
+              <Input 
+                style={{ maxWidth: "400px"}}
+                name="newNickname"
+                value={this.state.newNickname}
+                placeholder="Please enter new nickname" 
+                onChange={this.handleChange}  
+              />
+              <button style={{ 
+                  background: "#dc9f2e",
+                  color: "white",
+                  border: "none",
+                  width: "150px",
+                  borderRadius: "0.5rem"
+                }} 
+                onClick={this.changeNickName}>
+                  Change Nickname
+                </button>
+            </Row>
+            <p>Email address: {this.state.email}</p>
+            <p>{this.state.paidStatus === false || this.state.paidStatus === 0 ? 'Tier: Free' : 'Tier: Paid'}</p>
+            <p>
+              {this.state.subscriptionExpiration == null ? "You are not subscribed at the moment."
+              : `Your subscription will expire on: ${this.state.subscriptionExpiration.split("T", 1)}`
+              }
+            </p>
+          </Card>
         </Container>
       );
     }

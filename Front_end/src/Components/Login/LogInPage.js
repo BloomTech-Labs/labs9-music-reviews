@@ -6,7 +6,6 @@ class LogInPage extends React.Component {
   render() {
     return (
       <div>
-        <h1>Music Reviews</h1>
         <FirebaseContext.Consumer>
           {(firebase) => <LogInForm firebase={firebase} changeLogInState={this.props.changeLogInState} />}
         </FirebaseContext.Consumer>
