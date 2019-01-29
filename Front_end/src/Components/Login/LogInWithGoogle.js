@@ -37,7 +37,7 @@ class LogInWithGoogle extends React.Component {
 
   render() {
     return (
-      <Button color="warning" className="mt-3 mb-3" onClick={this.onSubmit}>
+      <Button className= 'mb-3 butt' style={{backgroundColor: '#eac67a', color: '#984b43', fontWeight: '650'}}  onClick={this.onSubmit}>
         Google Log In
       </Button>
     );
