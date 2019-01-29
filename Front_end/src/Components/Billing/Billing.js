@@ -12,6 +12,7 @@ import {
 import styled from "styled-components";
 import SubInfoModal from './SubInfoModal'
 // import { Link } from "react-router-dom";
+import { withAuthorization } from '../Session';
 import Checkout from "./Checkout";
 import axios from "axios";
 
@@ -127,4 +128,7 @@ class Billing extends Component {
   }
 }
 
-export default Billing;
+
+const condition = authUser => !!authUser
+export default withAuthorization(condition)(Billing);
+//export default Billing;

@@ -7,6 +7,7 @@ import axios from "axios";
 import { Link } from 'react-router-dom';
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
+import { withAuthorization } from '../Session';
 
 // const Sidebar = styled.div`
 //   position: -webkit-sticky;
@@ -195,4 +196,8 @@ class AlbumReviewsPage extends Component {
   }
 }
 
-export default withCookies(AlbumReviewsPage);
+
+const condition = authUser => !!authUser
+export default withAuthorization(condition)(withCookies(AlbumReviewsPage));
+
+//export default withCookies(AlbumReviewsPage);
