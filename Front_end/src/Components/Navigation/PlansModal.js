@@ -31,13 +31,12 @@ class PlansModal extends React.Component {
       <Fragment>
         <Button
           outline
-          color="info"
           onClick={this.toggle}
           style={{
-            backgroundColor: "#dc9f2e",
-            color: "#fff",
+            backgroundColor: "#eac67a",
+            color: "#984b43",
+            fontWeight: "650",
             fontSize: "1rem",
-            margin: " 0 15px",
             maxHeight: "75px",
             maxWidth: "100px",
             border: "none",

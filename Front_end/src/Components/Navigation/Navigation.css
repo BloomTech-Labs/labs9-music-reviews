@@ -1,4 +1,10 @@
-button:hover{
-    color: white;
-    background: #4b0082
+.dropdown-item.active .dropdown-item:active{
+    color: #eac67a;
+    background: #984b43; 
+    text-decoration: none;
+}
+
+button:active {
+    color: #eac67a;
+    background: #984b43;    
 }

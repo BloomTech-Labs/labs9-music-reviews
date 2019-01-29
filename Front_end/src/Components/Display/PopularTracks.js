@@ -39,11 +39,11 @@ class PopularTracks extends Component {
         const renderData = 
             <Container>
                 <Row>
-                    <h1 style={{ color: "#dc9f2e", margin: "0 auto", padding: "2rem" }}>Popular Tracks</h1>
+                    <h1 style={{ color: "#eac67a", margin: "0 auto", padding: "2rem" }}>Popular Tracks</h1>
                 </Row>
                 <Row>
                     <Col>
-                        <Row style = {{ marginBottom: '20px', color: "#dc9f2e" }}>
+                        <Row style = {{ marginBottom: '20px', color: "#eac67a" }}>
                             <Col sm="3" style={{ textAlign: 'center' }}>Art</Col>
                             {/* <Col sm={1} style={{ textAlign: 'left' }}>Popularity</Col> */}
                             <Col sm="6" style={{ textAlign: 'left' }}>Track Name</Col>

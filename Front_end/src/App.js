@@ -116,7 +116,7 @@ class App extends Component {
   }
   render() {
     return (
-      <Container fluid className="background" style={{ padding: "0" }}>
+      <Container fluid className="bg-img">
         <Navigation
           loggedIn={this.state.loggedIn}
           signout={() => this.changeLoginState(false)}

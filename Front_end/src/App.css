@@ -1,7 +1,23 @@
-.background {
-  /* background-image: linear-gradient(to bottom, #4b0082, #a0006c, #ce1d4e, #e06434, #dc9f2e); */
-  /* background-color: black; */
-  background: radial-gradient(circle, #dc9f2e, #e08a2c, #e1742f, #df5c37, #da4440, #d2304a, #c81b54, #bb005d, #a80067, #860269, #73007b, #4b0082) no-repeat center center fixed;
+/* header Merriweather */
+/* content Lato */
+
+.bg-img {
+  /* background: #233237 no-repeat center center fixed; */
+  /* background-color: #233237; */
+  margin: 0;
+  padding: 0;
+  background-image: url("./Images/TurntableBGBlur.jpg");
+  top: 0;
+  left: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  object-fit: contain;
+  /* filter: blur(8px);
+  -webkit-filter: blur(8px); */
+  color: #eac67a;
+  z-index: -1;
+  position: absolute;
   min-height: 100vh;
 }
 
@@ -27,6 +43,7 @@
  color:    white;
  border: none;
 }
+
 button:hover{
   background: "#dc9f2e"
 }

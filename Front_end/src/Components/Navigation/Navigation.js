@@ -1,20 +1,16 @@
 
 import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import SignOut from '../Signout/SignOut';
 import {
   Navbar,
   Nav,
-  NavbarBrand,
   Button,
   Dropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  Input,
   NavLink,
-  Form,
   Col,
   Row,
 } from 'reactstrap';
@@ -35,84 +31,43 @@ class Navigation extends Component {
   toggle = () => {
     this.setState({ isOpen: !this.state.isOpen })
   }
-  // onChage = (event) => {
-  //   this.setState({
-  //     query: event.target.value
-  //   })
-  // }
-
-  // keyPress = (event) => {
-  //   event.preventDefault();
-
-  //   let data = this.state.query;
-  //   this.props.updateSearch(data);
-
-  //   console.log('Enter is clicked', data);
-  //   this.props.history.push('/search');
-    
-  //   this.setState({
-  //     query: ''
-  //   })
-  // }
 
   render() {
     return (
-        <div className="flex-sm-column">
+        <div className="flex-xs-column">
 
-        <Navbar fixed="top" dark expand="md"  toggleable="sm" style={{ display: "flex", background: "rgba(48, 52, 54, 0.75)" }}>
-          <Col style={{ marginRight: "1rem" }}>
+        <Navbar fixed="top" dark expand="lg" toggleable="sm" style={{ display: "flex", background: "rgba(152, 75, 67, 0.85)", padding: "0.5rem" }}>
+          <Col md="9" sm="12">
             {/* <NavbarBrand sm="12" className="mr-auto" style={{ background: "white", color: "lightblue", fontSize: "4rem", fontWeight: "700", padding: "0.5rem" }}>
               <Route path="/:path" component={Breadcrumbs} />
             </NavbarBrand> */}
-            <Link to="/" style={{ textDecoration: "none",color: "#dc9f2e", fontSize: "4rem", fontWeight: "700" }}>SONGBIRD</Link>
+            <Link to="/" style={{ textDecoration: "none",color: "#eac67a", fontSize: "3rem", fontWeight: "700" }}>
+              <img src={require("../../Images/OTR Logo X.png")} alt="ON THE RECORD" style={{ width: "375px" }}/>   
+            </Link>
           </Col>
-          <Nav
-            navbar
-            style={{ display: "flex", justifyContent: "space-around" }}
-          >
-          <Col>
-          
-          
-          
-          <Row style={{ display: "flex", justifyContent: "space-around", alignItems: "center", minWidth: "325px" }}>
-                {/* <Form onSubmit = {this.keyPress}>
-                  <Input
-                    type="search"
-                    name="search"
-                    value = {this.state.query}
-                    onChange = {this.onChage}
-                    placeholder="Enter an Album, Artist or Track"
-                    style={{
-                      margin: "0 10px 0 0",
-                      padding: "5px",
-                      height: "30px",
-                      backgroundColor: "#495057",
-                      color: "#fff"
-                    }}
-                  /> 
-                  </Form>*/}
-                  <Link to="/search" style={{ margin: "0 auto" }}>
-                    <Button style={{ background:"#dc9f2e" }}>Search</Button>
-                  </Link>
-                <div style={{ display: 'flex', justifyContent: "center" }}>
-                  <PlansModal />
-                </div>
-   
-                  <Link to="/user/settings">
-                    <img
-                      src={require("../../Images/RecordThumb.png")}
-                      alt="Default profile image"
-                      style={{ margin: "0 auto", maxWidth: "75px", maxHeight: "75px", padding: "1rem" }}
-                    />
-                  </Link>
-       
-                  <Dropdown nav isOpen={this.state.isOpen} toggle={this.toggle}>
-                    <div className="flex-sm-row" style={{ display: "flex", padding: "1rem", justifyContent: "center", maxWidth: "100px" }}>
+          <Col md="3" sm="12">
+            <Nav
+              navbar
+              style={{ display: "flex", justifyContent: "space-between" }}
+            >
+            <Row style={{ display: "flex", justifyContent: "space-around", alignItems: "center", minWidth: "325px" }}>
+                  <Col xs="3">
+                   <Link to="/search">
+                    <Button style={{ background: "#eac67a", color: "#984b43", fontWeight: "650" }}>Search</Button>
+                    </Link>
+                  </Col>
+                 
+                  <Col xs="3">
+                    <PlansModal />
+                  </Col>
+
+                  <Col xs="3">
+                    <Dropdown nav isOpen={this.state.isOpen} toggle={this.toggle}>
                       <DropdownToggle nav>
                         <Icon large>menu</Icon>
                       </DropdownToggle>
 
-                      <DropdownMenu right style={{ background: "#dc9f2e", color: "#a0006c" }}>
+                      <DropdownMenu right style={{ background: "#eac67a", color: "#a0006c" }}>
                         {this.props.loggedIn === true ? (
                           <Fragment>
                             <Link to="/home" style={{ textDecoration: 'none', textAlign: "center" }}>
@@ -151,15 +106,15 @@ class Navigation extends Component {
                             </Link>
                           </Fragment>
                         )}
-                      </DropdownMenu>
-                    </div>
-            
-                  </Dropdown>
-            </Row>
+                      </DropdownMenu>           
+                    </Dropdown>
+                  
+                </Col>
+              </Row>
+            </Nav>
 
           </Col>
 
-          </Nav>
         </Navbar>
 
         </div>
