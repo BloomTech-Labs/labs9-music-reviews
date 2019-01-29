@@ -5,24 +5,35 @@ import {
   CardBody,
   CardTitle,
   CardSubtitle,
-  CardLink,
   Col
 } from "reactstrap";
+
+const cardStyle = {
+  maxWidth: "12rem",
+  textAlign: 'left',
+  border: 'none',
+  textDecoration: "none",
+  border: "2px solid #eac67a",
+  background: "#233237",
+  color: "#eac67a",
+  margin: "1rem",
+  fontFamily: "Lato"
+}
 
 class AlbumCard extends Component {
   render() {
     return (
-      <Col xs="12" sm="6" md="4" lg="3">
-        <Card style = {{width: '10rem', textAlign: 'left', border: 'none', textDecoration: "none"}}>
+      <Col xs="12">
+        <Card style={ cardStyle }>
           <CardImg
             top
             width="100%"
             src={this.props.image}
             alt={this.props.alt}
           />
-          <CardBody style = {{width: '100%'}}>
-            <CardTitle>Album: {this.props.album}</CardTitle>
-            <CardSubtitle>Tracks: {this.props.total_tracks}</CardSubtitle>
+          <CardBody>
+            <CardTitle>Album: <br />{this.props.album}</CardTitle>
+            <CardSubtitle>Tracks: {this.props.total_tracks}</CardSubtitle><br />
             <CardSubtitle>Date: {this.props.release_date}</CardSubtitle>
           </CardBody>
         </Card>
