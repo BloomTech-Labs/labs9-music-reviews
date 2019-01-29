@@ -53,19 +53,51 @@ class AlbumProfileReviewCard extends Component {
     return (
       <Fragment>
         <Container>
-          <Row style={{ display: "flex", padding: "1rem", border: "3px solid #984B43", borderRadius: "10px", margin: "10px 0", backgroundColor: "#233237"}}>
-            {/* User info */}
-            <Col md="3" style={{ margin: "auto 0" }}>
-              <NavLink to={`/albums/${this.props.review.spotifyAlbumID}`} style={{ textDecoration: 'none', color: '#EAC67A' }}>
-                <img src={this.state.art} alt="Album cover art" style={{ maxWidth: "200px", border: "3px solid #984B43"}}/>
+          <Row
+            style={{
+              display: "flex",
+              padding: "1rem",
+              border: "3px solid #984B43",
+              borderRadius: "10px",
+              margin: "10px 0",
+              backgroundColor: "#233237"
+            }}
+          >
+            {/* REVIEW INFO */}
+            <Col md="3 align-items-start" style={{ margin: "auto 0" }}>
+              {/* ALBUM INFO */}
+              <NavLink
+                to={`/albums/${this.props.review.spotifyAlbumID}`}
+                style={{ textDecoration: "none", color: "#EAC67A" }}
+              >
+                <div style={{ margin: "8px 0" }}>
+                  <strong>Album:</strong>
+                  <br />
+                  {this.state.album}
+                </div>
               </NavLink>
-              <NavLink to={`/albums/${this.props.review.spotifyAlbumID}`} style={{ textDecoration: 'none', color: '#EAC67A'}}>
-                <div style={{ margin: '8px 0' }}>Album:<br />{this.state.album}</div>
+              {/* ALBUM COVER ART */}
+              <NavLink
+                to={`/albums/${this.props.review.spotifyAlbumID}`}
+                style={{ textDecoration: "none", color: "#EAC67A" }}
+              >
+                <img
+                  src={this.state.art}
+                  alt="Album cover art"
+                  style={{ width: "100%", maxWidth: "200px", border: "3px solid #984B43" }}
+                />
               </NavLink>
-              <NavLink to={`/artists/${this.state.artistID}`} style={{ textDecoration: 'none', color: '#EAC67A'}}>
-                <div style={{ margin: '8px 0' }}>Artist:<br /> {this.state.artist}</div>
+              {/* ARTIST INFO */}
+              <NavLink
+                to={`/artists/${this.state.artistID}`}
+                style={{ textDecoration: "none", color: "#EAC67A" }}
+              >
+                <div style={{ margin: "8px 0" }}>
+                <strong>Artist:</strong>
+                  <br /> {this.state.artist}
+                </div>
               </NavLink>
-              {/* If logged in edit button shows otherwise null */}
+              {/* EDIT BUTTON: If logged in edit button shows otherwise null */}
               {this.props.loggedIn === true &&
               this.props.review.userID === this.props.userID ? (
                 <ReviewEditModal
@@ -79,14 +111,18 @@ class AlbumProfileReviewCard extends Component {
             </Col>
             <Col md="9" style={{ padding: "1rem 5rem" }}>
               <Row style={{ display: "flex" }}>
+                {/* STAR RATING */}
                 <ViewStars rating={this.props.review.rating} />
+                {/* DATE CREATED */}
                 <p style={{ padding: "0 20px", color: "#EAC67A" }}>
                   Date Created: {this.props.review.dateCreated}
                 </p>
+                {/* DATE MODIFIED */}
                 <p style={{ padding: "0 20px", color: "#EAC67A" }}>
                   Updated On: {this.props.review.dateModified}
                 </p>
               </Row>
+              {/* REVIEW TEXT */}
               <Row>
                 <div align="left">
                   <p style={{ color: "#EAC67A" }}>{this.props.review.review}</p>

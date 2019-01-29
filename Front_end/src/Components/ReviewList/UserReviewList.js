@@ -16,6 +16,9 @@ const Sidebar = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  @media (max-width: 768px) {
+    position: relative;
+  }
 `;
 
 class UserReviewList extends Component {
@@ -121,8 +124,8 @@ class UserReviewList extends Component {
                   src={require("../../Images/defaultUser.png")}
                   alt="Default profile image"
                   style={{
-                    maxWidth: "300px",
-                    maxHeight: "300px",
+                    maxWidth: "250px",
+                    maxHeight: "250px",
                     padding: "2rem",
                     margin: "0 auto"
                   }}
@@ -131,7 +134,7 @@ class UserReviewList extends Component {
 
               <div style={{ alignSelf: "center" }}>
                 <h3>
-                  <strong>Nickname:</strong> {this.state.nickname}
+                  <strong>{this.state.nickname}</strong> 
                 </h3>
               </div>
               <div style={{ alignSelf: "center" }}>
@@ -144,7 +147,7 @@ class UserReviewList extends Component {
               </div>
             </Sidebar>
           </Col>
-          <Col md="8" sm="12">
+          <Col md="8" xs="12">
             {userAlbumReviews.map(review => (
               <AlbumProfileReviewCard
                 review={review}
