@@ -7,7 +7,8 @@ import {
   FormGroup,
   Label,
   Input,
-  Card
+  Card,
+  Row
 } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
 import { FirebaseContext } from '../Firebase';
@@ -48,59 +49,72 @@ class LogInForm extends React.Component {
   };
   render() {
     return (
-      <Container fluid style={{ position: "relative", top: "15rem" }}>
-      <Card style={{ border: "2px solid orange", maxWidth: "800px", margin: "0 auto", padding: "5rem 0" }}>
-        <h2>Log In</h2>
-        <Form style={{ margin: "0 auto", padding: "-10rem"}}>
-          <FirebaseContext.Consumer>
-            {(firebase) => <LogInWithGoogle firebase={firebase} changeLogInState={this.props.changeLogInState} />}
-          </FirebaseContext.Consumer>
-          <Col>
-            <FormGroup>
-              <Label>Email</Label>
-              <Input
-                type="email"
-                name="email"
-                value={this.state.email}
-                onChange={this.onChangeHandler}
-                placeholder="Email Address"
-              />
-            </FormGroup>
-          </Col>
-          <Col>
-            <FormGroup>
-              <Label>Password</Label>
-              <Input
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.onChangeHandler}
-                placeholder="Password"
-              />
-            </FormGroup>
-          </Col>
-          <div className="regLogin">
-            <Button
-              color="warning"
-              style={{ margin: "1rem"}}
-              onClick={this.onSubmitHandler}
-            >
-              Sign In
-            </Button>
-            <span
-              className="forgotPassword"
-              style={{ margin: "1rem" }}
-              onClick={() => this.props.history.push('/forgot_password')}
-            >
-              Forgot Password?
-            </span>
-          </div>
-          <Button color="warning" style={{ margin: "1rem" }} onClick={this.redirect}>
-            Don't have an account?
-          </Button>
-          </Form>
-        </Card>
-      </Container>
+      <Container fluid style={{ position: "relative", top: "10rem" }}>
+        <Row className='justify-content-center'>
+          <Col xl={6} lg={6} md={6} sm={6}>
+          <h2 style ={{ color: "#eac67a", textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"}}>Log In</h2>
+                <Form className = 'pt-5 pb-5' style={{ border: "2px solid #eac67a", borderRadius: '1rem', backgroundColor: 'rgba(35, 50, 55, 1)' }}>
+                  <FirebaseContext.Consumer>
+                    {(firebase) => <LogInWithGoogle firebase={firebase} changeLogInState={this.props.changeLogInState} />}
+                  </FirebaseContext.Consumer>
+                  <Col sm={10}>
+                    <FormGroup>
+                      <Label>Email</Label>
+                      <Input
+                        style = {{backgroundColor: '#eac67a', color: '#984b43'}}
+                        type="email"
+                        name="email"
+                        value={this.state.email}
+                        onChange={this.onChangeHandler}
+                        placeholder="Email Address"
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col sm={10}>
+                    <FormGroup >
+                      <Label>Password</Label>
+                      <Input
+                        style = {{backgroundColor: '#eac67a', color: '#984b43'}}
+                        type="password"
+                        name="password"
+                        value={this.state.password}
+                        onChange={this.onChangeHandler}
+                        placeholder="Password"
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Row className = 'mb-3 mt-3'>
+                    <Col>
+                      <Button
+                        style={{backgroundColor: '#eac67a', color: '#984b43', fontWeight: '650'}}
+                        onClick={this.onSubmitHandler}
+                        className='mr-3 butt'
+                      >
+                        Sign In
+                      </Button>
+                      <Button
+                        style={{backgroundColor: '#eac67a', color: '#984b43', fontWeight: '650'}}
+                        onClick={this.redirect}
+                        className = 'butt'
+                        >
+                        Sign Up
+                      </Button>
+                    </Col>
+                  </Row>
+                    <Row>
+                    <Button 
+                      color= 'link'
+                      style = {{color: '#eac67a', fontWeight: '200'}}
+                      onClick={() => this.props.history.push('/forgot_password')}
+                    >
+                      Forgot Password?
+                    </Button>
+                  </Row>
+                  
+                </Form>
+            </Col>
+          </Row>
+        </Container>
     );
   }
 }
