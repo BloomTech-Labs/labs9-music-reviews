@@ -1,0 +1,11 @@
+export const LANDING = '/';
+export const HOME = '/home';
+export const SIGNUP = '/signup';
+export const LOGIN = '/login';
+export const SEARCH = '/search';
+export const SETTINGS = '/user/settings';
+export const ALBUMS = '/albums/:id';
+export const TRACKS = '/tracks/:id';
+export const USERREVIEWLIST = '/user/reviews/:id';
+export const ARTIST = '/artists/:id';
+export const BILLING = '/user/billing';

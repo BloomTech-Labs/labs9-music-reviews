@@ -1,6 +1,3 @@
-
-
-
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import { Container, Row, Col, CardImg } from "reactstrap";
@@ -10,6 +7,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
+import { withAuthorization } from '../Session';
 
 // const Sidebar = styled.div`
 //   position: -webkit-sticky;
@@ -248,4 +246,7 @@ class TrackReviewsPage extends Component {
   }
 }
 
-export default withCookies(TrackReviewsPage);
+
+const condition = authUser => !!authUser
+export default withAuthorization(condition)(withCookies(TrackReviewsPage));
+//export default withCookies(TrackReviewsPage);

@@ -3,8 +3,8 @@ import FeaturedReviews from './Display/FeaturedReviews';
 import PopularTracks from './Display/PopularTracks';
 import PopularReviewers from './Display/PopularReviewers';
 import Newest from './Display/Newest';
-import { Container } from 'reactstrap'
-
+import { Container } from 'reactstrap';
+import { withAuthorization } from '../Components/Session';
 
 
 const HomePage = () => {
@@ -18,4 +18,7 @@ const HomePage = () => {
     )
 }
 
-export default HomePage;
+
+const condition = authUser => !!authUser
+export default withAuthorization(condition)(HomePage);
+//export default HomePage;

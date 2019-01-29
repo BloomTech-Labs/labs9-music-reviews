@@ -1,6 +1,7 @@
 import React from 'react';
 import { FirebaseContext } from '../Firebase';
 import SettingsContent from './SettingsContent';
+import { withAuthorization } from '../../Components/Session';
 import styled from 'styled-components';
 
 const SettingsContainer = styled.div`
@@ -25,4 +26,7 @@ class SettingsPage extends React.Component {
     );
   }
 }
-export default SettingsPage;
+
+const condition = authUser => !!authUser
+export default withAuthorization(condition)(SettingsPage);
+//export default SettingsPage;
