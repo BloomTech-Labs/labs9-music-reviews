@@ -119,7 +119,7 @@ class ReviewEditModal extends React.Component {
   render() {
     return (
       <Fragment>
-        <Button color="danger" onClick={this.toggle}>
+        <Button onClick={this.toggle} style={{ margin: '8px 0', color: "#984B43", backgroundColor: "#EAC67A", fontWeight: "650" }}>
           Edit
         </Button>
         <Modal
