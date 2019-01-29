@@ -6,15 +6,16 @@ import AlbumProfileReviewCard from "./AlbumProfileReviewCard";
 import TrackProfileReviewCard from "./TrackProfileReviewCard";
 
 const Sidebar = styled.div`
-  position: -webkit-sticky;
-  position: sticky;
+  position: fixed;
   top: 0;
+  bottom: 0;
   z-index: 1;
   height: 100%;
   padding-top: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `;
 
 class UserReviewList extends Component {
@@ -37,7 +38,7 @@ class UserReviewList extends Component {
     });
     this.getAlbumReviews();
     this.getTrackReviews();
-    this.getNickname(this.props.match.params.id)
+    this.getNickname(this.props.match.params.id);
   }
 
   getAlbumReviews() {
@@ -90,8 +91,8 @@ class UserReviewList extends Component {
     const userTrackReviews = this.state.trackReviews.filter(review => {
       return review.userID === parseInt(this.props.match.params.id);
     });
-    console.log(this.props.match.params.id)
-    console.log(this.state.nickname)
+    console.log(this.props.match.params.id);
+    console.log(this.state.nickname);
     return (
       <Fragment>
         <Container
@@ -101,35 +102,48 @@ class UserReviewList extends Component {
             justifyItems: "space-around",
             margin: "0 auto",
             maxWidth: "1600px",
-            paddingTop: "10rem",
+            paddingTop: "10rem"
           }}
         >
-          <Col xs="12" md="4">
+          <Col
+            xs="12"
+            md="4"
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "flex-start"
+            }}
+          >
             <Sidebar>
               <Row>
                 <CardImg
-                  src={require("../../Images/RecordThumb.png")}
+                  src={require("../../Images/defaultUser.png")}
                   alt="Default profile image"
-                  style={{ maxWidth: "250px", maxHeight: "250px", padding: "2rem", margin: "0 auto" }}
+                  style={{
+                    maxWidth: "300px",
+                    maxHeight: "300px",
+                    padding: "2rem",
+                    margin: "0 auto"
+                  }}
                 />
               </Row>
-  
+
               <div style={{ alignSelf: "center" }}>
-                <h3><strong>Nickname:</strong> {this.state.nickname}</h3>
+                <h3>
+                  <strong>Nickname:</strong> {this.state.nickname}
+                </h3>
               </div>
               <div style={{ alignSelf: "center" }}>
                 <h5>Status</h5>
               </div>
               <div style={{ alignSelf: "center" }}>
                 <h5>
-                  Reviews:{" "}
-                  {userAlbumReviews.length + userTrackReviews.length}
+                  Reviews: {userAlbumReviews.length + userTrackReviews.length}
                 </h5>
               </div>
             </Sidebar>
           </Col>
-        </Container>
-        <Container fluid={true} style={{ maxWidth: "1150px" }}>
           <Col md="8" sm="12">
             {userAlbumReviews.map(review => (
               <AlbumProfileReviewCard
@@ -148,7 +162,7 @@ class UserReviewList extends Component {
                 key={review.id}
                 nickname={this.props.nickname}
               />
-            ))}  
+            ))}
           </Col>
         </Container>
       </Fragment>
