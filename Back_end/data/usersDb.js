@@ -24,7 +24,7 @@ function createNewUser(newUser) {
         return db('users').insert({
           firebaseUID: newUser.user_id,
           emailAddress: newUser.email,
-          subscriptionExpiration: knex.raw(SELECT datetime('now', '+60 days')),
+          subscriptionExpiration: newUser.subscriptionExpiration,
           nickname: newUser.email.split("@", 1).join()
         });
       } else {
