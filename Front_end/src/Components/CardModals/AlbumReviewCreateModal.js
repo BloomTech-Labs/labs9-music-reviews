@@ -119,7 +119,7 @@ class AlbumReviewCreateModal extends React.Component {
           size="lg"
         >
           <Row>
-            <Col className="container d-flex align-items-center">
+            <Col className="container d-flex align-items-center justify-content-center">
               <div style={{ padding: "15px 50px" }}>
                 <ModalBody>
                   <h3>Album: </h3>
