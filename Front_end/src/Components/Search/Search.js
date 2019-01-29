@@ -38,6 +38,11 @@ const cardStyle = {
   color: "#eac67a"
 };
 
+const header = {
+  fontFamily: "Merriweather Sans",
+  textShadow: "-1px -1px 0 #984b43, 1px -1px 0 #984b43,-1px 1px 0 #984b43, 1px 1px 0 #984b43"
+}
+
 const API_URL = 'https://api.spotify.com/v1/search';
 
 class Search extends Component {
@@ -171,9 +176,9 @@ class Search extends Component {
           <H3>Tracks</H3> 
           <Card style={{ minWidth: "385px", backgroundColor: "rgba(35, 50, 55, 0)", borderBottom: "none" }}>
             <Row style={{ textAlign: "center", padding: "1rem" }}>
-              <Col xs="3" md="4" style={{ fontFamily: "Merriweather Sans" }} >Art</Col>
-              <Col xs="3" md="4" style={{ fontFamily: "Merriweather Sans" }}>Track Name</Col>
-              <Col xs="3" md="4">Album Name</Col>
+              <Col xs="3" md="4" style={ header } >Art</Col>
+              <Col xs="3" md="4" style={ header } >Track Name</Col>
+              <Col xs="3" md="4" style={ header } >Album Name</Col>
               {/* <Col md={2} xl={2} className="d-none d-xl-block" style={{ textAlign: 'center' }}>Track Time</Col> */}
             </Row>
           </Card>

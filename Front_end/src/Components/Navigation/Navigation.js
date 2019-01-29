@@ -36,8 +36,8 @@ class Navigation extends Component {
     return (
         <div className="flex-xs-column">
 
-        <Navbar fixed="top" dark expand="lg" toggleable="sm" style={{ display: "flex", background: "rgba(152, 75, 67, 0.85)", padding: "0.5rem" }}>
-          <Col md="9" sm="12">
+        <Navbar fixed="top" dark expand="lg" toggleable="sm" style={{ display: "flex", background: "rgba(152, 75, 67, 0.85)"}}>
+          <Col lg="9" md="8" sm="6" xs="12" style={{ padding: "0.5rem 1rem" }}>
             {/* <NavbarBrand sm="12" className="mr-auto" style={{ background: "white", color: "lightblue", fontSize: "4rem", fontWeight: "700", padding: "0.5rem" }}>
               <Route path="/:path" component={Breadcrumbs} />
             </NavbarBrand> */}
@@ -45,15 +45,17 @@ class Navigation extends Component {
               <img src={require("../../Images/OTR Logo X.png")} alt="ON THE RECORD" style={{ width: "375px" }}/>   
             </Link>
           </Col>
-          <Col md="3" sm="12">
+          <Col lg="3" md="4" sm="6" xs="12" style={{ padding: "0.5rem 1rem" }}>
             <Nav
               navbar
               style={{ display: "flex", justifyContent: "space-between" }}
             >
-            <Row style={{ display: "flex", justifyContent: "space-around", alignItems: "center", minWidth: "325px" }}>
+            <Row style={{ display: "flex", justifyContent: "space-around", alignItems: "flex-end", minWidth: "325px" }}>
                   <Col xs="3">
-                   <Link to="/search">
-                    <Button style={{ background: "#eac67a", color: "#984b43", fontWeight: "650" }}>Search</Button>
+                    <Link to="/search">
+                      <Button style={{ background: "#eac67a", color: "#984b43", fontWeight: "650" }}>
+                        Search
+                      </Button>
                     </Link>
                   </Col>
                  
