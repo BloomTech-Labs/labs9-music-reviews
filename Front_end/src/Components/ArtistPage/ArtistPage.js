@@ -128,7 +128,7 @@ class ArtistPage extends Component {
           >
             Albums
           </h1>
-          <Row style={{ position: "relative", top: "12rem", height: "25rem", overflowY: "scroll" }}>{renderData}</Row>
+          <Row style={{ position: "relative", top: "12rem", height: "30rem", overflowY: "scroll" }}>{renderData}</Row>
         </Row>
       </Container>
     );

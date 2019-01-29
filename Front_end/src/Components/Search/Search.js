@@ -120,7 +120,8 @@ class Search extends Component {
           padding: "1rem 0",
           color: "#eac67a",
           maxWidth: "1600px",
-          fontFamily: "Lato"
+          fontFamily: "Lato",
+          overflow: "hidden"
         }}
       >
       {/* albums */}

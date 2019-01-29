@@ -13,6 +13,7 @@
   -o-background-size: cover;
   background-color: #233237;
   color: #eac67a;
+  overflow-y: hidden;
 }
 
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
