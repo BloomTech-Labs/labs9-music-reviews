@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
-import { Button } from 'reactstrap';
+import { Button, Col } from 'reactstrap';
 
 class LogInWithGoogle extends React.Component {
   constructor(props) {
@@ -37,9 +37,11 @@ class LogInWithGoogle extends React.Component {
 
   render() {
     return (
-      <Button className= 'mb-3 butt' style={{backgroundColor: '#eac67a', color: '#984b43', fontWeight: '650'}}  onClick={this.onSubmit}>
-        Google Log In
-      </Button>
+      <Col align='center'>
+        <Button className= 'mb-3 butt' style={{backgroundColor: '#eac67a', color: '#984b43', fontWeight: '650'}}  onClick={this.onSubmit}>
+          Google Log In
+        </Button>
+      </Col>
     );
   }
 }

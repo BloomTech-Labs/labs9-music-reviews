@@ -53,7 +53,7 @@ class LogInForm extends React.Component {
         <Row className='justify-content-center'>
           <Col xl={6} lg={6} md={6} sm={6}>
           <h2 style ={{ color: "#eac67a", textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"}}>Log In</h2>
-                <Form className = 'pt-5 pb-5' style={{ border: "2px solid #eac67a", borderRadius: '1rem', backgroundColor: 'rgba(35, 50, 55, 1)' }}>
+                <Form className = 'pt-5 pb-5 align-items-center' style={{ border: "2px solid #eac67a", borderRadius: '1rem', backgroundColor: 'rgba(35, 50, 55, 1)' }}>
                   <FirebaseContext.Consumer>
                     {(firebase) => <LogInWithGoogle firebase={firebase} changeLogInState={this.props.changeLogInState} />}
                   </FirebaseContext.Consumer>
@@ -110,7 +110,6 @@ class LogInForm extends React.Component {
                       Forgot Password?
                     </Button>
                   </Row>
-                  
                 </Form>
             </Col>
           </Row>

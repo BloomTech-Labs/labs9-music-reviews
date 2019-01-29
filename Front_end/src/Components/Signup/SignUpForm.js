@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-
 import {
   Container,
   Col,
@@ -9,8 +8,10 @@ import {
   FormGroup,
   Label,
   Input,
+  Row
 } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
+import './Signup.css'
 
 class SignUpForm extends React.Component {
   constructor(props) {
@@ -72,62 +73,69 @@ class SignUpForm extends React.Component {
   render() {
     return (
       <Container fluid style={{ position: "relative", top: "10rem" }}>
-        <h2 className="mt-3 mb-3">Sign Up</h2>
-        <Form>
-          <Col>
+      <Row className='justify-content-center'>
+      <Col xl={6} lg={6} md={6} sm={6}>
+        <h2 style ={{ color: "#eac67a", textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"}}>Sign Up</h2>
+        <Form className = 'pt-5 pb-5 align-items-center' style={{ border: "2px solid #eac67a", borderRadius: '1rem', backgroundColor: 'rgba(35, 50, 55, 1)' }}>
+          <Col sm={10}>
             <FormGroup>
-              <Label className="mt-3 mb-3">Email</Label>
+              <Label>Email</Label>
               <Input
                 type="email"
                 name="email"
                 value={this.state.email}
                 onChange={this.onChangeHandler}
                 placeholder="Email Address"
+                style = {{backgroundColor: '#eac67a', color: '#984b43'}}
               />
             </FormGroup>
           </Col>
-          <Col>
+          <Col sm={10}>
             <FormGroup>
-              <Label className="mt-3 mb-3">Password</Label>
+              <Label>Password</Label>
               <Input
                 type="password"
                 name="password"
                 value={this.state.password}
                 onChange={this.onChangeHandler}
                 placeholder="Password"
+                style = {{backgroundColor: '#eac67a', color: '#984b43'}}
               />
             </FormGroup>
           </Col>
-          <Col>
+          <Col sm={10}>
             <FormGroup>
-              <Label className="mt-3 mb-3">Confirm Password</Label>
+              <Label>Confirm Password</Label>
               <Input
                 type="password"
                 name="confirmpassword"
                 value={this.state.confirmpassword}
                 onChange={this.onChangeHandler}
                 placeholder="Confirm Password"
+                style = {{backgroundColor: '#eac67a', color: '#984b43'}}
               />
             </FormGroup>
           </Col>
           <div className="btn-container">
             <Button
-              color="primary"
-              className="mr-2 mt-2 mb-3"
+              className="mr-2 mt-2 mb-3 butt"
               onClick={this.onSubmitHandler}
+              style={{backgroundColor: '#eac67a', color: '#984b43', fontWeight: '650'}}
             >
               Sign Up
             </Button>
             <Button
-              color="primary"
-              className="ml-2 mt-2 mb-3"
+              className="ml-2 mt-2 mb-3 butt"
               onClick={this.redirect}
+              style={{backgroundColor: '#eac67a', color: '#984b43', fontWeight: '650'}}
             >
-              Have an account?
+              Sign In
             </Button>
           </div>
         </Form>
         {this.state.invalidUser === true ? <p style={{color: 'red', fontStyle: 'italic', margin: '10px auto', textAlign:'center'}}>Invalid email, password, or passwords do not match.</p> : null }
+      </Col>
+      </Row>
       </Container>
     );
   }
