@@ -83,10 +83,18 @@ class ArtistPage extends Component {
 
     return (
       <Container fluid style={{ fontFamily: "Lato", margin: "0 auto", maxWidth: "1600px" }}>
-        <Row style={{ position: "relative", top: "12rem", margin: "0 auto" }}>
-          <Col xs="12" md="4" style={{ maxWidth: "320px", margin: "1rem auto" }}>
+        <Row style={{ 
+              display: "flex",
+              justifyContent: "space-around",
+              position: "relative",
+              top: "12rem",
+              margin: "0 auto",
+              maxWidth: "800px",
+            }}
+          >
+          <Col xs="12" md="6" style={{ maxWidth: "320px", margin: "1rem" }}>
             <Card style={ cardStyle }>
-              <h1 style={{ fontFamily: "Merriweather Sans", padding: "1rem 0" }}>
+              <h1 style={{ fontFamily: "Merriweather Sans", padding: "1rem" }}>
                 {this.state.artist}
               </h1>
                 <h6 style={{ paddingLeft: "1rem" }}>Genre(s):</h6>
@@ -101,9 +109,9 @@ class ArtistPage extends Component {
             </Card>
           </Col>
 
-          <Col xs="12" md="8" style={{ margin: "1rem auto" }}>
-            <img src={this.state.art} alt="Art of the artist" align="center" 
-              style={{ maxWidth: '500px', maxHeight: "500px", border: "2px solid #eac67a" }}
+          <Col xs="12" md="6" style={{ display: "flex", margin: "0 auto" }}>
+            <img src={this.state.art} alt="Art of the artist"
+              style={{ maxWidth: '325px', maxHeight: "325px", border: "2px solid #eac67a", margin: "0 auto" }}
             />
           </Col>
 
