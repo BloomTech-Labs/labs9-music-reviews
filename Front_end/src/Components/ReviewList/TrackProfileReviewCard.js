@@ -54,32 +54,32 @@ class TrackProfileReviewCard extends Component {
     return (
       <Fragment>
         <Container>
-          <Row style={{ display: "flex", padding: "1rem" }}>
+          <Row style={{ display: "flex", padding: "1rem", border: "3px solid #EAC67A", borderRadius: "10px", margin: "10px 0", backgroundColor: "#233237"}}>
             {/* User info */}
-            <Col md="5" style={{ margin: "auto 0" }}>
+            <Col md="3" style={{ margin: "auto 0" }}>
               <NavLink
                 to={`/albums/${this.state.albumID}`}
-                style={{ textDecoration: "none", color: "black", maxWidth: "150px", maxHeight: "150px", }}
+                style={{ textDecoration: "none", color: "#EAC67A", maxWidth: "150px", maxHeight: "150px", }}
               >
-                <img src={this.state.art} alt="Album cover art" />
+                <img src={this.state.art} alt="Album cover art" style={{ maxWidth: "200px", border: "3px solid #EAC67A"}}/>
               </NavLink>
               <NavLink
                 to={`/albums/${this.state.albumID}`}
-                style={{ textDecoration: "none", color: "black" }}
+                style={{ textDecoration: "none", color: "#EAC67A" }}
               >
-                <div>Album: {this.state.album}</div>
+                <div style={{ margin: '8px 0' }}>Album:<br/> {this.state.album}</div>
               </NavLink>
               <NavLink
                 to={`/artists/${this.state.artistID}`}
-                style={{ textDecoration: "none", color: "black" }}
+                style={{ textDecoration: "none", color: "#EAC67A" }}
               >
-                <div>Artist: {this.state.artist}</div>
+                <div style={{ margin: '8px 0' }}>Artist:<br/> {this.state.artist}</div>
               </NavLink>
               <NavLink
                 to={`/tracks/${this.props.review.spotifyTrackID}`}
-                style={{ textDecoration: "none", color: "black" }}
+                style={{ textDecoration: "none", color: "#EAC67A" }}
               >
-                <div>Track: {this.state.track}</div>
+                <div style={{ margin: '8px 0' }}>Track:<br/> {this.state.track}</div>
               </NavLink>
               {/* If logged in edit button shows otherwise null */}
               {this.props.loggedIn === true &&
@@ -93,19 +93,19 @@ class TrackProfileReviewCard extends Component {
                 />
               ) : null}
             </Col>
-            <Col md="7" style={{ padding: "1rem 5rem" }}>
+            <Col md="9" style={{ padding: "1rem 5rem" }}>
               <Row style={{ display: "flex" }}>
                 <ViewStars rating={this.props.review.rating} />
-                <p style={{ padding: "0 20px" }}>
+                <p style={{ padding: "0 20px", color: "#EAC67A" }}>
                   Date Created: {this.props.review.dateCreated}
                 </p>
-                <p style={{ padding: "0 20px" }}>
+                <p style={{ padding: "0 20px", color: "#EAC67A" }}>
                   Updated On: {this.props.review.dateModified}
                 </p>
               </Row>
               <Row>
                 <div align="left">
-                  <p>{this.props.review.review}</p>
+                  <p style={{ color: "#EAC67A" }}>{this.props.review.review}</p>
                 </div>
               </Row>
             </Col>
