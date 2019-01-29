@@ -24,7 +24,7 @@ class SettingsContent extends React.Component {
       [e.target.name]: e.target.value
     })
   }
-  changeNickName = () => {
+  changeNickname = () => {
     if ( this.state.newNickname.length < 4){
       alert('New nickname must be at least 3 characters long.');
     } else {
@@ -68,6 +68,7 @@ class SettingsContent extends React.Component {
     );
   }
   render() {
+    console.log(this.state.userID, this.state.newNickname)
     if (this.state.loading === true && this.state.loaded === false) {
       return <div />;
     } else if (this.state.loading === false && this.state.loaded === false) {
@@ -97,7 +98,7 @@ class SettingsContent extends React.Component {
                   width: "200px",
                   borderRadius: "0.5rem"
                 }} 
-                onClick={this.changeNickName}>
+                onClick={this.changeNickname}>
                   Change Nickname
                 </button>
             </Row>
