@@ -8,7 +8,7 @@ module.exports = {
   getUser,
   edit,
   editNickname,
-  getNickname
+  getNickname,
 };
 
 function getAllUsers() {
@@ -24,7 +24,7 @@ function createNewUser(newUser) {
         return db('users').insert({
           firebaseUID: newUser.user_id,
           emailAddress: newUser.email,
-          subscriptionExpiration: null,
+          subscriptionExpiration: knex.raw(SELECT datetime('now', '+60 days')),
           nickname: newUser.email.split("@", 1).join()
         });
       } else {
