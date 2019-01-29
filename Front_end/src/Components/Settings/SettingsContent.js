@@ -74,13 +74,13 @@ class SettingsContent extends React.Component {
       return <h2>You are not logged in.</h2>;
     } else if (this.state.loaded === true && this.state.loading === false) {
       return (
-        <Container fluid style={{ maxWidth: "1600px", color: "#dc9f2e"}}>
-          <Card style={{ maxWidth: "800px", margin: "8rem auto", padding: "3rem", border: "2px solid #dc9f2e"  }}>
+        <Container fluid style={{ maxWidth: "1600px", color: "#eac67a"}}>
+          <Card style={{ maxWidth: "1000px", margin: "8rem auto", padding: "3rem", border: "2px solid #eac67a", background: "#233237"  }}>
             <h1>Account Settings</h1>
             <p>User ID: {this.state.userID}</p>
             <p>Firebase UID: {this.state.firebaseUID}</p>
             <p>Nickname: {this.state.nickname}</p>
-            <Row style={{ display: "flex", justifyContent: "center" }}>
+            <Row style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
               <Input 
                 style={{ maxWidth: "400px"}}
                 name="newNickname"
@@ -89,10 +89,12 @@ class SettingsContent extends React.Component {
                 onChange={this.handleChange}  
               />
               <button style={{ 
-                  background: "#dc9f2e",
-                  color: "white",
+                  background: "#eac67a",
+                  color: "#984b43",
+                  fontWeight: "650",
+                  padding: "0.5rem 1rem",
                   border: "none",
-                  width: "150px",
+                  width: "200px",
                   borderRadius: "0.5rem"
                 }} 
                 onClick={this.changeNickName}>
