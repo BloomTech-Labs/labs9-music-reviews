@@ -13,8 +13,6 @@
   background-size: cover;
   background-attachment: fixed;
   object-fit: contain;
-  /* filter: blur(8px);
-  -webkit-filter: blur(8px); */
   color: #eac67a;
   z-index: -1;
   position: absolute;

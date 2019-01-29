@@ -20,7 +20,14 @@ const LandingPage = () => {
         <Img src={require("../../Images/OTR Logo Letters.png")} alt="ON THE RECORD" />
       </Row>
 
-      <h3 style={{ position: "relative", padding: "9rem 0 2rem 0", textAlign: "center", color: "#eac67a", textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000" }}>
+      <h3 style={{ 
+          position: "relative",
+          padding: "7rem 0 2rem 0",
+          textAlign: "center",
+          color: "#eac67a",
+          textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+        }}
+      >
         There are a million songs out there. <br />
         Let your opinions on them be On The Record
       </h3>

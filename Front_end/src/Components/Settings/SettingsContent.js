@@ -82,7 +82,7 @@ class SettingsContent extends React.Component {
             <p>Nickname: {this.state.nickname}</p>
             <Row style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
               <Input 
-                style={{ maxWidth: "400px"}}
+                style={{ maxWidth: "400px" }}
                 name="newNickname"
                 value={this.state.newNickname}
                 placeholder="Please enter new nickname" 
