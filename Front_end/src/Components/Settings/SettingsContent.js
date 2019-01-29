@@ -31,8 +31,8 @@ class SettingsContent extends React.Component {
       axios.put(`https://labs9-car-reviews.herokuapp.com/users/${this.state.userID}/change_nickname`, {
           nickname: this.state.newNickname
         })
-        .then( res => { console.log(res) })
-        .error( err => { console.log(err) })
+        .then( res => console.log(res) )
+        .error( err => console.log(err) )
     }
   }
   componentDidMount() {
@@ -68,16 +68,17 @@ class SettingsContent extends React.Component {
     );
   }
   render() {
-    console.log(this.state.userID, this.state.newNickname)
     if (this.state.loading === true && this.state.loaded === false) {
       return <div />;
     } else if (this.state.loading === false && this.state.loaded === false) {
       return <h2>You are not logged in.</h2>;
     } else if (this.state.loaded === true && this.state.loading === false) {
       return (
-        <Container fluid style={{ maxWidth: "1600px", color: "#eac67a"}}>
+        <Container fluid style={{ maxWidth: "1600px", color: "#eac67a", fontFamily: "Lato" }}>
           <Card style={{ maxWidth: "1000px", margin: "8rem auto", padding: "3rem", border: "2px solid #eac67a", background: "#233237"  }}>
-            <h1>Account Settings</h1>
+            <h1 style={{ fontFamily: "Merriweather Sans" }}>
+              Account Settings
+            </h1>
             <p>User ID: {this.state.userID}</p>
             <p>Firebase UID: {this.state.firebaseUID}</p>
             <p>Nickname: {this.state.nickname}</p>
@@ -100,7 +101,7 @@ class SettingsContent extends React.Component {
                 }} 
                 onClick={this.changeNickname}>
                   Change Nickname
-                </button>
+              </button>
             </Row>
             <p>Email address: {this.state.email}</p>
             <p>{this.state.paidStatus === false || this.state.paidStatus === 0 ? 'Tier: Free' : 'Tier: Paid'}</p>
