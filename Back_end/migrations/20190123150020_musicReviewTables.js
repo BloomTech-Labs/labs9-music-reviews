@@ -5,7 +5,7 @@ exports.up = function (knex, Promise) {
       usr.string('firebaseUID')
       usr.string('emailAddress', 100)
       usr.boolean('paidMembership').defaultTo('false')
-      usr.timestamp('subscriptionExpiration')
+      usr.timestamp('subscriptionExpiration').notNullable().defaultTo(knex.fn.now())
       usr.string('nickname').unique()
     })
     .createTable('albumReview', function (alb) {

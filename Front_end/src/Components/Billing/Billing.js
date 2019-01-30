@@ -67,37 +67,34 @@ class Billing extends Component {
   render() {
     return (
       <div>
-        <Container fluid style={{ maxWidth: "1000px", padding: "15rem 0 5rem 0", fontFamily: "Lato", color: "#eac67a" }}>
+        <Container fluid style={{ maxWidth: "1000px", padding: "15rem 0 5rem 0", color: "#dc9f2e" }}>
           <Row>
-            <Col md="4" xs="12">
-              <Card style={{ background: "#233237", border: "2px solid #eac67a" }}>
+            <Col md="4" sm="12">
+              <Card>
                 <ProfileInfo>
                   <Row>
                     <CardImg
-                      src={require("../../Images/defaultUser.png")}
+                      src={require("../../Images/RecordThumb.png")}
                       alt="Default profile image"
                       style={{ 
                         maxWidth: "250px",
                         maxHeight: "250px",
                         padding: "2rem",
                         margin: "0 auto",
-                        background: "#233237",
                       }}
                     />
                   </Row>
-                  <Row style={{ display: "flex", flexDirection: "column", padding: "1rem", textAlign: "center" }}>
-                    <p>Status</p>
-                    <p>{this.props.nickname}</p>
-                    <p>Reviews: 1</p>
-                  </Row>
+                  <p>Status</p>
+                  <p>{this.props.nickname}</p>
+                  <p>Reviews: 1</p>
                 </ProfileInfo>
               </Card>
             </Col>
 
-            <Col xs="12" md="8" style={{ margin: "1rem 0" }}>
-              <Card style={{ maxHeight: "600px", background: "#233237", border: "2px solid #eac67a" }}>
+            <Col sm="12" md="8">
+              <Card style={{ maxHeight: "600px" }}>
                 <Payment>
-                  <h2 style={{ textAlign: "left", fontFamily: "Merriweather Sans" }}> Billing </h2>
+                  <h2 style={{ textAlign: "left" }}> Billing </h2>
                   <div style={{ margin: "2rem 0" }}>
                     <FormGroup check style={{ display: "flex", flexDirection: "column" }}>
                       <Label check>
@@ -118,6 +115,7 @@ class Billing extends Component {
                       description={this.state.subType === "year" ? "1 Year Subscription" : "1 Month Subscription"}
                       amount={this.state.subType === "year" ? 9.99 : 0.99}
                       changeSubscriptionStatus={this.changeSubscriptionStatus}
+                      style={{ color: "#dc9f2e" }}
                     />
                   }   
                 </Payment>
