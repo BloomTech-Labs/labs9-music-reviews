@@ -75,7 +75,7 @@ class SignUpForm extends React.Component {
       <Container fluid style={{ position: "relative", top: "10rem" }}>
       <Row className='justify-content-center'>
       <Col xl={6} lg={6} md={6} sm={6}>
-        <h2 style ={{ color: "#eac67a", textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"}}>Sign Up</h2>
+        <h2 style ={{ color: "#eac67a", textShadow: "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"}}>Sign Up</h2>
         <Form className = 'pt-5 pb-5 align-items-center' style={{ border: "2px solid #eac67a", borderRadius: '1rem', backgroundColor: 'rgba(35, 50, 55, 1)' }}>
           <Col sm={10}>
             <FormGroup>
