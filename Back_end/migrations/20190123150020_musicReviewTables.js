@@ -10,7 +10,8 @@ exports.up = function (knex, Promise) {
     })
     .createTable('albumReview', function (alb) {
       alb.increments('albumReviewID').primary()
-      alb.timestamps(true, true)
+      alb.timestamp('created_at').notNullable().defaultTo(knex.fn.now())
+      alb.timestamp('modified_at').notNullable().defaultTo(knex.fn.now())
       alb.integer('rating')
       alb.text('review').notNullable()
       alb.string('spotifyAlbumID')
@@ -18,7 +19,8 @@ exports.up = function (knex, Promise) {
     })
     .createTable('trackReview', function (trk) {
       trk.increments('trackReviewID').primary()
-      trk.timestamps(true, true)
+      trk.timestamp('created_at').notNullable().defaultTo(knex.fn.now())
+      trk.timestamp('modified_at').notNullable().defaultTo(knex.fn.now())
       trk.integer('rating')
       trk.text('review').notNullable()
       trk.string('spotifyTrackID')
