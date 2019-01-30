@@ -56,8 +56,8 @@ class AlbumReviewCreateModal extends React.Component {
     // event.preventDefault();
     axios
       .post(`https://labs9-car-reviews.herokuapp.com/albumReviews`, {
-        created_at: this.state.dateCreated,
-        updated_at: this.state.dateCreated,
+        dateCreated: new Date().toString().split("G", 1)[0],
+        dateModified: new Date().toString().split("G", 1)[0],
         rating: this.state.rating,
         review: this.state.review,
         spotifyAlbumID: this.state.spotifyAlbumID,

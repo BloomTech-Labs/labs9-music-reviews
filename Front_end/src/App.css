@@ -2,23 +2,18 @@
 /* content Lato */
 
 .bg-img {
-  /* background: #233237 no-repeat center center fixed; */
-  /* background-color: #233237; */
-  margin: 0;
-  padding: 0;
-  background-image: url("./Images/TurntableBGBlur.jpg");
-  top: 0;
-  left: 0;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  object-fit: contain;
-  /* filter: blur(8px);
-  -webkit-filter: blur(8px); */
-  color: #eac67a;
-  z-index: -1;
-  position: absolute;
   min-height: 100vh;
+  background-image: url("./Images/TurntableBGBlur.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-color: #233237;
+  color: #eac67a;
+  overflow-y: hidden;
 }
 
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */

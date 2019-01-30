@@ -5,10 +5,13 @@ import {
   ModalBody,
   ModalFooter,
   Row,
-  Col,
-  ListGroup,
-  ListGroupItem
+  Col
 } from "reactstrap";
+import styled from "styled-components";
+
+const Ul = styled.ul`
+  font-size: 1rem;
+`
 
 class PlansModal extends React.Component {
   constructor(props) {
@@ -43,63 +46,74 @@ class PlansModal extends React.Component {
             textDecoration: "none"
           }}
         >
-          Upgrade
+          UPGRADE
         </Button>
         <Modal
           isOpen={this.state.modal}
           toggle={this.toggle}
           className={this.props.className}
+          style={{ maxWidth: "425px" }}
         >
-          <Row>
-            <Col>
+          <Row style={{
+                backgroundColor: "#233237",
+                color: "#eac67a",
+                fontSize: "1.2rem",
+                margin: "0 auto"
+              }}
+            >
+            <Col xs="7">
               <ModalBody>
-                <h3>1 Year Subscription</h3>
+                <h4>Subscribed Users</h4>
               </ModalBody>
               <ModalBody>
-                <ListGroup>
-                  <ListGroupItem>Thing 1</ListGroupItem>
-                  <ListGroupItem>Thing 2</ListGroupItem>
-                  <ListGroupItem>Thing 3</ListGroupItem>
-                  <ListGroupItem>Thing 4</ListGroupItem>
-                  <ListGroupItem>Thing 5</ListGroupItem>
-                  <ListGroupItem>Thing 6</ListGroupItem>
-                  <ListGroupItem>Thing 7</ListGroupItem>
-                  <ListGroupItem>Thing 8</ListGroupItem>
-                </ListGroup>
-              </ModalBody>
-              <ModalBody>
-                <h3>$9.99 /mo</h3>
+                  <Ul>Read Reviews</Ul>
+                  <Ul>Thing 2</Ul>
+                  <Ul>Thing 3</Ul>
+                  <Ul>Thing 4</Ul>
+                  <Ul>Thing 5</Ul>
+                  <Ul>Thing 6</Ul>
+                  <Ul>Thing 7</Ul>
+                  <Ul>Thing 8</Ul>
               </ModalBody>
             </Col>
-            <Col>
+            <Col xs="5">
               <ModalBody>
-                <h3>1 Month Subscription</h3>
+                <h4>Free Users</h4>
               </ModalBody>
               <ModalBody>
-                <ListGroup>
-                  <ListGroupItem>Thing 1</ListGroupItem>
-                  <ListGroupItem>Thing 2</ListGroupItem>
-                  <ListGroupItem>Thing 3</ListGroupItem>
-                  <ListGroupItem>Thing 4</ListGroupItem>
-                  <ListGroupItem>Thing 5</ListGroupItem>
-                  <ListGroupItem>Thing 6</ListGroupItem>
-                  <ListGroupItem>Thing 7</ListGroupItem>
-                  <ListGroupItem>Thing 8</ListGroupItem>
-                </ListGroup>
-              </ModalBody>
-              <ModalBody>
-                <h3>$0.99 /mo</h3>
+                  <Ul>Read Reviews</Ul>
+                  <Ul>Thing 2</Ul>
+                  <Ul>Thing 3</Ul>
+                  <Ul>Thing 4</Ul>
+                  <Ul>Thing 5</Ul>
+                  <Ul>Thing 6</Ul>
+                  <Ul style={{ textDecoration: "line-through" }}>Thing 7</Ul>
+                  <Ul style={{ textDecoration: "line-through" }}>Thing 8</Ul>
               </ModalBody>
             </Col>
           </Row>
 
-          <ModalFooter style={{ display: "flex", justifyContent: 'space-between'}} >
+          <ModalFooter style={{
+              display: "flex",
+              justifyContent: 'space-around',
+              backgroundColor: "#233237",
+              color: "#eac67a",
+              border: "none",
+            }}
+          >
               <a href="/user/billing">
-            <Button color="primary" onClick={this.toggle}>
-              Upgrade
+            <Button style={{ 
+                background: "#eac67a",
+                color: "#984b43",
+                fontWeight: "650",
+                border: "none"
+              }} 
+              onClick={this.toggle}
+            >
+              UPGRADE
             </Button></a>
-            <Button color="secondary" onClick={this.toggle}>
-              Close
+            <Button style={{ background: "#984b43", color: "#eac67a", border: "none", fontWeight: "650" }} onClick={this.toggle}>
+              CLOSE
             </Button>
           </ModalFooter>
         </Modal>
