@@ -135,7 +135,7 @@ class AlbumReviewCreateModal extends React.Component {
                     textAlign: "center",
                     color: "#eac67a",
                     textShadow:
-                      "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+                      "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
                   }}
                 >
                   <h3 style={{ fontFamily: 'Merriweather Sans, sans-serif' }}>Album: </h3>
@@ -146,7 +146,7 @@ class AlbumReviewCreateModal extends React.Component {
                     textAlign: "center",
                     color: "#eac67a",
                     textShadow:
-                      "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+                      "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
                   }}
                 >
                   <h3 style={{ fontFamily: 'Merriweather Sans, sans-serif' }}>Artist: </h3>
@@ -170,7 +170,7 @@ class AlbumReviewCreateModal extends React.Component {
                 color: "#eac67a",
                 fontFamily: 'Merriweather Sans, sans-serif',
                 textShadow:
-                  "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+                  "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
               }}
             >
               Track List
@@ -186,7 +186,7 @@ class AlbumReviewCreateModal extends React.Component {
                 overflow: "auto",
                 color: "#eac67a",
                 textShadow:
-                  "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+                  "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
               }}
             >
               {this.props.tracks.map(track => (
@@ -240,7 +240,7 @@ class AlbumReviewCreateModal extends React.Component {
               <ModalHeader style={{
                   color: "#eac67a",
                   textShadow:
-                    "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+                    "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
                 }}>
                 Are you sure you want to SUBMIT this review?
               </ModalHeader>

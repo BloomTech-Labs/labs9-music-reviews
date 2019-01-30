@@ -143,7 +143,7 @@ class ReviewEditModal extends React.Component {
             fontFamily: "Lato",
             color: "#eac67a",
             textShadow:
-              "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+              "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
           }}
         >
           <Row class="d-flex justify-content-around">
@@ -156,7 +156,7 @@ class ReviewEditModal extends React.Component {
                       textAlign: "center",
                       color: "#eac67a",
                       textShadow:
-                        "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+                        "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
                     }}
                   >
                     <h4>Album: </h4>
@@ -167,7 +167,7 @@ class ReviewEditModal extends React.Component {
                       textAlign: "center",
                       color: "#eac67a",
                       textShadow:
-                        "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+                        "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
                     }}
                   >
                     <h4>Artist: </h4>
@@ -194,7 +194,7 @@ class ReviewEditModal extends React.Component {
                         style={{
                           color: "#eac67a",
                           textShadow:
-                            "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+                            "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
                         }}
                       >
                         Track List
@@ -210,7 +210,7 @@ class ReviewEditModal extends React.Component {
                           overflow: "auto",
                           color: "#eac67a",
                           textShadow:
-                            "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+                            "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
                         }}
                       >
                         {this.props.tracks.map(track => (
@@ -272,7 +272,7 @@ class ReviewEditModal extends React.Component {
                 style={{
                   color: "#eac67a",
                   textShadow:
-                    "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+                    "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
                 }}
               >
                 Are you sure you want to SUBMIT this review?
@@ -326,7 +326,7 @@ class ReviewEditModal extends React.Component {
                 style={{
                   color: "#eac67a",
                   textShadow:
-                    "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+                    "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
                 }}
               >
                 Are you sure you want to DELETE this review?

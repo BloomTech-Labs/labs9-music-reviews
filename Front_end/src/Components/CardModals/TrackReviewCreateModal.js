@@ -135,7 +135,7 @@ class TrackReviewCreateModal extends React.Component {
                       margin: "0",
                       color: "#eac67a",
                       textShadow:
-                        "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+                        "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
                     }}
                   >
                     {this.props.track}
@@ -149,7 +149,7 @@ class TrackReviewCreateModal extends React.Component {
                       textAlign: "center",
                       color: "#eac67a",
                       textShadow:
-                        "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+                        "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
                     }}
                   >
                     {this.props.artist} - {this.props.album}
@@ -204,7 +204,7 @@ class TrackReviewCreateModal extends React.Component {
                   margin: "0",
                   color: "#eac67a",
                   textShadow:
-                    "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+                    "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
                 }}
               >
                 Are you sure you want to SUBMIT this review?

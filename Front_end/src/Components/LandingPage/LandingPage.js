@@ -25,7 +25,7 @@ const LandingPage = () => {
           padding: "7rem 0 2rem 0",
           textAlign: "center",
           color: "#eac67a",
-          textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+          textShadow: "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
         }}
       >
         There are a million songs out there. <br />

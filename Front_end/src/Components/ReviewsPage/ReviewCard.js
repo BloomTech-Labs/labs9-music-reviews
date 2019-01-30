@@ -15,7 +15,7 @@ class AlbumReviewCard extends Component {
     super(props);
     this.state = {
       users: [],
-      nickname: ""
+      nickname: "",
     };
   }
 
@@ -51,7 +51,6 @@ class AlbumReviewCard extends Component {
   }
 
   render() {
-    console.log(this.props.review);
     return (
       <Fragment>
         <Container>
@@ -93,7 +92,7 @@ class AlbumReviewCard extends Component {
                     <ViewStars rating={this.props.review.rating} style={{width: "100%"}}/>
                   </Col>
                   <Col sm="12" md="6">
-                    <p style={{ margin: "auto" }}>Date Written: (DATE)</p>
+                    <p style={{ margin: "auto" }}>Date Created: {this.props.review.dateCreated}</p>
                   </Col>
                 </Row>
                 <Row>
