@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
-import { Container, Row, Col, CardImg } from "reactstrap";
+import { Card, CardBody, Row, Col, CardImg, CardTitle, CardSubtitle } from "reactstrap";
 import AlbumReviewCreateModal from "../CardModals/AlbumReviewCreateModal";
 import ReviewCard from "./ReviewCard";
 import axios from "axios";
@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
 import { withAuthorization } from "../Session";
+import './reviews.css'
 
 // const Sidebar = styled.div`
 //   position: fixed;
@@ -19,13 +20,6 @@ import { withAuthorization } from "../Session";
 //   flex-direction: column;
 //   align-items: center;
 // `;
-
-const Iframe = styled.iframe`
-  width: 103%;
-  height: 80px;
-  frameborder: 0;
-  align: middle;
-`;
 
 class AlbumReviewsPage extends Component {
   static propTypes = {
@@ -99,68 +93,39 @@ class AlbumReviewsPage extends Component {
     });
 
     return (
-      <Fragment>
-        <Container
-          fluid={true}
-          style={{
-            display: "flex",
-            margin: "auto",
-            maxWidth: "1600px",
-            position: "relative",
-            top: "8rem"
-          }}
-        >
-          <Row>
-            <Col
-              xs="12"
-              md="5"
-              style={{
-                position: "relative",
-                top: "7rem",
-                margin: "0 auto",
-                paddingLeft: "3rem",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center"
-              }}
-            >
-              {/* ALBUM INFO */}
-              <Row style={{ margin: "0 auto", padding: "0 50px", textShadow: "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43" }}>
-                <h3>Album:<br/>{this.state.album}</h3>
-              </Row>
-              {/* ARTIST INFO */}
-              <Link to={`/artists/${this.state.artistId}`}>
-                <Row style={{ margin: "auto" }}>
-                  <h5>Artist: <br/>{this.state.artist}</h5>
-                </Row>
-              </Link>
+        <Row style={{position: 'relative', top: '10rem', marginBottom: '50px'}}>
+            <Col md={5} id='left' className='scrollbox scrollbox-content'>
+             
               {/* can add logic to render different size of album art based on screen size: stacked ternary */}
               {/* need to find a way to manipulate the img object from res.data */}
               {/* COVER ART */}
+              <Card body className="text-center" style={{background: 'transparent', border: 'none', alignItems: 'center', textDecoration: 'none', textShadow: "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43" }}>
+              <CardBody>
+                <CardTitle><h3>Album: {this.state.album}</h3></CardTitle>
+                <CardSubtitle>
+                <Link  style={{  color: '#eac67a', textDecoration: 'none', textShadow: "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43" }} to={`/artists/${this.state.artistId}`}>
+                <h5>Artist: {this.state.artist}</h5>
+                </Link>
+                </CardSubtitle>
+              </CardBody>
               <CardImg
                 src={this.state.art}
                 alt="Album Art"
-                style={{ maxWidth: "400px" }}
+                style={{maxWidth: '400px', width: '100%'}}
               />
-
+             
               {/* Spotify Player */}
-              <Iframe
-                src={`https://open.spotify.com/embed/album/${
-                  this.state.albumId
-                }`}
-                allowtransparency="true"
-                allow="encrypted-media"
-                style={{ maxWidth: "400px" }}
-              />
-
-              <Row
-                style={{
-                  display: "flex",
-                  justifyContent: "space-evenly",
-                  padding: "1rem"
-                }}
-              >
+                <iframe
+                  src={`https://open.spotify.com/embed/album/${
+                    this.state.albumId
+                  }`}
+                  allowtransparency="true"
+                  allow="encrypted-media"
+                  style={{ maxWidth: '400px', width: '100%', height: '80px', border: 'none'}}
+                  class="d-block mx-auto"
+                />
+                </Card>
+              <Row className='mb-3' style={{justifyContent: 'center'}}>
                 {/* Write Review Button Modal */}
                 {albumReviewsFilteredbyUserID.length === 0 ? (
                   <AlbumReviewCreateModal
@@ -174,12 +139,12 @@ class AlbumReviewsPage extends Component {
                 ) : null}
               </Row>
               {/* end of Create  */}
-              <Row>
-                <Col>
+              
+              
                   <h5 style={{ textAlign: "center", textShadow: "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43" }}>Tracklist</h5>
+                  <Col>
                   <Col
                     style={{
-                      display: "flex",
                       flexDirection: "column",
                       justifyContent: "space-evenly",
                       padding: "1rem",
@@ -196,15 +161,13 @@ class AlbumReviewsPage extends Component {
                         >
                           <Row
                             style={{
-                              display: "flex",
-                              justifyContent: "space-between",
                               textShadow: "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
                             }}
                           >
-                            <Col xs="1">
+                            <Col xs="3" style={{textAlign: 'right'}}>
                               <h6>{track.track_number}.</h6>
                             </Col>
-                            <Col xs="10">
+                            <Col xs="auto">
                               <ul
                                 style={{
                                   fontSize: "0.8rem",
@@ -221,17 +184,9 @@ class AlbumReviewsPage extends Component {
                     })}
                   </Col>
                 </Col>
-              </Row>
+              
             </Col>
-            <Col md="7" sm="12">
-              <Container
-                fluid={true}
-                style={{
-                  maxWidth: "1150px",
-                  position: "relative",
-                  top: "5rem"
-                }}
-              >
+            <Col  md={{size: 7, offset: 5}} >
                 {albumReviews.length === 0 ? (
                   <Row style={{ display: "flex", justifyContent: "center", textShadow: "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"}}>
                     <h3>Be the first to write a review for this album!</h3>
@@ -245,11 +200,8 @@ class AlbumReviewsPage extends Component {
                     />
                   ))
                 )}
-              </Container>
             </Col>
-          </Row>
-        </Container>
-      </Fragment>
+      </Row>
     );
   }
 }
