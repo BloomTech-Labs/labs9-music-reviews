@@ -77,7 +77,7 @@ class SettingsContent extends React.Component {
         <Container fluid style={{ maxWidth: "1600px", color: "#eac67a", fontFamily: "Lato", fontSize: "1.2rem", textAlign: "left" }}>
           <Card style={{ maxWidth: "1000px", margin: "8rem auto", padding: "3rem", border: "2px solid #eac67a", background: "#233237"  }}>
             <Row style={{ margin: "0 auto", textAlign: "left"  }}>
-              <h1 style={{ fontFamily: "Merriweather Sans" }}>
+              <h1 style={{ fontFamily: "Merriweather Sans", textShadow: "-1px -1px 0 #984b43, 1px -1px 0 #984b43,-1px 1px 0 #984b43, 1px 1px 0 #984b43" }}>
                 Account Settings
               </h1>
             </Row>

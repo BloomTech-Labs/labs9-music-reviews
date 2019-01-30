@@ -188,7 +188,7 @@ class Search extends Component {
             className="flex-sm-column"
             style = {{
                 maxHeight: "26.5rem",
-                minWidth: "500px",
+                minWidth: "325px",
                 margin: "0 auto",
                 overflowY: 'scroll', 
                 WebkitOverflowScrolling: 'touch',
@@ -209,12 +209,12 @@ class Search extends Component {
                       }}
                     >
                       <Row noGutters>
-                        <Col md="4" xs="2" style={{ verticalAlign: "middle" }}>
+                        <Col xs="4" style={{ verticalAlign: "middle" }}>
                           <CardImg src= {!track.album.images[0] ? image : track.album.images[0].url} alt = {track.name} style = {{ borderRadius: '50%', width: '4rem', padding: "0" }}
                           />  
                         </Col>
-                        <Col md="4" xs="3" style={{ verticalAlign: "middle" }}>{track.name}</Col>
-                        <Col md="4" xs="2" style={{ verticalAlign: "middle" }}>{track.album.name}</Col>
+                        <Col xs="4" style={{ verticalAlign: "middle" }}>{track.name}</Col>
+                        <Col xs="4" style={{ verticalAlign: "middle" }}>{track.album.name}</Col>
                         {/* <Col  md={2} xl={2} className="d-none d-xl-block" >{seconds}</Col> */}
                       </Row>
                     </Card>
