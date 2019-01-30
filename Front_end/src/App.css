@@ -1,21 +1,6 @@
 /* header Merriweather */
 /* content Lato */
 
-.bg-img {
-  min-height: 100vh;
-  background-image: url("./Images/TurntableBGBlur.jpg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-color: #233237;
-  color: #eac67a;
-  overflow-y: hidden;
-}
-
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
   color:    white;
 }

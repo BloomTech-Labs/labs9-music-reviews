@@ -9,14 +9,16 @@ import { withAuthorization } from '../Components/Session';
 
 const HomePage = () => {
     return(
-        <Container fluid style={{ maxWidth: "1200px", padding: "7rem 0 5rem 0", color: "#dc9f2e", border:"red 5px solid"}} >
-        <Row>
+        <Container fluid style={{ 
+                maxWidth: "1200px",
+                padding: "7rem 0 5rem 0",
+                fontFamily: "Lato",
+                fontSize: "1.2rem"
+            }}
+        >
             <Newest />
-        </Row>
             {/* <FeaturedReviews /> */}
-        <Row>
             <PopularTracks />
-        </Row>
             {/* <PopularReviewers /> */}
         </Container>
     )
