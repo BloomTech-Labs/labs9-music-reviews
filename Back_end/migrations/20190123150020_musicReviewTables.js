@@ -3,15 +3,14 @@ exports.up = function (knex, Promise) {
     .createTable('users', function (usr) {
       usr.increments('userID').primary()
       usr.string('firebaseUID')
-      usr.string('emailAddress', 100)
+      usr.string('emailAddress', 100).unique()
       usr.boolean('paidMembership').defaultTo('false')
-      usr.timestamp('subscriptionExpiration').notNullable().defaultTo(knex.fn.now())
+      usr.datetime('subscriptionExpiration')
       usr.string('nickname').unique()
     })
     .createTable('albumReview', function (alb) {
       alb.increments('albumReviewID').primary()
-      alb.timestamp('created_at').notNullable().defaultTo(knex.fn.now())
-      alb.timestamp('modified_at').notNullable().defaultTo(knex.fn.now())
+      alb.timestamps(true, true)
       alb.integer('rating')
       alb.text('review').notNullable()
       alb.string('spotifyAlbumID')
@@ -19,8 +18,7 @@ exports.up = function (knex, Promise) {
     })
     .createTable('trackReview', function (trk) {
       trk.increments('trackReviewID').primary()
-      trk.timestamp('created_at').notNullable().defaultTo(knex.fn.now())
-      trk.timestamp('modified_at').notNullable().defaultTo(knex.fn.now())
+      trk.timestamps(true, true)
       trk.integer('rating')
       trk.text('review').notNullable()
       trk.string('spotifyTrackID')
@@ -34,7 +32,7 @@ exports.up = function (knex, Promise) {
       lar.integer('albumReviewID').unsigned().notNullable().references('albumReviewID').inTable('albumReview').onDelete('cascade').index()
     })
     .createTable('likedTrackReview', function (ltr) {
-      ltr.increments('likedTrackReviewID')
+      ltr.increments('likedTrackReviewID').primary()
       ltr.boolean('like')
       ltr.boolean('dislike')
       ltr.integer('userID').unsigned().notNullable().references('userID').inTable('users').onDelete('cascade').index()
