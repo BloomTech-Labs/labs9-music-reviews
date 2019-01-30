@@ -13,6 +13,7 @@ import {
   Row
 } from "reactstrap";
 import EditStars from "../StarsRating/EditStars";
+import './modals.css';
 
 class TrackReviewCreateModal extends React.Component {
   static propTypes = {
@@ -99,7 +100,8 @@ class TrackReviewCreateModal extends React.Component {
           style={{
             color: "#984B43",
             backgroundColor: "#EAC67A",
-            fontWeight: "650"
+            fontWeight: "650",
+            fontFamily: "Lato"
           }}
         >
           Create New Review
@@ -109,7 +111,7 @@ class TrackReviewCreateModal extends React.Component {
           toggle={this.toggle}
           className={this.props.className}
           backdrop={true}
-          style={{ border: "3px solid #EAC67A", borderRadius: "10px" }}
+          style={{ border: "3px solid #EAC67A", borderRadius: "10px", fontFamily: "Lato" }}
         >
           <Row className="d-flex justify-content-around">
             <Col className="container">
@@ -127,30 +129,31 @@ class TrackReviewCreateModal extends React.Component {
               </Row>
               <Row>
                 <ModalBody>
-                  <h2
+                  <h3
                     style={{
+                      textAlign: "center",
                       margin: "0",
                       color: "#eac67a",
                       textShadow:
-                        "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+                        "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
                     }}
                   >
                     {this.props.track}
-                  </h2>
+                  </h3>
                 </ModalBody>
               </Row>
               <Row>
                 <ModalBody>
-                  <h4
+                  <h5
                     style={{
                       textAlign: "center",
                       color: "#eac67a",
                       textShadow:
-                        "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+                        "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
                     }}
                   >
                     {this.props.artist} - {this.props.album}
-                  </h4>
+                  </h5>
                 </ModalBody>
               </Row>
             </Col>
@@ -201,7 +204,7 @@ class TrackReviewCreateModal extends React.Component {
                   margin: "0",
                   color: "#eac67a",
                   textShadow:
-                    "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+                    "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
                 }}
               >
                 Are you sure you want to SUBMIT this review?

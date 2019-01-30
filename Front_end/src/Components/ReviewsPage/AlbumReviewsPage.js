@@ -126,7 +126,7 @@ class AlbumReviewsPage extends Component {
               }}
             >
               {/* ALBUM INFO */}
-              <Row style={{ margin: "0 auto", padding: "0 50px", textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000" }}>
+              <Row style={{ margin: "0 auto", padding: "0 50px", textShadow: "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43" }}>
                 <h3>Album:<br/>{this.state.album}</h3>
               </Row>
               {/* ARTIST INFO */}
@@ -176,7 +176,7 @@ class AlbumReviewsPage extends Component {
               {/* end of Create  */}
               <Row>
                 <Col>
-                  <h5 style={{ textAlign: "center", textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000" }}>Tracklist</h5>
+                  <h5 style={{ textAlign: "center", textShadow: "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43" }}>Tracklist</h5>
                   <Col
                     style={{
                       display: "flex",
@@ -198,7 +198,7 @@ class AlbumReviewsPage extends Component {
                             style={{
                               display: "flex",
                               justifyContent: "space-between",
-                              textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+                              textShadow: "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
                             }}
                           >
                             <Col xs="1">
@@ -233,7 +233,7 @@ class AlbumReviewsPage extends Component {
                 }}
               >
                 {albumReviews.length === 0 ? (
-                  <Row style={{ display: "flex", justifyContent: "center", textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"}}>
+                  <Row style={{ display: "flex", justifyContent: "center", textShadow: "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"}}>
                     <h3>Be the first to write a review for this album!</h3>
                   </Row>
                 ) : (
