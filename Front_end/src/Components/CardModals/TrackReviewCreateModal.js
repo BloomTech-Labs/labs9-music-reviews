@@ -50,8 +50,8 @@ class TrackReviewCreateModal extends React.Component {
     // event.preventDefault();
     axios
       .post(`https://labs9-car-reviews.herokuapp.com/trackReviews`, {
-        created_at: this.state.dateCreated,
-        updated_at: this.state.dateCreated,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
         rating: this.state.rating,
         review: this.state.review,
         spotifyTrackID: this.props.trackId,
