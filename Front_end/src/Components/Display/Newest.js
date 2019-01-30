@@ -57,14 +57,11 @@ componentDidMount() {
                         padding: "2rem 1rem 0 1rem",
                         margin: "0 auto",
                         padding: "2rem 0",
-                        fontFamily: "Lato",
+                        fontFamily: "Lato"
                     }}
                 >
-                <Card style={{ border: "2px solid #eac67a" }}>
+                <Card style={{ background: "rgba(35, 55, 50, 0)" }}>
                     <h1 style={{
-                            color: "#EAC67A", 
-                            backgroundColor: '#233237',
-                
                             marginBottom:'-0.5rem',
                             lineHeight: '2.2',
                             textShadow: "-1px -1px 0 #984b43, 1px -1px 0 #984b43,-1px 1px 0 #984b43, 1px 1px 0 #984b43"
@@ -73,7 +70,7 @@ componentDidMount() {
                         Latest Releases
                     </h1>
                     <div className="d-flex flex-row flex-nowrap align-items-center" 
-                    style = {{overflow: 'auto', WebkitOverflowScrolling: 'touch', backgroundColor:'#233237'}} >
+                    style = {{overflow: 'auto', WebkitOverflowScrolling: 'touch' }} >
                         {renderData}
                     </div>
                 </Card>

@@ -6,7 +6,7 @@ import { instanceOf } from 'prop-types';
 import { Row, Col, Card, CardImg, Container } from 'reactstrap';
 
 const tracksHeader = {
-    textAlign: 'center',
+    textAlign: 'left',
     fontSize: "1.5rem",
     textShadow: "-1px -1px 0 #984b43, 1px -1px 0 #984b43,-1px 1px 0 #984b43, 1px 1px 0 #984b43"
 }
@@ -45,8 +45,6 @@ class PopularTracks extends Component {
                 maxWidth: "1200px",
                 padding: "2rem 0 5rem 0",
                 fontFamily:'Lato',
-                backgroundColor:'#233237',
-                border: "2px solid #eac67a",
             }}>
                 <Row>
                     <h1 style={{
@@ -61,10 +59,10 @@ class PopularTracks extends Component {
                     </h1>
                 </Row>
                 <Row>
-                    <Col style={{ overflow: "hidden", textAlign: "center", padding: "2rem 1rem 0 1rem" }}>
-                        <Row style = {{ marginBottom: '15px', color: "#eac67a" }}>
+                    <Col style={{ overflow: "hidden", textAlign: "left", padding: "2rem 1rem 0 1rem" }}>
+                        <Row style = {{ margin: '0 2rem 1rem 2rem', color: "#eac67a" }}>
                         {/* <Col xs="12" md="4" style={{padding: "2rem 1rem 0 1rem" }}> */}
-                            <Col xs="4" style={ tracksHeader }>Art</Col>
+                            <Col xs="4" style={{ textAlign: 'center', fontSize: "1.5rem", textShadow: "-1px -1px 0 #984b43, 1px -1px 0 #984b43,-1px 1px 0 #984b43, 1px 1px 0 #984b43", paddingRight: "2rem" }}>Art</Col>
                             <Col xs="4" style={ tracksHeader }>Track Name</Col>
                             <Col xs="4" style={ tracksHeader }>Artist Name</Col>
                         </Row>
@@ -73,22 +71,27 @@ class PopularTracks extends Component {
                                     if (data.track.popularity > 95) {
                                     return data.track.album.images.length === 0 ? null : 
                                         <NavLink to={`/tracks/${data.track.id}`} style={{ textDecoration: "none" }}>
-                                            <Row key = {data.track.id} style={{ 
-                                                    maxWidth: '1600px',
+                                            <Card key = {data.track.id} style={{ 
+                                                    minWidth: '325px',
                                                     textAlign: 'center',
                                                     padding: '1rem',
-                                                    color:'#eac67a'
+                                                    margin: "1rem",
+                                                    color:'#eac67a',
+                                                    background: "#233237",
+                                                    border: "2px solid #eac67a"
                                                 }}
                                             >
-                                                <Col xs="4">
-                                                    <CardImg src= {!data.track.album.images[0] ? image : data.track.album.images[0].url}
-                                                            alt = {data.track.name} style = {{borderRadius: '50%', maxWidth: '7rem'}}
-                                                    />  
-                                                </Col>
-                                                {/* <Col sm={1} className="d-flex align-items-center">{data.track.popularity}</Col> */}
-                                                <Col xs="5" className="d-flex align-items-center">{data.track.name}</Col>
-                                                <Col xs="3" className="d-flex align-items-center">{artist.name}</Col>
-                                            </Row>
+                                                <Row>
+                                                    <Col xs="4">
+                                                        <CardImg src= {!data.track.album.images[0] ? image : data.track.album.images[0].url}
+                                                                alt = {data.track.name} style = {{borderRadius: '50%', maxWidth: '7rem'}}
+                                                        />  
+                                                    </Col>
+                                                    {/* <Col sm={1} className="d-flex align-items-center">{data.track.popularity}</Col> */}
+                                                    <Col xs="4" className="d-flex align-items-center" style={{ textAlign: "left", paddingLeft: "1rem" }}>{data.track.name}</Col>
+                                                    <Col xs="4" className="d-flex align-items-center">{artist.name}</Col>
+                                                </Row>
+                                            </Card>
                                         </NavLink>
                                     }
                                 })
@@ -98,7 +101,7 @@ class PopularTracks extends Component {
             </Container>
         return (
             <Container>
-                <Card style={{ border: "none" }}>
+                <Card style={{ border: "none", background: "rgba(35, 55, 50, 0)", }}>
                     {renderData}   
                 </Card>
             </Container>
