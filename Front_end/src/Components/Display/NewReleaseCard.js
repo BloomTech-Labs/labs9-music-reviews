@@ -5,14 +5,15 @@ import { Card, CardImg, CardBody, CardTitle, Col } from 'reactstrap';
 class NewReleaseCard extends Component {
   render() {
     return (
-          <Col sm="12" md="3">
+      // <Col md="3" xs="12" style={{ overflow: "hidden", textAlign: "center", padding: "2rem 1rem 0 1rem" }}>
+          <Col xs="12" md="4" style={{padding: "2rem 1rem 0 1rem" }}> 
           <NavLink to={`/albums/${this.props.id}`}>
-            <Card style={{ border: "2px solid #dc9f2e", color: "#4b0082", textDecoration: "none", maxHeight: "500px", maxWidth: "200px" }}>
+            <Card style={{ border: "2px solid #984B43", color: "#4b0082", textDecoration: "none", maxHeight: "650px", backgroundColor: '#EAC67A', margin:'auto' }}>
               <CardImg top src={this.props.image} alt={this.props.alt} />
-              <CardBody style={{ padding: "1rem" }}>
-                <CardTitle><h6>Album:</h6><p>{this.props.album}</p></CardTitle>
-                <CardTitle><h6>Artist:</h6><p>{this.props.artist}</p></CardTitle>
-                <CardTitle><h6>Release Date:</h6><p>{this.props.date}</p></CardTitle>
+              <CardBody>
+                <CardTitle><h6 xs="3" md="4" style={{color:'#984B43'}}>Album:</h6><p style={{color:'#984B43', textDecoration: 'none', fontFamily:'merriweather'}}>{this.props.album}</p></CardTitle>
+                <CardTitle><h6 xs="3" md="4" style={{color:'#984B43'}}>Artist:</h6><p style={{color:'#984B43', textDecoration: 'none', fontFamily:'merriweather'}}>{this.props.artist}</p></CardTitle>
+                <CardTitle><h6 xs="3" md="4" style={{color:'#984B43'}}>Release Date:</h6><p style={{color:'#984B43', textDecoration: 'none', fontFamily:'merriweather'}}>{this.props.date}</p></CardTitle>
               </CardBody>
             </Card>
             </NavLink>
