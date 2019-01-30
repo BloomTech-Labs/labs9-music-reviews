@@ -117,6 +117,7 @@ class AlbumReviewCreateModal extends React.Component {
           className={this.props.className}
           backdrop={true}
           size="lg"
+          style={{border: "3px solid #EAC67A", borderRadius: '10px', backgroundColor: "#233237" }}
         >
           <Row>
             <Col className="container d-flex align-items-center justify-content-center">

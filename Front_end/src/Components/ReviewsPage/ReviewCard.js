@@ -55,11 +55,11 @@ class AlbumReviewCard extends Component {
     return (
       <Fragment>
         <Container>
-          <Jumbotron fluid style={{ display: "flex", padding: "1rem" }}>
+          <Jumbotron fluid style={{ display: "flex", padding: "1rem", backgroundColor: "#233237", border: this.props.albumReview === true ? "3px solid #984B43" : "3px solid #EAC67A", borderRadius: "10px"}}>
             {/* User info */}
             <Row>
               <Col
-                md="4"
+                md="3"
                 style={{
                   textAlign: "center",
                   margin: "auto",
@@ -68,20 +68,18 @@ class AlbumReviewCard extends Component {
               >
                 <div>
                   <img
-                    src={require("../../Images/RecordThumb.png")}
+                    src={require("../../Images/defaultUser.png")}
                     alt="Default profile image"
                     style={{
-                      maxWidth: "250px",
-                      maxHeight: "250px",
-                      padding: "2rem",
+                      width: "100%",
+                      maxWidth: "200px",
                       margin: "0 auto"
                     }}
                   />
                 </div>
                 <div>
-                  <strong>Nickname: </strong>
-                  <NavLink to={`/user/reviews/${this.props.review.userID}`}>
-                    {this.state.nickname}
+                  <NavLink to={`/user/reviews/${this.props.review.userID}`} style={{ textDecoration: "none", color: "#984B43" }}>
+                  <strong>{this.state.nickname}</strong>
                   </NavLink>
                 </div>
                 <div>Member status</div>
@@ -89,10 +87,10 @@ class AlbumReviewCard extends Component {
                   <strong>Reviews: </strong>
                 </div>
               </Col>
-              <Col md="8" style={{ padding: "1rem 5rem" }}>
-                <Row style={{ display: "flex" }}>
+              <Col md="8" style={{ padding: "1rem 2rem" }}>
+                <Row style={{ display: "flex"}}>
                   <Col sm="12" md="6">
-                    <ViewStars rating={this.props.review.rating} />
+                    <ViewStars rating={this.props.review.rating} style={{width: "100%"}}/>
                   </Col>
                   <Col sm="12" md="6">
                     <p style={{ margin: "auto" }}>Date Written: (DATE)</p>
