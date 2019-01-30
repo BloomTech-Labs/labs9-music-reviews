@@ -53,10 +53,11 @@ componentDidMount() {
     })
 
         return (
-            <Container style={{ padding: "1rem" }}>
+            <Container md="3" xs="12" style={{ overflow: "hidden", textAlign: "center", padding: "2rem 1rem 0 1rem"  }}>
                 <Card>
-                    <h1 style={{ color: "#dc9f2e" }}>Latest Releases</h1>
-                    <div className="d-flex flex-row flex-nowrap align-items-center" style = {{overflow: 'auto', WebkitOverflowScrolling: 'touch'}} >
+                    <h1 style={{ color: "#EAC67A", backgroundColor: '#233237',marginBottom:'-0.5rem', lineHeight: '2.2', fontFamily:'roboto' }}>Latest Releases</h1>
+                    <div className="d-flex flex-row flex-nowrap align-items-center" 
+                    style = {{overflow: 'auto', WebkitOverflowScrolling: 'touch', backgroundColor:'#233237'}} >
                         {renderData}
                     </div>
                 </Card>
