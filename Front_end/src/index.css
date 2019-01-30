@@ -1,4 +1,4 @@
-body {
+html, body {
   margin: 0;
   padding: 0;
   background: url("./Images/TurntableBGBlur.jpg");
@@ -15,6 +15,7 @@ body {
   color: #eac67a;
   z-index: -1;
   position: absolute;
+  font-family: 'Lato', sans-serif;
 }
 
 code {

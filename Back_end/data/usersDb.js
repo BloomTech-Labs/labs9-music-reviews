@@ -11,6 +11,12 @@ module.exports = {
   getNickname
 };
 
+function newSubscriberExpiration(days) {
+  let result = new Date();
+  result.setDate(result.getDate() + days);
+  return result;
+}
+
 function getAllUsers() {
   return db('users');
 }
@@ -24,7 +30,7 @@ function createNewUser(newUser) {
         return db('users').insert({
           firebaseUID: newUser.user_id,
           emailAddress: newUser.email,
-          subscriptionExpiration: null,
+          subscriptionExpiration: newSubscriberExpiration(60).toString().split('G',1)[0],
           nickname: newUser.email.split("@", 1).join()
         });
       } else {
