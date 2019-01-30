@@ -49,7 +49,15 @@ class Navigation extends Component {
               navbar
               style={{ display: "flex", justifyContent: "space-between", margin: "0", padding: "0" }}
             >
-            <Row style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", minWidth: "325px", margin: "0 auto" }}>
+            <Row style={{ 
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-end",
+                minWidth: "325px",
+                margin: "0 auto",
+                border: "2px solid red"
+              }}
+            >
                   <Col xs="4">
                     <Link to="/search">
                       <Button style={{ background: "#eac67a", color: "#984b43", fontWeight: "650" }}>
@@ -62,9 +70,9 @@ class Navigation extends Component {
                     <PlansModal />
                   </Col>
 
-                  <Col xs="4">
+                  <Col xs="4" style={{ margin: "0 auto", border: "2px solid white"}}>
                     <Dropdown nav isOpen={this.state.isOpen} toggle={this.toggle}>
-                      <DropdownToggle nav>
+                      <DropdownToggle>
                         <Icon large>menu</Icon>
                       </DropdownToggle>
 

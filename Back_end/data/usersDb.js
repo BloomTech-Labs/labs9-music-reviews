@@ -2,6 +2,12 @@ const knex = require('knex');
 const knexConfig = require('../knexfile.js');
 const db = knex(knexConfig.development);
 
+function newUserSubscription(days){
+  let result = new Date();
+  result.setDate(result.getDate() + days);
+  return result;
+}
+
 module.exports = {
   getAllUsers,
   createNewUser,
@@ -24,7 +30,7 @@ function createNewUser(newUser) {
         return db('users').insert({
           firebaseUID: newUser.user_id,
           emailAddress: newUser.email,
-          subscriptionExpiration: newUser.subscriptionExpiration,
+          subscriptionExpiration: newUserSubscription(60),
           nickname: newUser.email.split("@", 1).join()
         });
       } else {
