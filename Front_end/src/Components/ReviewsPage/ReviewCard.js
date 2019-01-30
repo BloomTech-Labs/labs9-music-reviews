@@ -55,7 +55,7 @@ class AlbumReviewCard extends Component {
     return (
       <Fragment>
         <Container>
-          <Jumbotron fluid style={{ display: "flex", padding: "1rem", backgroundColor: "#233237", border: this.props.albumReview === true ? "3px solid #984B43" : "3px solid #EAC67A", borderRadius: "10px"}}>
+          <Jumbotron fluid style={{ margin: "0 10px", display: "flex", padding: "1rem", fontFamily: "Lato", backgroundColor: "#233237", border: this.props.albumReview === true ? "3px solid #984B43" : "3px solid #EAC67A", borderRadius: "10px"}}>
             {/* User info */}
             <Row>
               <Col

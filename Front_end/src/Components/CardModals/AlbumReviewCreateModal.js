@@ -16,7 +16,7 @@ import {
   DropdownItem
 } from "reactstrap";
 import EditStars from "../StarsRating/EditStars";
-import { type } from "os";
+import './modals.css';
 
 class AlbumReviewCreateModal extends React.Component {
   static propTypes = {
@@ -113,7 +113,8 @@ class AlbumReviewCreateModal extends React.Component {
           style={{
             color: "#984B43",
             backgroundColor: "#EAC67A",
-            fontWeight: "650"
+            fontWeight: "650",
+            fontFamily: "Lato"
           }}
         >
           Create New Review
@@ -124,7 +125,7 @@ class AlbumReviewCreateModal extends React.Component {
           className={this.props.className}
           backdrop={true}
           size="lg"
-          style={{ border: "3px solid #EAC67A", borderRadius: "10px" }}
+          style={{ border: "3px solid #EAC67A", borderRadius: "10px", fontFamily: "Lato" }}
         >
           <Row>
             <Col className="container d-flex align-items-center justify-content-center">
@@ -137,7 +138,7 @@ class AlbumReviewCreateModal extends React.Component {
                       "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
                   }}
                 >
-                  <h3>Album: </h3>
+                  <h3 style={{ fontFamily: 'Merriweather Sans, sans-serif' }}>Album: </h3>
                   <h5>{this.props.album}</h5>
                 </ModalBody>
                 <ModalBody
@@ -148,7 +149,7 @@ class AlbumReviewCreateModal extends React.Component {
                       "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
                   }}
                 >
-                  <h3>Artist: </h3>
+                  <h3 style={{ fontFamily: 'Merriweather Sans, sans-serif' }}>Artist: </h3>
                   <h5>{this.props.artist}</h5>
                 </ModalBody>
               </div>
@@ -167,6 +168,7 @@ class AlbumReviewCreateModal extends React.Component {
             <h3
               style={{
                 color: "#eac67a",
+                fontFamily: 'Merriweather Sans, sans-serif',
                 textShadow:
                   "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
               }}
@@ -235,7 +237,11 @@ class AlbumReviewCreateModal extends React.Component {
               }}
               onClosed={this.state.closeAll ? this.toggle : undefined}
             >
-              <ModalHeader>
+              <ModalHeader style={{
+                  color: "#eac67a",
+                  textShadow:
+                    "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+                }}>
                 Are you sure you want to SUBMIT this review?
               </ModalHeader>
               <ModalFooter>

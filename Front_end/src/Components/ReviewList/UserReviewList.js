@@ -104,7 +104,8 @@ class UserReviewList extends Component {
             flexWrap: "wrap",
             justifyItems: "space-around",
             margin: "0 auto",
-            paddingTop: "10rem"
+            paddingTop: "10rem", 
+            fontFamily: "Lato"
           }}
         >
           <Col xs="12" md="4">
@@ -123,7 +124,7 @@ class UserReviewList extends Component {
               </Row>
 
               <div style={{ alignSelf: "center" }}>
-                <h3>
+                <h3 style={{ fontFamily: 'Merriweather Sans, sans-serif'}}>
                   <strong>{this.state.nickname}</strong>
                 </h3>
               </div>
