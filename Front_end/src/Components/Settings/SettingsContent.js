@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Button, Input, Row, Container, Card } from 'reactstrap';
+import { Input, Row, Col, Container, Card, CardImg } from 'reactstrap';
 // import styled from 'styled-components';
 
 class SettingsContent extends React.Component {
@@ -74,42 +74,60 @@ class SettingsContent extends React.Component {
       return <h2>You are not logged in.</h2>;
     } else if (this.state.loaded === true && this.state.loading === false) {
       return (
-        <Container fluid style={{ maxWidth: "1600px", color: "#eac67a", fontFamily: "Lato" }}>
+        <Container fluid style={{ maxWidth: "1600px", color: "#eac67a", fontFamily: "Lato", fontSize: "1.2rem", textAlign: "left" }}>
           <Card style={{ maxWidth: "1000px", margin: "8rem auto", padding: "3rem", border: "2px solid #eac67a", background: "#233237"  }}>
-            <h1 style={{ fontFamily: "Merriweather Sans" }}>
-              Account Settings
-            </h1>
-            <p>User ID: {this.state.userID}</p>
-            <p>Firebase UID: {this.state.firebaseUID}</p>
-            <p>Nickname: {this.state.nickname}</p>
-            <Row style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-              <Input 
-                style={{ maxWidth: "400px" }}
-                name="newNickname"
-                value={this.state.newNickname}
-                placeholder="Please enter new nickname" 
-                onChange={this.handleChange}  
-              />
-              <button style={{ 
-                  background: "#eac67a",
-                  color: "#984b43",
-                  fontWeight: "650",
-                  padding: "0.5rem 1rem",
-                  border: "none",
-                  width: "200px",
-                  borderRadius: "0.5rem"
-                }} 
-                onClick={this.changeNickname}>
-                  Change Nickname
-              </button>
+            <Row style={{ margin: "0 auto", textAlign: "left"  }}>
+              <h1 style={{ fontFamily: "Merriweather Sans", textShadow: "-1px -1px 0 #984b43, 1px -1px 0 #984b43,-1px 1px 0 #984b43, 1px 1px 0 #984b43" }}>
+                Account Settings
+              </h1>
             </Row>
-            <p>Email address: {this.state.email}</p>
-            <p>{this.state.paidStatus === false || this.state.paidStatus === 0 ? 'Tier: Free' : 'Tier: Paid'}</p>
-            <p>
-              {this.state.subscriptionExpiration == null ? "You are not subscribed at the moment."
-              : `Your subscription will expire on: ${this.state.subscriptionExpiration}`
-              }
-            </p>
+            <Row>
+              <Col xs="12" md="4" style={{ margin: "0 auto", textAlign: "left"  }}>
+                <CardImg
+                      src={require("../../Images/defaultUser.png")}
+                      alt="Default profile image"
+                      style={{ 
+                        maxWidth: "250px",
+                        maxHeight: "250px",
+                        padding: "2rem",
+                        margin: "0 auto",
+                        background: "#233237",
+                      }}
+                />
+                <p>User ID: {this.state.userID}</p>
+                <p>Nickname: {this.state.nickname}</p>
+                <p>Email address: {this.state.email}</p>  
+              </Col>
+              <Col xs="12" md="8" style={{ margin: "auto", textAlign: "left"  }}>
+                {/* <Input 
+                  style={{ maxWidth: "400px" }}
+                  name="newNickname"
+                  value={this.state.newNickname}
+                  placeholder="Please enter new nickname" 
+                  onChange={this.handleChange}  
+                />
+                <button style={{ 
+                    background: "#eac67a",
+                    color: "#984b43",
+                    fontWeight: "650",
+                    padding: "0.5rem 1rem",
+                    border: "none",
+                    width: "200px",
+                    borderRadius: "0.5rem"
+                  }} 
+                  onClick={this.changeNickname}>
+                    Change Nickname
+                </button> */}
+            
+                <p>Tier: Paid</p>
+                <p>
+                  {this.state.subscriptionExpiration == null ? "You are not subscribed at the moment."
+                  : `Your subscription will expire on: ${this.state.subscriptionExpiration.slice(3,15)}`
+                  }
+                </p>
+              </Col>
+            </Row>
+        
           </Card>
         </Container>
       );
