@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import axios from "axios";
 import { instanceOf } from "prop-types";
+import styled from "styled-components";
 import { withCookies, Cookies } from "react-cookie";
 import {
   Button,
@@ -8,13 +9,10 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
-  ListGroup,
-  ListGroupItem,
   Col,
   Row
 } from "reactstrap";
 import EditStars from "../StarsRating/EditStars";
-import { type } from "os";
 
 class TrackReviewCreateModal extends React.Component {
   static propTypes = {
@@ -93,10 +91,17 @@ class TrackReviewCreateModal extends React.Component {
     });
   }
   render() {
-      console.log(this.props.trackId)
+    console.log(this.props.trackId);
     return (
       <Fragment>
-        <Button color="danger" onClick={this.toggle}>
+        <Button
+          onClick={this.toggle}
+          style={{
+            color: "#984B43",
+            backgroundColor: "#EAC67A",
+            fontWeight: "650"
+          }}
+        >
           Create New Review
         </Button>
         <Modal
@@ -104,22 +109,48 @@ class TrackReviewCreateModal extends React.Component {
           toggle={this.toggle}
           className={this.props.className}
           backdrop={true}
+          style={{ border: "3px solid #EAC67A", borderRadius: "10px" }}
         >
           <Row className="d-flex justify-content-around">
             <Col className="container">
               <Row>
-                <Col className="container d-flex justify-content-center" style={{ }}>
-                  <img src={this.props.art} alt="Album cover art" style={{ margin: '15px 0', align: 'center'}}/>
+                <Col
+                  className="container d-flex justify-content-center"
+                  style={{}}
+                >
+                  <img
+                    src={this.props.art}
+                    alt="Album cover art"
+                    style={{ margin: "15px 0", align: "center" }}
+                  />
                 </Col>
               </Row>
               <Row>
                 <ModalBody>
-                  <h2 style={{ margin: '0'}}>{this.props.track}</h2>
+                  <h2
+                    style={{
+                      margin: "0",
+                      color: "#eac67a",
+                      textShadow:
+                        "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+                    }}
+                  >
+                    {this.props.track}
+                  </h2>
                 </ModalBody>
               </Row>
               <Row>
                 <ModalBody>
-                  <h4 style={{ textAlign:"center"}}>{this.props.artist} - {this.props.album}</h4>
+                  <h4
+                    style={{
+                      textAlign: "center",
+                      color: "#eac67a",
+                      textShadow:
+                        "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+                    }}
+                  >
+                    {this.props.artist} - {this.props.album}
+                  </h4>
                 </ModalBody>
               </Row>
             </Col>
@@ -137,12 +168,24 @@ class TrackReviewCreateModal extends React.Component {
                 name="review"
                 value={this.state.review}
                 maxlength="1500"
-                style={{ resize: "none", width: "100%" }}
+                style={{
+                  resize: "none",
+                  width: "100%",
+                  backgroundColor: "#eac67a",
+                  color: ""
+                }}
               />
             </div>
           </div>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggleNested}>
+            <Button
+              onClick={this.toggleNested}
+              style={{
+                color: "#984B43",
+                backgroundColor: "#EAC67A",
+                fontWeight: "650"
+              }}
+            >
               Submit
             </Button>
             <Modal
@@ -153,12 +196,23 @@ class TrackReviewCreateModal extends React.Component {
               }}
               onClosed={this.state.closeAll ? this.toggle : undefined}
             >
-              <ModalHeader>
+              <ModalHeader
+                style={{
+                  margin: "0",
+                  color: "#eac67a",
+                  textShadow:
+                    "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+                }}
+              >
                 Are you sure you want to SUBMIT this review?
               </ModalHeader>
               <ModalFooter>
                 <Button
-                  color="primary"
+                  style={{
+                    color: "#984B43",
+                    backgroundColor: "#EAC67A",
+                    fontWeight: "650"
+                  }}
                   onClick={event => {
                     this.addHandler();
                     this.toggleAll();
@@ -166,13 +220,24 @@ class TrackReviewCreateModal extends React.Component {
                 >
                   Submit
                 </Button>
-                <Button color="secondary" onClick={this.toggleNested}>
+                <Button
+                  onClick={this.toggleNested}
+                  style={{
+                    color: "#EAC67A",
+                    backgroundColor: "#984B43",
+                    fontWeight: "650"
+                  }}
+                >
                   Cancel
                 </Button>
               </ModalFooter>
             </Modal>
             <Button
-              color="secondary"
+              style={{
+                color: "#EAC67A",
+                backgroundColor: "#984B43",
+                fontWeight: "650"
+              }}
               onClick={event => {
                 this.toggle();
               }}

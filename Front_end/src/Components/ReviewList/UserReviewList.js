@@ -14,7 +14,6 @@ const Sidebar = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid yellow;
   @media (max-width: 768px) {
     position: relative;
     left: 0;
@@ -105,17 +104,10 @@ class UserReviewList extends Component {
             flexWrap: "wrap",
             justifyItems: "space-around",
             margin: "0 auto",
-            paddingTop: "10rem",
-            border: "1px solid red"
+            paddingTop: "10rem"
           }}
         >
-          <Col
-            xs="12"
-            md="4"
-            style={{
-              border: "1px solid blue"
-            }}
-          >
+          <Col xs="12" md="4">
             <Sidebar>
               <Row>
                 <CardImg
@@ -145,7 +137,7 @@ class UserReviewList extends Component {
               </div>
             </Sidebar>
           </Col>
-          <Col xs="12" md="8" style={{ border: "1px solid orange" }}>
+          <Col xs="12" md="8">
             {userAlbumReviews.map(review => (
               <AlbumProfileReviewCard
                 review={review}

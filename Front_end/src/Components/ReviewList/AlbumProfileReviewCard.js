@@ -12,7 +12,6 @@ const ReviewText = styled.div`
   padding-top: 20px;
   align-items: left;
   justify-content: center;
-  border: 1px solid yellow;
   @media (max-width: 768px) {
     margin: 0;
   }
@@ -70,12 +69,16 @@ class AlbumProfileReviewCard extends Component {
               padding: "1rem",
               border: "3px solid #984B43",
               borderRadius: "10px",
-              margin: "10px 0",
+              margin: "15px 0",
               backgroundColor: "#233237"
             }}
           >
             {/* REVIEW INFO */}
-            <Col lg="4 d-flex flex-column justify-content-start" md="5" style={{ margin: "auto 0" }}>
+            <Col
+              lg="4 d-flex flex-column justify-content-start"
+              md="5"
+              style={{ margin: "auto 0" }}
+            >
               {/* ALBUM INFO */}
               <NavLink
                 to={`/albums/${this.props.review.spotifyAlbumID}`}
@@ -93,9 +96,15 @@ class AlbumProfileReviewCard extends Component {
                 style={{ textDecoration: "none", color: "#EAC67A" }}
               >
                 <img
+                  className="img-fluid mx-auto d-block"
                   src={this.state.art}
                   alt="Album cover art"
-                  style={{ width: "100%", maxWidth: "200px", minWidth: "150px", border: "3px solid #984B43" }}
+                  style={{
+                    width: "100%",
+                    maxWidth: "200px",
+                    minWidth: "150px",
+                    border: "3px solid #984B43"
+                  }}
                 />
               </NavLink>
               {/* ARTIST INFO */}
@@ -104,7 +113,7 @@ class AlbumProfileReviewCard extends Component {
                 style={{ textDecoration: "none", color: "#EAC67A" }}
               >
                 <div style={{ margin: "8px 0" }}>
-                <strong>Artist:</strong>
+                  <strong>Artist:</strong>
                   <br /> {this.state.artist}
                 </div>
               </NavLink>
@@ -121,7 +130,13 @@ class AlbumProfileReviewCard extends Component {
               ) : null}
             </Col>
             <Col lg="8" md="7" style={{ padding: "1rem 3rem" }}>
-              <Row style={{ display: "flex" }}>
+              <Row
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  justifyContent: "center"
+                }}
+              >
                 {/* STAR RATING */}
                 <ViewStars rating={this.props.review.rating} />
                 {/* DATE CREATED */}

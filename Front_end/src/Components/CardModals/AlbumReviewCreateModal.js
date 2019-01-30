@@ -108,7 +108,14 @@ class AlbumReviewCreateModal extends React.Component {
   render() {
     return (
       <Fragment>
-        <Button color="danger" onClick={this.toggle}>
+        <Button
+          onClick={this.toggle}
+          style={{
+            color: "#984B43",
+            backgroundColor: "#EAC67A",
+            fontWeight: "650"
+          }}
+        >
           Create New Review
         </Button>
         <Modal
@@ -117,23 +124,37 @@ class AlbumReviewCreateModal extends React.Component {
           className={this.props.className}
           backdrop={true}
           size="lg"
-          style={{border: "3px solid #EAC67A", borderRadius: '10px', backgroundColor: "#233237" }}
+          style={{ border: "3px solid #EAC67A", borderRadius: "10px" }}
         >
           <Row>
             <Col className="container d-flex align-items-center justify-content-center">
               <div style={{ padding: "15px 50px" }}>
-                <ModalBody>
+                <ModalBody
+                  style={{
+                    textAlign: "center",
+                    color: "#eac67a",
+                    textShadow:
+                      "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+                  }}
+                >
                   <h3>Album: </h3>
                   <h5>{this.props.album}</h5>
                 </ModalBody>
-                <ModalBody>
+                <ModalBody
+                  style={{
+                    textAlign: "center",
+                    color: "#eac67a",
+                    textShadow:
+                      "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+                  }}
+                >
                   <h3>Artist: </h3>
                   <h5>{this.props.artist}</h5>
                 </ModalBody>
               </div>
             </Col>
             <Col className="container">
-              <div className= "d-flex justify-content-center">
+              <div className="d-flex justify-content-center">
                 <img
                   src={this.props.art}
                   alt="Album cover art"
@@ -142,17 +163,28 @@ class AlbumReviewCreateModal extends React.Component {
               </div>
             </Col>
           </Row>
-          <Row className= "d-flex justify-content-center">
-            <h3>Track List</h3>
+          <Row className="d-flex justify-content-center">
+            <h3
+              style={{
+                color: "#eac67a",
+                textShadow:
+                  "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
+              }}
+            >
+              Track List
+            </h3>
           </Row>
-          <Row className= "d-flex justify-content-center">
+          <Row className="d-flex justify-content-center">
             <Col
               className="d-flex align-items-start justify-content-space-around flex-column"
               style={{
                 margin: "15px 25px",
                 maxHeight: "300px",
                 maxWidth: "60%",
-                overflow: "auto"
+                overflow: "auto",
+                color: "#eac67a",
+                textShadow:
+                  "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"
               }}
             >
               {this.props.tracks.map(track => (
@@ -175,12 +207,24 @@ class AlbumReviewCreateModal extends React.Component {
                 name="review"
                 value={this.state.review}
                 maxlength="1500"
-                style={{ resize: "none", width: "100%" }}
+                style={{
+                  resize: "none",
+                  width: "100%",
+                  backgroundColor: "#eac67a",
+                  color: "#984B43"
+                }}
               />
             </div>
           </div>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggleNested}>
+            <Button
+              style={{
+                color: "#984B43",
+                backgroundColor: "#EAC67A",
+                fontWeight: "650"
+              }}
+              onClick={this.toggleNested}
+            >
               Submit
             </Button>
             <Modal
@@ -196,7 +240,11 @@ class AlbumReviewCreateModal extends React.Component {
               </ModalHeader>
               <ModalFooter>
                 <Button
-                  color="primary"
+                  style={{
+                    color: "#984B43",
+                    backgroundColor: "#EAC67A",
+                    fontWeight: "650"
+                  }}
                   onClick={event => {
                     this.addHandler();
                     this.toggleAll();
@@ -204,13 +252,24 @@ class AlbumReviewCreateModal extends React.Component {
                 >
                   Submit
                 </Button>
-                <Button color="secondary" onClick={this.toggleNested}>
+                <Button
+                  style={{
+                    color: "#EAC67A",
+                    backgroundColor: "#984B43",
+                    fontWeight: "650"
+                  }}
+                  onClick={this.toggleNested}
+                >
                   Cancel
                 </Button>
               </ModalFooter>
             </Modal>
             <Button
-              color="secondary"
+              style={{
+                color: "#EAC67A",
+                backgroundColor: "#984B43",
+                fontWeight: "650"
+              }}
               onClick={event => {
                 this.toggle();
               }}
