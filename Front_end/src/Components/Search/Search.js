@@ -10,11 +10,38 @@ import './Search.css';
 const H3 = styled.h3`
   color: #eac67a;
   text-shadow:
-    -0.5px -0.5px 0 #000,
-    0.5px -0.5px 0 #000,
-    -0.5px 0.5px 0 #000,
-    0.5px 0.5px 0 #000;
+    -1px -1px 0 #984b43,
+    1px -1px 0 #984b43,
+    -1px 1px 0 #984b43,
+    1px 1px 0 #984b43;
 `
+const backgroundStyle = {
+  maxHeight: "30rem",
+  margin: "0 auto",
+  overflowY: 'scroll', 
+  WebkitOverflowScrolling: 'touch',
+  WebkitScrollbarDisplay: 'none',
+  scrollBehavior: "smooth",
+  backgroundColor: "rgba(35, 50, 55, 0)"
+};
+
+const cardStyle = {
+  maxWidth: '180px',
+  height: '14rem',
+  padding: '0.5rem 0',
+  margin: '0.5rem auto',
+  border: '2px solid #eac67a',
+  alignItems: 'center',
+  overflow: 'hidden',
+  background: "#233237",
+  textDecoration: "none",
+  color: "#eac67a"
+};
+
+const header = {
+  fontFamily: "Merriweather Sans",
+  textShadow: "-1px -1px 0 #984b43, 1px -1px 0 #984b43,-1px 1px 0 #984b43, 1px 1px 0 #984b43"
+}
 
 const API_URL = 'https://api.spotify.com/v1/search';
 
@@ -87,37 +114,27 @@ class Search extends Component {
     const image = '../../Images/songbird.png';
     const renderSearch = 
     
-    <Container fluid style = {{ position: "relative", margin: "0 auto", padding: "1rem 0", color: "#eac67a", maxWidth: "1600px" }}>
+    <Container fluid style={{ 
+          position: "relative",
+          margin: "0 auto",
+          padding: "1rem 0",
+          color: "#eac67a",
+          maxWidth: "1600px",
+          fontFamily: "Lato",
+          overflow: "hidden"
+        }}
+      >
       {/* albums */}
       <Row>
         <Col md="3" xs="12" style={{ overflow: "hidden", textAlign: "center", padding: "2rem 1rem 0 1rem" }}>
           {/* <Row  className="d-flex flex-column flex-wrap align-items-center"  */}        
           <H3>Albums</H3>
-          <Card
-                style = {{
-                  maxHeight: "30rem",
-                  margin: "0 auto",
-                  // overflow: 'auto', 
-                  overflowY: 'scroll', 
-                  WebkitOverflowScrolling: 'touch',
-                  WebkitScrollbarDisplay: 'none',
-                  scrollBehavior: "smooth",
-                  backgroundColor: "rgba(35, 50, 55, 1.0)"
-                }}
-          >
+          <Card style={ backgroundStyle }>
           {this.state.albums.map(album => {
                 return  <NavLink key={album.id} to={`/albums/${album.id}`} style={{ textDecoration: 'none' }}>
                           <Col>
                               <Card key = {album.id} 
-                                style = {{ 
-                                  maxWidth: '180px',
-                                  height: '14rem',
-                                  padding: '0.5rem 0',
-                                  margin: '0.5rem auto',
-                                  border: '2px solid orange',
-                                  alignItems: 'center',
-                                  overflow: 'hidden',
-                                }}
+                                style = { cardStyle }
                               >
                                 <CardImg src= {!album.images[0] ?  image : album.images[0].url}  alt = {album.name} style = {{ borderRadius: '50%', width: '7rem' }}/>
                                 <CardBody>
@@ -135,33 +152,13 @@ class Search extends Component {
         <Col md="3" xs="12" style={{ overflow: "hidden", textAlign: "center", padding: "2rem 1rem 0 1rem" }}>
           <H3>Artists</H3>
           {/* <Row  className="d-flex flex-column flex-wrap align-items-center"  */}
-          <Card
-              style = {{
-                maxHeight: "30rem",
-                margin: "0 auto",
-                // overflow: 'auto', 
-                overflowY: 'scroll', 
-                WebkitOverflowScrolling: 'touch',
-                WebkitScrollbarDisplay: 'none',
-                scrollBehavior: "smooth",
-                border: "2px solid #eac67a",
-                backgroundColor: "rgba(35, 50, 55, 1.0)"
-            }}
-            >
+          <Card style={ backgroundStyle }>
             {this.state.artists.map(artist => {
                   return  artist.images.length === 0 ? null : 
-                          <NavLink key ={artist.id}to={`/artists/${artist.id}`}>
+                          <NavLink key ={artist.id}to={`/artists/${artist.id}`} style={{ textDecoration: 'none' }}>
                             <Col>
                                 <Card key = {artist.id} 
-                                      style = {{ 
-                                        maxWidth: '180px',
-                                        height: '14rem',
-                                        padding: '0.5rem 0',
-                                        margin: '0.5rem auto',
-                                        border: '2px solid orange',
-                                        alignItems: 'center',
-                                        overflow: 'hidden',
-                                      }}
+                                      style = { cardStyle }
                                   >
                                   <CardImg src= {!artist.images[0] ? image : artist.images[0].url}  alt = {artist.name} style = {{borderRadius: '50%', width: '7rem'}}/>
                                   <CardBody>
@@ -178,11 +175,11 @@ class Search extends Component {
         {/* tracks */}
         <Col md="6" xs="12" style={{ overflow: "hidden", textAlign: "center", padding: "2rem 1rem 0 1rem" }}>
           <H3>Tracks</H3> 
-          <Card style={{ minWidth: "385px", backgroundColor: "rgba(35, 50, 55, 1.0)", borderBottom: "none" }}>
+          <Card style={{ minWidth: "385px", backgroundColor: "rgba(35, 50, 55, 0)", borderBottom: "none" }}>
             <Row style={{ textAlign: "center", padding: "1rem" }}>
-              <Col xs="3" md="4">Art</Col>
-              <Col xs="3" md="4">Track Name</Col>
-              <Col xs="3" md="4">Album Name</Col>
+              <Col xs="3" md="4" style={ header } >Art</Col>
+              <Col xs="3" md="4" style={ header } >Track Name</Col>
+              <Col xs="3" md="4" style={ header } >Album Name</Col>
               {/* <Col md={2} xl={2} className="d-none d-xl-block" style={{ textAlign: 'center' }}>Track Time</Col> */}
             </Row>
           </Card>
@@ -193,26 +190,33 @@ class Search extends Component {
                 maxHeight: "28.25rem",
                 minWidth: "500px",
                 margin: "0 auto",
-                // overflow: 'auto';
                 overflowY: 'scroll', 
                 WebkitOverflowScrolling: 'touch',
-                backgroundColor: "rgba(35, 50, 55, 1.0)"
+                backgroundColor: "rgba(35, 50, 55, 0)"
               }}
           >
             {this.state.tracks.map(track => {
               // const seconds = this.convertToSeconds(track.duration_ms);
                 return track.album.images.length === 0 ? null : 
-                  <NavLink to={`/tracks/${track.id}`}>
-                    <Card key = {track.id} style = {{ textAlign: 'center', margin: "0.5rem", padding: "1rem", border: "2px solid #eac67a" }}>
-                    <Row noGutters>
-                      <Col md="4" xs="2" style={{ verticalAlign: "middle", paddingLeft: "1rem" }}>
-                        <CardImg src= {!track.album.images[0] ? image : track.album.images[0].url} alt = {track.name} style = {{ borderRadius: '50%', width: '4rem', padding: "0" }}
-                        />  
-                      </Col>
-                      <Col md="4" xs="3" style={{ verticalAlign: "middle", paddingLeft: "1rem" }}>{track.name}</Col>
-                      <Col md="4" xs="2" style={{ verticalAlign: "middle", paddingLeft: "1rem" }}>{track.album.name}</Col>
-                      {/* <Col  md={2} xl={2} className="d-none d-xl-block" >{seconds}</Col> */}
-                    </Row>
+                  <NavLink to={`/tracks/${track.id}`} style={{ textDecoration: "none" }}>
+                    <Card key = {track.id} style = {{ 
+                        textAlign: 'center',
+                        margin: "0.5rem",
+                        padding: "1rem",
+                        border: "2px solid #eac67a",
+                        background: "#233237",
+                        color: "#eac67a",
+                      }}
+                    >
+                      <Row noGutters>
+                        <Col md="4" xs="2" style={{ verticalAlign: "middle" }}>
+                          <CardImg src= {!track.album.images[0] ? image : track.album.images[0].url} alt = {track.name} style = {{ borderRadius: '50%', width: '4rem', padding: "0" }}
+                          />  
+                        </Col>
+                        <Col md="4" xs="3" style={{ verticalAlign: "middle" }}>{track.name}</Col>
+                        <Col md="4" xs="2" style={{ verticalAlign: "middle" }}>{track.album.name}</Col>
+                        {/* <Col  md={2} xl={2} className="d-none d-xl-block" >{seconds}</Col> */}
+                      </Row>
                     </Card>
                   </NavLink>
               })
