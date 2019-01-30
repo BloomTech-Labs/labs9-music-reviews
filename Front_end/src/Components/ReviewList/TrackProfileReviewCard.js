@@ -54,33 +54,61 @@ class TrackProfileReviewCard extends Component {
     return (
       <Fragment>
         <Container>
-          <Row style={{ display: "flex", padding: "1rem", border: "3px solid #EAC67A", borderRadius: "10px", margin: "10px 0", backgroundColor: "#233237"}}>
+          <Row
+            style={{
+              display: "flex",
+              padding: "1rem",
+              border: "3px solid #EAC67A",
+              borderRadius: "10px",
+              margin: "10px 0",
+              backgroundColor: "#233237"
+            }}
+          >
             {/* User info */}
-            <Col md="3" style={{ margin: "auto 0" }}>
+            <Col lg="4 d-flex flex-column justify-content-start" md="5" style={{ margin: "auto 0" }}>
+              <NavLink
+                to={`/tracks/${this.props.review.spotifyTrackID}`}
+                style={{ textDecoration: "none", color: "#EAC67A" }}
+              >
+                <div style={{ margin: "8px 0" }}>
+                <strong>Track:</strong>
+                  <br /> {this.state.track}
+                </div>
+              </NavLink>
               <NavLink
                 to={`/albums/${this.state.albumID}`}
-                style={{ textDecoration: "none", color: "#EAC67A", maxWidth: "150px", maxHeight: "150px", }}
+                style={{
+                  textDecoration: "none",
+                  color: "#EAC67A",
+                  maxWidth: "150px",
+                  maxHeight: "150px"
+                }}
               >
-                <img src={this.state.art} alt="Album cover art" style={{ maxWidth: "200px", border: "3px solid #EAC67A"}}/>
+                <img
+                  src={this.state.art}
+                  alt="Album cover art"
+                  style={{ width: "100%", maxWidth: "200px", minWidth: "150px", border: "3px solid #984B43" }}
+                />
               </NavLink>
               <NavLink
                 to={`/albums/${this.state.albumID}`}
                 style={{ textDecoration: "none", color: "#EAC67A" }}
               >
-                <div style={{ margin: '8px 0' }}>Album:<br/> {this.state.album}</div>
+                <div style={{ margin: "8px 0" }}>
+                <strong>Album:</strong>
+                  <br /> {this.state.album}
+                </div>
               </NavLink>
               <NavLink
                 to={`/artists/${this.state.artistID}`}
                 style={{ textDecoration: "none", color: "#EAC67A" }}
               >
-                <div style={{ margin: '8px 0' }}>Artist:<br/> {this.state.artist}</div>
+                <div style={{ margin: "8px 0" }}>
+                <strong>Artist:</strong>
+                  <br /> {this.state.artist}
+                </div>
               </NavLink>
-              <NavLink
-                to={`/tracks/${this.props.review.spotifyTrackID}`}
-                style={{ textDecoration: "none", color: "#EAC67A" }}
-              >
-                <div style={{ margin: '8px 0' }}>Track:<br/> {this.state.track}</div>
-              </NavLink>
+
               {/* If logged in edit button shows otherwise null */}
               {this.props.loggedIn === true &&
               this.props.review.userID === this.props.userID ? (
@@ -93,7 +121,7 @@ class TrackProfileReviewCard extends Component {
                 />
               ) : null}
             </Col>
-            <Col md="9" style={{ padding: "1rem 5rem" }}>
+            <Col lg="8" md="7" style={{ padding: "1rem 3rem" }}>
               <Row style={{ display: "flex" }}>
                 <ViewStars rating={this.props.review.rating} />
                 <p style={{ padding: "0 20px", color: "#EAC67A" }}>

@@ -44,7 +44,8 @@ class TrackReviewsPage extends Component {
       trackId: "",
       tracks: [],
       reviews: [],
-      width: ""
+      width: "",
+      trackReview: true
     };
     this.getTrack = this.getTrack.bind(this);
   }
@@ -143,12 +144,12 @@ class TrackReviewsPage extends Component {
               {/* can add logic to render different size of album art based on screen size: stacked ternary */}
               {/* need to find a way to manipulate the img object from res.data */}
               <Link to={`/albums/${this.state.albumId}`}>
-                <CardImg src={this.state.art} alt="Album Art" style={{ maxWidth: "364px" }}/>
+                <CardImg src={this.state.art} alt="Album Art" style={{ maxWidth: "400px" }}/>
               </Link>
 
               {/* Spotify Player */}
               <Iframe src={`https://open.spotify.com/embed/track/${this.state.trackId}`}
-                allowtransparency="true" allow="encrypted-media"
+                allowtransparency="true" allow="encrypted-media" style={{ maxWidth: "400px" }}
               />
 
               <Row
@@ -187,8 +188,9 @@ class TrackReviewsPage extends Component {
                               ? {
                                 display: "flex",
                                 justifyContent: "space-between",
-                                border: "3px solid red",
-                                alignItems: "center"
+                                border: "3px solid #984B43",
+                                alignItems: "center",
+                                borderRadius: "5px"
                               }
                               : {
                                 display: "flex",
@@ -211,14 +213,6 @@ class TrackReviewsPage extends Component {
                               {track.name}
                             </ul>
                           </Col>
-                          <Col xs="1">
-                            <p
-                              className="align-items-center"
-                              style={{ color: "red", fontWeight: "800" }}
-                            >
-                              {track.explicit === true ? "E" : " "}
-                            </p>
-                          </Col>
                         </Row>
                       </Link>
                     );
@@ -233,7 +227,7 @@ class TrackReviewsPage extends Component {
                   {trackReviews.length === 0 ? 
                     <Row><h3>Be the first to write a review for this track!</h3></Row> :
                     trackReviews.map(review => (
-                      <ReviewCard review={review} />
+                      <ReviewCard review={review} trackReview={this.state.trackReview}/>
                     ))
                   }
                 </Container>
