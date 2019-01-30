@@ -81,9 +81,9 @@ class PopularTracks extends Component {
                                                 }}
                                             >
                                                 <Col xs="4">
-                                                <CardImg src= {!data.track.album.images[0] ? image : data.track.album.images[0].url}
-                                                        alt = {data.track.name} style = {{borderRadius: '50%', width: '7rem'}}
-                                                />  
+                                                    <CardImg src= {!data.track.album.images[0] ? image : data.track.album.images[0].url}
+                                                            alt = {data.track.name} style = {{borderRadius: '50%', maxWidth: '7rem'}}
+                                                    />  
                                                 </Col>
                                                 {/* <Col sm={1} className="d-flex align-items-center">{data.track.popularity}</Col> */}
                                                 <Col xs="5" className="d-flex align-items-center">{data.track.name}</Col>

@@ -60,11 +60,11 @@ componentDidMount() {
                         fontFamily: "Lato",
                     }}
                 >
-                <Card>
+                <Card style={{ border: "2px solid #eac67a" }}>
                     <h1 style={{
                             color: "#EAC67A", 
                             backgroundColor: '#233237',
-                            border: "2px solid #eac67a",
+                
                             marginBottom:'-0.5rem',
                             lineHeight: '2.2',
                             textShadow: "-1px -1px 0 #984b43, 1px -1px 0 #984b43,-1px 1px 0 #984b43, 1px 1px 0 #984b43"

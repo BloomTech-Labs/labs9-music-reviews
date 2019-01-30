@@ -129,6 +129,7 @@ class App extends Component {
           <Billing {...props} userID={this.state.userID} 
                               subscriptionExpiration={this.state.subscriptionExpiration} 
                               nickname={this.state.nickname}
+                              tier={this.state.subscriptionExpiration !== null? "Subscriber" : "Free User"}
           /> )} 
         />
         <Route path="/user/settings" component={SettingsPage} />
