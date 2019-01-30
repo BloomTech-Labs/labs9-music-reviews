@@ -65,7 +65,7 @@ class TrackProfileReviewCard extends Component {
             }}
           >
             {/* User info */}
-            <Col md="3" style={{ margin: "auto 0" }}>
+            <Col lg="4 d-flex flex-column justify-content-start" md="5" style={{ margin: "auto 0" }}>
               <NavLink
                 to={`/tracks/${this.props.review.spotifyTrackID}`}
                 style={{ textDecoration: "none", color: "#EAC67A" }}
@@ -87,7 +87,7 @@ class TrackProfileReviewCard extends Component {
                 <img
                   src={this.state.art}
                   alt="Album cover art"
-                  style={{ maxWidth: "200px", border: "3px solid #EAC67A" }}
+                  style={{ width: "100%", maxWidth: "200px", minWidth: "150px", border: "3px solid #984B43" }}
                 />
               </NavLink>
               <NavLink
@@ -121,7 +121,7 @@ class TrackProfileReviewCard extends Component {
                 />
               ) : null}
             </Col>
-            <Col md="9" style={{ padding: "1rem 5rem" }}>
+            <Col lg="8" md="7" style={{ padding: "1rem 3rem" }}>
               <Row style={{ display: "flex" }}>
                 <ViewStars rating={this.props.review.rating} />
                 <p style={{ padding: "0 20px", color: "#EAC67A" }}>

@@ -2,10 +2,21 @@ import React, { Component, Fragment } from "react";
 import ReviewEditModal from "../CardModals/ReviewEditModal";
 import ViewStars from "../StarsRating/ViewStars";
 import { Row, Col, Container } from "reactstrap";
+import styled from "styled-components";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
+
+const ReviewText = styled.div`
+  padding-top: 20px;
+  align-items: left;
+  justify-content: center;
+  border: 1px solid yellow;
+  @media (max-width: 768px) {
+    margin: 0;
+  }
+`;
 
 class AlbumProfileReviewCard extends Component {
   static propTypes = {
@@ -64,7 +75,7 @@ class AlbumProfileReviewCard extends Component {
             }}
           >
             {/* REVIEW INFO */}
-            <Col md="3 align-items-start" style={{ margin: "auto 0" }}>
+            <Col lg="4 d-flex flex-column justify-content-start" md="5" style={{ margin: "auto 0" }}>
               {/* ALBUM INFO */}
               <NavLink
                 to={`/albums/${this.props.review.spotifyAlbumID}`}
@@ -84,7 +95,7 @@ class AlbumProfileReviewCard extends Component {
                 <img
                   src={this.state.art}
                   alt="Album cover art"
-                  style={{ width: "100%", maxWidth: "200px", border: "3px solid #984B43" }}
+                  style={{ width: "100%", maxWidth: "200px", minWidth: "150px", border: "3px solid #984B43" }}
                 />
               </NavLink>
               {/* ARTIST INFO */}
@@ -109,7 +120,7 @@ class AlbumProfileReviewCard extends Component {
                 />
               ) : null}
             </Col>
-            <Col md="9" style={{ padding: "1rem 5rem" }}>
+            <Col lg="8" md="7" style={{ padding: "1rem 3rem" }}>
               <Row style={{ display: "flex" }}>
                 {/* STAR RATING */}
                 <ViewStars rating={this.props.review.rating} />
@@ -124,9 +135,9 @@ class AlbumProfileReviewCard extends Component {
               </Row>
               {/* REVIEW TEXT */}
               <Row>
-                <div align="left">
+                <ReviewText>
                   <p style={{ color: "#EAC67A" }}>{this.props.review.review}</p>
-                </div>
+                </ReviewText>
               </Row>
             </Col>
           </Row>

@@ -7,17 +7,17 @@ import TrackProfileReviewCard from "./TrackProfileReviewCard";
 
 const Sidebar = styled.div`
   position: fixed;
-  top: 0;
-  bottom: 0;
+  left: 10%;
   z-index: 1;
-  height: 100%;
-  padding-top: 80px;
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border: 1px solid yellow;
   @media (max-width: 768px) {
     position: relative;
+    left: 0;
   }
 `;
 
@@ -102,20 +102,18 @@ class UserReviewList extends Component {
           fluid={true}
           style={{
             display: "flex",
+            flexWrap: "wrap",
             justifyItems: "space-around",
             margin: "0 auto",
-            maxWidth: "1600px",
-            paddingTop: "10rem"
+            paddingTop: "10rem",
+            border: "1px solid red"
           }}
         >
           <Col
             xs="12"
             md="4"
             style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "flex-start"
+              border: "1px solid blue"
             }}
           >
             <Sidebar>
@@ -134,7 +132,7 @@ class UserReviewList extends Component {
 
               <div style={{ alignSelf: "center" }}>
                 <h3>
-                  <strong>{this.state.nickname}</strong> 
+                  <strong>{this.state.nickname}</strong>
                 </h3>
               </div>
               <div style={{ alignSelf: "center" }}>
@@ -147,7 +145,7 @@ class UserReviewList extends Component {
               </div>
             </Sidebar>
           </Col>
-          <Col md="8" xs="12">
+          <Col xs="12" md="8" style={{ border: "1px solid orange" }}>
             {userAlbumReviews.map(review => (
               <AlbumProfileReviewCard
                 review={review}
