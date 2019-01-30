@@ -107,7 +107,7 @@ class SettingsContent extends React.Component {
             <p>{this.state.paidStatus === false || this.state.paidStatus === 0 ? 'Tier: Free' : 'Tier: Paid'}</p>
             <p>
               {this.state.subscriptionExpiration == null ? "You are not subscribed at the moment."
-              : `Your subscription will expire on: ${this.state.subscriptionExpiration}`
+              : `Your subscription will expire on: ${this.state.subscriptionExpiration.split("T", 1)}`
               }
             </p>
           </Card>

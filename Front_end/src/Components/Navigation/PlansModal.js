@@ -112,7 +112,7 @@ class PlansModal extends React.Component {
             >
               UPGRADE
             </Button></a>
-            <Button color="secondary" style={{ fontWeight: "650" }} onClick={this.toggle}>
+            <Button color="secondary" onClick={this.toggle}>
               CLOSE
             </Button>
           </ModalFooter>
