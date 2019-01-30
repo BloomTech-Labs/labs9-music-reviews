@@ -35,13 +35,7 @@ class Navigation extends Component {
     return (
         <div className="flex-xs-column">
 
-        <Navbar fixed="top" dark expand="lg" toggleable="sm" 
-          style={{ 
-            display: "flex", 
-            alignItems: "center",
-            background: "rgba(152, 75, 67, 0.95)"
-          }}
-        >
+        <Navbar fixed="top" dark expand="lg" toggleable="sm" style={{ display: "flex", background: "rgba(152, 75, 67, 0.95)"}}>
           <Col lg="9" md="8" sm="6" xs="12">
             {/* <NavbarBrand sm="12" className="mr-auto" style={{ background: "white", color: "lightblue", fontSize: "4rem", fontWeight: "700", padding: "0.5rem" }}>
               <Route path="/:path" component={Breadcrumbs} />

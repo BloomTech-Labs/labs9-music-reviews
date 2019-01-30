@@ -8,8 +8,6 @@ function newUserSubscription(days){
   return result;
 }
 
-let date = new Date(0);
-
 module.exports = {
   getAllUsers,
   createNewUser,
@@ -32,7 +30,7 @@ function createNewUser(newUser) {
         return db('users').insert({
           firebaseUID: newUser.user_id,
           emailAddress: newUser.email,
-          subscriptionExpiration: date.setUTCSeconds(newUserSubscription(60)),
+          subscriptionExpiration: newUserSubscription(60),
           nickname: newUser.email.split("@", 1).join()
         });
       } else {
