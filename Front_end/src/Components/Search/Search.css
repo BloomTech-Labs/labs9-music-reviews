@@ -1,14 +1,21 @@
-.scrollbar {
-    background-color: #F5F5F5;
-    float: left;
-    height: 300px;
-    margin-bottom: 25px;
-    margin-left: 22px;
-    margin-top: 40px;
-    width: 65px;
-    overflow-y: scroll;
+input::-webkit-input-placeholder {
+    color:    #fff;
+}
+input:-moz-placeholder {
+    color:    #fff;
+}
+input::-moz-placeholder {
+    color:    #fff;
+}
+input:-ms-input-placeholder {
+    color:    #fff;
 }
 
-.force-overflow {
-    min-height: 450px;
+input:focus {
+    outline: none;
+}
+
+.scrollbar{
+    -webkit-scrollbar: 12px;
+    background-color: #4b0082;
 }
