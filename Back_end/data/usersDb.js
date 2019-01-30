@@ -8,6 +8,8 @@ function newUserSubscription(days){
   return result;
 }
 
+let date = new Date(0);
+
 module.exports = {
   getAllUsers,
   createNewUser,
@@ -22,7 +24,6 @@ function getAllUsers() {
 }
 
 function createNewUser(newUser) {
-  let date = new Date(0);
   return db('users')
     .select()
     .where({ firebaseUID: newUser.user_id })
