@@ -52,17 +52,13 @@ class AlbumReviewCard extends Component {
 
   render() {
     return (
-      <Fragment>
-        <Container>
-          <Jumbotron fluid style={{ margin: "0 10px", display: "flex", padding: "1rem", fontFamily: "Lato", backgroundColor: "#233237", border: this.props.albumReview === true ? "3px solid #984B43" : "3px solid #EAC67A", borderRadius: "10px"}}>
+          <Jumbotron fluid style={{ margin: "10px 10px", padding: "1rem", fontFamily: "Lato", backgroundColor: "#233237", border: this.props.albumReview === true ? "3px solid #984B43" : "3px solid #EAC67A", borderRadius: "10px"}}>
             {/* User info */}
             <Row>
               <Col
                 md="3"
                 style={{
-                  textAlign: "center",
-                  margin: "auto",
-                  padding: "1rem"
+                  textAlign: "center"
                 }}
               >
                 <div>
@@ -71,8 +67,7 @@ class AlbumReviewCard extends Component {
                     alt="Default profile image"
                     style={{
                       width: "100%",
-                      maxWidth: "200px",
-                      margin: "0 auto"
+                      maxWidth: "200px"
                     }}
                   />
                 </div>
@@ -86,25 +81,24 @@ class AlbumReviewCard extends Component {
                   <strong>Reviews: </strong>
                 </div>
               </Col>
-              <Col md="8" style={{ padding: "1rem 2rem" }}>
-                <Row style={{ display: "flex"}}>
-                  <Col sm="12" md="6">
-                    <ViewStars rating={this.props.review.rating} style={{width: "100%"}}/>
+              <Col md="9" style={{ padding: "1rem 2rem" }}>
+                <Row>
+                  <Col md="auto" className='mb-3'>
+                    <ViewStars rating={this.props.review.rating}/>
                   </Col>
                   <Col sm="12" md="6">
                     <p style={{ margin: "auto" }}>Written: {this.props.review.dateCreated}</p>
+
                   </Col>
                 </Row>
                 <Row>
-                  <div align="left">
+                    <Col>
                     <p>{this.props.review.review}</p>
-                  </div>
+                    </Col>
                 </Row>
               </Col>
             </Row>
           </Jumbotron>
-        </Container>
-      </Fragment>
     );
   }
 }
