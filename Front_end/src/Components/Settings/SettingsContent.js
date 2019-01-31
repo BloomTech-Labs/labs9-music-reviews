@@ -95,7 +95,7 @@ class SettingsContent extends React.Component {
                       }}
                 />
                 <p>User ID: {this.state.userID}</p>
-                <p>Nickname: {this.state.nickname}</p>
+                <p style={{ fontWeight: "650", color: "#984b43" }}>{this.state.nickname}</p>
                 <p>Email address: {this.state.email}</p>  
               </Col>
               <Col xs="12" md="8" style={{ margin: "auto", textAlign: "left"  }}>
