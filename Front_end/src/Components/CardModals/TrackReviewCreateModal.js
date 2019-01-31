@@ -106,7 +106,7 @@ class TrackReviewCreateModal extends React.Component {
         >
           Create New Review
         </Button>
-        <Modal
+        <Modal centered
           isOpen={this.state.modal}
           toggle={this.toggle}
           className={this.props.className}
@@ -133,119 +133,59 @@ class TrackReviewCreateModal extends React.Component {
                     style={{
                       textAlign: "center",
                       margin: "0",
-                      color: "#eac67a",
-                      textShadow:
-                        "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
+                      color: "#eac67a"
                     }}
                   >
                     {this.props.track}
                   </h3>
                 </ModalBody>
               </Row>
-              <Row>
-                <ModalBody>
-                  <h5
-                    style={{
-                      textAlign: "center",
-                      color: "#eac67a",
-                      textShadow:
-                        "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
-                    }}
-                  >
-                    {this.props.artist} - {this.props.album}
-                  </h5>
-                </ModalBody>
-              </Row>
             </Col>
           </Row>
           <div className="container center-align" style={{ margin: "0 auto" }}>
-            <Row style={{ justifyContent: "center", margin: "15px 0" }}>
+          <div style={{ textAlign: "center" }}>Set Star Rating</div>
+            <Row style={{ justifyContent: "center", margin: "5px 0" }}>
               <EditStars
                 rating={this.state.rating}
                 updateRating={this.updateRating}
               />
             </Row>
             <div>
+              Write Review
               <textarea
                 onChange={this.handleEditChange}
                 name="review"
                 value={this.state.review}
                 maxlength="1500"
-                style={{
-                  resize: "none",
-                  width: "100%",
-                  backgroundColor: "#eac67a",
-                  color: ""
-                }}
+                style={{ resize: "none", width: "100%", height: "200px" }}
               />
             </div>
           </div>
-          <ModalFooter>
+          <ModalFooter style={{ display: "flex", justifyContent: "space-evenly"}}>
             <Button
-              onClick={this.toggleNested}
-              style={{
-                color: "#984B43",
-                backgroundColor: "#EAC67A",
-                fontWeight: "650"
+              onClick={event => {
+                this.addHandler();
+                this.toggleAll();
               }}
-            >
-              Submit
-            </Button>
-            <Modal
-              isOpen={this.state.nestedModal}
-              toggle={this.toggleNested}
-              style={{
-                top: "50%"
-              }}
-              onClosed={this.state.closeAll ? this.toggle : undefined}
-            >
-              <ModalHeader
-                style={{
-                  margin: "0",
-                  color: "#eac67a",
-                  textShadow:
-                    "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
-                }}
-              >
-                Are you sure you want to SUBMIT this review?
-              </ModalHeader>
-              <ModalFooter>
-                <Button
-                  style={{
-                    color: "#984B43",
-                    backgroundColor: "#EAC67A",
-                    fontWeight: "650"
-                  }}
-                  onClick={event => {
-                    this.addHandler();
-                    this.toggleAll();
-                  }}
-                >
-                  Submit
-                </Button>
-                <Button
-                  onClick={this.toggleNested}
-                  style={{
-                    color: "#EAC67A",
-                    backgroundColor: "#984B43",
-                    fontWeight: "650"
-                  }}
-                >
-                  Cancel
-                </Button>
-              </ModalFooter>
-            </Modal>
-            <Button
               style={{
                 color: "#EAC67A",
                 backgroundColor: "#984B43",
+                fontWeight: "650"
+              }}
+            >
+              Save
+            </Button>
+            <Button
+              style={{
+                color: "#984B43",
+                backgroundColor: "#EAC67A",
                 fontWeight: "650"
               }}
               onClick={event => {
                 this.toggle();
               }}
             >
-              Close
+              Cancel
             </Button>
           </ModalFooter>
         </Modal>
