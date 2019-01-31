@@ -77,26 +77,34 @@ class Navigation extends Component {
                   <Col xs="4" style={{ margin: "0 auto", paddingLeft: "3rem" }}>
                     <Dropdown nav isOpen={this.state.isOpen} toggle={this.toggle}>
                       <DropdownToggle nav>
-                      <i className="fas fa-bars fa-2x"></i>
+                        <i className="fas fa-bars fa-2x"></i>
                       </DropdownToggle>
 
-                      <DropdownMenu right style={{ background: "#eac67a", color: "#a0006c" }}>
+                      <DropdownMenu right style={{ background: "#eac67a", color: "#a0006c" , border: '5px red solid'}}>
                         {this.props.loggedIn === true ? (
+                          
                           <Fragment>
-                            <Link to="/home" style={{ textDecoration: 'none', textAlign: "center" }}>
+                          
+                            <Link to="/home" style={{ textDecoration: 'none', textAlign: "center", background:'#a0006c'}}>
                               <DropdownItem>Home</DropdownItem>
                             </Link>
-                            <Link to={`/user/reviews/${this.props.userID}`} style={{ textDecoration: 'none', textAlign: "center" }}>
+                          
+                            <Link to={`/user/reviews/${this.props.userID}`} style={{ textDecoration: 'none', textAlign: "center"}}>
                               <DropdownItem>My Reviews</DropdownItem>
                             </Link>
+                          
                             <Link to="/user/billing" style={{ textDecoration: 'none', textAlign: "center" }}>
                               <DropdownItem>Billing</DropdownItem>
                             </Link>
+                          
                             <Link to="/user/settings"style={{ textDecoration: 'none', textAlign: "center" }}>
                               <DropdownItem>Settings</DropdownItem>
                             </Link>
+                          
                             <DropdownItem divider />
+                          
                             <NavLink to="/" style={{ textDecoration: 'none', textAlign: "center" }}>
+                          
                               <DropdownItem>
                                 <FirebaseContext.Consumer>
                                   {firebase => (
@@ -107,7 +115,9 @@ class Navigation extends Component {
                                   )}
                                 </FirebaseContext.Consumer>
                               </DropdownItem>
+                          
                             </NavLink>
+                          
                           </Fragment>
                         ) : (
                           <Fragment>

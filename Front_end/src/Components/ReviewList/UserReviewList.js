@@ -105,7 +105,8 @@ class UserReviewList extends Component {
             justifyItems: "space-around",
             margin: "0 auto",
             paddingTop: "10rem", 
-            fontFamily: "Lato"
+            fontFamily: "Lato",
+            color: "#984B43"
           }}
         >
           <Col xs="12" md="4">
