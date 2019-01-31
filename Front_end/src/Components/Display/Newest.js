@@ -62,7 +62,6 @@ componentDidMount() {
                 <h1 style={{
                         color: "#984b43",
                         margin: "1rem auto 0 auto",
-                        padding: "1rem",
                         fontFamily:'Merriweather Sans',
                     }}
                 >
