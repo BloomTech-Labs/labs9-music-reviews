@@ -13,10 +13,6 @@ import {
   Col,
   Row,
 } from 'reactstrap';
-<<<<<<< HEAD
-=======
-import PlansModal from './PlansModal'
->>>>>>> d5d7343d57ac2295930d679c5e3cfc4da9c45663
 import { FirebaseContext } from "../Firebase/index.js";
 import './Navigation.css';
 

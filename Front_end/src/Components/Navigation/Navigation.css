@@ -1,22 +1,3 @@
-<<<<<<< HEAD
 .dropdown-item {
     color: #984b43;
 }
-=======
-.dropdown-item.active .dropdown-item:active{
-    color: #eac67a;
-    background: #984b43; 
-    text-decoration: none;
-}
-
-button:active {
-    color: #eac67a;
-    background: #984b43;    
-}
-
-a {
-    color: #eac67a;
-    text-decoration: none;
-    background-color: transparent;
- }
->>>>>>> d5d7343d57ac2295930d679c5e3cfc4da9c45663
