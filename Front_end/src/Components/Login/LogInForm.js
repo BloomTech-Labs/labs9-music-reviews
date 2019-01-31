@@ -1,15 +1,5 @@
 import React from 'react';
-import {
-  Container,
-  Col,
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Card,
-  Row
-} from 'reactstrap';
+import {Container,Col, Button, Form, FormGroup, Label,  Input,  Card,  Row } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
 import { FirebaseContext } from '../Firebase';
 import LogInWithGoogle from './LogInWithGoogle';
@@ -52,7 +42,7 @@ class LogInForm extends React.Component {
       <Container fluid style={{ position: "relative", top: "10rem" }}>
         <Row className='justify-content-center'>
           <Col xl={6} lg={6} md={6} sm={6}>
-          <h2 style ={{ color: "#eac67a", textShadow: "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"}}>Log In</h2>
+          <h2 style ={{ color: "#984B43", fontFamily:'merriweather sans'}}>Log In</h2>
                 <Form className = 'pt-5 pb-5 align-items-center' style={{ border: "2px solid #eac67a", borderRadius: '1rem', backgroundColor: 'rgba(35, 50, 55, 1)' }}>
                   <FirebaseContext.Consumer>
                     {(firebase) => <LogInWithGoogle firebase={firebase} changeLogInState={this.props.changeLogInState} />}
@@ -61,7 +51,7 @@ class LogInForm extends React.Component {
                     <FormGroup>
                       <Label>Email</Label>
                       <Input
-                        style = {{backgroundColor: '#eac67a', color: '#984b43'}}
+                        // style = {{backgroundColor: '#eac67a', color: '#984b43'}}
                         type="email"
                         name="email"
                         value={this.state.email}
@@ -74,7 +64,7 @@ class LogInForm extends React.Component {
                     <FormGroup >
                       <Label>Password</Label>
                       <Input
-                        style = {{backgroundColor: '#eac67a', color: '#984b43'}}
+                        // style = {{backgroundColor: '#eac67a', color: '#984b43'}}
                         type="password"
                         name="password"
                         value={this.state.password}
@@ -83,22 +73,22 @@ class LogInForm extends React.Component {
                       />
                     </FormGroup>
                   </Col>
-                  <Row className = 'mb-3 mt-3'>
-                    <Col>
+                  <Row >
+                    <Col style={{ display: 'flex', flexDirection : 'column', alignItems:'center'}}>
                       <Button
-                        style={{backgroundColor: '#eac67a', color: '#984b43', fontWeight: '650'}}
-                        onClick={this.onSubmitHandler}
-                        className='mr-3 butt'
-                      >
-                        Sign In
+                        style={{backgroundColor: '#eac67a', color: '#984b43', fontWeight: '650', margin:'10px'}}
+                        onClick={this.onSubmitHandler}>
+                        Log In 
                       </Button>
-                      <Button
-                        style={{backgroundColor: '#eac67a', color: '#984b43', fontWeight: '650'}}
-                        onClick={this.redirect}
-                        className = 'butt'
+                      <Row>
+                        <Button 
+                          color= 'link'
+                          style = {{color: '#eac67a', fontWeight: '200'}}
+                          onClick={() => this.props.history.push('/signup')}
                         >
-                        Sign Up
-                      </Button>
+                          Don't have an account?
+                        </Button>
+                      </Row>
                     </Col>
                   </Row>
                     <Row>

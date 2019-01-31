@@ -10,9 +10,15 @@ import {
   Input,
   Row
 } from 'reactstrap';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import './Signup.css'
+import * as ROUTES from '../../constants/routes/routes'
 
+const SignUpPage = () => (
+  <div>
+    <SignUpForm/>
+  </div>
+)
 class SignUpForm extends React.Component {
   constructor(props) {
     super(props);
@@ -23,10 +29,12 @@ class SignUpForm extends React.Component {
       invalidUser: false
     };
   }
+  
   onChangeHandler = (e) => {
     //onChangeHandler for controlled inputs
     this.setState({ [e.target.name]: e.target.value });
   };
+
   onSubmitHandler = () => {
     const validUser = this.isValid();
     if (validUser) {
@@ -75,7 +83,7 @@ class SignUpForm extends React.Component {
       <Container fluid style={{ position: "relative", top: "10rem" }}>
       <Row className='justify-content-center'>
       <Col xl={6} lg={6} md={6} sm={6}>
-        <h2 style ={{ color: "#eac67a", textShadow: "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"}}>Sign Up</h2>
+        <h2 style ={{ color: "#984B43", fontFamily:'merriweather sans'}}>Sign Up</h2>
         <Form className = 'pt-5 pb-5 align-items-center' style={{ border: "2px solid #eac67a", borderRadius: '1rem', backgroundColor: 'rgba(35, 50, 55, 1)' }}>
           <Col sm={10}>
             <FormGroup>
@@ -86,7 +94,7 @@ class SignUpForm extends React.Component {
                 value={this.state.email}
                 onChange={this.onChangeHandler}
                 placeholder="Email Address"
-                style = {{backgroundColor: '#eac67a', color: '#984b43'}}
+                // style = {{backgroundColor: '#eac67a', color: '#984b43'}}
               />
             </FormGroup>
           </Col>
@@ -99,7 +107,7 @@ class SignUpForm extends React.Component {
                 value={this.state.password}
                 onChange={this.onChangeHandler}
                 placeholder="Password"
-                style = {{backgroundColor: '#eac67a', color: '#984b43'}}
+                // style = {{backgroundColor: '#eac67a', color: '#984b43'}}
               />
             </FormGroup>
           </Col>
@@ -112,25 +120,24 @@ class SignUpForm extends React.Component {
                 value={this.state.confirmpassword}
                 onChange={this.onChangeHandler}
                 placeholder="Confirm Password"
-                style = {{backgroundColor: '#eac67a', color: '#984b43'}}
+                // style = {{backgroundColor: '#eac67a', color: '#984b43'}}
               />
             </FormGroup>
           </Col>
-          <div className="btn-container">
+          <div className="btn-container" style={{display: 'flex', flexDirection:'column', alignItem: 'center', margin:'10px'}}>
             <Button
-              className="mr-2 mt-2 mb-3 butt"
               onClick={this.onSubmitHandler}
               style={{backgroundColor: '#eac67a', color: '#984b43', fontWeight: '650'}}
             >
               Sign Up
             </Button>
-            <Button
-              className="ml-2 mt-2 mb-3 butt"
-              onClick={this.redirect}
-              style={{backgroundColor: '#eac67a', color: '#984b43', fontWeight: '650'}}
-            >
-              Sign In
-            </Button>
+            <Button 
+                  color= 'link'
+                  style = {{color: '#eac67a', fontWeight: '200'}}
+                  onClick={() => this.props.history.push('/login')}>
+                          Have an account?
+                        </Button>
+
           </div>
         </Form>
         {this.state.invalidUser === true ? <p style={{color: 'red', fontStyle: 'italic', margin: '10px auto', textAlign:'center'}}>Invalid email, password, or passwords do not match.</p> : null }
@@ -140,4 +147,6 @@ class SignUpForm extends React.Component {
     );
   }
 }
+
+
 export default withRouter(SignUpForm);

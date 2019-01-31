@@ -13,6 +13,10 @@ import {
   Col,
   Row,
 } from 'reactstrap';
+<<<<<<< HEAD
+=======
+import PlansModal from './PlansModal'
+>>>>>>> d5d7343d57ac2295930d679c5e3cfc4da9c45663
 import { FirebaseContext } from "../Firebase/index.js";
 import './Navigation.css';
 
@@ -72,26 +76,41 @@ class Navigation extends Component {
                     <Dropdown nav isOpen={this.state.isOpen} toggle={this.toggle}>
                     
                       <DropdownToggle nav>
+<<<<<<< HEAD
                         <p>Menu</p>
                       </DropdownToggle>
 
                       <DropdownMenu right style={{ background: "#eac67a", color: "#984b43" }}>
+=======
+                        {/* <Icon large>menu</Icon> */}
+                      </DropdownToggle>
+
+                      <DropdownMenu right style={{ background: "#eac67a", color: "#a0006c" , border: '5px red solid'}}>
+>>>>>>> d5d7343d57ac2295930d679c5e3cfc4da9c45663
                         {this.props.loggedIn === true ? (
+                          
                           <Fragment>
-                            <Link to="/home" style={{ textDecoration: 'none', textAlign: "center" }}>
+                          
+                            <Link to="/home" style={{ textDecoration: 'none', textAlign: "center", background:'#a0006c'}}>
                               <DropdownItem>Home</DropdownItem>
                             </Link>
-                            <Link to={`/user/reviews/${this.props.userID}`} style={{ textDecoration: 'none', textAlign: "center" }}>
+                          
+                            <Link to={`/user/reviews/${this.props.userID}`} style={{ textDecoration: 'none', textAlign: "center"}}>
                               <DropdownItem>My Reviews</DropdownItem>
                             </Link>
+                          
                             <Link to="/user/billing" style={{ textDecoration: 'none', textAlign: "center" }}>
                               <DropdownItem>Billing</DropdownItem>
                             </Link>
+                          
                             <Link to="/user/settings"style={{ textDecoration: 'none', textAlign: "center" }}>
                               <DropdownItem>Settings</DropdownItem>
                             </Link>
+                          
                             <DropdownItem divider />
+                          
                             <NavLink to="/" style={{ textDecoration: 'none', textAlign: "center" }}>
+                          
                               <DropdownItem>
                                 <FirebaseContext.Consumer>
                                   {firebase => (
@@ -102,7 +121,9 @@ class Navigation extends Component {
                                   )}
                                 </FirebaseContext.Consumer>
                               </DropdownItem>
+                          
                             </NavLink>
+                          
                           </Fragment>
                         ) : (
                           <Fragment>

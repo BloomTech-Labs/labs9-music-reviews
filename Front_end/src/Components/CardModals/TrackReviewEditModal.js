@@ -197,7 +197,7 @@ class TrackReviewEditModal extends React.Component {
               />
             </div>
           </div>
-          <ModalFooter>
+          <ModalFooter  style={{ display: "flex", justifyContent: "space-evenly"}}>
             <Button
               style={{
                 color: "#EAC67A",

@@ -21,7 +21,6 @@ import SearchResults from "./Components/Search/SearchResults";
 import { withAuthentication } from './Components/Session'
 import * as ROUTES from './constants/routes/routes';
 
-import './App.css';
 
 let refreshTime = 15*60*1000; // 15 mins
 
