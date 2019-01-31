@@ -30,7 +30,8 @@ class AlbumProfileReviewCard extends Component {
       artist: "",
       art: "",
       tracks: [],
-      artistID: ""
+      artistID: "",
+      albumReview: true
     };
     this.getAlbum = this.getAlbum.bind(this);
   }
@@ -75,9 +76,8 @@ class AlbumProfileReviewCard extends Component {
           >
             {/* REVIEW INFO */}
             <Col
-              lg="4 d-flex flex-column justify-content-start"
-              md="5"
-              style={{ margin: "auto 0" }}
+              lg="4"
+              md="5 d-flex flex-column justify-content-start"
             >
               {/* ALBUM INFO */}
               <NavLink
@@ -85,9 +85,7 @@ class AlbumProfileReviewCard extends Component {
                 style={{ textDecoration: "none", color: "#EAC67A" }}
               >
                 <div style={{ margin: "8px 0" }}>
-                  <strong>Album:</strong>
-                  <br />
-                  {this.state.album}
+                  <h5><strong>Album:</strong> {this.state.album}</h5>
                 </div>
               </NavLink>
               {/* ALBUM COVER ART */}
@@ -126,6 +124,7 @@ class AlbumProfileReviewCard extends Component {
                   artist={this.state.artist}
                   art={this.state.art}
                   tracks={this.state.tracks}
+                  albumReview={this.state.albumReview}
                 />
               ) : null}
             </Col>
@@ -141,12 +140,10 @@ class AlbumProfileReviewCard extends Component {
                 <ViewStars rating={this.props.review.rating} />
                 {/* DATE CREATED */}
                 <p style={{ padding: "0 20px", color: "#EAC67A" }}>
-                  Date Created: {this.props.review.dateCreated}
+                  Written: {this.props.review.dateCreated}
                 </p>
-                {/* DATE MODIFIED */}
-                <p style={{ padding: "0 20px", color: "#EAC67A" }}>
-                  Updated On: {this.props.review.dateModified}
-                </p>
+                {/* Edited */}
+                {this.props.review.dateCreated != this.props.review.dateModified ? <i>(edited)</i> : null}
               </Row>
               {/* REVIEW TEXT */}
               <Row>
