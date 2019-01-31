@@ -152,8 +152,8 @@ class ReviewEditModal extends React.Component {
           <Row class="d-flex justify-content-around">
             <Col class="container">
               <Col>
-              {/* Edit Modal Album Header */}
-                <div style={{ padding: "0 15%"}}>                  
+                {/* Edit Modal Album Header */}
+                <div style={{ padding: "0 15%" }}>
                   <ModalBody
                     style={{
                       textAlign: "center",
@@ -179,7 +179,7 @@ class ReviewEditModal extends React.Component {
             </Col>
           </Row>
           <div class="container center-align" style={{ margin: "10px auto" }}>
-            <div style={{ textAlign: "center"}}>Star Rating</div>
+            <div style={{ textAlign: "center" }}>Star Rating</div>
             <Row style={{ justifyContent: "center", margin: "0 auto" }}>
               {/* Editable Star Rating  */}
               <EditStars
@@ -202,11 +202,11 @@ class ReviewEditModal extends React.Component {
               />
             </div>
           </div>
-          <ModalFooter>
+          <ModalFooter class="d-flex justify-content-around">
             <Button
               style={{
-                color: "#984B43",
-                backgroundColor: "#EAC67A",
+                color: "#EAC67A",
+                backgroundColor: "#984B43",
                 fontWeight: "650"
               }}
               onClick={event => {
@@ -216,7 +216,6 @@ class ReviewEditModal extends React.Component {
             >
               Save
             </Button>
-
             <Button
               style={{
                 color: "#984B43",
@@ -249,8 +248,8 @@ class ReviewEditModal extends React.Component {
                 {/* Delete Review Button */}
                 <Button
                   style={{
-                    color: "#984B43",
-                    backgroundColor: "#EAC67A",
+                    color: "#EAC67A",
+                    backgroundColor: "#984B43",
                     fontWeight: "650"
                   }}
                   onClick={event => {
@@ -262,8 +261,8 @@ class ReviewEditModal extends React.Component {
                 </Button>
                 <Button
                   style={{
-                    color: "#EAC67A",
-                    backgroundColor: "#984B43",
+                    color: "#984B43",
+                    backgroundColor: "#233237",
                     fontWeight: "650"
                   }}
                   onClick={this.toggleDelNested}
@@ -274,8 +273,8 @@ class ReviewEditModal extends React.Component {
             </Modal>
             <Button
               style={{
-                color: "#EAC67A",
-                backgroundColor: "#984B43",
+                color: "#984B43",
+                backgroundColor: "#233237",
                 fontWeight: "650"
               }}
               onClick={this.toggle}

@@ -200,10 +200,10 @@ class TrackReviewEditModal extends React.Component {
           <ModalFooter>
             <Button
               style={{
-                    color: "#984B43",
-                    backgroundColor: "#EAC67A",
-                    fontWeight: "650"
-                  }}
+                color: "#EAC67A",
+                backgroundColor: "#984B43",
+                fontWeight: "650"
+              }}
               onClick={event => {
                 this.editHandler();
                 this.dateStamp();
@@ -211,11 +211,14 @@ class TrackReviewEditModal extends React.Component {
             >
               Save
             </Button>
-            <Button style={{
-                    color: "#984B43",
-                    backgroundColor: "#EAC67A",
-                    fontWeight: "650"
-                  }} onClick={this.toggleDelNested}>
+            <Button
+              style={{
+                color: "#984B43",
+                backgroundColor: "#EAC67A",
+                fontWeight: "650"
+              }}
+              onClick={this.toggleDelNested}
+            >
               Delete
             </Button>
             {/* Delete Confirmation Nested Modal */}
@@ -234,8 +237,8 @@ class TrackReviewEditModal extends React.Component {
                 {/* Delete Review Button */}
                 <Button
                   style={{
-                    color: "#984B43",
-                    backgroundColor: "#EAC67A",
+                    color: "#EAC67A",
+                    backgroundColor: "#984B43",
                     fontWeight: "650"
                   }}
                   onClick={event => {
@@ -245,20 +248,26 @@ class TrackReviewEditModal extends React.Component {
                 >
                   Delete
                 </Button>
-                <Button style={{
-                color: "#EAC67A",
-                backgroundColor: "#984B43",
-                fontWeight: "650"
-              }} onClick={this.toggleNested}>
+                <Button
+                  style={{
+                    color: "#984B43",
+                    backgroundColor: "#233237",
+                    fontWeight: "650"
+                  }}
+                  onClick={this.toggleNested}
+                >
                   Cancel
                 </Button>
               </ModalFooter>
             </Modal>
-            <Button style={{
-                color: "#EAC67A",
-                backgroundColor: "#984B43",
+            <Button
+              style={{
+                color: "#984B43",
+                backgroundColor: "#233237",
                 fontWeight: "650"
-              }} onClick={this.toggle}>
+              }}
+              onClick={this.toggle}
+            >
               Cancel
             </Button>
           </ModalFooter>
