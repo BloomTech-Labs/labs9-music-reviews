@@ -5,6 +5,7 @@ import { Card, CardImg, CardBody, CardTitle, Col } from 'reactstrap';
 const cardStyle = {
   color:'#eac67a',
   textDecoration: 'none',
+  textAlign: 'left',
   fontFamily:'Lato'
 };
 
@@ -12,7 +13,7 @@ class NewReleaseCard extends Component {
   render() {
     return (
       // <Col md="3" xs="12" style={{ overflow: "hidden", textAlign: "center", padding: "2rem 1rem 0 1rem" }}>
-        <Col xs="12" md="4" style={{padding: "2rem 1rem 0 1rem" }}> 
+        <Col xs="12" md="4" style={{ padding: "2rem 1rem 0 1rem" }}> 
           <NavLink to={`/albums/${this.props.id}`} style={{ textDecoration: "none" }}>
             <Card style={{
                 border: "2px solid #eac67a",

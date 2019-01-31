@@ -8,12 +8,7 @@ import { instanceOf } from 'prop-types';
 import './Search.css';
 
 const H3 = styled.h3`
-  color: #eac67a;
-  text-shadow:
-    -1px -1px 0 #984b43,
-    1px -1px 0 #984b43,
-    -1px 1px 0 #984b43,
-    1px 1px 0 #984b43;
+  color: #984b43;
 `
 const backgroundStyle = {
   maxHeight: "30rem",
@@ -118,18 +113,18 @@ class Search extends Component {
           position: "relative",
           margin: "0 auto",
           padding: "1rem 0",
-          color: "#eac67a",
-          maxWidth: "1600px",
+          color: "#984b43",
+          maxWidth: "1200px",
           fontFamily: "Lato",
           overflow: "hidden"
         }}
       >
       {/* albums */}
       <Row>
-        <Col md="3" xs="12" style={{ overflow: "hidden", textAlign: "center", padding: "2rem 1rem 0 1rem" }}>
+        <Col md="4" xs="12" style={{ overflow: "hidden", textAlign: "center", padding: "2rem 1rem 0 1rem" }}>
           {/* <Row  className="d-flex flex-column flex-wrap align-items-center"  */}        
           <H3>Albums</H3>
-          <Card style={ backgroundStyle }>
+          <Container style={ backgroundStyle }>
           {this.state.albums.map(album => {
                 return  <NavLink key={album.id} to={`/albums/${album.id}`} style={{ textDecoration: 'none' }}>
                           <Col>
@@ -145,14 +140,14 @@ class Search extends Component {
                         </NavLink>
               })
             }
-          </Card>
+          </Container>
         </Col>
 
         {/* artists */}
-        <Col md="3" xs="12" style={{ overflow: "hidden", textAlign: "center", padding: "2rem 1rem 0 1rem" }}>
+        <Col md="4" xs="12" style={{ overflow: "hidden", textAlign: "center", padding: "2rem 1rem 0 1rem" }}>
           <H3>Artists</H3>
           {/* <Row  className="d-flex flex-column flex-wrap align-items-center"  */}
-          <Card style={ backgroundStyle }>
+          <Container style={ backgroundStyle }>
             {this.state.artists.map(artist => {
                   return  artist.images.length === 0 ? null : 
                           <NavLink key ={artist.id}to={`/artists/${artist.id}`} style={{ textDecoration: 'none' }}>
@@ -169,59 +164,43 @@ class Search extends Component {
                           </NavLink>
                 })
               }
-            </Card>
+            </Container>
         </Col>
 
         {/* tracks */}
-        <Col md="6" xs="12" style={{ overflow: "hidden", textAlign: "center", padding: "2rem 1rem 0 1rem" }}>
-          <H3>Tracks</H3> 
-          <Card style={{ minWidth: "385px", backgroundColor: "rgba(35, 50, 55, 0)", borderBottom: "none" }}>
-            <Row style={{ textAlign: "center", padding: "1rem" }}>
-              <Col xs="3" md="4" style={ header } >Art</Col>
-              <Col xs="3" md="4" style={ header } >Track Name</Col>
-              <Col xs="3" md="4" style={ header } >Album Name</Col>
-              {/* <Col md={2} xl={2} className="d-none d-xl-block" style={{ textAlign: 'center' }}>Track Time</Col> */}
-            </Row>
-          </Card>
-
-          <Card
-            className="flex-sm-column"
-            style = {{
-                maxHeight: "26.5rem",
-                minWidth: "325px",
-                margin: "0 auto",
-                overflowY: 'scroll', 
-                WebkitOverflowScrolling: 'touch',
-                backgroundColor: "rgba(35, 50, 55, 0)"
-              }}
-          >
+        <Col md="4" xs="12" style={{ overflow: "hidden", textAlign: "center", padding: "2rem 1rem 0 1rem" }}>
+          <H3>Tracks</H3>
+          <Container style={ backgroundStyle }>
             {this.state.tracks.map(track => {
-              // const seconds = this.convertToSeconds(track.duration_ms);
                 return track.album.images.length === 0 ? null : 
                   <NavLink to={`/tracks/${track.id}`} style={{ textDecoration: "none" }}>
-                    <Card key = {track.id} style = {{ 
-                        textAlign: 'center',
-                        margin: "0.5rem",
-                        padding: "1rem",
-                        border: "2px solid #eac67a",
-                        background: "#233237",
-                        color: "#eac67a",
-                      }}
-                    >
-                      <Row noGutters>
-                        <Col xs="4" style={{ verticalAlign: "middle" }}>
-                          <CardImg src= {!track.album.images[0] ? image : track.album.images[0].url} alt = {track.name} style = {{ borderRadius: '50%', width: '4rem', padding: "0" }}
-                          />  
-                        </Col>
-                        <Col xs="4" style={{ verticalAlign: "middle" }}>{track.name}</Col>
-                        <Col xs="4" style={{ verticalAlign: "middle" }}>{track.album.name}</Col>
-                        {/* <Col  md={2} xl={2} className="d-none d-xl-block" >{seconds}</Col> */}
-                      </Row>
-                    </Card>
+                    <Col>
+                      <Card key = {track.id} style = { cardStyle }> 
+                        <CardImg src= {!track.album.images[0] ? image : track.album.images[0].url} alt = {track.name} style = {{ borderRadius: '50%', width: '7rem', padding: "0" }} />  
+                          <CardBody>
+                            <CardTitle>{track.artists[0].name}</CardTitle>
+                            <CardTitle>{track.name}</CardTitle>
+                          </CardBody>
+            
+                        </Card>
+                    </Col>
+
+                     {/*
+                      <Col xs="12" style={{ verticalAlign: "middle" }}>
+                          <Row>
+                            <CardImg src= {!track.album.images[0] ? image : track.album.images[0].url} alt = {track.name} style = {{ borderRadius: '50%', width: '7rem', padding: "0" }}
+                            />  
+                          </Row>
+                          <Row>{track.name}</Row>
+                          <Row>{track.album.name}</Row>
+                         
+                   
+                         */}
+      
                   </NavLink>
               })
             }
-          </Card>
+          </Container>
         </Col>
       </Row>
     </Container>
@@ -240,8 +219,6 @@ class Search extends Component {
                   style={{
                     minWidth: "300px",
                     border: "none",
-                    backgroundColor: '#eac67a',
-                    color: 'white',
                   }}
                   />
               </Form>

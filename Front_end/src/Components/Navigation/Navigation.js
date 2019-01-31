@@ -71,9 +71,9 @@ class Navigation extends Component {
                     </Link>
                   </Col>
                  
-                  <Col xs="4" style={{ paddingRight: "3rem" }}>
+                  {/* <Col xs="4" style={{ paddingRight: "3rem" }}>
                     <PlansModal />
-                  </Col>
+                  </Col> */}
 
                   <Col xs="4" style={{ margin: "0 auto", paddingLeft: "3rem" }}>
                     <Dropdown nav isOpen={this.state.isOpen} toggle={this.toggle}>
@@ -81,7 +81,7 @@ class Navigation extends Component {
                         <Icon large>menu</Icon>
                       </DropdownToggle>
 
-                      <DropdownMenu right style={{ background: "#eac67a", color: "#a0006c" }}>
+                      <DropdownMenu right style={{ background: "#eac67a", color: "#984b43" }}>
                         {this.props.loggedIn === true ? (
                           <Fragment>
                             <Link to="/home" style={{ textDecoration: 'none', textAlign: "center" }}>

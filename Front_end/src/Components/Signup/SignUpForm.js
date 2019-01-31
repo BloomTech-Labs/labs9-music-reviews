@@ -49,7 +49,7 @@ class SignUpForm extends React.Component {
                       }
                       )
                       .then((res) => {
-                        this.props.history.push('/');
+                        window.location.href="https://labs9carreviews.netlify.com/"
                       })
                       .catch((err) => console.log(err));
                   });

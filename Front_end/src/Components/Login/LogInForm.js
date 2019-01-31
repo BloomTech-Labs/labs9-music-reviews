@@ -34,7 +34,7 @@ class LogInForm extends React.Component {
         .doSignInWithEmailAndPassword(this.state.email, this.state.password)
         .then((authUser) => {
           this.props.changeLogInState();
-          this.props.history.push('/');
+          window.location.href="https://labs9carreviews.netlify.com/"
         })
         .catch((error) => {
           this.setState({ error });

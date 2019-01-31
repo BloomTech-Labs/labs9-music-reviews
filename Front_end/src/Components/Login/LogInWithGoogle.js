@@ -28,7 +28,7 @@ class LogInWithGoogle extends React.Component {
           }
         });
         this.props.changeLogInState();
-        this.props.history.push('/home');
+        window.location.href="https://labs9carreviews.netlify.com/"
       })
       .catch((error) => {
         this.setState({ error });

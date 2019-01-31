@@ -17,15 +17,14 @@ const LandingPage = () => {
     <Container fluid style={{ margin: "0 auto", fontFamily: "Lato" }}>
 
       <Row>
-        <Img src={require("../../Images/OTR Logo Letters.png")} alt="ON THE RECORD" />
+        <Img className="img-fluid" src={require("../../Images/OTR Logo Letters.png")} alt="ON THE RECORD" />
       </Row>
 
       <h3 style={{ 
           position: "relative",
-          padding: "7rem 0 2rem 0",
+          padding: "10rem 0 2rem 0",
           textAlign: "center",
-          color: "#eac67a",
-          textShadow: "-1px -1px 0 #984b43, 1px -1px 0 #984b43, -1px 1px 0 #984b43, 1px 1px 0 #984b43"
+          color: "#984b43",
         }}
       >
         There are a million songs out there. <br />
