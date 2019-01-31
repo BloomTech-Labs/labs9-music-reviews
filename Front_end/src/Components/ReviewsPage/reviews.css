@@ -25,3 +25,47 @@
   .scrollbox_delayed:hover {
     transition: visibility 0s 0.2s;
   }
+
+  .but {
+    border: none;
+    background: #eac67a;
+    color: #984b43 !important;
+    font-weight: 100;
+    padding: 10px;
+    text-transform: uppercase;
+    border-radius: 6px;
+    display: inline-block;
+}
+
+.but:hover {
+    color: #233237 !important;
+    font-weight: 700 !important;
+    letter-spacing: 1px;
+    background: none;
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.3s ease 0s;
+}
+
+
+.link:link {
+  color:  #984B43;
+  font-family: lato;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.link:active {
+  color:  #984B43;
+}
+
+.link:visited {
+  color:  #984B43;
+}
+
+.link:visited:hover {
+  color:  #984B43;
+}

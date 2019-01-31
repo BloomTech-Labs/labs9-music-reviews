@@ -28,7 +28,7 @@ form {
  */
 
 
-.butt {
+.but {
     border: none;
     background: #eac67a;
     color: #984b43 !important;
@@ -39,7 +39,7 @@ form {
     display: inline-block;
 }
 
-.butt:hover {
+.but:hover {
     color: #233237 !important;
     font-weight: 700 !important;
     letter-spacing: 1px;
