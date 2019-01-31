@@ -3,15 +3,7 @@ import axios from "axios";
 import { instanceOf } from "prop-types";
 import styled from "styled-components";
 import { withCookies, Cookies } from "react-cookie";
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  Col,
-  Row
-} from "reactstrap";
+import { Button, Modal, ModalBody, Col, Row } from "reactstrap";
 import EditStars from "../StarsRating/EditStars";
 import "./modals.css";
 
@@ -119,7 +111,6 @@ class TrackReviewCreateModal extends React.Component {
           className={this.props.className}
           backdrop={true}
           style={{
-            border: "3px solid #EAC67A",
             borderRadius: "10px",
             fontFamily: "Lato"
           }}
@@ -134,7 +125,12 @@ class TrackReviewCreateModal extends React.Component {
                   <img
                     src={this.props.art}
                     alt="Album cover art"
-                    style={{ margin: "15px 0", align: "center", maxWidth: "250px", maxHeight: "250px"}}
+                    style={{
+                      margin: "15px 0",
+                      align: "center",
+                      maxWidth: "250px",
+                      maxHeight: "250px"
+                    }}
                   />
                 </Col>
               </Row>
@@ -162,7 +158,7 @@ class TrackReviewCreateModal extends React.Component {
               />
             </Row>
             <div>
-              Write Review
+              <div style={{ margin: "5px 0" }}>Write Review</div>
               <textarea
                 onChange={this.handleEditChange}
                 name="review"
@@ -172,7 +168,7 @@ class TrackReviewCreateModal extends React.Component {
               />
             </div>
           </div>
-          <ModalFooter
+          <ModalBody
             style={{ display: "flex", justifyContent: "space-evenly" }}
           >
             <Button
@@ -191,7 +187,7 @@ class TrackReviewCreateModal extends React.Component {
             <Button
               style={{
                 color: "#984B43",
-                backgroundColor: "#EAC67A",
+                backgroundColor: "#233237",
                 fontWeight: "650"
               }}
               onClick={event => {
@@ -200,7 +196,7 @@ class TrackReviewCreateModal extends React.Component {
             >
               Cancel
             </Button>
-          </ModalFooter>
+          </ModalBody>
         </Modal>
       </Fragment>
     );

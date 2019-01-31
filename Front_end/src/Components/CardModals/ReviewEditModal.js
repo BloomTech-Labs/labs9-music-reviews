@@ -1,16 +1,6 @@
 import React, { Fragment } from "react";
 import axios from "axios";
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  ListGroup,
-  ListGroupItem,
-  Col,
-  Row
-} from "reactstrap";
+import { Button, Modal, ModalBody, Col, Row } from "reactstrap";
 import EditStars from "../StarsRating/EditStars";
 import "./modals.css";
 
@@ -142,8 +132,6 @@ class ReviewEditModal extends React.Component {
           className={this.props.className}
           backdrop={true}
           style={{
-            border: "3px solid #EAC67A",
-            borderRadius: "10px",
             fontFamily: "Lato",
             color: "#eac67a"
           }}
@@ -185,7 +173,7 @@ class ReviewEditModal extends React.Component {
               />
             </Row>
             <div>
-              Write Review
+              <div style={{ margin: "5px 0" }}>Write Review</div>
               <textarea
                 onChange={this.handleEditChange}
                 name="review"
@@ -204,8 +192,8 @@ class ReviewEditModal extends React.Component {
           >
             <Button
               style={{
-                color: "#EAC67A",
-                backgroundColor: "#984B43",
+                color: "#984B43",
+                backgroundColor: "#EAC67A",
                 fontWeight: "650"
               }}
               onClick={event => {
@@ -217,8 +205,8 @@ class ReviewEditModal extends React.Component {
             </Button>
             <Button
               style={{
-                color: "#984B43",
-                backgroundColor: "#EAC67A",
+                color: "#EAC67A",
+                backgroundColor: "#984B43",
                 fontWeight: "650"
               }}
               onClick={this.toggleDelNested}
@@ -234,14 +222,16 @@ class ReviewEditModal extends React.Component {
               }}
               onClosed={this.state.closeAll ? this.toggle : undefined}
             >
-              <ModalHeader
+              <ModalBody
                 style={{
                   color: "#eac67a"
                 }}
               >
                 Are you sure you want to DELETE this review?
-              </ModalHeader>
-              <ModalFooter>
+              </ModalBody>
+              <ModalBody
+                style={{ display: "flex", justifyContent: "space-between" }}
+              >
                 {/* Delete Review Button */}
                 <Button
                   style={{
@@ -266,7 +256,7 @@ class ReviewEditModal extends React.Component {
                 >
                   Cancel
                 </Button>
-              </ModalFooter>
+              </ModalBody>
             </Modal>
             <Button
               style={{
@@ -286,4 +276,3 @@ class ReviewEditModal extends React.Component {
 }
 
 export default ReviewEditModal;
-

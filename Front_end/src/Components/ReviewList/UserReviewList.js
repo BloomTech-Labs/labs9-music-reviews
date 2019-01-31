@@ -7,13 +7,16 @@ import TrackProfileReviewCard from "./TrackProfileReviewCard";
 
 const Sidebar = styled.div`
   position: fixed;
+  margin-top: 15px;
   left: 10%;
+  height: 350px;
   z-index: 1;
-  padding-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: #233237;
+  border-radius: 10px;
   @media (max-width: 768px) {
     position: relative;
     left: 0;
@@ -129,10 +132,10 @@ class UserReviewList extends Component {
                   <strong>{this.state.nickname}</strong>
                 </h3>
               </div>
-              <div style={{ alignSelf: "center" }}>
+              {/* <div style={{ alignSelf: "center" }}>
                 <h5>Status</h5>
-              </div>
-              <div style={{ alignSelf: "center" }}>
+              </div> */}
+              <div style={{ alignSelf: "center", color: "#EAC67A" }}>
                 <h5>
                   Reviews: {userAlbumReviews.length + userTrackReviews.length}
                 </h5>
