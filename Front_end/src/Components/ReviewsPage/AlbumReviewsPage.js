@@ -10,17 +10,6 @@ import { withCookies, Cookies } from "react-cookie";
 import { withAuthorization } from "../Session";
 import './reviews.css'
 
-// const Sidebar = styled.div`
-//   position: fixed;
-//   top: 0;
-//   z-index: 1;
-//   height: 100%;
-//   padding-top: 80px;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-// `;
-
 class AlbumReviewsPage extends Component {
   static propTypes = {
     cookies: instanceOf(Cookies).isRequired
@@ -100,14 +89,14 @@ class AlbumReviewsPage extends Component {
               {/* need to find a way to manipulate the img object from res.data */}
               {/* COVER ART */}
               <Card body className="text-center" style={{background: 'transparent', border: 'none', alignItems: 'center', textDecoration: 'none', textShadow: "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43" }}>
-              <CardBody>
+              {/* <CardBody>
                 <CardTitle><h3>Album: {this.state.album}</h3></CardTitle>
                 <CardSubtitle>
                 <Link  style={{  color: '#eac67a', textDecoration: 'none', textShadow: "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43" }} to={`/artists/${this.state.artistId}`}>
                 <h5>Artist: {this.state.artist}</h5>
                 </Link>
                 </CardSubtitle>
-              </CardBody>
+              </CardBody> */}
               <CardImg
                 src={this.state.art}
                 alt="Album Art"
@@ -139,35 +128,29 @@ class AlbumReviewsPage extends Component {
                 ) : null}
               </Row>
               {/* end of Create  */}
-              
-              
-                  <h5 style={{ textAlign: "center", textShadow: "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43" }}>Tracklist</h5>
-                  <Col>
+              <Row style={{justifyContent: 'center'}}>
+              <Link className='link' to={`/artists/${this.state.artistId}`}>
+                  <h5>See all albums by: {this.state.artist} </h5>
+              </Link>
+              </Row>
                   <Col
                     style={{
                       flexDirection: "column",
                       justifyContent: "space-evenly",
                       padding: "1rem",
-                      // overflowY: "scroll",
-                      // overflowX: "hidden",
-                      // marginBottom: "20px"
                     }}
                   >
                     {this.state.tracks.map(track => {
                       return (
                         <Link
                           to={`/tracks/${track.id}`}
-                          style={{ textDecoration: "none", color: "#EAC67A" }}
+                          className='link'
                         >
-                          <Row
-                            style={{
-                              textShadow: "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
-                            }}
-                          >
+                          <Row >
                             <Col xs="3" style={{textAlign: 'right'}}>
                               <h6>{track.track_number}.</h6>
                             </Col>
-                            <Col xs="auto">
+                            <Col xs="9">
                               <ul
                                 style={{
                                   fontSize: "0.8rem",
@@ -184,8 +167,6 @@ class AlbumReviewsPage extends Component {
                     })}
                   </Col>
                 </Col>
-              
-            </Col>
             <Col  md={{size: 7, offset: 5}} >
                 {albumReviews.length === 0 ? (
                   <Row style={{ display: "flex", justifyContent: "center", textShadow: "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"}}>
