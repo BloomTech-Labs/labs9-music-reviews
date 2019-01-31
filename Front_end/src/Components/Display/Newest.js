@@ -60,9 +60,10 @@ componentDidMount() {
                 >
 
                 <h1 style={{
-                        marginBottom:'-0.5rem',
-                        lineHeight: '2.2',
-                        color: "#984b43"
+                        color: "#984b43",
+                        margin: "1rem auto 0 auto",
+                        padding: "1rem",
+                        fontFamily:'Merriweather Sans',
                     }}
                 >
                     Latest Releases

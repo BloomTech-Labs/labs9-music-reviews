@@ -45,7 +45,7 @@ const LandingPage = () => {
       </Row>
 
       <Row style={{ position: "relative", paddingTop: "2rem" }}>
-          <Search />
+          <Search maxHeight={"30rem"}/>
       </Row>
     </Container>
   );

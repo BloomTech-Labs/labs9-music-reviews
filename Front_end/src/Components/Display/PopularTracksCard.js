@@ -15,7 +15,7 @@ const cardStyle = {
 class PopularTracksCard extends Component {
   render() {
     return (
-        <Col xs="12" md="3"> 
+        <Col xs="6" md="3"> 
           <NavLink to={`/albums/${this.props.id}`} style={{ textDecoration: "none" }}>
                 <Card style={{
                     border: "2px solid #984b43",

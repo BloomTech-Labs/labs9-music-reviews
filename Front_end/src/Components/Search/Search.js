@@ -11,15 +11,6 @@ const H3 = styled.h3`
   font-family: Merriweather Sans,
   color: #984b43;
 `
-const backgroundStyle = {
-  maxHeight: "30rem",
-  margin: "0 auto",
-  overflowY: 'scroll', 
-  WebkitOverflowScrolling: 'touch',
-  WebkitScrollbarDisplay: 'none',
-  scrollBehavior: "smooth",
-  backgroundColor: "rgba(35, 50, 55, 0)"
-};
 
 const cardStyle = {
   maxWidth: '180px',
@@ -119,7 +110,16 @@ class Search extends Component {
       <Row>
         <Col md="4" xs="12" style={{ overflow: "hidden", textAlign: "center", padding: "2rem 1rem 0 1rem" }}>      
           <H3>Albums</H3>
-          <Container style={ backgroundStyle }>
+          <Container style={{
+              maxHeight: this.props.maxHeight,
+              margin: "0 auto",
+              overflowY: 'scroll', 
+              WebkitOverflowScrolling: 'touch',
+              WebkitScrollbarDisplay: 'none',
+              scrollBehavior: "smooth",
+              backgroundColor: "rgba(35, 50, 55, 0)"
+            }}
+          >
           {this.state.albums.map(album => {
                 return  <NavLink key={album.id} to={`/albums/${album.id}`} style={{ textDecoration: 'none' }}>
                           <Col>
@@ -141,7 +141,16 @@ class Search extends Component {
         {/* artists */}
         <Col md="4" xs="12" style={{ overflow: "hidden", textAlign: "center", padding: "2rem 1rem 0 1rem" }}>
           <H3>Artists</H3>
-          <Container style={ backgroundStyle }>
+          <Container style={{
+              maxHeight: this.props.maxHeight,
+              margin: "0 auto",
+              overflowY: 'scroll', 
+              WebkitOverflowScrolling: 'touch',
+              WebkitScrollbarDisplay: 'none',
+              scrollBehavior: "smooth",
+              backgroundColor: "rgba(35, 50, 55, 0)"
+            }}
+          >
             {this.state.artists.map(artist => {
                   return  artist.images.length === 0 ? null : 
                           <NavLink key ={artist.id}to={`/artists/${artist.id}`} style={{ textDecoration: 'none' }}>
@@ -164,7 +173,16 @@ class Search extends Component {
         {/* tracks */}
         <Col md="4" xs="12" style={{ overflow: "hidden", textAlign: "center", padding: "2rem 1rem 0 1rem" }}>
           <H3>Tracks</H3>
-          <Container style={ backgroundStyle }>
+          <Container style={ {
+                maxHeight: this.props.maxHeight,
+                margin: "0 auto",
+                overflowY: 'scroll', 
+                WebkitOverflowScrolling: 'touch',
+                WebkitScrollbarDisplay: 'none',
+                scrollBehavior: "smooth",
+                backgroundColor: "rgba(35, 50, 55, 0)"
+              }}
+            >
             {this.state.tracks.map(track => {
                 return track.album.images.length === 0 ? null : 
                   <NavLink to={`/tracks/${track.id}`} style={{ textDecoration: "none" }}>
