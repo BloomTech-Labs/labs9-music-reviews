@@ -38,7 +38,7 @@ class LogInWithGoogle extends React.Component {
   render() {
     return (
       <Col align='center'>
-        <Button className= 'mb-3 butt' style={{backgroundColor: '#eac67a', color: '#984b43', fontWeight: '650'}}  onClick={this.onSubmit}>
+        <Button style={{backgroundColor: '#eac67a', color: '#984b43', fontWeight: '650'}}  onClick={this.onSubmit}>
           Google Log In
         </Button>
       </Col>

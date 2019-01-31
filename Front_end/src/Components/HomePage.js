@@ -6,7 +6,6 @@ import Newest from './Display/Newest';
 import { Container, Row } from 'reactstrap';
 import { withAuthorization } from '../Components/Session';
 
-
 const HomePage = () => {
     return(
         <Container fluid style={{ 
