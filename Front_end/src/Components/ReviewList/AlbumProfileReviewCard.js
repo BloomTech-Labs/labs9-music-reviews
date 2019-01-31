@@ -78,7 +78,6 @@ class AlbumProfileReviewCard extends Component {
             <Col
               lg="4"
               md="5 d-flex flex-column justify-content-start"
-              style={{ margin: "auto 0" }}
             >
               {/* ALBUM INFO */}
               <NavLink
@@ -86,9 +85,7 @@ class AlbumProfileReviewCard extends Component {
                 style={{ textDecoration: "none", color: "#EAC67A" }}
               >
                 <div style={{ margin: "8px 0" }}>
-                  <strong>Album:</strong>
-                  <br />
-                  {this.state.album}
+                  <h5><strong>Album:</strong> {this.state.album}</h5>
                 </div>
               </NavLink>
               {/* ALBUM COVER ART */}

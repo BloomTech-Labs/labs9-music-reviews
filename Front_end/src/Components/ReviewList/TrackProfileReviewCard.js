@@ -68,15 +68,13 @@ class TrackProfileReviewCard extends Component {
             <Col
               lg="4 d-flex flex-column justify-content-start"
               md="5"
-              style={{ margin: "auto 0" }}
             >
               <NavLink
                 to={`/tracks/${this.props.review.spotifyTrackID}`}
                 style={{ textDecoration: "none", color: "#EAC67A" }}
               >
                 <div style={{ margin: "8px 0" }}>
-                  <strong>Track:</strong>
-                  <br /> {this.state.track}
+                  <h5><strong>Track:</strong> {this.state.track}</h5>
                 </div>
               </NavLink>
               <NavLink
