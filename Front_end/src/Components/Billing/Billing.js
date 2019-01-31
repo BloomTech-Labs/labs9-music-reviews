@@ -67,10 +67,17 @@ class Billing extends Component {
   render() {
     return (
       <div>
-        <Container fluid style={{ maxWidth: "1000px", padding: "15rem 0 5rem 0", fontFamily: "Lato, sans-serif", color: "#eac67a" }}>
+        <Container fluid style={{
+            maxWidth: "1000px",
+            padding: "15rem 2rem 5rem 2rem",
+            fontFamily: "Lato, sans-serif",
+            color: "#eac67a",
+            fontSize: "1.25rem"
+           }}
+          >
           <Row>
             <Col md="4" xs="12">
-              <Card style={{ background: "#233237", border: "2px solid #eac67a" }}>
+              <Card style={{ background: "#233237" }}>
                 <ProfileInfo>
                   <Row>
                     <CardImg
@@ -86,16 +93,15 @@ class Billing extends Component {
                     />
                   </Row>
                   <Row style={{ display: "flex", flexDirection: "column", padding: "1rem", textAlign: "center" }}>
-                    <p>Status</p>
+                    <p>{this.props.tier}</p>
                     <p>{this.props.nickname}</p>
-                    <p>Reviews: 1</p>
                   </Row>
                 </ProfileInfo>
               </Card>
             </Col>
 
             <Col xs="12" md="8" style={{ margin: "1rem 0" }}>
-              <Card style={{ maxHeight: "600px", background: "#233237", border: "2px solid #eac67a" }}>
+              <Card style={{ maxHeight: "600px", background: "#233237" }}>
                 <Payment>
                   <h2 style={{ textAlign: "left", fontFamily: "Merriweather Sans, sans-serif" }}> Billing </h2>
                   <div style={{ margin: "2rem 0" }}>

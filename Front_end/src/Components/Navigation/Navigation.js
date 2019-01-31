@@ -1,4 +1,3 @@
-
 import React, { Component, Fragment } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import SignOut from '../Signout/SignOut';
@@ -14,7 +13,6 @@ import {
   Col,
   Row,
 } from 'reactstrap';
-import PlansModal from './PlansModal'
 import { FirebaseContext } from "../Firebase/index.js";
 import './Navigation.css';
 
@@ -69,13 +67,10 @@ class Navigation extends Component {
                       </Button>
                     </Link>
                   </Col>
-                 
-                  <Col xs="4" style={{ paddingRight: "3rem" }}>
-                    <PlansModal />
-                  </Col>
 
                   <Col xs="4" style={{ margin: "0 auto", paddingLeft: "3rem" }}>
                     <Dropdown nav isOpen={this.state.isOpen} toggle={this.toggle}>
+                    
                       <DropdownToggle nav>
                         <i className="fas fa-bars fa-2x"></i>
                       </DropdownToggle>
@@ -135,7 +130,6 @@ class Navigation extends Component {
                 </Col>
               </Row>
             </Nav>
-
           </Col>
 
         </Navbar>
@@ -145,9 +139,5 @@ class Navigation extends Component {
     );
   }
 }
-
-// Navigation.proptypes = {
-//   updateSearch: PropTypes.func
-// }
 
 export default withRouter(Navigation);

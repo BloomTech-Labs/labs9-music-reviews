@@ -13,7 +13,7 @@ const cardStyle = {
   textAlign: 'left',
   border: 'none',
   textDecoration: "none",
-  border: "2px solid #eac67a",
+  border: "2px solid #984b43",
   background: "#233237",
   color: "#eac67a",
   margin: "1rem",

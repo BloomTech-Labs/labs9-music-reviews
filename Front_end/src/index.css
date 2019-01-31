@@ -4,7 +4,7 @@ code {
 }
 
 body {
-  background-image: url("./Images/TurntableBGBlur.jpg");
+  /* background-image: url("./Images/TurntableBGBlur.jpg"); */
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -12,6 +12,6 @@ body {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-color: #233237;
+  background-color: #FAF0E6;
   color: #eac67a;
 }
