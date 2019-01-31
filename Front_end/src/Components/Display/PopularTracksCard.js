@@ -8,7 +8,7 @@ const cardStyle = {
   textDecoration: 'none',
   textAlign: 'center',
   fontFamily:'Lato',
-  fontSize: "1rem",
+  fontSize: "1.1rem",
   fontWeight: "700"
 };
 
@@ -39,7 +39,15 @@ class PopularTracksCard extends Component {
                         <p style={ cardStyle }>{this.props.artist}</p>
                         </CardTitle>
                         <CardTitle>
-                        <p style={ cardStyle }>{this.props.track}</p>
+                        <p style={{ color:'#eac67a',
+                                textDecoration: 'none',
+                                textAlign: 'center',
+                                fontFamily:'Lato',
+                                fontSize: "1rem",
+                                fontWeight: "500" }}
+                        >
+                            {this.props.track}
+                        </p>
                         </CardTitle>
                     </CardBody>
                 </Card>

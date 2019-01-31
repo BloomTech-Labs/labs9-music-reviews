@@ -8,7 +8,6 @@ import { withCookies, Cookies } from "react-cookie";
 
 const cardStyle = {
   background: "#233237",
-  border: "2px solid #984b43",
   padding: "1rem",
 }
 

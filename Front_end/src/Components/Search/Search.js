@@ -17,7 +17,6 @@ const cardStyle = {
   height: '14rem',
   padding: '0.5rem 0',
   margin: '0.5rem auto',
-  border: '2px solid #984b43',
   alignItems: 'center',
   overflow: 'hidden',
   background: "#233237",
