@@ -1,11 +1,12 @@
 import React from 'react';
 import { FirebaseContext } from '../Firebase';
 import SettingsContent from './SettingsContent';
+import { withAuthorization } from '../../Components/Session';
 import styled from 'styled-components';
 
 const SettingsContainer = styled.div`
-  background-color: #f2f2f2;
   height: 100vh;
+  padding-top: 10rem
   div {
     text-align: center;
     p {
@@ -19,10 +20,13 @@ class SettingsPage extends React.Component {
     return (
       <SettingsContainer>
         <FirebaseContext.Consumer>
-          {(firebase) => <SettingsContent firebase={firebase} />}
+          {(firebase) => <SettingsContent firebase={firebase} subscriptionExpiration={this.props.subscriptionExpiration} />}
         </FirebaseContext.Consumer>
       </SettingsContainer>
     );
   }
 }
-export default SettingsPage;
+
+const condition = authUser => !!authUser
+export default withAuthorization(condition)(SettingsPage);
+//export default SettingsPage;

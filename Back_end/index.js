@@ -3,6 +3,7 @@ const cors = require('cors');
 const SERVER_CONFIGS = require('./constants/server');
 // const corsOptions = require('./server')
 var request = require('request');
+const axios = require('axios');
 require('dotenv').load();
 
 const app = express();
@@ -27,7 +28,7 @@ app.use('/trackReviews', trackReviewRoutes);
 app.use('/albumReviews', albumReviewRoutes);
 
 // user route
-app.use('/user', userRoutes);
+app.use('/users', userRoutes);
 
 // spotify routes
 app.use('/spotify', spotifyRoutes)
@@ -37,12 +38,18 @@ app.use('/likedAlbumReview', likedAlbumReviewRoutes);
 
 app.use('/likedTrackReview', likedTrackReviewRoutes);
 
-login = () => {
-  request.get('http://localhost:9000/spotify/login')
-}
+// axios.get("http://localhost:9000/spotify/login")
+//   .then( res => {
+//     console.log("access token", access_token)
+//     app.listen((process.env.PORT || 9000), error => {
+//       if (error) throw error;
+//       console.log(`Server running on port: ${SERVER_CONFIGS.PORT}`);
+//     });
+//   })
+//   .catch( err => console.log(err) )
 
 app.listen((process.env.PORT || 9000), error => {
   if (error) throw error;
   console.log(`Server running on port: ${SERVER_CONFIGS.PORT}`);
-  // login();
 });
+

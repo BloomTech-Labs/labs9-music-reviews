@@ -10,6 +10,7 @@ import {
   Input,
 } from 'reactstrap';
 import './ForgotPassword.css';
+
 class ForgotPasswordForm extends React.Component {
   constructor(props) {
     super(props);
@@ -31,12 +32,12 @@ class ForgotPasswordForm extends React.Component {
   };
   render() {
     return (
-      <Container>
-        <h2 className="mt-3 mb-3">Reset Password</h2>
-        <Form>
+      <Container fluid style={{ position: "relative", top: "10rem", color: "#984b43", fontFamily: "Lato" }}>
+        <h2 className="mt-3 mb-3" style={{ fontFamily: "Merriweather Sans", fontWeight: "650" }}>Reset Password</h2>
+        <Form style={{ background: "#233237", maxWidth: "600px", height: "250px", borderRadius: "1rem" }}>
           <Col>
             <FormGroup>
-              <Label className="mt-2">Email</Label>
+              <Label className="mt-2" style={{ fontSize: "1.5rem", color: "#eac67a", padding: "1rem", fontWeight: "650" }}>Email</Label>
               <Input
                 className="mb-3"
                 type="email"
@@ -46,16 +47,18 @@ class ForgotPasswordForm extends React.Component {
                 onChange={this.onChangeHandler}
               />
               <div className="reset-container" />
-              <Button
-                color="primary"
-                className="mr-3"
-                onClick={this.resetPassword}
-              >
-                Reset Password
-              </Button>
-              <span className="cancelReset" onClick={this.redirect}>
-                Cancel
-              </span>
+              <div style={{ textAlign: "center", padding: "1rem" }}>
+                <Button
+                  className="mr-3"
+                  style={{ background: "#eac67a", color: "#984b43", padding: "1rem 2rem", fontWeight: "650" }}
+                  onClick={this.resetPassword}
+                >
+                  Reset Password
+                </Button>
+                <span className="cancelReset" onClick={this.redirect} style={{ color: "#eac67a" }}>
+                  Cancel
+                </span>
+              </div>
             </FormGroup>
           </Col>
         </Form>

@@ -1,20 +1,11 @@
 import React, { Fragment } from "react";
 import axios from "axios";
 import { instanceOf } from "prop-types";
+import styled from "styled-components";
 import { withCookies, Cookies } from "react-cookie";
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ListGroup,
-  ListGroupItem,
-  Col,
-  Row
-} from "reactstrap";
+import { Button, Modal, ModalBody, Col, Row } from "reactstrap";
 import EditStars from "../StarsRating/EditStars";
-import { type } from "os";
+import "./modals.css";
 
 class TrackReviewCreateModal extends React.Component {
   static propTypes = {
@@ -25,7 +16,7 @@ class TrackReviewCreateModal extends React.Component {
     const { cookies } = props;
     this.state = {
       dateCreated: "",
-      rating: 0,
+      rating: 3,
       review: "",
       spotifyTrackID: "",
       userID: 1,
@@ -41,18 +32,23 @@ class TrackReviewCreateModal extends React.Component {
 
   componentDidMount() {
     this.setState({
-      spotifyTrackID: this.props.trackID,
+      spotifyTrackID: this.props.trackId,
       userID: this.props.userID
     });
   }
 
   addHandler = event => {
     // event.preventDefault();
-    this.dateStamp();
     axios
       .post(`https://labs9-car-reviews.herokuapp.com/trackReviews`, {
-        created_at: this.state.dateCreated,
-        updated_at: this.state.dateCreated,
+        dateCreated: new Date()
+          .toString()
+          .split("G", 1)[0]
+          .slice(3, 15),
+        dateModified: new Date()
+          .toString()
+          .split("G", 1)[0]
+          .slice(3, 15),
         rating: this.state.rating,
         review: this.state.review,
         spotifyTrackID: this.props.trackId,
@@ -93,106 +89,114 @@ class TrackReviewCreateModal extends React.Component {
       closeAll: true
     });
   }
-
-  dateStamp() {
-    let currentDate = new Date();
-    let date = currentDate.getDate();
-    let month = currentDate.getMonth();
-    let year = currentDate.getFullYear();
-    let dateString = month + 1 + "/" + date + "/" + year;
-    this.setState({ dateCreated: dateString }, () =>
-      console.log("Function Date", this.state.dateCreated)
-    );
-  }
-
   render() {
-      console.log(this.props.trackId)
+    console.log(this.props.trackId);
     return (
       <Fragment>
-        <Button color="danger" onClick={this.toggle}>
+        <Button
+          onClick={this.toggle}
+          style={{
+            color: "#984B43",
+            backgroundColor: "#EAC67A",
+            fontWeight: "650",
+            fontFamily: "Lato"
+          }}
+        >
           Create New Review
         </Button>
         <Modal
+          centered
           isOpen={this.state.modal}
           toggle={this.toggle}
           className={this.props.className}
           backdrop={true}
+          style={{
+            borderRadius: "10px",
+            fontFamily: "Lato"
+          }}
         >
           <Row className="d-flex justify-content-around">
             <Col className="container">
               <Row>
-                <Col className="container d-flex justify-content-center" style={{ }}>
-                  <img src={this.props.art} alt="Album cover art" style={{ margin: '15px 0', align: 'center'}}/>
+                <Col
+                  className="container d-flex justify-content-center"
+                  style={{}}
+                >
+                  <img
+                    src={this.props.art}
+                    alt="Album cover art"
+                    style={{
+                      margin: "15px 0",
+                      align: "center",
+                      maxWidth: "250px",
+                      maxHeight: "250px"
+                    }}
+                  />
                 </Col>
               </Row>
               <Row>
                 <ModalBody>
-                  <h2 style={{ margin: '0'}}>{this.props.track}</h2>
-                </ModalBody>
-              </Row>
-              <Row>
-                <ModalBody>
-                  <h4 style={{ textAlign:"center"}}>{this.props.artist} - {this.props.album}</h4>
+                  <h3
+                    style={{
+                      textAlign: "center",
+                      margin: "0",
+                      color: "#eac67a"
+                    }}
+                  >
+                    {this.props.track}
+                  </h3>
                 </ModalBody>
               </Row>
             </Col>
           </Row>
           <div className="container center-align" style={{ margin: "0 auto" }}>
-            <Row style={{ justifyContent: "center", margin: "15px 0" }}>
+            <div style={{ textAlign: "center" }}>Set Star Rating</div>
+            <Row style={{ justifyContent: "center", margin: "5px 0" }}>
               <EditStars
                 rating={this.state.rating}
                 updateRating={this.updateRating}
               />
             </Row>
             <div>
+              <div style={{ margin: "5px 0" }}>Write Review</div>
               <textarea
                 onChange={this.handleEditChange}
                 name="review"
                 value={this.state.review}
                 maxlength="1500"
-                style={{ resize: "none", width: "100%" }}
+                style={{ resize: "none", width: "100%", height: "150px" }}
               />
             </div>
           </div>
-          <ModalFooter>
-            <Button color="primary" onClick={this.toggleNested}>
-              Submit
-            </Button>
-            <Modal
-              isOpen={this.state.nestedModal}
-              toggle={this.toggleNested}
-              style={{
-                top: "50%"
-              }}
-              onClosed={this.state.closeAll ? this.toggle : undefined}
-            >
-              <ModalHeader>
-                Are you sure you want to SUBMIT this review?
-              </ModalHeader>
-              <ModalFooter>
-                <Button
-                  color="primary"
-                  onClick={event => {
-                    this.addHandler();
-                    this.toggleAll();
-                  }}
-                >
-                  Submit
-                </Button>
-                <Button color="secondary" onClick={this.toggleNested}>
-                  Cancel
-                </Button>
-              </ModalFooter>
-            </Modal>
+          <ModalBody
+            style={{ display: "flex", justifyContent: "space-evenly" }}
+          >
             <Button
-              color="secondary"
+              onClick={event => {
+                this.addHandler();
+                this.toggleAll();
+              }}
+              style={{
+                color: "#EAC67A",
+                backgroundColor: "#984B43",
+                fontWeight: "650"
+              }}
+            >
+              Save
+            </Button>
+            <Button
+              style={{
+                color: "#984B43",
+                backgroundColor: "#233237",
+                fontWeight: "650"
+              }}
               onClick={event => {
                 this.toggle();
               }}
             >
-              Close
+              Cancel
             </Button>
-          </ModalFooter>
+          </ModalBody>
         </Modal>
       </Fragment>
     );

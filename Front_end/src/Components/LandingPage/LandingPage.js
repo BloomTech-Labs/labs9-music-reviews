@@ -1,48 +1,53 @@
 import React from "react";
-import "./LandingPage.css";
-import { Input, Button } from "reactstrap";
+import { Container, Row } from "reactstrap";
+import { Link } from "react-router-dom";
 import Search from "../Search/Search";
+import styled from "styled-components";
+
+const Img = styled.img`
+  position: relative;
+  text-align: center;
+  margin: auto;
+  top: 8rem;
+  max-width: 375px;
+`;
 
 const LandingPage = () => {
   return (
-    <div className="landingpage">
-      <div align="center" style={{ margin: "50px 0", maxHeight: "350px" }}>
-        <img
-          src={require("../../Images/SongbirdLogo1.png")}
-          alt="Songbird logo"
-          width="75%"
-        />
-      </div>
-      <h2 style={{ color: "white", margin: "25px 0" }}>
+    <Container fluid style={{ margin: "0 auto", fontFamily: "Lato" }}>
+
+      <Row>
+        <Img className="img-fluid" src={require("../../Images/OTR Logo Letters.png")} alt="ON THE RECORD" />
+      </Row>
+
+      <h3 style={{ 
+          position: "relative",
+          padding: "10rem 0 2rem 0",
+          textAlign: "center",
+          color: "#984b43",
+        }}
+      >
         There are a million songs out there. <br />
-        Let your opinions on them take flight...
-      </h2>
-      <div align="center" style={{ margin: "15px auto" }}>
-        <a href="/login">
-          <Button color="secondary" size="lg">
-            Start Reading Reviews Now!
-          </Button>
-        </a>
-      </div>
-      <div>
-        <Search />
-        {/* <Input
-          type="search"
-          name="search"
-          id="search"
-          placeholder="Search music"
-          style={{
-            margin: "50px auto",
-            padding: "5px",
-            height: "30px",
-            maxWidth: "800px",
-            backgroundColor: "#495057",
-            color: "#fff",
-            width: "50%"
-          }}
-        /> */}
-      </div>
-    </div>
+        Let your opinions on them be On The Record
+      </h3>
+
+      <Row style={{ display: "flex", justifyContent: "center" }}>
+        <Link to="/signup" style={{ margin: "0 auto" }}>
+          <button style={{ 
+            margin: "0 auto",
+            padding: "1rem 2rem",
+            borderRadius: "0.5rem",
+            border: "none",
+            background: "#eac67a", color: "#984b43", fontWeight: "650", fontSize: "1.5rem" }}>
+            Start Your 60-day Free Trial Now!
+          </button>
+        </Link>
+      </Row>
+
+      <Row style={{ position: "relative", paddingTop: "2rem" }}>
+          <Search maxHeight={"30rem"}/>
+      </Row>
+    </Container>
   );
 };
 export default LandingPage;

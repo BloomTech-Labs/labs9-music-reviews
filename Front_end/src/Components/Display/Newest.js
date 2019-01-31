@@ -3,11 +3,9 @@ import axios from 'axios';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
 import NewReleaseCard from './NewReleaseCard';
-
-
+import { Container } from 'reactstrap';
 
 const url = 'https://api.spotify.com/v1/search?q=tag%3Anew&type=album';
-
 
 class Newest extends Component {
     static propTypes = {
@@ -35,31 +33,49 @@ componentDidMount() {
     }
 
     render() {
-        console.log(this.state.data)
+        function dateConverter(date) {
+            var msec = Date.parse(date);
+            var d = new Date(msec);
+            return d.toString().split("G",1)[0].slice(3,15);
+        }
         const renderData = this.state.data.map(album => {
-            return album.artists.map(artist => {
+            return album.artists.map((artist, index) => {
               return (
-                
                     <NewReleaseCard
-                        key = {album.id} 
+                        key = {index} 
                         album = {album.name}
                         artist = {artist.name}
-                        date = {album.release_date}
+                        date = {dateConverter(album.release_date)}
                         image = {album.images[0].url}
                         id = {album.id}
-                    
                     />
               )
         })
     })
 
         return (
-            <div className = 'container'>
-                <h1>Latest Releases</h1>
-                <div className="d-flex flex-row flex-nowrap align-items-center" style = {{overflow: 'auto', WebkitOverflowScrolling: 'touch'}} >
+            <Container md="3" xs="12" style={{
+                        overflow: "hidden",
+                        textAlign: "center",
+                        padding: "2rem 1rem 0 1rem",
+                        margin: "0 auto",
+                        fontFamily: "Lato"
+                    }}
+                >
+
+                <h1 style={{
+                        color: "#984b43",
+                        margin: "1rem auto 0 auto",
+                        fontFamily:'Merriweather Sans',
+                    }}
+                >
+                    Latest Releases
+                </h1>
+                <div className="d-flex flex-row flex-nowrap align-items-center" 
+                style = {{overflow: 'auto', WebkitOverflowScrolling: 'touch' }} >
                     {renderData}
                 </div>
-            </div>
+            </Container>
         );
     }
 }

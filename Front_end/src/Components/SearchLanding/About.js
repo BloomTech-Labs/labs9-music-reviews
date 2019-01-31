@@ -1,9 +1,8 @@
 import React from 'react'
-import { Footer } from 'react-materialize'
 
 const About = () => {
   return (
-    <Footer
+    <div
       className="blue"
       links={
         // copyrights="@copy 2015 Copyright Text"

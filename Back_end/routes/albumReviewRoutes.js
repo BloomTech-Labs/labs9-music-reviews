@@ -18,6 +18,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+
 // get review by ID
 router.get('/:albumReviewID', async (req, res) => {
   const { albumReviewID } = req.params;
@@ -28,6 +29,19 @@ router.get('/:albumReviewID', async (req, res) => {
     res.status(500).json({
       message: 'failed to retrieve review with the specific Review ID.',
     });
+  }
+});
+
+// get all album reviews written by a single user
+router.get('/:userID', async (req, res) => {
+  const { userID } = req.params;
+  try {
+    const myReviews = await dbReviews.retrieveByUserId(userID);
+    res.status(200).json(myReviews);
+  } catch (err) {
+    res.status(500).json({
+      message: 'failed to retrieve album reviews with the specific User ID.'
+    })
   }
 });
 

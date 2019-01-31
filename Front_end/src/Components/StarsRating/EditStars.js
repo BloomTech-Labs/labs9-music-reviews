@@ -26,6 +26,8 @@ class Stars extends Component {
       <Ratings
         rating={this.state.rating}
         widgetRatedColors="orange"
+        widgetDimensions="30px"
+        widgetSpacings="2px"
         changeRating={this.changeRating}
         style={{ margin: '0 auto' }}
       >

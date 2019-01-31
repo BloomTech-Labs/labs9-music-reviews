@@ -1,24 +1,14 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
-import { Container, Row, Col, CardImg } from "reactstrap";
+import { Card, CardBody, Row, Col, CardImg, CardTitle, CardSubtitle } from "reactstrap";
 import AlbumReviewCreateModal from "../CardModals/AlbumReviewCreateModal";
-import AlbumReviewCard from "./AlbumReviewCard";
+import ReviewCard from "./ReviewCard";
 import axios from "axios";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
-
-const Sidebar = styled.div`
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  height: 100%;
-  padding-top: 80px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+import { withAuthorization } from "../Session";
+import './reviews.css'
 
 class AlbumReviewsPage extends Component {
   static propTypes = {
@@ -34,7 +24,9 @@ class AlbumReviewsPage extends Component {
       artistId: "",
       art: "",
       tracks: [],
-      reviews: []
+      reviews: [],
+      width: "",
+      albumReview: true
     };
     this.getAlbum = this.getAlbum.bind(this);
   }
@@ -44,15 +36,19 @@ class AlbumReviewsPage extends Component {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(res => {
-        this.setState({
-          data: res.data,
-          album: res.data.name,
-          albumId: res.data.id,
-          artist: res.data.artists[0]["name"],
-          artistId: res.data.artists[0]["id"],
-          art: res.data.images[1].url,
-          tracks: res.data.tracks.items
-        }, console.log(res.data));
+        this.setState(
+          {
+            data: res.data,
+            album: res.data.name,
+            albumId: res.data.id,
+            artist: res.data.artists[0]["name"],
+            artistId: res.data.artists[0]["id"],
+            art: res.data.images[1].url,
+            tracks: res.data.tracks.items,
+            width: res.data.images[1].height
+          },
+          console.log(res.data)
+        );
       })
       .catch(err => console.log(err));
   };
@@ -71,96 +67,120 @@ class AlbumReviewsPage extends Component {
   }
 
   componentDidMount() {
-    this.getAlbum(this.props.match.params.id, this.props.cookies.get("access_token"));
+    this.getAlbum(
+      this.props.match.params.id,
+      this.props.cookies.get("access_token")
+    );
     this.getAlbumReviews();
   }
   render() {
     const albumReviews = this.state.reviews.filter(review => {
       return review.spotifyAlbumID === this.props.match.params.id;
     });
+    const albumReviewsFilteredbyUserID = albumReviews.filter(album => {
+      return album.userID === this.props.userID;
+    });
+
     return (
-      <Fragment>
-        <Container
-          fluid={true}
-          style={{ display: "flex", margin: "0 auto", maxWidth: "1600px" }}
-        >
-          <Col xs="12" md="4">
-            <Sidebar>
-              <Row style={{ alignSelf: "center" }}>
-                <h3>{this.state.album}</h3>
-              </Row>
-              <Link to={`/artists/${this.state.artistId}`}>
-                <Row style={{ alignSelf: "center" }}>
-                  <h5>{this.state.artist}</h5>
-                </Row>
-              </Link>
+        <Row style={{position: 'relative', top: '10rem', marginBottom: '50px'}}>
+            <Col md={5} id='left' className='scrollbox scrollbox-content'>
+             
               {/* can add logic to render different size of album art based on screen size: stacked ternary */}
               {/* need to find a way to manipulate the img object from res.data */}
-              <CardImg src={this.state.art} alt="Album Art" />
+              {/* COVER ART */}
+              <Card body className="text-center" style={{background: 'transparent', border: 'none', alignItems: 'center', textDecoration: 'none', textShadow: "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43" }}>
 
-              {/* Spotify Player */}
-              <iframe src={`https://open.spotify.com/embed/album/${this.state.albumId}`}
-              width="380" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media">
-              </iframe>
-
-            <Row
-              style={{
-                display: "flex",
-                justifyContent: "space-evenly",
-                padding: "1rem"
-              }}
-            >
-              {/* Write Review Button Modal */}
-              <AlbumReviewCreateModal
-                {...this.props}
-                album={this.state.album}
-                artist={this.state.artist}
-                art={this.state.art}
-                tracks={this.state.tracks}
-                userID={this.props.userID}
+              <CardImg
+                src={this.state.art}
+                alt="Album Art"
+                style={{maxWidth: '400px', width: '100%'}}
               />
-            </Row>
-            <Row>
-              <Col>
-                <h5 style={{ padding: "1rem" }}>Tracklist</h5>
-                {this.state.tracks.map(track => {
-                  return (
-                    <Link to={`/tracks/${track.id}`}>
-                      <Row
-                        className="align-items-center" 
-                        style={{ display: "flex", justifyContent: "space-between" }}
-                      >
-                        <Col xs="1">
-                          <h6>{track.track_number}</h6>
-                        </Col>
-                        <Col xs="10`">
-                          <ul className="align-items-center" style={{ fontSize: "0.8rem", alignItems: "center" }} key={track.id}>
-                            {track.name}
-                          </ul>
-                        </Col>
-                        <Col xs="1">
-                          <p className="align-items-center" style={{ color: "red", fontWeight: "800" }}>
-                            {track.explicit === true ? "E" : " "}
-                          </p>
-                        </Col>
-                      </Row>
-                    </Link>
-                  );
-                })}
-              </Col>
-            </Row>
-          </Sidebar>
-          
-          <Container fluid={true} style={{ maxWidth: "1150px" }}>
-            {albumReviews.map(review => (
-              <AlbumReviewCard review={review}/>
-            ))}
-          </Container>
-          </Col>
-        </Container>
-      </Fragment>
+             
+              {/* Spotify Player */}
+                <iframe
+                  src={`https://open.spotify.com/embed/album/${
+                    this.state.albumId
+                  }`}
+                  allowtransparency="true"
+                  allow="encrypted-media"
+                  style={{ maxWidth: '400px', width: '100%', height: '80px', border: 'none'}}
+                  class="d-block mx-auto"
+                />
+                </Card>
+              <Row className='mb-3' style={{justifyContent: 'center'}}>
+                {/* Write Review Button Modal */}
+                {albumReviewsFilteredbyUserID.length === 0 ? (
+                  <AlbumReviewCreateModal
+                    {...this.props}
+                    album={this.state.album}
+                    artist={this.state.artist}
+                    art={this.state.art}
+                    tracks={this.state.tracks}
+                    userID={this.props.userID}
+                  />
+                ) : null}
+              </Row>
+              {/* end of Create  */}
+              <Row style={{justifyContent: 'center'}}>
+              <Link className='link' to={`/artists/${this.state.artistId}`}>
+                  <h5>See all albums by: {this.state.artist} </h5>
+              </Link>
+              </Row>
+                  <Col
+                    style={{
+                      flexDirection: "column",
+                      justifyContent: "space-evenly",
+                      padding: "1rem",
+                    }}
+                  >
+                    {this.state.tracks.map(track => {
+                      return (
+                        <Link
+                          to={`/tracks/${track.id}`}
+                          className='link'
+                        >
+                          <Row >
+                            <Col xs="3" style={{textAlign: 'right'}}>
+                              <h6>{track.track_number}.</h6>
+                            </Col>
+                            <Col xs="9">
+                              <ul
+                                style={{
+                                  fontSize: "0.8rem",
+                                  alignItems: "center"
+                                }}
+                                key={track.id}
+                              >
+                                {track.name}
+                              </ul>
+                            </Col>
+                          </Row>
+                        </Link>
+                      );
+                    })}
+                  </Col>
+                </Col>
+            <Col  md={{size: 7, offset: 5}} >
+                {albumReviews.length === 0 ? (
+                  <Row style={{ display: "flex", justifyContent: "center", color: "#984B43", fontFamily: "Merriweather Sans"}}>
+                    <h3>Be the first to write a review for this album!</h3>
+                  </Row>
+                ) : (
+                  albumReviews.map(review => (
+                    <ReviewCard
+                      review={review}
+                      userID={this.props.userID}
+                      albumReview={this.state.albumReview}
+                    />
+                  ))
+                )}
+            </Col>
+      </Row>
     );
   }
 }
 
-export default withCookies(AlbumReviewsPage);
+const condition = authUser => !!authUser;
+export default withAuthorization(condition)(withCookies(AlbumReviewsPage));
+
+//export default withCookies(AlbumReviewsPage);

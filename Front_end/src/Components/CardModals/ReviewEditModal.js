@@ -1,16 +1,8 @@
 import React, { Fragment } from "react";
 import axios from "axios";
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalFooter,
-  ListGroup,
-  ListGroupItem,
-  Col,
-  Row
-} from "reactstrap";
+import { Button, Modal, ModalBody, Col, Row } from "reactstrap";
 import EditStars from "../StarsRating/EditStars";
+import "./modals.css";
 
 class ReviewEditModal extends React.Component {
   constructor(props) {
@@ -49,7 +41,10 @@ class ReviewEditModal extends React.Component {
         {
           review: this.state.review,
           rating: this.state.rating,
-          updated_at: this.state.dateModified
+          dateModified: new Date()
+            .toString()
+            .split("G", 1)[0]
+            .slice(3, 15)
         }
       )
       .then(res => {
@@ -117,69 +112,60 @@ class ReviewEditModal extends React.Component {
   }
 
   render() {
-    console.log(this.props.tracks);
     return (
       <Fragment>
-        <Button color="danger" onClick={this.toggle}>
+        <Button
+          onClick={this.toggle}
+          style={{
+            margin: "8px 0",
+            color: "#984B43",
+            backgroundColor: "#EAC67A",
+            fontWeight: "650"
+          }}
+        >
           Edit
         </Button>
         <Modal
+          centered
           isOpen={this.state.modal}
           toggle={this.toggle}
           className={this.props.className}
           backdrop={true}
+          style={{
+            fontFamily: "Lato",
+            color: "#eac67a"
+          }}
         >
           <Row class="d-flex justify-content-around">
             <Col class="container">
               <Col>
-                <div>
-                  {/* Edit Modal Album and Artist Headers */}
-                  <ModalHeader>Album: {this.props.album}</ModalHeader>
-                  <ModalHeader>Artist: {this.props.artist}</ModalHeader>
+                {/* Edit Modal Album Header */}
+                <div style={{ padding: "0 15%" }}>
+                  <ModalBody
+                    style={{
+                      textAlign: "center",
+                      color: "#eac67a"
+                    }}
+                  >
+                    <h5>Album: {this.props.album}</h5>
+                  </ModalBody>
                 </div>
               </Col>
               <Col class="container">
                 {/* Edit Modal Album Art */}
                 <div>
-                  <img src={this.props.art} alt="Album cover art" />
+                  <img
+                    src={this.props.art}
+                    alt="Album cover art"
+                    className="img-fluid mx-auto d-block"
+                  />
                 </div>
               </Col>
-              <div>
-                {/* Edit Modal Track List */}
-                <Row>
-                  <Col>
-                    <h5 style={{ padding: "1rem" }}>Tracklist</h5>
-                    {this.props.tracks.map(track => {
-                      return (
-                        <Row
-                          style={{
-                            display: "flex",
-                            justifyContent: "space-between"
-                          }}
-                        >
-                          <Col xs="1">
-                            <h6>{track.track_number}</h6>
-                          </Col>
-                          <Col xs="9">
-                            <ul style={{ fontSize: "0.8rem" }} key={track.id}>
-                              {track.name}
-                            </ul>
-                          </Col>
-                          <Col xs="2">
-                            <span style={{ color: "red", fontWeight: "800" }}>
-                              {track.explicit === true ? "E" : " "}
-                            </span>
-                          </Col>
-                        </Row>
-                      );
-                    })}
-                  </Col>
-                </Row>
-              </div>
             </Col>
           </Row>
-          <div class="container center-align" style={{ margin: "0 auto" }}>
-            <Row style={{ margin: "0 auto" }}>
+          <div class="container center-align" style={{ margin: "10px auto" }}>
+            <div style={{ textAlign: "center" }}>Set Star Rating</div>
+            <Row style={{ justifyContent: "center", margin: "0 auto" }}>
               {/* Editable Star Rating  */}
               <EditStars
                 rating={this.props.review.rating}
@@ -187,47 +173,44 @@ class ReviewEditModal extends React.Component {
               />
             </Row>
             <div>
+              <div style={{ margin: "5px 0" }}>Write Review</div>
               <textarea
                 onChange={this.handleEditChange}
                 name="review"
                 value={this.state.review}
                 maxlength="1500"
-                style={{ resize: "none", width: "100%" }}
+                style={{
+                  resize: "none",
+                  width: "100%",
+                  height: "150px"
+                }}
               />
             </div>
           </div>
-          <ModalFooter>
-            <Button color="primary" onClick={this.toggleEditNested}>
-              Submit
-            </Button>
-            {/* Edit Submit Confirmation Nested Modal */}
-            <Modal
-              isOpen={this.state.editNestedModal}
-              toggle={this.toggleEditNested}
+          <ModalBody
+            style={{ display: "flex", justifyContent: "space-evenly" }}
+          >
+            <Button
               style={{
-                top: "50%"
+                color: "#984B43",
+                backgroundColor: "#EAC67A",
+                fontWeight: "650"
               }}
-              onClosed={this.state.closeAll ? this.toggle : undefined}
+              onClick={event => {
+                this.editHandler();
+                this.dateStamp();
+              }}
             >
-              <ModalHeader>
-                Are you sure you want to SUBMIT this review?
-              </ModalHeader>
-              <ModalFooter>
-                <Button
-                  color="primary"
-                  onClick={event => {
-                    this.editHandler();
-                    this.dateStamp();
-                  }}
-                >
-                  Submit
-                </Button>
-                <Button color="secondary" onClick={this.toggleNested}>
-                  Cancel
-                </Button>
-              </ModalFooter>
-            </Modal>
-            <Button color="primary" onClick={this.toggleDelNested}>
+              Save
+            </Button>
+            <Button
+              style={{
+                color: "#EAC67A",
+                backgroundColor: "#984B43",
+                fontWeight: "650"
+              }}
+              onClick={this.toggleDelNested}
+            >
               Delete
             </Button>
             {/* Delete Confirmation Nested Modal */}
@@ -239,13 +222,23 @@ class ReviewEditModal extends React.Component {
               }}
               onClosed={this.state.closeAll ? this.toggle : undefined}
             >
-              <ModalHeader>
+              <ModalBody
+                style={{
+                  color: "#eac67a"
+                }}
+              >
                 Are you sure you want to DELETE this review?
-              </ModalHeader>
-              <ModalFooter>
+              </ModalBody>
+              <ModalBody
+                style={{ display: "flex", justifyContent: "space-between" }}
+              >
                 {/* Delete Review Button */}
                 <Button
-                  color="primary"
+                  style={{
+                    color: "#EAC67A",
+                    backgroundColor: "#984B43",
+                    fontWeight: "650"
+                  }}
                   onClick={event => {
                     this.deleteHandler(this.props.review.albumReviewID);
                     this.toggleAll();
@@ -253,15 +246,29 @@ class ReviewEditModal extends React.Component {
                 >
                   Delete
                 </Button>
-                <Button color="secondary" onClick={this.toggleNested}>
+                <Button
+                  style={{
+                    color: "#984B43",
+                    backgroundColor: "#233237",
+                    fontWeight: "650"
+                  }}
+                  onClick={this.toggleDelNested}
+                >
                   Cancel
                 </Button>
-              </ModalFooter>
+              </ModalBody>
             </Modal>
-            <Button color="secondary" onClick={this.toggle}>
-              Close
+            <Button
+              style={{
+                color: "#984B43",
+                backgroundColor: "#233237",
+                fontWeight: "650"
+              }}
+              onClick={this.toggle}
+            >
+              Cancel
             </Button>
-          </ModalFooter>
+          </ModalBody>
         </Modal>
       </Fragment>
     );

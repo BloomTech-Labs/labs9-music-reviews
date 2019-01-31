@@ -7,8 +7,13 @@ import {
   Row,
   Col,
   ListGroup,
-  ListGroupItem
 } from "reactstrap";
+import styled from 'styled-components';
+
+const Ul = styled.ul`
+  margin: 0.5rem;
+  padding: 0 1rem;
+`
 
 class SubInfoModal extends React.Component {
   constructor(props) {
@@ -34,56 +39,54 @@ class SubInfoModal extends React.Component {
           color="info"
           onClick={this.toggle}
           style={{
-            maxWidth: "100px",
-            maxHeight: "20px",
-            fontSize: "11px",
-            padding: "0 5px",
-            margin: "15px"
+            maxWidth: "10rem",
+            maxHeight: "5rem",
+            fontSize: "1rem",
+            fontWeight: "700",
+            border: "none",
+            padding: "1rem",
+            margin: "2rem",
+            background: "#eac67a",
+            color: "#984b43"
           }}
         >
           Subscription Info
         </Button>
         <Modal
+          centered
           isOpen={this.state.modal}
           toggle={this.toggle}
           className={this.props.className}
+          style={{ maxWidth: "600px" }}
         >
           <Row>
-            <Col>
-              <ModalBody><h3>1 Year Subscription</h3></ModalBody>
+            <Col xs="6">
+              <ModalBody style={{ textAlign: "center" }}><h3>Free User</h3></ModalBody>
               <ModalBody>
                 <ListGroup>
-                  <ListGroupItem>Thing 1</ListGroupItem>
-                  <ListGroupItem>Thing 2</ListGroupItem>
-                  <ListGroupItem>Thing 3</ListGroupItem>
-                  <ListGroupItem>Thing 4</ListGroupItem>
-                  <ListGroupItem>Thing 5</ListGroupItem>
-                  <ListGroupItem>Thing 6</ListGroupItem>
-                  <ListGroupItem>Thing 7</ListGroupItem>
-                  <ListGroupItem>Thing 8</ListGroupItem>
+                  <Ul><i class="fas fa-check" style={{ padding: "0 1rem" }}></i>Read Reviews</Ul>
+                  <Ul><i class="fas fa-check" style={{ padding: "0 1rem" }}></i>Search Music</Ul>
+                  <Ul><i class="fas fa-check" style={{ padding: "0 1rem" }}></i>Play Music Snippet</Ul>
+                  <Ul><i class="fas fa-times" style={{ padding: "0 1rem" }}></i>Write Reviews</Ul>
+                  <Ul><i class="fas fa-times" style={{ padding: "0 1rem" }}></i>Like Reviews</Ul>
                 </ListGroup>
               </ModalBody>
-              <ModalBody><h3>$9.99 /mo</h3></ModalBody>
             </Col>
-            <Col>
-              <ModalBody><h3>1 Month Subscription</h3></ModalBody>
+            <Col xs="6">
+              <ModalBody style={{ textAlign: "center" }}><h3>Subscriber</h3></ModalBody>
               <ModalBody>
                 <ListGroup>
-                  <ListGroupItem>Thing 1</ListGroupItem>
-                  <ListGroupItem>Thing 2</ListGroupItem>
-                  <ListGroupItem>Thing 3</ListGroupItem>
-                  <ListGroupItem>Thing 4</ListGroupItem>
-                  <ListGroupItem>Thing 5</ListGroupItem>
-                  <ListGroupItem>Thing 6</ListGroupItem>
-                  <ListGroupItem>Thing 7</ListGroupItem>
-                  <ListGroupItem>Thing 8</ListGroupItem>
+                  <Ul><i class="fas fa-check" style={{ padding: "0 1rem" }}></i>Read Reviews</Ul>
+                  <Ul><i class="fas fa-check" style={{ padding: "0 1rem" }}></i>Search Music</Ul>
+                  <Ul><i class="fas fa-check" style={{ padding: "0 1rem" }}></i>Play Music Snippet</Ul>
+                  <Ul><i class="fas fa-check" style={{ padding: "0 1rem" }}></i>Write Reviews</Ul>
+                  <Ul><i class="fas fa-check" style={{ padding: "0 1rem" }}></i>Like Reviews</Ul>
                 </ListGroup>
               </ModalBody>
-              <ModalBody><h3>$0.99 /mo</h3></ModalBody>
             </Col>
           </Row>
 
-          <ModalFooter>
+          <ModalFooter style={{ border: "1px solid #233237" }}>
             <Button color="secondary" onClick={this.toggle}>
               Close
             </Button>

@@ -1,19 +1,26 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { Row, Col, Container, CardImg, Button } from "reactstrap";
-import ProfileReviewCard from "./ProfileReviewCard";
+import { Row, Col, Container, CardImg } from "reactstrap";
+import AlbumProfileReviewCard from "./AlbumProfileReviewCard";
+import TrackProfileReviewCard from "./TrackProfileReviewCard";
 
 const Sidebar = styled.div`
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
+  position: fixed;
+  margin-top: 15px;
+  left: 10%;
+  height: 350px;
   z-index: 1;
-  height: 100%;
-  padding-top: 80px;
   display: flex;
   flex-direction: column;
-  align-items: "center";
+  align-items: center;
+  justify-content: center;
+  background-color: #233237;
+  border-radius: 10px;
+  @media (max-width: 768px) {
+    position: relative;
+    left: 0;
+  }
 `;
 
 class UserReviewList extends Component {
@@ -25,16 +32,18 @@ class UserReviewList extends Component {
       input: "",
       loggedIn: false,
       userID: 0,
-      username: ""
+      nickname: ""
     };
   }
 
   componentDidMount() {
-    this.getAlbumReviews();
-    this.setState({ 
-      loggedIn: this.props.loggedIn,
-      userID: this.props.userID
+    this.setState({
+      userID: this.props.userID,
+      loggedIn: this.props.loggedIn
     });
+    this.getAlbumReviews();
+    this.getTrackReviews();
+    this.getNickname(this.props.match.params.id);
   }
 
   getAlbumReviews() {
@@ -43,7 +52,7 @@ class UserReviewList extends Component {
       .then(response => {
         const userAlbumReviews = response.data;
         const newState = Object.assign({}, this.state, {
-          reviews: userAlbumReviews
+          albumReviews: userAlbumReviews
         });
         this.setState(newState);
       })
@@ -56,7 +65,20 @@ class UserReviewList extends Component {
       .then(response => {
         const userTrackReviews = response.data;
         const newState = Object.assign({}, this.state, {
-          reviews: userTrackReviews
+          trackReviews: userTrackReviews
+        });
+        this.setState(newState);
+      })
+      .catch(err => console.log(err));
+  }
+
+  getNickname(userID) {
+    axios
+      .get(`https://labs9-car-reviews.herokuapp.com/users/${userID}/nickname`)
+      .then(response => {
+        const userNickname = response.data[0].nickname;
+        const newState = Object.assign({}, this.state, {
+          nickname: userNickname
         });
         this.setState(newState);
       })
@@ -68,74 +90,86 @@ class UserReviewList extends Component {
   };
 
   render() {
-    console.log(this.props.match.params)
     const userAlbumReviews = this.state.albumReviews.filter(review => {
-      return (
-        review.userID.indexOf(this.props.match.params.id)
-      );
+      return review.userID === parseInt(this.props.match.params.id);
     });
     const userTrackReviews = this.state.trackReviews.filter(review => {
-      return (
-        review.userID.indexOf(this.props.match.params.id)
-      );
+      return review.userID === parseInt(this.props.match.params.id);
     });
+    console.log(this.props.match.params.id);
+    console.log(this.state.nickname);
     return (
       <Fragment>
-          <Container
-            fluid={true}
-            style={{
-              display: "flex",
-              justifyItems: "space-around",
-              margin: "0 auto",
-              maxWidth: "1600px"
-            }}
-          >
+        <Container
+          fluid={true}
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyItems: "space-around",
+            margin: "0 auto",
+            paddingTop: "10rem", 
+            fontFamily: "Lato",
+            color: "#984B43"
+          }}
+        >
+          <Col xs="12" md="4">
             <Sidebar>
-              <CardImg
-                src={require("../../Images/RecordThumb.png")}
-                alt="Default profile image"
-                style={{ maxWidth: "200px" }}
-              />
-              <Row style={{ alignSelf: "center" }}>
-                <h3>Username</h3>
+              <Row>
+                <CardImg
+                  src={require("../../Images/defaultUser.png")}
+                  alt="Default profile image"
+                  style={{
+                    maxWidth: "250px",
+                    maxHeight: "250px",
+                    padding: "2rem",
+                    margin: "0 auto"
+                  }}
+                />
               </Row>
-              <Row style={{ alignSelf: "center" }}>
-                <h5>Status</h5>
-              </Row>
-              <Row style={{ alignSelf: "center" }}>
-                <h5>Reviews: {(this.state.albumReviews.length) + (this.state.trackReviews.length)}</h5>
-              </Row>
-              {/* can add logic to render different size of album art based on screen size: stacked ternary */}
-              {/* need to find a way to manipulate the img object from res.data */}
 
-              <Row
-                style={{
-                  display: "flex",
-                  justifyContent: "space-evenly",
-                  padding: "1rem"
-                }}
-              >
-              </Row>
+              <div style={{ alignSelf: "center" }}>
+                <h3 style={{ fontFamily: 'Merriweather Sans, sans-serif'}}>
+                  <strong>{this.state.nickname}</strong>
+                </h3>
+              </div>
+              {/* <div style={{ alignSelf: "center" }}>
+                <h5>Status</h5>
+              </div> */}
+              <div style={{ alignSelf: "center", color: "#EAC67A" }}>
+                <h5>
+                  Reviews: {userAlbumReviews.length + userTrackReviews.length}
+                </h5>
+              </div>
             </Sidebar>
-          </Container>
-          <Container fluid={true} style={{ maxWidth: "1150px" }}>
-            {userAlbumReviews.map(review => (
-              <ProfileReviewCard
-                review={review}
-                loggedIn={this.state.loggedIn}
-                userID={this.props.userID}
-                key={review.id}
-              />
-            ))}
-            {userTrackReviews.map(review => (
-              <ProfileReviewCard
-                review={review}
-                loggedIn={this.state.loggedIn}
-                userID={this.props.userID}
-                key={review.id}
-              />
-            ))}
-          </Container>
+          </Col>
+          {userAlbumReviews.length + userTrackReviews.length === 0 ? 
+          <Col xs="12" md="8" style={{ fontFamily: "Merriweather Sans", margin: "20px 0"}}>
+            <h3>You have no reviews. Please go write some reviews!</h3>
+          </Col>
+          :
+          <Col xs="12" md="8">
+          {userAlbumReviews.map(review => (
+            <AlbumProfileReviewCard
+              review={review}
+              loggedIn={this.props.loggedIn}
+              userID={this.props.userID}
+              key={review.id}
+              nickname={this.props.nickname}
+            />
+          ))}
+          {userTrackReviews.map(review => (
+            <TrackProfileReviewCard
+              review={review}
+              loggedIn={this.props.loggedIn}
+              userID={this.props.userID}
+              key={review.id}
+              nickname={this.props.nickname}
+            />
+          ))}
+        </Col>
+        }
+          
+        </Container>
       </Fragment>
     );
   }

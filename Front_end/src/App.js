@@ -17,10 +17,12 @@ import { Container } from "reactstrap";
 import axios from "axios";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
-import Search from "./Components/Search/Search";
-//import './App.css';
+import SearchResults from "./Components/Search/SearchResults";
+import { withAuthentication } from './Components/Session'
+import * as ROUTES from './constants/routes/routes';
 
-let refreshTime = 29*60*1000; // 29 mins
+
+let refreshTime = 15*60*1000; // 15 mins
 
 class App extends Component {
   static propTypes = {
@@ -41,12 +43,10 @@ class App extends Component {
     }
     this.getToken = this.getToken.bind(this);
     this.refreshToken = this.refreshToken.bind(this);
-    this.login = this.login.bind(this);
-    this.signout = this.signout.bind(this);
   }
   getUser = (email) => {
     axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}user/get/${email}`)
+      .get(`${process.env.REACT_APP_BACKEND_URL}users/get/${email}`)
       .then((res) => {
         this.setState({
           userID: res.data.userID,
@@ -57,25 +57,28 @@ class App extends Component {
           nickname: res.data.nickname,
           loaded: true,
           loading: false,
+          loggedIn: true,
         });
       })
+      
       .catch((err) => this.setState({ loaded: false, loading: false }, console.log(err)));
   }
-  // checkToken = () => {
-  //   if (!this.props.cookies("access_token")){
-
-  //   }
-
-  // }
   getToken = () => {
     axios
       .get(process.env.REACT_APP_TOKEN_URL)
-      .then(res =>
-        this.props.cookies.set("access_token", res.data.access_token)
-      )
+      .then(res => {
+        if ( typeof this.props.cookies.get("access_token") == undefined ){
+          this.props.cookies.remove("access_token")
+          console.log("token removed")
+          this.getToken();
+        } else {
+          this.props.cookies.set("access_token", res.data.access_token)
+        }
+      })
       .catch(err => console.log(err));
   };
   refreshToken = () => {
+    this.props.cookies.remove("access_token");
     axios.get(process.env.REACT_APP_REFRESH_TOKEN_URL)
       .then( res => {
         this.props.cookies.set('access_token', res.data.access_token)
@@ -83,11 +86,13 @@ class App extends Component {
       })
       .catch( err => console.log(err) )
   }
-  login = () => {
-      this.setState({ loggedIn: true })
-  }
-  signout = () => {
-      this.setState({ loggedIn: false })
+  changeLoginState = (boolean) => {
+    localStorage.setItem("loggedIn", boolean);
+    this.setState({ loggedIn: Boolean(boolean) }, () => {
+      if (this.state.loggedIn === false){
+        window.location.href="https://labs9carreviews.netlify.com/"
+      }
+    })
   }
   componentDidMount(){
     this.setState({ loading: true }, () => {
@@ -105,49 +110,62 @@ class App extends Component {
         }
       })
     });
-    console.log(this.state.userID)
     this.getToken();
     setInterval(this.refreshToken, refreshTime);
   }
   render() {
     return (
-      <Container fluid style={{ padding: "0" }}>
-        <Navigation loggedIn={this.state.loggedIn} signout={this.signout} userID={this.state.userID}/>
+      <Container fluid>
+        <Navigation
+          loggedIn={this.state.loggedIn}
+          signout={() => this.changeLoginState(false)}
+          userID={this.state.userID}
+        />
         <Route exact path="/" component={LandingPage} />
         <Route path="/home" component={HomePage} />
         <Route path="/search_landing" component={SearchLanding} />
-        {/* <Route path="/user/reviews" component={UserReviewList} /> */}
-        <Route path="/user/billing" component={Billing} />
-        <Route path="/user/settings" component={SettingsPage} />
-        <Route path="/signup" component={SignUpPage} />
+        <Route path="/user/billing" render={(props) => ( 
+          <Billing {...props} userID={this.state.userID} 
+                              subscriptionExpiration={this.state.subscriptionExpiration} 
+                              nickname={this.state.nickname}
+                              tier={this.state.subscriptionExpiration !== null? "Subscriber" : "Free User"}
+          /> )} 
+        />
+        <Route path="/user/settings" render={(props) => 
+        <SettingsPage {...props} subscriptionExpiration={this.state.subscriptionExpiration} /> }
+        />
+        <Route path="/signup" render={(props) =>
+          <SignUpPage {...props} changeLogInState={() => this.changeLoginState(true)} /> }
+        />
         <Route path="/login" render={(props) => 
-          <LogInPage {...props} changeLogInState={this.login} /> }
+          <LogInPage {...props} changeLogInState={() => this.changeLoginState(true)} /> }
         />
         <Route path="/forgot_password" component={ForgotPasswordPage} />
-        <Route path="/search" component={Search} />
+        <Route path="/search"  render={(props) => 
+          <SearchResults {...props} loggedIn={this.state.loggedIn} /> }/>
         <Route
           path="/albums/:id"
           render={props => (
-            <AlbumReviewsPage {...props} userID={this.state.userID}/>
+            <AlbumReviewsPage {...props} userID={this.state.userID} nickname={this.state.nickname}/>
           )}
         />
         <Route
           path="/tracks/:id"
           render={props => (
-            <TrackReviewsPage {...props} userID={this.state.userID}/>
+            <TrackReviewsPage {...props} userID={this.state.userID} nickname={this.state.nickname}/>
             // id="75IN3CtuZwTHTnZvYM4qnJ"
           )}
         />
         <Route
           path="/artists/:id"
           render={props => (
-            <ArtistPage {...props}/>
+            <ArtistPage {...props} userID={this.state.userID}/>
           )}
         />
         <Route
           path="/user/reviews/:id"
           render={props => (
-            <UserReviewList {...props} loggedIn={this.state.loggedIn} userID={this.state.userID}/>
+            <UserReviewList {...props} loggedIn={this.state.loggedIn} userID={this.state.userID} nickname={this.state.nickname}/>
           )}
         />
       </Container>
@@ -155,4 +173,4 @@ class App extends Component {
   }
 }
 
-export default withCookies(App);
+export default withAuthentication(withCookies(App));

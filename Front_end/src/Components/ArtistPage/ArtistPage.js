@@ -1,10 +1,15 @@
-import React, { Component, Fragment } from "react";
-import { Row, Col, ListGroup, ListGroupItem } from "reactstrap";
+import React, { Component } from "react";
+import { Row, Col, ListGroup, Container, Card } from "reactstrap";
 import AlbumCard from "./AlbumCard";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
+
+const cardStyle = {
+  background: "#233237",
+  padding: "1rem",
+}
 
 class ArtistPage extends Component {
   static propTypes = {
@@ -60,47 +65,76 @@ class ArtistPage extends Component {
   }
 
   render() {
-    console.log(this.state.genres);
+    function dateConverter(date) {
+      var msec = Date.parse(date);
+      var d = new Date(msec);
+      return d.toString().split("G",1)[0].slice(3,15);
+    }
+    // Album Data
     const renderData = this.state.albums.map(album => {
       return (
-        <NavLink to={`/albums/${album.id}`} style={{ textDecoration: 'none', color: "black" }}>
+        <NavLink to={`/albums/${album.id}`} style={{ textDecoration: 'none', color: "black", margin: "0 auto" }}>
           <AlbumCard
             key={album.id}
             total_tracks={album.total_tracks}
             image={album.images[1].url}
             album={album.name}
-            release_date={album.release_date}
+            release_date={dateConverter(album.release_date)}
           />
         </NavLink>
       );
     });
 
     return (
-      <div className="container">
-        <Row>
-          <Col xs="4">
-            <h1>{this.state.artist}</h1>
-            <Row>
-              <Col align="right">
-                <h4>Genre:</h4>
-              </Col>
+      <Container fluid style={{ fontFamily: "Lato", margin: "0 auto", maxWidth: "1600px" }}>
+        <Row style={{ 
+              display: "flex",
+              justifyContent: "space-around",
+              position: "relative",
+              top: "12rem",
+              margin: "0 auto",
+              maxWidth: "800px",
+            }}
+          >
+          <Col xs="12" md="6" style={{ maxWidth: "320px", margin: "1rem" }}>
+            <Card style={ cardStyle }>
+              <h1 style={{ fontFamily: "Merriweather Sans", padding: "1rem" }}>
+                {this.state.artist}
+              </h1>
+                <h6 style={{ paddingLeft: "1rem", fontWeight: "700" }}>Genre(s):</h6>
+      
               <Col>
-                <ListGroup>
-                  {this.state.genres.map(genre => {
-                    return <ListGroupItem>{genre}</ListGroupItem>;
+                <ListGroup style={{ fontFamily: "Lato" }}>
+                  {this.state.genres.map((genre, index) => {
+                    return `${ (index ? ', ' : '') + genre }`;
                   })}
                 </ListGroup>
               </Col>
-            </Row>
+            </Card>
           </Col>
-          <Col xs="6">
-            <img src={this.state.art} alt="Art of the artist" align="center"  style={{ maxWidth: '500px', maxHeight: "500px" }}/>
-          </Col>
-        </Row>
-        <h1>Albums</h1>
 
-        <Row>{renderData}</Row>
-      </div>
+          <Col xs="12" md="6" style={{ display: "flex", margin: "0 auto" }}>
+            <img src={this.state.art} alt="Art of the artist"
+              style={{ maxWidth: '325px', maxHeight: "325px", border: "2px solid #984b43", margin: "0 auto" }}
+            />
+          </Col>
+
+        </Row>
+                  
+        <Row>
+          <h1 style={{ 
+              position: "relative",
+              color: "#984b43",
+              top: "12rem",
+              fontFamily: "Merriweather Sans",
+              margin: "0 auto",
+            }}
+          >
+            Albums
+          </h1>
+          <Row style={{ position: "relative", top: "12rem", maxHeight: "40rem", overflowY: "scroll" }}>{renderData}</Row>
+        </Row>
+      </Container>
     );
   }
 }

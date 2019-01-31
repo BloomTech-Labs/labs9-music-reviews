@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-// import { Icon } from 'react-materialize';
 
 const SignOutAnchor = styled.a`
   cursor: pointer;
-  color: #007bff !important;
+  color: #984B43 !important;
 `;
 
 const SignOut = (props) => (
@@ -12,7 +11,6 @@ const SignOut = (props) => (
     props.firebase.doSignOut()
     props.signout()
   }}>
-    {/* <Icon>cancel</Icon> */}
     Sign Out
   </SignOutAnchor>
 );

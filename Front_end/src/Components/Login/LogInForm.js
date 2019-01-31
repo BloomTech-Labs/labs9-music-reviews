@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  Container,
-  Col,
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-} from 'reactstrap';
+import {Container,Col, Button, Form, FormGroup, Label,  Input,  Card,  Row } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
 import { FirebaseContext } from '../Firebase';
 import LogInWithGoogle from './LogInWithGoogle';
@@ -32,7 +24,7 @@ class LogInForm extends React.Component {
         .doSignInWithEmailAndPassword(this.state.email, this.state.password)
         .then((authUser) => {
           this.props.changeLogInState();
-          this.props.history.push('/');
+          window.location.href="https://labs9carreviews.netlify.com/home"
         })
         .catch((error) => {
           this.setState({ error });
@@ -47,56 +39,71 @@ class LogInForm extends React.Component {
   };
   render() {
     return (
-      <Container>
-        <h2 className="mt-3 mb-3">Log In</h2>
-        <Form>
-          <FirebaseContext.Consumer>
-            {(firebase) => <LogInWithGoogle firebase={firebase} changeLogInState={this.props.changeLogInState} />}
-          </FirebaseContext.Consumer>
-          <Col>
-            <FormGroup>
-              <Label>Email</Label>
-              <Input
-                type="email"
-                name="email"
-                value={this.state.email}
-                onChange={this.onChangeHandler}
-                placeholder="Email Address"
-              />
-            </FormGroup>
-          </Col>
-          <Col>
-            <FormGroup>
-              <Label>Password</Label>
-              <Input
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.onChangeHandler}
-                placeholder="Password"
-              />
-            </FormGroup>
-          </Col>
-          <div className="regLogin mb-3">
-            <Button
-              color="primary"
-              className="mr-3"
-              onClick={this.onSubmitHandler}
-            >
-              Sign In
-            </Button>
-            <span
-              className="forgotPassword"
-              onClick={() => this.props.history.push('/forgot_password')}
-            >
-              Forgot account?
-            </span>
-          </div>
-          <Button color="primary" className="mb-3 mr-3" onClick={this.redirect}>
-            Don't have an account?
-          </Button>
-        </Form>
-      </Container>
+      <Container fluid style={{ position: "relative", top: "10rem" }}>
+        <Row className='justify-content-center'>
+          <Col xl={6} lg={6} md={6} sm={6}>
+          <h2 style ={{ color: "#984B43", fontFamily:'merriweather sans'}}>Log In</h2>
+                <Form className = 'pt-5 pb-5 align-items-center' style={{ border: "2px solid #eac67a", borderRadius: '1rem', backgroundColor: 'rgba(35, 50, 55, 1)' }}>
+                  <FirebaseContext.Consumer>
+                    {(firebase) => <LogInWithGoogle firebase={firebase} changeLogInState={this.props.changeLogInState} />}
+                  </FirebaseContext.Consumer>
+                  <Col sm={10}>
+                    <FormGroup>
+                      <Label>Email</Label>
+                      <Input
+                        // style = {{backgroundColor: '#eac67a', color: '#984b43'}}
+                        type="email"
+                        name="email"
+                        value={this.state.email}
+                        onChange={this.onChangeHandler}
+                        placeholder="Email Address"
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col sm={10}>
+                    <FormGroup >
+                      <Label>Password</Label>
+                      <Input
+                        // style = {{backgroundColor: '#eac67a', color: '#984b43'}}
+                        type="password"
+                        name="password"
+                        value={this.state.password}
+                        onChange={this.onChangeHandler}
+                        placeholder="Password"
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Row >
+                    <Col style={{ display: 'flex', flexDirection : 'column', alignItems:'center'}}>
+                      <Button
+                        style={{backgroundColor: '#eac67a', color: '#984b43', fontWeight: '650', margin:'10px'}}
+                        onClick={this.onSubmitHandler}>
+                        Log In 
+                      </Button>
+                      <Row>
+                        <Button 
+                          color= 'link'
+                          style = {{color: '#eac67a', fontWeight: '200'}}
+                          onClick={() => this.props.history.push('/signup')}
+                        >
+                          Don't have an account?
+                        </Button>
+                      </Row>
+                    </Col>
+                  </Row>
+                    <Row>
+                    <Button 
+                      color= 'link'
+                      style = {{color: '#eac67a', fontWeight: '200'}}
+                      onClick={() => this.props.history.push('/forgot_password')}
+                    >
+                      Forgot Password?
+                    </Button>
+                  </Row>
+                </Form>
+            </Col>
+          </Row>
+        </Container>
     );
   }
 }
