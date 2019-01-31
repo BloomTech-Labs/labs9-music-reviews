@@ -15,7 +15,6 @@ import {
   Row,
 } from 'reactstrap';
 import { Icon } from 'react-materialize';
-import PlansModal from './PlansModal'
 import { FirebaseContext } from "../Firebase/index.js";
 import './Navigation.css';
 
@@ -70,13 +69,10 @@ class Navigation extends Component {
                       </Button>
                     </Link>
                   </Col>
-                 
-                  {/* <Col xs="4" style={{ paddingRight: "3rem" }}>
-                    <PlansModal />
-                  </Col> */}
 
                   <Col xs="4" style={{ margin: "0 auto", paddingLeft: "3rem" }}>
                     <Dropdown nav isOpen={this.state.isOpen} toggle={this.toggle}>
+                    
                       <DropdownToggle nav>
                         <Icon large>menu</Icon>
                       </DropdownToggle>
@@ -126,7 +122,6 @@ class Navigation extends Component {
                 </Col>
               </Row>
             </Nav>
-
           </Col>
 
         </Navbar>
@@ -136,9 +131,5 @@ class Navigation extends Component {
     );
   }
 }
-
-// Navigation.proptypes = {
-//   updateSearch: PropTypes.func
-// }
 
 export default withRouter(Navigation);

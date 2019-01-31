@@ -36,7 +36,6 @@ componentDidMount() {
         const renderData = this.state.data.map(album => {
             return album.artists.map((artist, index) => {
               return (
-                
                     <NewReleaseCard
                         key = {index} 
                         album = {album.name}
@@ -44,7 +43,6 @@ componentDidMount() {
                         date = {album.release_date}
                         image = {album.images[0].url}
                         id = {album.id}
-                    
                     />
               )
         })
@@ -60,20 +58,19 @@ componentDidMount() {
                         fontFamily: "Lato"
                     }}
                 >
-                <Card style={{ background: "rgba(35, 55, 50, 0)" }}>
-                    <h1 style={{
-                            marginBottom:'-0.5rem',
-                            lineHeight: '2.2',
-                            textShadow: "-1px -1px 0 #984b43, 1px -1px 0 #984b43,-1px 1px 0 #984b43, 1px 1px 0 #984b43"
-                        }}
-                    >
-                        Latest Releases
-                    </h1>
-                    <div className="d-flex flex-row flex-nowrap align-items-center" 
-                    style = {{overflow: 'auto', WebkitOverflowScrolling: 'touch' }} >
-                        {renderData}
-                    </div>
-                </Card>
+
+                <h1 style={{
+                        marginBottom:'-0.5rem',
+                        lineHeight: '2.2',
+                        color: "#984b43"
+                    }}
+                >
+                    Latest Releases
+                </h1>
+                <div className="d-flex flex-row flex-nowrap align-items-center" 
+                style = {{overflow: 'auto', WebkitOverflowScrolling: 'touch' }} >
+                    {renderData}
+                </div>
             </Container>
         );
     }

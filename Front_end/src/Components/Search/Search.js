@@ -8,6 +8,7 @@ import { instanceOf } from 'prop-types';
 import './Search.css';
 
 const H3 = styled.h3`
+  font-family: Merriweather Sans,
   color: #984b43;
 `
 const backgroundStyle = {
@@ -25,18 +26,13 @@ const cardStyle = {
   height: '14rem',
   padding: '0.5rem 0',
   margin: '0.5rem auto',
-  border: '2px solid #eac67a',
+  border: '2px solid #984b43',
   alignItems: 'center',
   overflow: 'hidden',
   background: "#233237",
   textDecoration: "none",
   color: "#eac67a"
 };
-
-const header = {
-  fontFamily: "Merriweather Sans",
-  textShadow: "-1px -1px 0 #984b43, 1px -1px 0 #984b43,-1px 1px 0 #984b43, 1px 1px 0 #984b43"
-}
 
 const API_URL = 'https://api.spotify.com/v1/search';
 
@@ -121,8 +117,7 @@ class Search extends Component {
       >
       {/* albums */}
       <Row>
-        <Col md="4" xs="12" style={{ overflow: "hidden", textAlign: "center", padding: "2rem 1rem 0 1rem" }}>
-          {/* <Row  className="d-flex flex-column flex-wrap align-items-center"  */}        
+        <Col md="4" xs="12" style={{ overflow: "hidden", textAlign: "center", padding: "2rem 1rem 0 1rem" }}>      
           <H3>Albums</H3>
           <Container style={ backgroundStyle }>
           {this.state.albums.map(album => {
@@ -146,7 +141,6 @@ class Search extends Component {
         {/* artists */}
         <Col md="4" xs="12" style={{ overflow: "hidden", textAlign: "center", padding: "2rem 1rem 0 1rem" }}>
           <H3>Artists</H3>
-          {/* <Row  className="d-flex flex-column flex-wrap align-items-center"  */}
           <Container style={ backgroundStyle }>
             {this.state.artists.map(artist => {
                   return  artist.images.length === 0 ? null : 
@@ -184,18 +178,6 @@ class Search extends Component {
             
                         </Card>
                     </Col>
-
-                     {/*
-                      <Col xs="12" style={{ verticalAlign: "middle" }}>
-                          <Row>
-                            <CardImg src= {!track.album.images[0] ? image : track.album.images[0].url} alt = {track.name} style = {{ borderRadius: '50%', width: '7rem', padding: "0" }}
-                            />  
-                          </Row>
-                          <Row>{track.name}</Row>
-                          <Row>{track.album.name}</Row>
-                         
-                   
-                         */}
       
                   </NavLink>
               })
