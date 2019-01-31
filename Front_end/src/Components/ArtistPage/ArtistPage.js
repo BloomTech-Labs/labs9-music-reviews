@@ -66,6 +66,11 @@ class ArtistPage extends Component {
   }
 
   render() {
+    function dateConverter(date) {
+      var msec = Date.parse(date);
+      var d = new Date(msec);
+      return d.toString().split("G",1)[0].slice(3,15);
+    }
     // Album Data
     const renderData = this.state.albums.map(album => {
       return (
@@ -75,7 +80,7 @@ class ArtistPage extends Component {
             total_tracks={album.total_tracks}
             image={album.images[1].url}
             album={album.name}
-            release_date={album.release_date}
+            release_date={dateConverter(album.release_date)}
           />
         </NavLink>
       );
@@ -97,7 +102,7 @@ class ArtistPage extends Component {
               <h1 style={{ fontFamily: "Merriweather Sans", padding: "1rem" }}>
                 {this.state.artist}
               </h1>
-                <h6 style={{ paddingLeft: "1rem" }}>Genre(s):</h6>
+                <h6 style={{ paddingLeft: "1rem", fontWeight: "700" }}>Genre(s):</h6>
       
               <Col>
                 <ListGroup style={{ fontFamily: "Lato" }}>

@@ -5,6 +5,7 @@ import {
   CardBody,
   CardTitle,
   CardSubtitle,
+  CardText,
   Col
 } from "reactstrap";
 
@@ -32,9 +33,24 @@ class AlbumCard extends Component {
             alt={this.props.alt}
           />
           <CardBody>
-            <CardTitle>Album: <br />{this.props.album}</CardTitle>
-            <CardSubtitle>Tracks: {this.props.total_tracks}</CardSubtitle><br />
-            <CardSubtitle>Date: {this.props.release_date}</CardSubtitle>
+            <CardTitle style={{ fontWeight: "650" }}>
+              Album:
+            </CardTitle>
+            <CardText>
+              {this.props.album}
+            </CardText>
+            <CardSubtitle style={{ fontWeight: "650" }}>
+              Tracks:
+            </CardSubtitle>
+              <CardText>
+                {this.props.total_tracks}
+            </CardText>  
+            <CardSubtitle style={{ fontWeight: "650" }}>
+              Date Released:
+            </CardSubtitle>
+              <CardText>
+                {this.props.release_date}
+              </CardText>  
           </CardBody>
         </Card>
       </Col>

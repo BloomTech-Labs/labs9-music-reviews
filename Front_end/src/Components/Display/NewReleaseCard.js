@@ -44,7 +44,7 @@ class NewReleaseCard extends Component {
                   <p style={ cardStyle }>{this.props.artist}</p>
                 </CardTitle>
                 <CardTitle>
-                  <H5 xs="3" md="4">Release Date:</H5>
+                  <H5 xs="3" md="4">Date Released:</H5>
                   <p style={ cardStyle }>{this.props.date}</p>
                 </CardTitle>
               </CardBody>
