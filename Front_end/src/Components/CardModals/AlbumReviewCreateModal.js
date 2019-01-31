@@ -109,7 +109,6 @@ class AlbumReviewCreateModal extends React.Component {
     return (
       <Fragment>
         <Button
-        className='but'
           onClick={this.toggle}
           style={{
             color: "#984B43",
