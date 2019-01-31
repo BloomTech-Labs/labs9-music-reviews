@@ -2,9 +2,6 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { Button, Col } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { fagoogle } from '@fortawesome/free-solid-svg-icons'
-
 
 class LogInWithGoogle extends React.Component {
   constructor(props) {

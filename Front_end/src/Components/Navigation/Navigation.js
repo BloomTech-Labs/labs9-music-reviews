@@ -76,17 +76,10 @@ class Navigation extends Component {
                     <Dropdown nav isOpen={this.state.isOpen} toggle={this.toggle}>
                     
                       <DropdownToggle nav>
-<<<<<<< HEAD
-                        <p>Menu</p>
-                      </DropdownToggle>
-
-                      <DropdownMenu right style={{ background: "#eac67a", color: "#984b43" }}>
-=======
-                        {/* <Icon large>menu</Icon> */}
+                        <i className="fas fa-bars fa-2x"></i>
                       </DropdownToggle>
 
                       <DropdownMenu right style={{ background: "#eac67a", color: "#a0006c" , border: '5px red solid'}}>
->>>>>>> d5d7343d57ac2295930d679c5e3cfc4da9c45663
                         {this.props.loggedIn === true ? (
                           
                           <Fragment>
