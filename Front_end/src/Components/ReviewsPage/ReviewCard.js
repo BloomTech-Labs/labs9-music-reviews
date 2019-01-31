@@ -92,7 +92,7 @@ class AlbumReviewCard extends Component {
                     <ViewStars rating={this.props.review.rating} style={{width: "100%"}}/>
                   </Col>
                   <Col sm="12" md="6">
-                    <p style={{ margin: "auto" }}>Date Created: {this.props.review.dateCreated}</p>
+                    <p style={{ margin: "auto" }}>Written: {this.props.review.dateCreated}</p>
                   </Col>
                 </Row>
                 <Row>

@@ -84,8 +84,6 @@ class TrackProfileReviewCard extends Component {
                 style={{
                   textDecoration: "none",
                   color: "#EAC67A",
-                  maxWidth: "150px",
-                  maxHeight: "150px"
                 }}
               >
                 <img
@@ -141,11 +139,9 @@ class TrackProfileReviewCard extends Component {
               >
                 <ViewStars rating={this.props.review.rating} />
                 <p style={{ padding: "0 20px", color: "#EAC67A" }}>
-                  Date Created: {this.props.review.dateCreated}
+                  Written: {this.props.review.dateCreated}
                 </p>
-                <p style={{ padding: "0 20px", color: "#EAC67A" }}>
-                  Updated On: {this.props.review.dateModified}
-                </p>
+                {this.props.review.dateCreated != this.props.review.dateModified ? <i>(edited)</i> : null}
               </Row>
               <Row>
                 <div align="left">
