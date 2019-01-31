@@ -1,4 +1,3 @@
-
 import React, { Component, Fragment } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import SignOut from '../Signout/SignOut';
@@ -14,7 +13,6 @@ import {
   Col,
   Row,
 } from 'reactstrap';
-import { Icon } from 'react-materialize';
 import { FirebaseContext } from "../Firebase/index.js";
 import './Navigation.css';
 
@@ -74,7 +72,7 @@ class Navigation extends Component {
                     <Dropdown nav isOpen={this.state.isOpen} toggle={this.toggle}>
                     
                       <DropdownToggle nav>
-                        <Icon large>menu</Icon>
+                        <p>Menu</p>
                       </DropdownToggle>
 
                       <DropdownMenu right style={{ background: "#eac67a", color: "#984b43" }}>
