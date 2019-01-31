@@ -89,14 +89,7 @@ class AlbumReviewsPage extends Component {
               {/* need to find a way to manipulate the img object from res.data */}
               {/* COVER ART */}
               <Card body className="text-center" style={{background: 'transparent', border: 'none', alignItems: 'center', textDecoration: 'none', textShadow: "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43" }}>
-              {/* <CardBody>
-                <CardTitle><h3>Album: {this.state.album}</h3></CardTitle>
-                <CardSubtitle>
-                <Link  style={{  color: '#eac67a', textDecoration: 'none', textShadow: "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43" }} to={`/artists/${this.state.artistId}`}>
-                <h5>Artist: {this.state.artist}</h5>
-                </Link>
-                </CardSubtitle>
-              </CardBody> */}
+
               <CardImg
                 src={this.state.art}
                 alt="Album Art"

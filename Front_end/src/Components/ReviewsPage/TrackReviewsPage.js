@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
-import { Container, Row, Col, CardImg } from "reactstrap";
+import { Row, Col, CardImg, Card } from "reactstrap";
 import TrackReviewCreateModal from "../CardModals/TrackReviewCreateModal";
 import ReviewCard from "./ReviewCard";
 import axios from "axios";
@@ -8,24 +8,6 @@ import { Link } from "react-router-dom";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
 import { withAuthorization } from '../Session';
-
-// const Sidebar = styled.div`
-//   position: -webkit-sticky;
-//   position: sticky;
-//   top: 0;
-//   z-index: 1;
-//   height: 100%;
-//   padding-top: 80px;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: middle;
-// `;
-const Iframe = styled.iframe`
-  width: 103%;
-  height: 80px;
-  frameborder: 0;
-  align: middle;
-`
 
 class TrackReviewsPage extends Component {
   static propTypes = {
@@ -112,131 +94,100 @@ class TrackReviewsPage extends Component {
     const trackReviews = this.state.reviews.filter(review => {
       return review.spotifyTrackID === this.props.match.params.id;
     });
-    // console.log(trackReviews)
+    console.log(trackReviews, "Line 97")
     const trackReviewFilteredbyUserID = trackReviews.filter(track => {
       return track.userID = this.props.userID
     })
+
     return (
-      <Fragment>
-        <Container
-          fluid
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            margin: "0 auto",
-            maxWidth: "1600px",
-            position: "relative",
-            top: "6rem"  
-          }}
-        >
-          <Row>
-            <Col xs="12" md="4" style={{ position: "relative", top: "7rem", margin: "0 auto", paddingBottom: "3rem" }}>
-              <Link to={`/albums/${this.state.albumId}`}>
-                <Row style={{ margin: "auto" }}>
-                  <h3>{this.state.album}</h3>
-                </Row>
-              </Link>
-              <Link to={`/artists/${this.state.artistId}`}>
-                <Row style={{ margin: "auto" }}>
-                  <h5>{this.state.artist}</h5>
-                </Row>
-              </Link>
-              {/* can add logic to render different size of album art based on screen size: stacked ternary */}
-              {/* need to find a way to manipulate the img object from res.data */}
-              <Link to={`/albums/${this.state.albumId}`}>
-                <CardImg src={this.state.art} alt="Album Art" style={{ maxWidth: "400px" }}/>
-              </Link>
-
-              {/* Spotify Player */}
-              <Iframe src={`https://open.spotify.com/embed/track/${this.state.trackId}`}
-                allowtransparency="true" allow="encrypted-media" style={{ maxWidth: "400px" }}
+      <Row style={{position: 'relative', top: '10rem', marginBottom: '50px'}}>
+          <Col md={5} id='left' className='scrollbox scrollbox-content'>
+           
+            {/* can add logic to render different size of album art based on screen size: stacked ternary */}
+            {/* need to find a way to manipulate the img object from res.data */}
+            {/* COVER ART */}
+            <Card body className="text-center" style={{background: 'transparent', border: 'none', alignItems: 'center', textDecoration: 'none', textShadow: "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43" }}>
+           <Link style={{maxWidth: '400px', width: '100%'}} to={`/albums/${this.state.albumId}`}>
+            <CardImg
+              src={this.state.art}
+              alt="Album Art"
+              style={{maxWidth: '400px', width: '100%'}}
+            />
+            </Link>
+            {/* Spotify Player */}
+              <iframe
+                src={`https://open.spotify.com/embed/track/${
+                  this.state.trackId
+                }`}
+                allowtransparency="true"
+                allow="encrypted-media"
+                style={{ maxWidth: '400px', width: '100%', height: '80px', border: 'none'}}
+                class="d-block mx-auto"
               />
-
-              <Row
-                style={{
-                  display: "flex",
-                  justifyContent: "space-evenly",
-                  padding: "1rem"
-                }}
-              >
-                {/* Write Review Button Modal */}
-                {trackReviewFilteredbyUserID.length === 0 ?
-                  <TrackReviewCreateModal
-                    {...this.props}
-                    album={this.state.album}
-                    artist={this.state.artist}
-                    art={this.state.art}
-                    track={this.state.track}
-                    trackId={this.state.trackId}
-                    userID={this.props.userID}
-                  />
-                  : null}
-              </Row>
-              <Row>
-                <Col>
-                  <h5 style={{ padding: "0.8rem" }}>Tracklist</h5>
+              </Card>
+            <Row className='mb-3' style={{justifyContent: 'center'}}>
+              {/* Write Review Button Modal */}
+              {trackReviewFilteredbyUserID.length === 0 ? (
+                <TrackReviewCreateModal
+                  {...this.props}
+                  album={this.state.album}
+                  artist={this.state.artist}
+                  art={this.state.art}
+                  tracks={this.state.trackId}
+                  userID={this.props.userID}
+                />
+              ) : null}
+            </Row>
+            {/* end of Create  */}
+            <Row style={{justifyContent: 'center'}}>
+            <Link className='link' to={`/artists/${this.state.artistId}`}>
+                <h5>See all albums by: {this.state.artist} </h5>
+            </Link>
+            </Row>
+                <Col
+                  style={{
+                    flexDirection: "column",
+                    justifyContent: "space-evenly",
+                    padding: "1rem",
+                  }}
+                >
                   {this.state.tracks.map(track => {
                     return (
                       <Link
                         to={`/tracks/${track.id}`}
                         onClick={() => this.redirectTo(track.id, track.name)}
+                        className='link'
                       >
-                        <Row
-                          className="align-items-center"
-                          style={
-                            track.id === this.state.trackId
-                              ? {
-                                display: "flex",
-                                justifyContent: "space-between",
-                                border: "3px solid #984B43",
-                                alignItems: "center",
-                                borderRadius: "5px"
-                              }
-                              : {
-                                display: "flex",
-                                justifyContent: "space-between"
-                              }
-                          }
-                        >
-                          <Col xs="1">
-                            <h6>{track.track_number}</h6>
+                        <Row >
+                          <Col xs="3" style={{textAlign: 'right'}}>
+                            <h6>{track.track_number}.</h6>
                           </Col>
-                          <Col xs="10`">
-                            <ul
-                              className="align-items-center"
-                              style={{
-                                fontSize: "0.8rem",
-                                alignItems: "center"
-                              }}
-                              key={track.id}
-                            >
-                              {track.name}
-                            </ul>
+                          <Col xs="9">
+                            <h6 key={track.id}>{track.name} {track.id === this.state.trackId  ?  <i style={{marginLeft: '1rem', color: 'black'}} class="fas fa-compact-disc"></i>  : null}</h6>
                           </Col>
                         </Row>
                       </Link>
                     );
                   })}
                 </Col>
-              </Row>
-            </Col>
+              </Col>
+          <Col  md={{size: 7, offset: 5}} >
+              {trackReviews.length === 0 ? (
+                <Row style={{ display: "flex", justifyContent: "center", textShadow: "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"}}>
+                  <h3>Be the first to write a review for this track!</h3>
+                </Row>
+              ) : (
+                trackReviews.map(review => (
+                  <ReviewCard
+                    review={review}
+                    trackReview={this.state.trackReview}
+                  />
+                ))
+              )}
+          </Col>
+    </Row>
+  );
 
-            <Col xs="12" md="8">
-              <Container>
-                <Container fluid={true} style={{ maxWidth: "1150px", position: "relative", top: "5rem" }}>
-                  {trackReviews.length === 0 ? 
-                    <Row><h3>Be the first to write a review for this track!</h3></Row> :
-                    trackReviews.map(review => (
-                      <ReviewCard review={review} trackReview={this.state.trackReview}/>
-                    ))
-                  }
-                </Container>
-              </Container>
-            </Col>
-          </Row>
-        </Container>
-      </Fragment>
-    );
   }
 }
 

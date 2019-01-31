@@ -40,7 +40,7 @@ class TrackReviewCreateModal extends React.Component {
 
   componentDidMount() {
     this.setState({
-      spotifyTrackID: this.props.trackID,
+      spotifyTrackID: this.props.trackId,
       userID: this.props.userID
     });
   }

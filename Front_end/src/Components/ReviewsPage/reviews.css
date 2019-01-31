@@ -60,7 +60,9 @@
 
 .link:active {
   color:  #984B43;
+  text-decoration: underline;
 }
+
 
 .link:visited {
   color:  #984B43;
