@@ -45,18 +45,13 @@ class Billing extends Component {
     this.setState({[e.target.name]: e.target.value})
   }
   addDays = (days) => {
-    let result;
-    if (this.props.subscriptionExpiration == null){
-      result = new Date();
-    } else {
-      result = this.props.subscriptionExpiration;
-    }
+    let result = new Date(this.props.subscriptionExpiration.toString().split("G", 1)[0].slice(3, 15));
     result.setDate(result.getDate() + days);
     return result;
   }
   changeSubscriptionStatus = () => {
     let subscriptionLength = this.state.subType === 'year' ? 366 : 31;
-    let expirationDate = this.addDays(subscriptionLength);
+    let expirationDate = this.addDays(subscriptionLength).toString().split('G',1)[0];
     axios.put(`https://labs9-car-reviews.herokuapp.com/users/${this.props.userID}`, {   
       paidMembership: true,      
       subscriptionExpiration: expirationDate

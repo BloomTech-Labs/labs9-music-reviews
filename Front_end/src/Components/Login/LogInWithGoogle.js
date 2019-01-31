@@ -21,16 +21,14 @@ class LogInWithGoogle extends React.Component {
                   .post(`${process.env.REACT_APP_BACKEND_URL}users/create`, {
                     token: userIdToken,
                   })
-                  .then( res => {
-                    this.props.changeLogInState();
-                    window.location.href="https://labs9carreviews.netlify.com/home";
-                  })
+                  .then((res) => console.log(res))
                   .catch((err) => console.log(err));
-              })
-              .catch((err) => console.log(err));
-          }
-        });
-
+                })
+                .catch((err) => console.log(err));
+            }
+          });
+          this.props.changeLogInState();
+          this.props.history.push('/home');
       })
       .catch((error) => {
         this.setState({ error });
