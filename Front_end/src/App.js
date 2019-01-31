@@ -131,7 +131,9 @@ class App extends Component {
                               tier={this.state.subscriptionExpiration !== null? "Subscriber" : "Free User"}
           /> )} 
         />
-        <Route path="/user/settings" component={SettingsPage} />
+        <Route path="/user/settings" render={(props) => 
+        <SettingsPage {...props} subscriptionExpiration={this.state.subscriptionExpiration} /> }
+        />
         <Route path="/signup" render={(props) =>
           <SignUpPage {...props} changeLogInState={() => this.changeLoginState(true)} /> }
         />

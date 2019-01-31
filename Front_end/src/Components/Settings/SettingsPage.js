@@ -20,7 +20,7 @@ class SettingsPage extends React.Component {
     return (
       <SettingsContainer>
         <FirebaseContext.Consumer>
-          {(firebase) => <SettingsContent firebase={firebase} />}
+          {(firebase) => <SettingsContent firebase={firebase} subscriptionExpiration={this.props.subscriptionExpiration} />}
         </FirebaseContext.Consumer>
       </SettingsContainer>
     );
