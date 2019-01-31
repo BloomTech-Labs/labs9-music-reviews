@@ -86,8 +86,9 @@ class AlbumReviewCard extends Component {
                   <Col md="auto" className='mb-3'>
                     <ViewStars rating={this.props.review.rating}/>
                   </Col>
-                  <Col md="12">
-                    <p>Created at: {this.props.review.dateCreated}</p>
+                  <Col sm="12" md="6">
+                    <p style={{ margin: "auto" }}>Written: {this.props.review.dateCreated}</p>
+
                   </Col>
                 </Row>
                 <Row>
