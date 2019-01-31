@@ -42,7 +42,7 @@ class LogInForm extends React.Component {
       <Container fluid style={{ position: "relative", top: "10rem" }}>
         <Row className='justify-content-center'>
           <Col xl={6} lg={6} md={6} sm={6}>
-          <h2 style ={{ color: "#eac67a"}}>Log In</h2>
+          <h2 style ={{ color: "#984B43", fontFamily:'merriweather sans'}}>Log In</h2>
                 <Form className = 'pt-5 pb-5 align-items-center' style={{ border: "2px solid #eac67a", borderRadius: '1rem', backgroundColor: 'rgba(35, 50, 55, 1)' }}>
                   <FirebaseContext.Consumer>
                     {(firebase) => <LogInWithGoogle firebase={firebase} changeLogInState={this.props.changeLogInState} />}
@@ -76,7 +76,7 @@ class LogInForm extends React.Component {
                   <Row >
                     <Col style={{ display: 'flex', flexDirection : 'column', alignItems:'center'}}>
                       <Button
-                        style={{backgroundColor: '#eac67a', color: '#984b43', fontWeight: '650'}}
+                        style={{backgroundColor: '#eac67a', color: '#984b43', fontWeight: '650', margin:'10px'}}
                         onClick={this.onSubmitHandler}>
                         Log In 
                       </Button>

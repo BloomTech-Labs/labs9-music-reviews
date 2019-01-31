@@ -83,7 +83,7 @@ class SignUpForm extends React.Component {
       <Container fluid style={{ position: "relative", top: "10rem" }}>
       <Row className='justify-content-center'>
       <Col xl={6} lg={6} md={6} sm={6}>
-        <h2 style ={{ color: "#eac67a"}}>Sign Up</h2>
+        <h2 style ={{ color: "#984B43", fontFamily:'merriweather sans'}}>Sign Up</h2>
         <Form className = 'pt-5 pb-5 align-items-center' style={{ border: "2px solid #eac67a", borderRadius: '1rem', backgroundColor: 'rgba(35, 50, 55, 1)' }}>
           <Col sm={10}>
             <FormGroup>
@@ -124,20 +124,20 @@ class SignUpForm extends React.Component {
               />
             </FormGroup>
           </Col>
-          <div className="btn-container">
+          <div className="btn-container" style={{display: 'flex', flexDirection:'column', alignItem: 'center', margin:'10px'}}>
             <Button
               onClick={this.onSubmitHandler}
               style={{backgroundColor: '#eac67a', color: '#984b43', fontWeight: '650'}}
             >
               Sign Up
             </Button>
-            {/* <Button
-              className="ml-2 mt-2 mb-3 butt"
-              onClick={this.redirect}
-              style={{backgroundColor: '#eac67a', color: '#984b43', fontWeight: '650'}}
-            >
-              Sign In
-            </Button> */}
+            <Button 
+                  color= 'link'
+                  style = {{color: '#eac67a', fontWeight: '200'}}
+                  onClick={() => this.props.history.push('/login')}>
+                          Have an account?
+                        </Button>
+
           </div>
         </Form>
         {this.state.invalidUser === true ? <p style={{color: 'red', fontStyle: 'italic', margin: '10px auto', textAlign:'center'}}>Invalid email, password, or passwords do not match.</p> : null }

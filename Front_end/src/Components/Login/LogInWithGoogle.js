@@ -2,6 +2,9 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { Button, Col } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { fagoogle } from '@fortawesome/free-solid-svg-icons'
+
 
 class LogInWithGoogle extends React.Component {
   constructor(props) {
@@ -39,7 +42,7 @@ class LogInWithGoogle extends React.Component {
     return (
       <Col align='center'>
         <Button style={{backgroundColor: '#eac67a', color: '#984b43', fontWeight: '650'}}  onClick={this.onSubmit}>
-          Google Log In
+           Google Log In
         </Button>
       </Col>
     );

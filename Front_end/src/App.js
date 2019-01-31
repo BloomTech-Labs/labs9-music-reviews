@@ -20,8 +20,13 @@ import { withCookies, Cookies } from "react-cookie";
 import SearchResults from "./Components/Search/SearchResults";
 import { withAuthentication } from './Components/Session'
 import * as ROUTES from './constants/routes/routes';
-
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faIgloo } from '@fortawesome/free-solid-svg-icons'
 import './App.css';
+
+library.add(faIgloo)
+
 
 let refreshTime = 15*60*1000; // 15 mins
 
