@@ -194,12 +194,12 @@ class ReviewEditModal extends React.Component {
                 style={{
                   resize: "none",
                   width: "100%",
-                  height: "200px"
+                  height: "150px"
                 }}
               />
             </div>
           </div>
-          <ModalFooter
+          <ModalBody
             style={{ display: "flex", justifyContent: "space-evenly" }}
           >
             <Button
@@ -278,7 +278,7 @@ class ReviewEditModal extends React.Component {
             >
               Cancel
             </Button>
-          </ModalFooter>
+          </ModalBody>
         </Modal>
       </Fragment>
     );
@@ -286,3 +286,4 @@ class ReviewEditModal extends React.Component {
 }
 
 export default ReviewEditModal;
+

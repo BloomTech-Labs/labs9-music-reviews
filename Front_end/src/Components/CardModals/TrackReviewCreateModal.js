@@ -13,7 +13,7 @@ import {
   Row
 } from "reactstrap";
 import EditStars from "../StarsRating/EditStars";
-import './modals.css';
+import "./modals.css";
 
 class TrackReviewCreateModal extends React.Component {
   static propTypes = {
@@ -49,8 +49,14 @@ class TrackReviewCreateModal extends React.Component {
     // event.preventDefault();
     axios
       .post(`https://labs9-car-reviews.herokuapp.com/trackReviews`, {
-        dateCreated: new Date().toString().split("G", 1)[0].slice(3,15),
-        dateModified: new Date().toString().split("G", 1)[0].slice(3,15),
+        dateCreated: new Date()
+          .toString()
+          .split("G", 1)[0]
+          .slice(3, 15),
+        dateModified: new Date()
+          .toString()
+          .split("G", 1)[0]
+          .slice(3, 15),
         rating: this.state.rating,
         review: this.state.review,
         spotifyTrackID: this.props.trackId,
@@ -106,12 +112,17 @@ class TrackReviewCreateModal extends React.Component {
         >
           Create New Review
         </Button>
-        <Modal centered
+        <Modal
+          centered
           isOpen={this.state.modal}
           toggle={this.toggle}
           className={this.props.className}
           backdrop={true}
-          style={{ border: "3px solid #EAC67A", borderRadius: "10px", fontFamily: "Lato" }}
+          style={{
+            border: "3px solid #EAC67A",
+            borderRadius: "10px",
+            fontFamily: "Lato"
+          }}
         >
           <Row className="d-flex justify-content-around">
             <Col className="container">
@@ -123,7 +134,7 @@ class TrackReviewCreateModal extends React.Component {
                   <img
                     src={this.props.art}
                     alt="Album cover art"
-                    style={{ margin: "15px 0", align: "center" }}
+                    style={{ margin: "15px 0", align: "center", maxWidth: "250px", maxHeight: "250px"}}
                   />
                 </Col>
               </Row>
@@ -143,7 +154,7 @@ class TrackReviewCreateModal extends React.Component {
             </Col>
           </Row>
           <div className="container center-align" style={{ margin: "0 auto" }}>
-          <div style={{ textAlign: "center" }}>Set Star Rating</div>
+            <div style={{ textAlign: "center" }}>Set Star Rating</div>
             <Row style={{ justifyContent: "center", margin: "5px 0" }}>
               <EditStars
                 rating={this.state.rating}
@@ -157,11 +168,13 @@ class TrackReviewCreateModal extends React.Component {
                 name="review"
                 value={this.state.review}
                 maxlength="1500"
-                style={{ resize: "none", width: "100%", height: "200px" }}
+                style={{ resize: "none", width: "100%", height: "150px" }}
               />
             </div>
           </div>
-          <ModalFooter style={{ display: "flex", justifyContent: "space-evenly"}}>
+          <ModalFooter
+            style={{ display: "flex", justifyContent: "space-evenly" }}
+          >
             <Button
               onClick={event => {
                 this.addHandler();

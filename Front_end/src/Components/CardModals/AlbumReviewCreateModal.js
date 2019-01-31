@@ -160,7 +160,7 @@ class AlbumReviewCreateModal extends React.Component {
                 <img
                   src={this.props.art}
                   alt="Album cover art"
-                  style={{ margin: "20px" }}
+                  style={{ margin: "20px", maxWidth: "250px", maxHeight: "250px" }}
                 />
               </div>
             </Col>
@@ -180,7 +180,7 @@ class AlbumReviewCreateModal extends React.Component {
                 name="review"
                 value={this.state.review}
                 maxlength="1500"
-                style={{ resize: "none", width: "100%", height: "200px" }}
+                style={{ resize: "none", width: "100%", height: "150px" }}
               />
             </div>
           </div>
