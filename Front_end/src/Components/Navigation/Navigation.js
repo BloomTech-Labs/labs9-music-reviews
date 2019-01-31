@@ -75,7 +75,7 @@ class Navigation extends Component {
                         <i className="fas fa-bars fa-2x"></i>
                       </DropdownToggle>
 
-                      <DropdownMenu right style={{ background: "#eac67a", color: "#a0006c" , border: '5px red solid'}}>
+                      <DropdownMenu right style={{ background: "#eac67a", color: "#a0006c"}}>
                         {this.props.loggedIn === true ? (
                           
                           <Fragment>
