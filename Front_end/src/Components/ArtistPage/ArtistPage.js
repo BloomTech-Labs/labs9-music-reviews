@@ -8,7 +8,7 @@ import { withCookies, Cookies } from "react-cookie";
 
 const cardStyle = {
   background: "#233237",
-  border: "2px solid #eac67a",
+  border: "2px solid #984b43",
   padding: "1rem",
 }
 
@@ -111,7 +111,7 @@ class ArtistPage extends Component {
 
           <Col xs="12" md="6" style={{ display: "flex", margin: "0 auto" }}>
             <img src={this.state.art} alt="Art of the artist"
-              style={{ maxWidth: '325px', maxHeight: "325px", border: "2px solid #eac67a", margin: "0 auto" }}
+              style={{ maxWidth: '325px', maxHeight: "325px", border: "2px solid #984b43", margin: "0 auto" }}
             />
           </Col>
 
@@ -120,15 +120,15 @@ class ArtistPage extends Component {
         <Row>
           <h1 style={{ 
               position: "relative",
+              color: "#984b43",
               top: "12rem",
               fontFamily: "Merriweather Sans",
               margin: "0 auto",
-              textShadow: "-1px -1px 0 #984b43, 1px -1px 0 #984b43, -1px 1px 0 #984b43, 1px 1px 0 #984b43"
             }}
           >
             Albums
           </h1>
-          <Row style={{ position: "relative", top: "12rem", height: "30rem", overflowY: "scroll" }}>{renderData}</Row>
+          <Row style={{ position: "relative", top: "12rem", maxHeight: "40rem", overflowY: "scroll" }}>{renderData}</Row>
         </Row>
       </Container>
     );
