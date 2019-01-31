@@ -33,6 +33,11 @@ componentDidMount() {
     }
 
     render() {
+        function dateConverter(date) {
+            var msec = Date.parse(date);
+            var d = new Date(msec);
+            return d.toString().split("G",1)[0].slice(3,15);
+        }
         const renderData = this.state.data.map(album => {
             return album.artists.map((artist, index) => {
               return (
@@ -40,7 +45,7 @@ componentDidMount() {
                         key = {index} 
                         album = {album.name}
                         artist = {artist.name}
-                        date = {album.release_date}
+                        date = {dateConverter(album.release_date)}
                         image = {album.images[0].url}
                         id = {album.id}
                     />

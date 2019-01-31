@@ -13,6 +13,8 @@ import {
 import { withRouter, Link } from 'react-router-dom';
 import './Signup.css'
 import * as ROUTES from '../../constants/routes/routes'
+import {FirebaseContext } from '../Firebase';
+import LogInWithGoogle from '../Login/LogInWithGoogle';
 
 const SignUpPage = () => (
   <div>
@@ -80,7 +82,7 @@ class SignUpForm extends React.Component {
   };
   render() {
     return (
-      <Container fluid style={{ position: "relative", top: "10rem" }}>
+      <Container fluid style={{ position: "relative", top: "12rem" }}>
       <Row className='justify-content-center'>
       <Col xl={6} lg={6} md={6} sm={6}>
         <h2 style ={{ color: "#984B43", fontFamily:'merriweather sans'}}>Sign Up</h2>
@@ -133,11 +135,14 @@ class SignUpForm extends React.Component {
             </Button>
             <Button 
                   color= 'link'
-                  style = {{color: '#eac67a', fontWeight: '200'}}
+                  style = {{color: '#eac67a', fontWeight: '200', padding: "1.5rem" }}
                   onClick={() => this.props.history.push('/login')}>
                           Have an account?
-                        </Button>
+            </Button>
 
+            <FirebaseContext.Consumer>
+              {(firebase) => <LogInWithGoogle firebase={firebase} changeLogInState={this.props.changeLogInState} />}
+            </FirebaseContext.Consumer>
           </div>
         </Form>
         {this.state.invalidUser === true ? <p style={{color: 'red', fontStyle: 'italic', margin: '10px auto', textAlign:'center'}}>Invalid email, password, or passwords do not match.</p> : null }

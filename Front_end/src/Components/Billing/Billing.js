@@ -17,7 +17,7 @@ import Checkout from "./Checkout";
 import axios from "axios";
 
 const Payment = styled.div`
-  padding: 3rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -45,18 +45,13 @@ class Billing extends Component {
     this.setState({[e.target.name]: e.target.value})
   }
   addDays = (days) => {
-    let result;
-    if (this.props.subscriptionExpiration == null){
-      result = new Date();
-    } else {
-      result = this.props.subscriptionExpiration;
-    }
+    let result = new Date(this.props.subscriptionExpiration.toString().split("G", 1)[0].slice(3, 15));
     result.setDate(result.getDate() + days);
     return result;
   }
   changeSubscriptionStatus = () => {
     let subscriptionLength = this.state.subType === 'year' ? 366 : 31;
-    let expirationDate = this.addDays(subscriptionLength);
+    let expirationDate = this.addDays(subscriptionLength).toString().split('G',1)[0];
     axios.put(`https://labs9-car-reviews.herokuapp.com/users/${this.props.userID}`, {   
       paidMembership: true,      
       subscriptionExpiration: expirationDate
@@ -76,7 +71,7 @@ class Billing extends Component {
            }}
           >
           <Row>
-            <Col md="4" xs="12">
+            <Col md="4" xs="12" style={{ marginBottom: "2rem" }}>
               <Card style={{ background: "#233237" }}>
                 <ProfileInfo>
                   <Row>
@@ -100,12 +95,12 @@ class Billing extends Component {
               </Card>
             </Col>
 
-            <Col xs="12" md="8" style={{ margin: "1rem 0" }}>
+            <Col xs="12" md="8">
               <Card style={{ maxHeight: "600px", background: "#233237" }}>
                 <Payment>
                   <h2 style={{ textAlign: "left", fontFamily: "Merriweather Sans, sans-serif" }}> Billing </h2>
                   <div style={{ margin: "2rem 0" }}>
-                    <FormGroup check style={{ display: "flex", flexDirection: "column" }}>
+                    <FormGroup check style={{ display: "flex", flexDirection: "column", padding: "0 2rem" }}>
                       <Label check>
                         <Input type="radio" name="subType" value="year" onClick={this.changeSub} />
                         1 Year Subscription $9.99

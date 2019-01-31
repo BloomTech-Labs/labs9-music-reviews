@@ -40,6 +40,10 @@ class AlbumReviewCreateModal extends React.Component {
     });
   }
 
+  static getDerivedStateFromProps(nextProps, prevState){
+    return nextProps.userID !== prevState.userID ? { userID: nextProps.userID } : {}
+  }
+
   addHandler = event => {
     // event.preventDefault();
     axios

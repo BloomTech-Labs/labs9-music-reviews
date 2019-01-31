@@ -8,7 +8,7 @@ class SignUpPage extends React.Component {
     return (
       <div>
         <FirebaseContext.Consumer>
-          {(firebase) => <SignUpForm firebase={firebase} />}
+          {(firebase) => <SignUpForm firebase={firebase} changeLogInState={this.props.changeLogInState} />}
         </FirebaseContext.Consumer>
       </div>
     );
