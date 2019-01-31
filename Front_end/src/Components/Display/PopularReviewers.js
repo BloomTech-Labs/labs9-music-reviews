@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+/* import React, { Component } from 'react';
 import { Section, Row, Col, Card, CardTitle} from 'react-materialize';
 
 
@@ -69,4 +69,4 @@ class PopularReviewers extends Component {
     }
 }
  
-export default PopularReviewers;
+export default PopularReviewers; */

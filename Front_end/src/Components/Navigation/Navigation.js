@@ -77,7 +77,7 @@ class Navigation extends Component {
                   <Col xs="4" style={{ margin: "0 auto", paddingLeft: "3rem" }}>
                     <Dropdown nav isOpen={this.state.isOpen} toggle={this.toggle}>
                       <DropdownToggle nav>
-                        {/* <Icon large>menu</Icon> */}
+                        <i className="fas fa-bars fa-2x"></i>
                       </DropdownToggle>
 
                       <DropdownMenu right style={{ background: "#eac67a", color: "#a0006c" , border: '5px red solid'}}>
