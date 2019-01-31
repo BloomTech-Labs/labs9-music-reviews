@@ -136,6 +136,7 @@ class ReviewEditModal extends React.Component {
           Edit
         </Button>
         <Modal
+          centered
           isOpen={this.state.modal}
           toggle={this.toggle}
           className={this.props.className}
@@ -144,9 +145,7 @@ class ReviewEditModal extends React.Component {
             border: "3px solid #EAC67A",
             borderRadius: "10px",
             fontFamily: "Lato",
-            color: "#eac67a",
-            textShadow:
-              "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
+            color: "#eac67a"
           }}
         >
           <Row class="d-flex justify-content-around">
@@ -157,9 +156,7 @@ class ReviewEditModal extends React.Component {
                   <ModalBody
                     style={{
                       textAlign: "center",
-                      color: "#eac67a",
-                      textShadow:
-                        "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
+                      color: "#eac67a"
                     }}
                   >
                     <h5>Album: {this.props.album}</h5>
@@ -179,7 +176,7 @@ class ReviewEditModal extends React.Component {
             </Col>
           </Row>
           <div class="container center-align" style={{ margin: "10px auto" }}>
-            <div style={{ textAlign: "center" }}>Star Rating</div>
+            <div style={{ textAlign: "center" }}>Set Star Rating</div>
             <Row style={{ justifyContent: "center", margin: "0 auto" }}>
               {/* Editable Star Rating  */}
               <EditStars
@@ -188,7 +185,7 @@ class ReviewEditModal extends React.Component {
               />
             </Row>
             <div>
-              Review
+              Write Review
               <textarea
                 onChange={this.handleEditChange}
                 name="review"
@@ -197,12 +194,14 @@ class ReviewEditModal extends React.Component {
                 style={{
                   resize: "none",
                   width: "100%",
-                  height: "200px"
+                  height: "150px"
                 }}
               />
             </div>
           </div>
-          <ModalFooter class="d-flex justify-content-around">
+          <ModalBody
+            style={{ display: "flex", justifyContent: "space-evenly" }}
+          >
             <Button
               style={{
                 color: "#EAC67A",
@@ -237,9 +236,7 @@ class ReviewEditModal extends React.Component {
             >
               <ModalHeader
                 style={{
-                  color: "#eac67a",
-                  textShadow:
-                    "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
+                  color: "#eac67a"
                 }}
               >
                 Are you sure you want to DELETE this review?
@@ -281,7 +278,7 @@ class ReviewEditModal extends React.Component {
             >
               Cancel
             </Button>
-          </ModalFooter>
+          </ModalBody>
         </Modal>
       </Fragment>
     );
@@ -289,3 +286,4 @@ class ReviewEditModal extends React.Component {
 }
 
 export default ReviewEditModal;
+
