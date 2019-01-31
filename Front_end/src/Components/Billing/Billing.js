@@ -44,14 +44,14 @@ class Billing extends Component {
   changeSub = e => {
     this.setState({[e.target.name]: e.target.value})
   }
-  addDays = (days) => {
-    let result = new Date(this.props.subscriptionExpiration);
+  addDays = (date, days) => {
+    let result = new Date(date);
     result.setDate(result.getDate() + days);
     return result.toString().split("G", 1)[0];
   }
   changeSubscriptionStatus = () => {
     let subscriptionLength = this.state.subType === 'year' ? 366 : 31;
-    let expirationDate = this.addDays(subscriptionLength);
+    let expirationDate = this.addDays(this.props.subscriptionExpiration, subscriptionLength);
     axios.put(`https://labs9-car-reviews.herokuapp.com/users/${this.props.userID}`, {   
       paidMembership: true,      
       subscriptionExpiration: expirationDate
@@ -89,7 +89,7 @@ class Billing extends Component {
                   </Row>
                   <Row style={{ display: "flex", flexDirection: "column", padding: "1rem", textAlign: "center" }}>
                     <p>{this.props.tier}</p>
-                    <p>{this.props.nickname}</p>
+                    <p style={{ fontWeight: "650", color: "#984b43" }}>{this.props.nickname}</p>
                   </Row>
                 </ProfileInfo>
               </Card>
