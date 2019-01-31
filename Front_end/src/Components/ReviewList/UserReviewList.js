@@ -142,26 +142,33 @@ class UserReviewList extends Component {
               </div>
             </Sidebar>
           </Col>
-          <Col xs="12" md="8">
-            {userAlbumReviews.map(review => (
-              <AlbumProfileReviewCard
-                review={review}
-                loggedIn={this.props.loggedIn}
-                userID={this.props.userID}
-                key={review.id}
-                nickname={this.props.nickname}
-              />
-            ))}
-            {userTrackReviews.map(review => (
-              <TrackProfileReviewCard
-                review={review}
-                loggedIn={this.props.loggedIn}
-                userID={this.props.userID}
-                key={review.id}
-                nickname={this.props.nickname}
-              />
-            ))}
+          {userAlbumReviews.length + userTrackReviews.length === 0 ? 
+          <Col xs="12" md="8" style={{ fontFamily: "Merriweather Sans", margin: "20px 0"}}>
+            <h3>You have no reviews. Please go write some reviews!</h3>
           </Col>
+          :
+          <Col xs="12" md="8">
+          {userAlbumReviews.map(review => (
+            <AlbumProfileReviewCard
+              review={review}
+              loggedIn={this.props.loggedIn}
+              userID={this.props.userID}
+              key={review.id}
+              nickname={this.props.nickname}
+            />
+          ))}
+          {userTrackReviews.map(review => (
+            <TrackProfileReviewCard
+              review={review}
+              loggedIn={this.props.loggedIn}
+              userID={this.props.userID}
+              key={review.id}
+              nickname={this.props.nickname}
+            />
+          ))}
+        </Col>
+        }
+          
         </Container>
       </Fragment>
     );
