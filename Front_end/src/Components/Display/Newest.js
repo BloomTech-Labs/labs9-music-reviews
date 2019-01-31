@@ -3,7 +3,7 @@ import axios from 'axios';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
 import NewReleaseCard from './NewReleaseCard';
-import { Container, Card } from 'reactstrap';
+import { Container } from 'reactstrap';
 
 const url = 'https://api.spotify.com/v1/search?q=tag%3Anew&type=album';
 
@@ -59,7 +59,6 @@ componentDidMount() {
                         textAlign: "center",
                         padding: "2rem 1rem 0 1rem",
                         margin: "0 auto",
-                        padding: "2rem 0",
                         fontFamily: "Lato"
                     }}
                 >

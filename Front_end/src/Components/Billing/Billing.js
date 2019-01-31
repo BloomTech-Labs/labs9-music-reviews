@@ -47,7 +47,7 @@ class Billing extends Component {
   addDays = (days) => {
     let result = new Date(this.props.subscriptionExpiration);
     result.setDate(result.getDate() + days);
-    return result.toString().split("G", 1)[0].slice(4, 15);
+    return result.toString().split("G", 1)[0];
   }
   changeSubscriptionStatus = () => {
     let subscriptionLength = this.state.subType === 'year' ? 366 : 31;
