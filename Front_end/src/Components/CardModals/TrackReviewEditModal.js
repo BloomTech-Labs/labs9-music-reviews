@@ -1,23 +1,13 @@
 import React, { Fragment } from "react";
 import axios from "axios";
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ListGroup,
-  ListGroupItem,
-  Col,
-  Row
-} from "reactstrap";
+import { Button, Modal, ModalBody, Col, Row } from "reactstrap";
 import EditStars from "../StarsRating/EditStars";
 
 class TrackReviewEditModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      albumReviewID: "",
+      trackReviewID: "",
       review: "",
       dateModified: "",
       rating: 0,
@@ -29,7 +19,6 @@ class TrackReviewEditModal extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.toggleDelNested = this.toggleDelNested.bind(this);
-    this.toggleEditNested = this.toggleEditNested.bind(this);
     this.toggleAll = this.toggleAll.bind(this);
   }
 
@@ -44,8 +33,8 @@ class TrackReviewEditModal extends React.Component {
     // event.preventDefault();
     axios
       .put(
-        `https://labs9-car-reviews.herokuapp.com/albumReviews/${
-          this.props.review.albumReviewID
+        `https://labs9-car-reviews.herokuapp.com/trackReviews/${
+          this.props.review.trackReviewID
         }`,
         {
           review: this.state.review,
@@ -66,7 +55,7 @@ class TrackReviewEditModal extends React.Component {
 
   deleteHandler = id => {
     axios
-      .delete(`https://labs9-car-reviews.herokuapp.com/albumReviews/${id}`)
+      .delete(`https://labs9-car-reviews.herokuapp.com/trackReviews/${id}`)
       .then(res => {
         console.log(res);
         console.log(res.data);
@@ -92,13 +81,6 @@ class TrackReviewEditModal extends React.Component {
   toggleDelNested() {
     this.setState({
       delNestedModal: !this.state.delNestedModal,
-      closeAll: false
-    });
-  }
-
-  toggleEditNested() {
-    this.setState({
-      editNestedModal: !this.state.editNestedModal,
       closeAll: false
     });
   }
@@ -140,12 +122,8 @@ class TrackReviewEditModal extends React.Component {
           className={this.props.className}
           backdrop={true}
           style={{
-            border: "3px solid #EAC67A",
-            borderRadius: "10px",
             fontFamily: "Lato",
-            color: "#eac67a",
-            textShadow:
-              "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
+            color: "#eac67a"
           }}
         >
           <Row class="d-flex justify-content-around">
@@ -156,9 +134,7 @@ class TrackReviewEditModal extends React.Component {
                   <ModalBody
                     style={{
                       textAlign: "center",
-                      color: "#eac67a",
-                      textShadow:
-                        "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"
+                      color: "#eac67a"
                     }}
                   >
                     <h5>Track: {this.props.track}</h5>
@@ -187,7 +163,7 @@ class TrackReviewEditModal extends React.Component {
               />
             </Row>
             <div>
-              Review
+              <div style={{ margin: "5px 0" }}>Write Review</div>
               <textarea
                 onChange={this.handleEditChange}
                 name="review"
@@ -197,11 +173,13 @@ class TrackReviewEditModal extends React.Component {
               />
             </div>
           </div>
-          <ModalFooter  style={{ display: "flex", justifyContent: "space-evenly"}}>
+          <ModalBody
+            style={{ display: "flex", justifyContent: "space-evenly" }}
+          >
             <Button
               style={{
-                color: "#EAC67A",
-                backgroundColor: "#984B43",
+                color: "#984B43",
+                backgroundColor: "#EAC67A",
                 fontWeight: "650"
               }}
               onClick={event => {
@@ -213,8 +191,8 @@ class TrackReviewEditModal extends React.Component {
             </Button>
             <Button
               style={{
-                color: "#984B43",
-                backgroundColor: "#EAC67A",
+                color: "#EAC67A",
+                backgroundColor: "#984B43",
                 fontWeight: "650"
               }}
               onClick={this.toggleDelNested}
@@ -230,10 +208,12 @@ class TrackReviewEditModal extends React.Component {
               }}
               onClosed={this.state.closeAll ? this.toggle : undefined}
             >
-              <ModalHeader>
+              <ModalBody>
                 Are you sure you want to DELETE this review?
-              </ModalHeader>
-              <ModalFooter>
+              </ModalBody>
+              <ModalBody
+                style={{ display: "flex", justifyContent: "space-between" }}
+              >
                 {/* Delete Review Button */}
                 <Button
                   style={{
@@ -242,7 +222,7 @@ class TrackReviewEditModal extends React.Component {
                     fontWeight: "650"
                   }}
                   onClick={event => {
-                    this.deleteHandler(this.props.review.albumReviewID);
+                    this.deleteHandler(this.props.review.trackReviewID);
                     this.toggleAll();
                   }}
                 >
@@ -254,11 +234,11 @@ class TrackReviewEditModal extends React.Component {
                     backgroundColor: "#233237",
                     fontWeight: "650"
                   }}
-                  onClick={this.toggleNested}
+                  onClick={this.toggleDelNested}
                 >
                   Cancel
                 </Button>
-              </ModalFooter>
+              </ModalBody>
             </Modal>
             <Button
               style={{
@@ -270,7 +250,7 @@ class TrackReviewEditModal extends React.Component {
             >
               Cancel
             </Button>
-          </ModalFooter>
+          </ModalBody>
         </Modal>
       </Fragment>
     );

@@ -162,7 +162,7 @@ class AlbumReviewsPage extends Component {
                 </Col>
             <Col  md={{size: 7, offset: 5}} >
                 {albumReviews.length === 0 ? (
-                  <Row style={{ display: "flex", justifyContent: "center", textShadow: "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43"}}>
+                  <Row style={{ display: "flex", justifyContent: "center", color: "#984B43"}}>
                     <h3>Be the first to write a review for this album!</h3>
                   </Row>
                 ) : (
