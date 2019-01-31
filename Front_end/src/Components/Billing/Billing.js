@@ -52,7 +52,6 @@ class Billing extends Component {
   changeSubscriptionStatus = () => {
     let subscriptionLength = this.state.subType === 'year' ? 366 : 31;
     let expirationDate = this.addDays(subscriptionLength);
-    console.log(expirationDate);
     axios.put(`https://labs9-car-reviews.herokuapp.com/users/${this.props.userID}`, {   
       paidMembership: true,      
       subscriptionExpiration: expirationDate
@@ -61,7 +60,6 @@ class Billing extends Component {
     .catch(err => { console.log(err) })
   }
   render() {
-    console.log(typeof this.props.subscriptionExpiration)
     return (
       <div>
         <Container fluid style={{
