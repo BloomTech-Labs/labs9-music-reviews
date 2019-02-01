@@ -22,7 +22,7 @@ class Firebase {
     this.auth.createUserWithEmailAndPassword (email, password)
       .catch( (error) => {
         let errorCode = error.code;
-        let errorMessage = err.message;
+        let errorMessage = error.message;
         if ( errorCode == 'auth/email-already-in-use' ){
           alert( 'An account already exists with the given email address.' )
         } else if ( errorCode == 'auth/invalid-email' ){
@@ -35,7 +35,7 @@ class Firebase {
     this.auth.signInWithEmailAndPassword (email, password)
       .catch( (error) => {
         let errorCode = error.code;
-        let errorMessage = err.message;
+        let errorMessage = error.message;
         if ( errorCode == 'auth/invalid-email' ){
           alert( 'Email address provided is not valid.' )
         } else if ( errorCode == 'auth/user-not-found' ){
@@ -61,9 +61,9 @@ class Firebase {
       .catch (err => console.log (err));
 
   doSignInWithGoogle = () => this.auth.signInWithPopup (this.googleProvider)
-      .catch( (err) => {
+      .catch( (error) => {
         let errorCode = error.code;
-        let errorMessage = err.message;
+        let errorMessage = error.message;
         if ( errorCode == 'auth/account-exists-with-different-credential' ){
           alert( 'The email provided is associated with an existing account in our database. Have you signed up for our services using that email?' )
         } else if ( errorCode == 'auth/popup-blocked' ){
