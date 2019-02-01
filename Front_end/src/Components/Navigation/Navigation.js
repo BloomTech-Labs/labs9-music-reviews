@@ -81,19 +81,19 @@ class Navigation extends Component {
                           <Fragment>
                           
                             <Link to="/home" style={{ textDecoration: 'none', textAlign: "center", background:'#a0006c'}}>
-                              <DropdownItem>Home</DropdownItem>
+                              <DropdownItem style={{color: '#984B43'}}><b>Home</b></DropdownItem>
                             </Link>
                           
                             <Link to={`/user/reviews/${this.props.userID}`} style={{ textDecoration: 'none', textAlign: "center"}}>
-                              <DropdownItem>My Reviews</DropdownItem>
+                              <DropdownItem style={{color: '#984B43'}}><b>My Reviews</b></DropdownItem>
                             </Link>
                           
                             <Link to="/user/billing" style={{ textDecoration: 'none', textAlign: "center" }}>
-                              <DropdownItem>Billing</DropdownItem>
+                              <DropdownItem style={{color: '#984B43'}}><b>Billing</b></DropdownItem>
                             </Link>
                           
                             <Link to="/user/settings"style={{ textDecoration: 'none', textAlign: "center" }}>
-                              <DropdownItem>Settings</DropdownItem>
+                              <DropdownItem style={{color: '#984B43'}}><b>Settings</b></DropdownItem>
                             </Link>
                           
                             <DropdownItem divider />
