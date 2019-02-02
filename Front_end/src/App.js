@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 import Navigation from "./Components/Navigation/Navigation";
 import UserReviewList from "./Components/ReviewList/UserReviewList";
 import AlbumReviewsPage from "./Components/ReviewsPage/AlbumReviewsPage";
@@ -20,7 +20,6 @@ import { withCookies, Cookies } from "react-cookie";
 import SearchResults from "./Components/Search/SearchResults";
 import { withAuthentication } from './Components/Session'
 import * as ROUTES from './constants/routes/routes';
-
 
 let refreshTime = 15*60*1000; // 15 mins
 
@@ -48,7 +47,7 @@ class App extends Component {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}users/get/${email}`)
       .then((res) => {
-        this.setState({
+        this.setState(() => ({
           userID: res.data.userID,
           firebaseUID: res.data.firebaseUID,
           email: res.data.emailAddress,
@@ -58,10 +57,9 @@ class App extends Component {
           loaded: true,
           loading: false,
           loggedIn: true,
-        });
+        }));
       })
-      
-      .catch((err) => this.setState({ loaded: false, loading: false }, console.log(err)));
+      .catch((err) => this.setState({ loggedIn: false, loaded: false, loading: false }, console.log(err)));
   }
   getToken = () => {
     axios
@@ -86,13 +84,14 @@ class App extends Component {
       })
       .catch( err => console.log(err) )
   }
-  changeLoginState = (boolean) => {
-    localStorage.setItem("loggedIn", boolean);
-    this.setState({ loggedIn: Boolean(boolean) }, () => {
-      if (this.state.loggedIn === false){
-        window.location.href="https://labs9carreviews.netlify.com/"
-      }
-    })
+  changeLoginState = () => {
+    if (this.state.loggedIn === false){
+      this.setState({ loggedIn: true })
+      this.props.history.push('/home')
+    } else {
+      this.setState({ loggedIn: false })
+      this.props.history.push('/')
+    }
   }
   componentDidMount(){
     this.setState({ loading: true }, () => {
@@ -105,7 +104,7 @@ class App extends Component {
           const email = user.email;
           this.getUser(email)
         } else {
-          this.setState({ loaded: false, loading: false });
+          this.setState({ loggedIn: false, loaded: false, loading: false });
           //no user so data has been loaded since there was none to be found.
         }
       })
@@ -118,7 +117,6 @@ class App extends Component {
       <Container fluid>
         <Navigation
           loggedIn={this.state.loggedIn}
-          signout={() => this.changeLoginState(false)}
           userID={this.state.userID}
         />
         <Route exact path="/" component={LandingPage} />
@@ -128,17 +126,17 @@ class App extends Component {
           <Billing {...props} userID={this.state.userID} 
                               subscriptionExpiration={this.state.subscriptionExpiration} 
                               nickname={this.state.nickname}
-                              tier={this.state.subscriptionExpiration !== null? "Subscriber" : "Free User"}
+                              tier={this.state.subscriptionExpiration !== null ? "Subscriber" : "Free User"}
           /> )} 
         />
         <Route path="/user/settings" render={(props) => 
         <SettingsPage {...props} subscriptionExpiration={this.state.subscriptionExpiration} /> }
         />
         <Route path="/signup" render={(props) =>
-          <SignUpPage {...props} changeLogInState={() => this.changeLoginState(true)} /> }
+          <SignUpPage {...props} changeLogInState={this.changeLoginState} /> }
         />
         <Route path="/login" render={(props) => 
-          <LogInPage {...props} changeLogInState={() => this.changeLoginState(true)} /> }
+          <LogInPage {...props} changeLogInState={this.changeLoginState} /> }
         />
         <Route path="/forgot_password" component={ForgotPasswordPage} />
         <Route path="/search"  render={(props) => 
@@ -173,4 +171,4 @@ class App extends Component {
   }
 }
 
-export default withAuthentication(withCookies(App));
+export default withAuthentication(withCookies(withRouter(App)));
