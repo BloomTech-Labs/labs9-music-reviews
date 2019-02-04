@@ -113,7 +113,6 @@ class App extends Component {
     setInterval(this.refreshToken, refreshTime);
   }
   render() {
-    console.log(this.state.loggedIn)
     return (
       <Container fluid>
         <Navigation

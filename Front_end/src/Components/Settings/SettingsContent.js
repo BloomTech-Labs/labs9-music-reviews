@@ -121,7 +121,7 @@ class SettingsContent extends React.Component {
                     Change Nickname
                 </button> */}
                 <Row style={{ color: "#984b43", fontWeight: "650", padding: "1rem" }}>
-                  <H3>Tier: <span style={{ color: "#984b43" }}>Paid</span></H3>
+                  <div style={{ textAlign: "left" }}><H3>Tier: </H3>Subscriber</div>
                 </Row>
                 <Row style={{ padding: "1rem" }}>
                     {this.props.subscriptionExpiration == null ? 
