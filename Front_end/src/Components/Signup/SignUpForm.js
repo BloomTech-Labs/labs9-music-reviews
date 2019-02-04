@@ -91,7 +91,6 @@ class SignUpForm extends React.Component {
                 value={this.state.email}
                 onChange={this.onChangeHandler}
                 placeholder="Email Address"
-                // style = {{backgroundColor: '#eac67a', color: '#984b43'}}
               />
             </FormGroup>
           </Col>
@@ -104,7 +103,6 @@ class SignUpForm extends React.Component {
                 value={this.state.password}
                 onChange={this.onChangeHandler}
                 placeholder="Password"
-                // style = {{backgroundColor: '#eac67a', color: '#984b43'}}
               />
             </FormGroup>
           </Col>

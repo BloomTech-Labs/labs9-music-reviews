@@ -85,11 +85,12 @@ class App extends Component {
   }
   changeLoginState = () => {
     if (this.state.loggedIn === false){
-      this.setState({ loggedIn: true })
-      this.props.history.push('/home')
+      window.location.href="http://localhost:3000/home";
+      this.setState({ loggedIn: true });
     } else {
+      console.log("Redirecting...")
+      window.location.href="http://localhost:3000/";
       this.setState({ loggedIn: false })
-      this.props.history.push('/')
     }
   }
   componentDidMount(){
@@ -112,10 +113,12 @@ class App extends Component {
     setInterval(this.refreshToken, refreshTime);
   }
   render() {
+    console.log(this.state.loggedIn)
     return (
       <Container fluid>
         <Navigation
           loggedIn={this.state.loggedIn}
+          signout={this.props.changeLogInState}
           userID={this.state.userID}
         />
         <Route exact path="/" component={LandingPage} />
@@ -129,7 +132,7 @@ class App extends Component {
           /> )} 
         />
         <Route path="/user/settings" render={(props) => 
-        <SettingsPage {...props} subscriptionExpiration={this.state.subscriptionExpiration} /> }
+          <SettingsPage {...props} subscriptionExpiration={this.state.subscriptionExpiration} /> }
         />
         <Route path="/signup" render={(props) =>
           <SignUpPage {...props} changeLogInState={this.changeLoginState} /> }

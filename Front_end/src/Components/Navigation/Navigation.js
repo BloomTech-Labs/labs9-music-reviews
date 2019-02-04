@@ -81,24 +81,24 @@ class Navigation extends Component {
                           <Fragment>
                           
                             <Link to="/home" style={{ textDecoration: 'none', textAlign: "center", background:'#a0006c'}}>
-                              <DropdownItem>Home</DropdownItem>
+                              <DropdownItem style={{color: '#984B43'}}><b>Home</b></DropdownItem>
                             </Link>
                           
                             <Link to={`/user/reviews/${this.props.userID}`} style={{ textDecoration: 'none', textAlign: "center"}}>
-                              <DropdownItem>My Reviews</DropdownItem>
+                              <DropdownItem style={{color: '#984B43'}}><b>My Reviews</b></DropdownItem>
                             </Link>
                           
                             <Link to="/user/billing" style={{ textDecoration: 'none', textAlign: "center" }}>
-                              <DropdownItem>Billing</DropdownItem>
+                              <DropdownItem style={{color: '#984B43'}}><b>Billing</b></DropdownItem>
                             </Link>
                           
                             <Link to="/user/settings"style={{ textDecoration: 'none', textAlign: "center" }}>
-                              <DropdownItem>Settings</DropdownItem>
+                              <DropdownItem style={{color: '#984B43'}}><b>Settings</b></DropdownItem>
                             </Link>
                           
                             <DropdownItem divider />
                           
-                            <NavLink to="/" style={{ textDecoration: 'none', textAlign: "center" }}>
+                            <NavLink to="/" style={{ textDecoration: 'none', textAlign: "center", color: "#984b43" }}>
                           
                               <DropdownItem>
                                 <FirebaseContext.Consumer>
@@ -116,11 +116,11 @@ class Navigation extends Component {
                           </Fragment>
                         ) : (
                           <Fragment>
-                            <Link to="/signup" style={{ textDecoration: 'none' }}>
-                              <DropdownItem>Sign Up</DropdownItem>
+                            <Link to="/signup" style={{ textDecoration: 'none', color: "#984b43" }}>
+                              <DropdownItem><b>Sign Up</b></DropdownItem>
                             </Link>
-                            <Link to="/login" style={{ textDecoration: 'none' }}>
-                              <DropdownItem>Log In</DropdownItem>
+                            <Link to="/login" style={{ textDecoration: 'none', color: "#984b43" }}>
+                              <DropdownItem><b>Log In</b></DropdownItem>
                             </Link>
                           </Fragment>
                         )}

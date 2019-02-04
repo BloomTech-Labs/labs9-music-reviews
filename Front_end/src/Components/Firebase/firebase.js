@@ -23,9 +23,9 @@ class Firebase {
       .catch( (error) => {
         let errorCode = error.code;
         let errorMessage = error.message;
-        if ( errorCode == 'auth/email-already-in-use' ){
+        if ( errorCode === 'auth/email-already-in-use' ){
           alert( 'An account already exists with the given email address.' )
-        } else if ( errorCode == 'auth/invalid-email' ){
+        } else if ( errorCode === 'auth/invalid-email' ){
           alert( 'Email address provided is not valid.' )
         }
         console.log(errorMessage)
@@ -36,11 +36,11 @@ class Firebase {
       .catch( (error) => {
         let errorCode = error.code;
         let errorMessage = error.message;
-        if ( errorCode == 'auth/invalid-email' ){
+        if ( errorCode === 'auth/invalid-email' ){
           alert( 'Email address provided is not valid.' )
-        } else if ( errorCode == 'auth/user-not-found' ){
+        } else if ( errorCode === 'auth/user-not-found' ){
           alert( 'There is no account/user associated with this email.' )
-        } else if ( errorCode == 'auth/wrong-password' ){
+        } else if ( errorCode === 'auth/wrong-password' ){
           alert( 'The password entered does not match the record on our database. Please try again.' )
         }
         console.log(errorMessage)
@@ -64,11 +64,11 @@ class Firebase {
       .catch( (error) => {
         let errorCode = error.code;
         let errorMessage = error.message;
-        if ( errorCode == 'auth/account-exists-with-different-credential' ){
+        if ( errorCode === 'auth/account-exists-with-different-credential' ){
           alert( 'The email provided is associated with an existing account in our database. Have you signed up for our services using that email?' )
-        } else if ( errorCode == 'auth/popup-blocked' ){
+        } else if ( errorCode === 'auth/popup-blocked' ){
           alert( 'Please enable popup for our website to proceed.' )
-        } else if ( errorCode == 'auth/popup-closed-by-user' ){
+        } else if ( errorCode === 'auth/popup-closed-by-user' ){
           alert( 'The popup was closed before the login was completed. Please click "Log In with Google" to continue.' )
         }
         console.log(errorMessage)

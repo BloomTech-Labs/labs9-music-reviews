@@ -6,10 +6,10 @@ import ViewStars from "../StarsRating/ViewStars";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
 
-const iconStyle = {
-  padding: "1rem",
-  fontSize: "1.5rem"
-}
+// const iconStyle = {
+//   padding: "1rem",
+//   fontSize: "1.5rem"
+// }
 
 class AlbumReviewCard extends Component {
   static propTypes = {
@@ -22,8 +22,8 @@ class AlbumReviewCard extends Component {
       nickname: "",
       albumReviews: [],
       trackReviews: [],
-      liked: false,
-      disliked: false,
+      // liked: false,
+      // disliked: false,
     };
   }
 
@@ -168,10 +168,10 @@ class AlbumReviewCard extends Component {
                 <p>{this.props.review.review}</p>
               </Col>
             </Row>
-            <Row style={{ display: "flex", justifyContent: "flex-end" }}>
+            {/* <Row style={{ display: "flex", justifyContent: "flex-end" }}>
               <i className={ liked } style={ iconStyle } onClick={this.likeReview} />
               <i className={ disliked } style={ iconStyle } onClick={this.dislikeReview} />
-            </Row>
+            </Row> */}
           </Col>
         </Row>
       </Jumbotron>
