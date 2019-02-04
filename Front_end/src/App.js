@@ -124,13 +124,13 @@ class App extends Component {
         <Route exact path="/" component={LandingPage} />
         <Route path="/home" component={HomePage} />
         <Route path="/search_landing" component={SearchLanding} />
-        <Route path="/user/billing" render={(props) => ( 
+        {/* <Route path="/user/billing" render={(props) => ( 
           <Billing {...props} userID={this.state.userID} 
                               subscriptionExpiration={this.state.subscriptionExpiration} 
                               nickname={this.state.nickname}
                               tier={this.state.subscriptionExpiration !== null ? "Subscriber" : "Free User"}
           /> )} 
-        />
+        /> */}
         <Route path="/user/settings" render={(props) => 
           <SettingsPage {...props} subscriptionExpiration={this.state.subscriptionExpiration} /> }
         />

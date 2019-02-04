@@ -98,7 +98,7 @@ class Navigation extends Component {
                           
                             <DropdownItem divider />
                           
-                            <NavLink to="/" style={{ textDecoration: 'none', textAlign: "center", color: "#984b43" }}>
+                            <NavLink to="/" style={{ textDecoration: 'none', textAlign: "center", paddingRight: '0', paddingLeft: '0' }}>
                           
                               <DropdownItem>
                                 <FirebaseContext.Consumer>
