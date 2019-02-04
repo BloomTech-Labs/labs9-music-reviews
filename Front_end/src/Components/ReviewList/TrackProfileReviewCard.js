@@ -139,7 +139,7 @@ class TrackProfileReviewCard extends Component {
                 <p style={{ padding: "0 20px", color: "#EAC67A" }}>
                   Written: {this.props.review.dateCreated}
                 </p>
-                {this.props.review.dateCreated != this.props.review.dateModified ? <i>(edited)</i> : null}
+                {this.props.review.dateCreated !== this.props.review.dateModified ? <i>(edited)</i> : null}
               </Row>
               <Row>
                 <div align="left">

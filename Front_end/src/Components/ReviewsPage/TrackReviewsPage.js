@@ -1,5 +1,4 @@
-import React, { Component, Fragment } from "react";
-import styled from "styled-components";
+import React, { Component } from "react";
 import { Row, Col, CardImg, Card } from "reactstrap";
 import TrackReviewCreateModal from "../CardModals/TrackReviewCreateModal";
 import ReviewCard from "./ReviewCard";
@@ -130,6 +129,7 @@ class TrackReviewsPage extends Component {
               src={`https://open.spotify.com/embed/track/${this.state.trackId}`}
               allowtransparency="true"
               allow="encrypted-media"
+              title='Spotify music player'
               style={{
                 maxWidth: "400px",
                 width: "100%",

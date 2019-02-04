@@ -152,9 +152,9 @@ class Search extends Component {
           >
             {this.state.artists.map(artist => {
                   return  artist.images.length === 0 ? null : 
-                          <NavLink key ={artist.id}to={`/artists/${artist.id}`} style={{ textDecoration: 'none' }}>
+                          <NavLink key = {artist.id} key ={artist.id}to={`/artists/${artist.id}`} style={{ textDecoration: 'none' }}>
                             <Col>
-                                <Card key = {artist.id} 
+                                <Card  
                                       style = { cardStyle }
                                   >
                                   <CardImg src= {!artist.images[0] ? image : artist.images[0].url}  alt = {artist.name} style = {{borderRadius: '50%', width: '7rem'}}/>
@@ -184,9 +184,9 @@ class Search extends Component {
             >
             {this.state.tracks.map(track => {
                 return track.album.images.length === 0 ? null : 
-                  <NavLink to={`/tracks/${track.id}`} style={{ textDecoration: "none" }}>
+                  <NavLink  key = {track.id} to={`/tracks/${track.id}`} style={{ textDecoration: "none" }}>
                     <Col>
-                      <Card key = {track.id} style = { cardStyle }> 
+                      <Card style = { cardStyle }> 
                         <CardImg src= {!track.album.images[0] ? image : track.album.images[0].url} alt = {track.name} style = {{ borderRadius: '50%', width: '7rem', padding: "0" }} />  
                           <CardBody>
                             <CardTitle>{track.artists[0].name}</CardTitle>

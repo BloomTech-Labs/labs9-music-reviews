@@ -143,7 +143,7 @@ class AlbumProfileReviewCard extends Component {
                   Written: {this.props.review.dateCreated}
                 </p>
                 {/* Edited */}
-                {this.props.review.dateCreated != this.props.review.dateModified ? <i>(edited)</i> : null}
+                {this.props.review.dateCreated !== this.props.review.dateModified ? <i>(edited)</i> : null}
               </Row>
               {/* REVIEW TEXT */}
               <Row>

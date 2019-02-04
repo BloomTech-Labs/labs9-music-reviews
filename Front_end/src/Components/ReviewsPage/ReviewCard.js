@@ -1,6 +1,5 @@
-import React, { Component, Fragment } from "react";
-import styled from "styled-components";
-import { Container, Row, Col, Jumbotron, CardImg, Button } from "reactstrap";
+import React, { Component } from "react";
+import { Row, Col, Jumbotron } from "reactstrap";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import ViewStars from "../StarsRating/ViewStars";
@@ -113,7 +112,7 @@ class AlbumReviewCard extends Component {
             <div>
               <img
                 src={require("../../Images/defaultUser.png")}
-                alt="Default profile image"
+                alt="Default profile"
                 style={{
                   width: "100%",
                   maxWidth: "200px"

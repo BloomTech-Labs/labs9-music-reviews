@@ -10,17 +10,11 @@ import {
   Input,
   Row
 } from 'reactstrap';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import './Signup.css'
-import * as ROUTES from '../../constants/routes/routes'
 import {FirebaseContext } from '../Firebase';
 import LogInWithGoogle from '../Login/LogInWithGoogle';
 
-const SignUpPage = () => (
-  <div>
-    <SignUpForm/>
-  </div>
-)
 class SignUpForm extends React.Component {
   constructor(props) {
     super(props);

@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
+import { withAuthorization } from '../Session';
 
 const cardStyle = {
   background: "#233237",
@@ -139,4 +140,7 @@ class ArtistPage extends Component {
   }
 }
 
-export default withCookies(ArtistPage);
+const condition = authUser => !!authUser
+export default withAuthorization(condition)(withCookies(ArtistPage));
+
+// export default withCookies(ArtistPage);
