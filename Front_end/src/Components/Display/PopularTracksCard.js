@@ -19,7 +19,7 @@ class PopularTracksCard extends Component {
                     border: "2px solid #984b43",
                     color: "#eac67a",
                     minHeight: "325px",
-                    maxWidth: "200px",
+                    maxWidth: "300px",
                     backgroundColor: '#233237',
                     margin:'0.5rem auto',
                     overflowY: "hidden"

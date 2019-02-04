@@ -1,8 +1,8 @@
 import React from 'react';
 import { FirebaseContext } from '../Firebase';
+import styled from 'styled-components';
 import SettingsContent from './SettingsContent';
 import { withAuthorization } from '../../Components/Session';
-import styled from 'styled-components';
 
 const SettingsContainer = styled.div`
   height: 100vh;
@@ -19,6 +19,9 @@ class SettingsPage extends React.Component {
   render() {
     return (
       <SettingsContainer>
+        <h1 style={{ margin: "0 auto", textAlign: "center", color: "#984b43", fontFamily: "Merriweather Sans", fontWeight: "700" }}>
+          Account Settings
+        </h1>
         <FirebaseContext.Consumer>
           {(firebase) => <SettingsContent firebase={firebase} subscriptionExpiration={this.props.subscriptionExpiration} />}
         </FirebaseContext.Consumer>

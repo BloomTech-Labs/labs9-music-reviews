@@ -2,8 +2,9 @@
     color: #984b43;
     text-decoration: none;
 }
+
 button:active {
-    color: #984b43;   
+    color: #984b43;
 } 
 
 a {
@@ -11,5 +12,4 @@ a {
     text-decoration: none;
     background-color: transparent;
     font-weight: 650;
-
- } 
+} 

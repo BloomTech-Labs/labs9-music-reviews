@@ -101,8 +101,7 @@ class TrackReviewsPage extends Component {
     return (
       <Row style={{ position: "relative", top: "10rem", marginBottom: "50px" }}>
         <Col md={5} id="left" className="scrollbox scrollbox-content">
-          {/* can add logic to render different size of album art based on screen size: stacked ternary */}
-          {/* need to find a way to manipulate the img object from res.data */}
+
           {/* COVER ART */}
           <Card
             body
@@ -154,6 +153,7 @@ class TrackReviewsPage extends Component {
             ) : null}
           </Row>
           {/* end of Create  */}
+
           <Row style={{ justifyContent: "center" }}>
             <Link className="link" to={`/artists/${this.state.artistId}`}>
               <h5>See all albums by: {this.state.artist} </h5>
@@ -200,7 +200,8 @@ class TrackReviewsPage extends Component {
               style={{
                 display: "flex",
                 justifyContent: "center",
-                color: "#984B43"
+                color: "#984B43", 
+                fontFamily: "Merriweather Sans"
               }}
             >
               <h3>Be the first to write a review for this track!</h3>

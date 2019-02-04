@@ -109,7 +109,8 @@ class UserReviewList extends Component {
             margin: "0 auto",
             paddingTop: "10rem", 
             fontFamily: "Lato",
-            color: "#984B43"
+            color: "#984B43",
+            maxWidth: "1400px"
           }}
         >
           <Col xs="12" md="4">
