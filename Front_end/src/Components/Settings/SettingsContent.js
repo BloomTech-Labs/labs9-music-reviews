@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Input, Row, Col, Container, Card, CardImg } from 'reactstrap';
+import { Row, Col, Container, Card, CardImg } from 'reactstrap';
 // import styled from 'styled-components';
 
 class SettingsContent extends React.Component {

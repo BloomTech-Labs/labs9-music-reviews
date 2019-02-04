@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import styled from "styled-components";
-import { Card, CardBody, Row, Col, CardImg, CardTitle, CardSubtitle } from "reactstrap";
+import { Card, Row, Col, CardImg } from "reactstrap";
 import AlbumReviewCreateModal from "../CardModals/AlbumReviewCreateModal";
 import ReviewCard from "./ReviewCard";
 import axios from "axios";
@@ -101,6 +100,7 @@ class AlbumReviewsPage extends Component {
                   src={`https://open.spotify.com/embed/album/${
                     this.state.albumId
                   }`}
+                  title='Spotify player'
                   allowtransparency="true"
                   allow="encrypted-media"
                   style={{ maxWidth: '400px', width: '100%', height: '80px', border: 'none'}}

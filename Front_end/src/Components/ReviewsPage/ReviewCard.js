@@ -131,7 +131,7 @@ class AlbumReviewCard extends Component {
             <div>
               <img
                 src={require("../../Images/defaultUser.png")}
-                alt="Default profile image"
+                alt="Default profile"
                 style={{
                   width: "100%",
                   maxWidth: "200px"

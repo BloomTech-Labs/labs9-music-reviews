@@ -1,9 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import { withCookies, Cookies } from 'react-cookie';
-import { NavLink } from 'react-router-dom';
 import { instanceOf } from 'prop-types';
-import { Row, Col, Card, CardImg, CardTitle, Container } from 'reactstrap';
+import { Container } from 'reactstrap';
 import PopularTracksCard from './PopularTracksCard';
 
 const url = 'https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF';

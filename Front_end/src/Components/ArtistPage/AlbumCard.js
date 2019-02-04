@@ -12,7 +12,6 @@ import {
 const cardStyle = {
   maxWidth: "12rem",
   textAlign: 'left',
-  border: 'none',
   textDecoration: "none",
   border: "2px solid #984b43",
   background: "#233237",

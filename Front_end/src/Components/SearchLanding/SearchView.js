@@ -1,23 +1,18 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
 // import dummyData from '../DummyData/dummyData.js'
 import {
   Card,
   Col,
   CardTitle,
   CardBody,
-  CardText,
   Row,
   Form,
-  FormGroup,
   Input,
   CardImg,
-  Label,
   CardSubtitle,
 } from 'reactstrap'
 import Stars from '../StarsRating/Stars'
 import axios from 'axios'
-import ratings from 'react-ratings-declarative/build/ratings'
 const URL = 'https://labs9-car-reviews.herokuapp.com/user/get/adam@gmail.com'
 
 class SearchView extends Component {
