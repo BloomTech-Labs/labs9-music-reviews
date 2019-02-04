@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Card, CardImg, CardBody, CardTitle, Col } from 'reactstrap';
-import styled from 'styled-components';
-
 const cardStyle = {
   color:'#eac67a',
   textDecoration: 'none',

@@ -3,7 +3,7 @@ import FeaturedReviews from './Display/FeaturedReviews';
 import PopularTracks from './Display/PopularTracks';
 import PopularReviewers from './Display/PopularReviewers';
 import Newest from './Display/Newest';
-import { Container, Row } from 'reactstrap';
+import { Container } from 'reactstrap';
 import { withAuthorization } from '../Components/Session';
 
 const HomePage = () => {

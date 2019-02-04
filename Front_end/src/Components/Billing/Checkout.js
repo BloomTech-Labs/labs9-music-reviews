@@ -15,9 +15,6 @@ const CURRENCY = 'USD';
 const convertToCents = amount => amount * 100;
 
 class Checkout extends Component {
-    constructor(props){
-        super(props);
-    }
     successPayment = data => {
         alert('Payment Successful');
     };

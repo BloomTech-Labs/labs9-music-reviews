@@ -19,7 +19,6 @@ import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
 import SearchResults from "./Components/Search/SearchResults";
 import { withAuthentication } from './Components/Session'
-import * as ROUTES from './constants/routes/routes';
 
 
 let refreshTime = 15*60*1000; // 15 mins

@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import axios from "axios";
 import { instanceOf } from "prop-types";
-import { withCookies, Cookies } from "react-cookie";
+import { Cookies } from "react-cookie";
 import { Button, Modal, ModalBody, Col, Row } from "reactstrap";
 import EditStars from "../StarsRating/EditStars";
 import "./modals.css";

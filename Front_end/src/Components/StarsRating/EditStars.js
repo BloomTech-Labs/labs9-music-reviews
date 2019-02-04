@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import axios from "axios";
 import Ratings from 'react-ratings-declarative'
 
 class Stars extends Component {

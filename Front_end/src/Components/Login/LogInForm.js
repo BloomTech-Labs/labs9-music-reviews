@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container,Col, Button, Form, FormGroup, Label,  Input,  Card,  Row } from 'reactstrap';
+import {Container,Col, Button, Form, FormGroup, Label,  Input, Row } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
 import { FirebaseContext } from '../Firebase';
 import LogInWithGoogle from './LogInWithGoogle';
