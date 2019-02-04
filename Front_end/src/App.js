@@ -85,11 +85,11 @@ class App extends Component {
   }
   changeLoginState = () => {
     if (this.state.loggedIn === false){
-      window.location.href="http://localhost:3000/home";
+      window.location.href="https://labs9carreviews.netlify.com/home";
       this.setState({ loggedIn: true });
     } else {
       console.log("Redirecting...")
-      window.location.href="http://localhost:3000/";
+      window.location.href="https://labs9carreviews.netlify.com/";
       this.setState({ loggedIn: false })
     }
   }
