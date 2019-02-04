@@ -84,8 +84,6 @@ class AlbumReviewsPage extends Component {
         <Row style={{position: 'relative', top: '10rem', marginBottom: '50px'}}>
             <Col md={5} id='left' className='scrollbox scrollbox-content'>
              
-              {/* can add logic to render different size of album art based on screen size: stacked ternary */}
-              {/* need to find a way to manipulate the img object from res.data */}
               {/* COVER ART */}
               <Card body className="text-center" style={{background: 'transparent', border: 'none', alignItems: 'center', textDecoration: 'none', textShadow: "-1px -1px 0 #984B43, 1px -1px 0 #984B43, -1px 1px 0 #984B43, 1px 1px 0 #984B43" }}>
 
@@ -121,10 +119,11 @@ class AlbumReviewsPage extends Component {
                 ) : null}
               </Row>
               {/* end of Create  */}
+
               <Row style={{justifyContent: 'center'}}>
-              <Link className='link' to={`/artists/${this.state.artistId}`}>
-                  <h5>See all albums by: {this.state.artist} </h5>
-              </Link>
+                <Link className='link' to={`/artists/${this.state.artistId}`}>
+                    <h5>See all albums by: {this.state.artist} </h5>
+                </Link>
               </Row>
                   <Col
                     style={{
@@ -162,7 +161,14 @@ class AlbumReviewsPage extends Component {
                 </Col>
             <Col  md={{size: 7, offset: 5}} >
                 {albumReviews.length === 0 ? (
-                  <Row style={{ display: "flex", justifyContent: "center", color: "#984B43", fontFamily: "Merriweather Sans"}}>
+                  <Row 
+                    style={{ 
+                      display: "flex",
+                      justifyContent: "center",
+                      color: "#984B43",
+                      fontFamily: "Merriweather Sans"
+                    }}
+                  >
                     <h3>Be the first to write a review for this album!</h3>
                   </Row>
                 ) : (

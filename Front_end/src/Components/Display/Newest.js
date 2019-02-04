@@ -59,7 +59,7 @@ componentDidMount() {
             <Container md="3" xs="12" style={{
                         overflow: "hidden",
                         textAlign: "center",
-                        padding: "2rem 1rem 0 1rem",
+                        padding: "2rem 0",
                         margin: "0 auto",
                         fontFamily: "Lato"
                     }}
