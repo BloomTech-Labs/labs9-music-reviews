@@ -1,10 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
 const SignOutAnchor = styled.a`
   cursor: pointer;
   color: #984B43 !important;
-`;
+`
 
 const SignOut = (props) => (
   <SignOutAnchor onClick={() => {
@@ -14,6 +14,6 @@ const SignOut = (props) => (
       Sign Out
     </SignOutAnchor>
   </SignOutAnchor>
-);
+)
 
-export default SignOut;
+export default SignOut
