@@ -5,8 +5,6 @@ import { instanceOf } from 'prop-types';
 import NewReleaseCard from './NewReleaseCard';
 import { Container } from 'reactstrap';
 
-// const url = 'https://api.spotify.com/v1/search?q=tag%3Anew&type=album';
-
 const url = 'https://api.spotify.com/v1/browse/new-releases';
 
 class Newest extends Component {
@@ -39,12 +37,22 @@ componentDidMount() {
             var msec = Date.parse(date);
             var d = new Date(msec);
             return d.toString().split("G",1)[0].slice(3,15);
-        }
+        }        
+
+        function getUnique(arr, comp) {
+            const unique = arr
+                .map(e => e[comp])
+                .map((e, i, final) => final.indexOf(e) === i && i)  // store the keys of the unique objects
+                .filter(e => arr[e]).map(e => arr[e]);              // eliminate the dead keys & store unique objects
+             return unique;
+          }
+          
+
         const renderData = this.state.data.map(album => {
-            return album.artists.map((artist, index) => {
+            return getUnique(album.artists.map(artist => {
               return (
                     <NewReleaseCard
-                        key = {index} 
+                        key = {album.id} 
                         album = {album.name}
                         artist = {artist.name}
                         date = {dateConverter(album.release_date)}
@@ -52,7 +60,7 @@ componentDidMount() {
                         id = {album.id}
                     />
               )
-        })
+        }), 'id')
     })
 
         return (
