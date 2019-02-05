@@ -53,8 +53,65 @@ class Navigation extends Component {
 
           <Col className="big" md="8" xs="12" style={{border:'5px teal solid'}}>
 
-          <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
+
+                      <DropdownMenu right style={{ background: "#eac67a", color: "#a0006c"}}>
+                        {this.props.loggedIn === true ? (
+                          
+                          <Fragment>
+                          
+                            <Link to="/home" style={{ textDecoration: 'none', textAlign: "center", background:'#a0006c'}}>
+                              <DropdownItem style={{color: '#984B43'}}><b>Home</b></DropdownItem>
+                            </Link>
+                          
+                            <Link to={`/user/reviews/${this.props.userID}`} style={{ textDecoration: 'none', textAlign: "center"}}>
+                              <DropdownItem style={{color: '#984B43'}}><b>My Reviews</b></DropdownItem>
+                            </Link>
+                          
+                            <Link to="/user/billing" style={{ textDecoration: 'none', textAlign: "center" }}>
+                              <DropdownItem style={{color: '#984B43'}}><b>Billing</b></DropdownItem>
+                            </Link>
+                          
+                            <Link to="/user/settings"style={{ textDecoration: 'none', textAlign: "center" }}>
+                              <DropdownItem style={{color: '#984B43'}}><b>Settings</b></DropdownItem>
+                            </Link>
+                          
+                            <DropdownItem divider />
+                          
+                            <NavLink to="/" style={{ textDecoration: 'none', textAlign: "center", paddingRight: '0', paddingLeft: '0' }}>
+                          
+                              <DropdownItem>
+                                <FirebaseContext.Consumer>
+                                  {firebase => (
+                                    <SignOut
+                                      firebase={firebase}
+                                      signout={this.props.signout}
+                                    />
+                                  )}
+                                </FirebaseContext.Consumer>
+                              </DropdownItem>
+                          
+                            </NavLink>
+                          
+                          </Fragment>
+                        ) : (
+                          <Fragment>
+                            <Link to="/signup" style={{ textDecoration: 'none', color: "#984b43" }}>
+                              <DropdownItem><b>Sign Up</b></DropdownItem>
+                            </Link>
+                            <Link to="/login" style={{ textDecoration: 'none', color: "#984b43" }}>
+                              <DropdownItem><b>Log In</b></DropdownItem>
+                            </Link>
+                          </Fragment>
+                        )}
+                      </DropdownMenu>           
+                    </Dropdown>
+                  
+                </Col>
+              </Row>
+            </Nav>
+          </Col>
+
 
                <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>

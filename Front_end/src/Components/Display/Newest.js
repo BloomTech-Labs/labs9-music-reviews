@@ -5,7 +5,9 @@ import { instanceOf } from 'prop-types';
 import NewReleaseCard from './NewReleaseCard';
 import { Container } from 'reactstrap';
 
-const url = 'https://api.spotify.com/v1/search?q=tag%3Anew&type=album';
+// const url = 'https://api.spotify.com/v1/search?q=tag%3Anew&type=album';
+
+const url = 'https://api.spotify.com/v1/browse/new-releases';
 
 class Newest extends Component {
     static propTypes = {
@@ -57,7 +59,7 @@ componentDidMount() {
             <Container md="3" xs="12" style={{
                         overflow: "hidden",
                         textAlign: "center",
-                        padding: "2rem 1rem 0 1rem",
+                        padding: "2rem 0",
                         margin: "0 auto",
                         fontFamily: "Lato"
                     }}

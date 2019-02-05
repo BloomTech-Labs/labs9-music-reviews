@@ -1,7 +1,14 @@
 import React from 'react';
 import axios from 'axios';
 import { Row, Col, Container, Card, CardImg } from 'reactstrap';
-// import styled from 'styled-components';
+import styled from 'styled-components';
+import Billing from './Billing';
+
+const H3 = styled.h3`
+  color: #eac67a;
+  font-size: 1.2rem;
+  font-weight: 600;
+`;
 
 class SettingsContent extends React.Component {
   constructor(props) {
@@ -74,15 +81,10 @@ class SettingsContent extends React.Component {
       return <h2>You are not logged in.</h2>;
     } else if (this.state.loaded === true && this.state.loading === false) {
       return (
-        <Container fluid style={{ maxWidth: "1600px", color: "#eac67a", fontFamily: "Lato", fontSize: "1.2rem", textAlign: "left" }}>
+        <Container fluid style={{ maxWidth: "1600px", color: "#984b43", fontFamily: "Lato", fontSize: "1.2rem", textAlign: "left", fontWeight: "650" }}>
           <Card style={{ maxWidth: "1000px", margin: "8rem auto", padding: "3rem", border: "2px solid #eac67a", background: "#233237"  }}>
-            <Row style={{ margin: "0 auto", textAlign: "left"  }}>
-              <h1 style={{ fontFamily: "Merriweather Sans" }}>
-                Account Settings
-              </h1>
-            </Row>
             <Row>
-              <Col xs="12" md="4" style={{ margin: "0 auto", textAlign: "left"  }}>
+              <Col xs="12" md="4" style={{ margin: "0 auto", textAlign: "left", padding: "1rem" }}>
                 <CardImg
                       src={require("../../Images/defaultUser.png")}
                       alt="Default profile image"
@@ -94,11 +96,11 @@ class SettingsContent extends React.Component {
                         background: "#233237",
                       }}
                 />
-                <p>User ID: {this.state.userID}</p>
-                <p style={{ fontWeight: "650", color: "#984b43" }}>{this.state.nickname}</p>
-                <p>Email address: {this.state.email}</p>  
+                <p><H3>User ID: </H3>{this.state.userID}</p>
+                <p><H3>Nickname: </H3>{this.state.nickname}</p>
+                <p><H3>Email address: </H3>{this.state.email}</p>  
               </Col>
-              <Col xs="12" md="8" style={{ margin: "auto", textAlign: "left"  }}>
+              <Col xs="12" md="8" style={{ margin: "auto", textAlign: "left", padding: "0 1rem" }}>
                 {/* <Input 
                   style={{ maxWidth: "400px" }}
                   name="newNickname"
@@ -118,13 +120,23 @@ class SettingsContent extends React.Component {
                   onClick={this.changeNickname}>
                     Change Nickname
                 </button> */}
-            
-                <p>Tier: Paid</p>
-                <p>
-                  {this.props.subscriptionExpiration == null ? "You are not subscribed at the moment."
-                  : `Your subscription will expire on: ${this.props.subscriptionExpiration.slice(4,15)}`
-                  }
-                </p>
+                <Row style={{ color: "#984b43", fontWeight: "650", padding: "1rem" }}>
+                  <div style={{ textAlign: "left" }}><H3>Tier: </H3>Subscriber</div>
+                </Row>
+                <Row style={{ padding: "1rem" }}>
+                    {this.props.subscriptionExpiration == null ? 
+                      "You are not subscribed at the moment."
+                    : `Your subscription will expire on: ${this.props.subscriptionExpiration.slice(4,15)}`
+                    }   
+                </Row>
+                <Row>
+                  <Billing 
+                    userID={this.props.userID} 
+                    subscriptionExpiration={this.props.subscriptionExpiration} 
+                    nickname={this.props.nickname}
+                    tier={this.props.subscriptionExpiration}
+                  />
+                </Row>
               </Col>
             </Row>
         

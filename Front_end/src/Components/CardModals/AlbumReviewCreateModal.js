@@ -160,7 +160,7 @@ class AlbumReviewCreateModal extends React.Component {
             </Col>
           </Row>
           <div className="container center-align" style={{ margin: "0 auto" }}>
-            <div style={{ textAlign: "center" }}>Set Star Rating</div>
+            <div style={{ textAlign: "center" }}>Select Star Rating</div>
             <Row style={{ justifyContent: "center", margin: "5px 0" }}>
               <EditStars
                 rating={this.state.rating}

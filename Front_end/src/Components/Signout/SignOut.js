@@ -8,10 +8,11 @@ const SignOutAnchor = styled.a`
 
 const SignOut = (props) => (
   <SignOutAnchor onClick={() => {
-    props.firebase.doSignOut()
-    props.signout()
+    props.firebase.doSignOut();
   }}>
-    Sign Out
+    <SignOutAnchor onClick={props.signout}>
+      Sign Out
+    </SignOutAnchor>
   </SignOutAnchor>
 )
 

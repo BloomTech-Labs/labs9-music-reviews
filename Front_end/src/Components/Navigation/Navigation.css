@@ -2,14 +2,23 @@
     color: #984b43;
     text-decoration: none;
 }
+
 button:active {
     color: #984b43;
+<<<<<<< HEAD
 }
+=======
+} 
+>>>>>>> d5bb5d57d37ca7bd5f8ddb1487431d7b2a55d2b7
 
 a {
     color:#984B43;
     text-decoration: none;
     background-color: transparent;
     font-weight: 650;
+<<<<<<< HEAD
 }
 
+=======
+} 
+>>>>>>> d5bb5d57d37ca7bd5f8ddb1487431d7b2a55d2b7
