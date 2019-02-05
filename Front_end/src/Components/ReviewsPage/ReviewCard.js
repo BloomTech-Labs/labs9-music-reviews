@@ -117,7 +117,8 @@ class AlbumReviewCard extends Component {
             this.props.albumReview === true
               ? "3px solid #984B43"
               : "3px solid #EAC67A",
-          borderRadius: "10px"
+          borderRadius: "10px",
+          maxWidth: "1200px"
         }}
       >
         {/* User info */}
