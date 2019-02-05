@@ -27,8 +27,8 @@ const LandingPage = () => {
           color: "#984b43",
         }}
       >
-        There are a million songs out there. <br />
-        Let your opinions on them be On The Record
+        There are millions of tracks out there... <br />
+        Share your thoughts and put them On The Record.
       </h3>
 
       <Row style={{ display: "flex", justifyContent: "center" }}>

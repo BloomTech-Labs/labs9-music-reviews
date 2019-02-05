@@ -44,19 +44,20 @@ class SignUpForm extends React.Component {
           this.props.firebase.auth
           .onAuthStateChanged((user) => {
             if (user) {
-                user.getIdToken().then((idToken) => {
-                    axios
-                    .post(
-                      `${process.env.REACT_APP_BACKEND_URL}users/create`,
-                      {
-                        token: idToken,
-                      }
-                      )
-                      .then((res) => {
-                        window.location.href="https://labs9carreviews.netlify.com/home"
-                      })
-                      .catch((err) => console.log(err));
-                  });
+              user.getIdToken().then((idToken) => {
+                  axios
+                  .post(
+                    `${process.env.REACT_APP_BACKEND_URL}users/create`,
+                    {
+                      token: idToken,
+                    }
+                    )
+                    .then((res) => {
+                      this.props.changeLogInState();
+                      this.props.history.push('/home');
+                    })
+                    .catch((err) => console.log(err));
+                });
               }}
             )
             .catch((err) => console.log(err));
@@ -90,7 +91,6 @@ class SignUpForm extends React.Component {
                 value={this.state.email}
                 onChange={this.onChangeHandler}
                 placeholder="Email Address"
-                // style = {{backgroundColor: '#eac67a', color: '#984b43'}}
               />
             </FormGroup>
           </Col>
@@ -103,7 +103,6 @@ class SignUpForm extends React.Component {
                 value={this.state.password}
                 onChange={this.onChangeHandler}
                 placeholder="Password"
-                // style = {{backgroundColor: '#eac67a', color: '#984b43'}}
               />
             </FormGroup>
           </Col>

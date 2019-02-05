@@ -42,7 +42,7 @@ class LogInWithGoogle extends React.Component {
           Google Log In
         </Button> */}
         <img src={require("../../Images/GoogleWhite.png")} alt="Log In with Google" onClick={this.onSubmit} 
-            style={{ color: '#eac67a', fontWeight: '650', maxWidth: "15rem", padding: "1rem" }}
+            style={{ color: '#eac67a', fontWeight: '650', maxWidth: "15rem", padding: "1rem", borderRadius: "1.5rem" }}
         />
       </Col>
     );

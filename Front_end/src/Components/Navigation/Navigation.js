@@ -116,11 +116,11 @@ class Navigation extends Component {
                           </Fragment>
                         ) : (
                           <Fragment>
-                            <Link to="/signup" style={{ textDecoration: 'none' }}>
-                              <DropdownItem>Sign Up</DropdownItem>
+                            <Link to="/signup" style={{ textDecoration: 'none', color: "#984b43" }}>
+                              <DropdownItem><b>Sign Up</b></DropdownItem>
                             </Link>
-                            <Link to="/login" style={{ textDecoration: 'none' }}>
-                              <DropdownItem>Log In</DropdownItem>
+                            <Link to="/login" style={{ textDecoration: 'none', color: "#984b43" }}>
+                              <DropdownItem><b>Log In</b></DropdownItem>
                             </Link>
                           </Fragment>
                         )}

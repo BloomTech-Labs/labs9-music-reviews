@@ -10,6 +10,8 @@ import { withAuthorization } from '../Session';
 const cardStyle = {
   background: "#233237",
   padding: "1rem",
+  height: "100%",
+  flexGrow: "3" 
 }
 
 class ArtistPage extends Component {
@@ -97,8 +99,10 @@ class ArtistPage extends Component {
 
     return (
       <Container fluid style={{ fontFamily: "Lato", margin: "0 auto", maxWidth: "1600px" }}>
-        <Row style={{ 
+        
+        <Row noGutters style={{ 
               display: "flex",
+              flexDirection: "column",
               justifyContent: "space-around",
               position: "relative",
               top: "12rem",
@@ -106,28 +110,31 @@ class ArtistPage extends Component {
               maxWidth: "800px",
             }}
           >
-          <Col xs="12" md="6" style={{ maxWidth: "320px", margin: "1rem" }}>
-            <Card style={ cardStyle }>
-              <h1 style={{ fontFamily: "Merriweather Sans", padding: "1rem" }}>
-                {this.state.artist}
-              </h1>
-                <h6 style={{ paddingLeft: "1rem", fontWeight: "700" }}>Genre(s):</h6>
-      
-              <Col>
-                <ListGroup style={{ fontFamily: "Lato" }}>
-                  {this.state.genres.map((genre, index) => {
-                    return `${ (index ? ', ' : '') + genre }`;
-                  })}
-                </ListGroup>
-              </Col>
-            </Card>
-          </Col>
+          <h1 style={{ color: "#984b43", fontFamily: "Merriweather Sans", fontWeight: "700" }}>Artist Info</h1>
+          <Row noGutters style={{ margin: "0 auto", position: "relative" }}>
+            <Col xs="12" md="6" style={{ display: "flex" }}>
+              <Card style={ cardStyle }>
+                <h2 style={{ fontFamily: "Merriweather Sans", padding: "1rem" }}>
+                  {this.state.artist}
+                </h2>
+                  <h6 style={{ paddingLeft: "1rem", fontWeight: "700" }}>Genre(s):</h6>
+        
+                <Col>
+                  <ListGroup style={{ fontFamily: "Lato" }}>
+                    {this.state.genres.map((genre, index) => {
+                      return `${ (index ? ', ' : '') + genre }`;
+                    })}
+                  </ListGroup>
+                </Col>
+              </Card>
+            </Col>
 
-          <Col xs="12" md="6" style={{ display: "flex", margin: "0 auto" }}>
-            <img src={this.state.art} alt="Art of the artist"
-              style={{ maxWidth: '325px', maxHeight: "325px", border: "2px solid #984b43", margin: "0 auto" }}
-            />
-          </Col>
+            <Col xs="12" md="6">
+              <img src={this.state.art} alt="Art of the artist"
+                style={{ border: "2px solid #984b43", width: "100%" }}
+              />
+            </Col>
+          </Row>
 
         </Row>
                   
@@ -137,7 +144,9 @@ class ArtistPage extends Component {
               color: "#984b43",
               top: "12rem",
               fontFamily: "Merriweather Sans",
+              fontWeight: "700",
               margin: "0 auto",
+              padding: "2rem 0"
             }}
           >
             Albums

@@ -6,6 +6,11 @@ import ViewStars from "../StarsRating/ViewStars";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
 
+// const iconStyle = {
+//   padding: "1rem",
+//   fontSize: "1.5rem"
+// }
+
 class AlbumReviewCard extends Component {
   static propTypes = {
     cookies: instanceOf(Cookies).isRequired
@@ -16,7 +21,9 @@ class AlbumReviewCard extends Component {
       users: [],
       nickname: "",
       albumReviews: [],
-      trackReviews: []
+      trackReviews: [],
+      // liked: false,
+      // disliked: false,
     };
   }
 
@@ -72,6 +79,16 @@ class AlbumReviewCard extends Component {
       .catch(err => console.log(err));
   }
 
+  likeReview = () => {
+    this.setState({ liked : !this.state.liked, disliked: false })
+    console.log('liked review');
+  }
+
+  dislikeReview = () => {
+    this.setState({ liked : false, disliked: !this.state.disliked })
+    console.log('disliked Review');
+  }
+
   componentDidMount() {
     this.getUser();
     this.getNickname(this.props.review.userID);
@@ -86,6 +103,8 @@ class AlbumReviewCard extends Component {
     const userTrackReviews = this.state.trackReviews.filter(review => {
       return review.userID === parseInt(this.props.review.userID);
     });
+    const liked = this.state.liked ? "fas fa-thumbs-up" : "far fa-thumbs-up";
+    const disliked = this.state.disliked ? "fas fa-thumbs-down" : "far fa-thumbs-down"
     return (
       <Jumbotron
         fluid
@@ -127,7 +146,7 @@ class AlbumReviewCard extends Component {
                 <strong>{this.state.nickname}</strong>
               </NavLink>
             </div>
-            <div>Member status</div>
+            {/* <div>Member status</div> */}
             <div>
               <strong>Reviews: </strong>
               {userAlbumReviews.length + userTrackReviews.length}
@@ -149,6 +168,10 @@ class AlbumReviewCard extends Component {
                 <p>{this.props.review.review}</p>
               </Col>
             </Row>
+            {/* <Row style={{ display: "flex", justifyContent: "flex-end" }}>
+              <i className={ liked } style={ iconStyle } onClick={this.likeReview} />
+              <i className={ disliked } style={ iconStyle } onClick={this.dislikeReview} />
+            </Row> */}
           </Col>
         </Row>
       </Jumbotron>

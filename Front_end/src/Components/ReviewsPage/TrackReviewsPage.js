@@ -101,6 +101,18 @@ class TrackReviewsPage extends Component {
     return (
       <Row style={{ position: "relative", top: "10rem", marginBottom: "50px" }}>
         <Col md={5} id="left" className="scrollbox scrollbox-content">
+        <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              color: "#984B43",
+              fontFamily: "Merriweather Sans",
+              width: "75%",
+              margin: "0 auto"
+            }}
+          >
+            <h2>Track: {this.state.album}</h2>
+          </div>
           {/* can add logic to render different size of album art based on screen size: stacked ternary */}
           {/* need to find a way to manipulate the img object from res.data */}
           {/* COVER ART */}
@@ -154,6 +166,7 @@ class TrackReviewsPage extends Component {
             ) : null}
           </Row>
           {/* end of Create  */}
+
           <Row style={{ justifyContent: "center" }}>
             <Link className="link" to={`/artists/${this.state.artistId}`}>
               <h5>See all albums by: {this.state.artist} </h5>
@@ -177,16 +190,16 @@ class TrackReviewsPage extends Component {
                     <Col xs="3" style={{ textAlign: "right" }}>
                       <h6>{track.track_number}.</h6>
                     </Col>
-                    <Col xs="9">
-                      <h6 key={track.id}>
-                        {track.name}{" "}
+                    <Col xs="9">                      
                         {track.id === this.state.trackId ? (
+                          <h6 key={track.id} style={{ fontWeight: "bold" }}>
+                          {track.name}{" "}
                           <i
-                            style={{ marginLeft: "1rem", color: "black" }}
+                            style={{ marginLeft: "1rem", color: "black", }}
                             class="fas fa-compact-disc"
                           />
-                        ) : null}
-                      </h6>
+                        </h6>) : <h6 key={track.id}>
+                          {track.name}</h6>}                      
                     </Col>
                   </Row>
                 </Link>
@@ -200,7 +213,8 @@ class TrackReviewsPage extends Component {
               style={{
                 display: "flex",
                 justifyContent: "center",
-                color: "#984B43"
+                color: "#984B43", 
+                fontFamily: "Merriweather Sans"
               }}
             >
               <h3>Be the first to write a review for this track!</h3>
