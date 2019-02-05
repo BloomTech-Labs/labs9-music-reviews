@@ -7,7 +7,6 @@ import TrackReviewsPage from "./Components/ReviewsPage/TrackReviewsPage";
 import HomePage from "./Components/HomePage";
 import LandingPage from "./Components/LandingPage/LandingPage";
 import SearchLanding from "./Components/SearchLanding/SearchLanding";
-import Billing from "./Components/Billing/Billing";
 import SettingsPage from "./Components/Settings/SettingsPage";
 import SignUpPage from "./Components/Signup/SignUpPage";
 import ArtistPage from "./Components/ArtistPage/ArtistPage"

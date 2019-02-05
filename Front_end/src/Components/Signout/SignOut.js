@@ -3,7 +3,9 @@ import styled from 'styled-components'
 
 const SignOutAnchor = styled.a`
   cursor: pointer;
-  color: #984B43 !important;
+  color: #eac67a !important;
+  padding: 0;
+  margin: 0;
 `
 
 const SignOut = (props) => (
