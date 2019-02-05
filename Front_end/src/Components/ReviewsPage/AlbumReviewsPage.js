@@ -90,7 +90,7 @@ class AlbumReviewsPage extends Component {
               color: "#984B43",
               fontFamily: "Merriweather Sans",
               width: "75%",
-              margin: "0 auto"
+              margin: "15px auto 0"
             }}
           >
             <h2>Album: {this.state.album}</h2>
