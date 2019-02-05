@@ -73,12 +73,21 @@ class ArtistPage extends Component {
       var d = new Date(msec);
       return d.toString().split("G",1)[0].slice(3,15);
     }
+
+    function getUnique(arr, comp) {
+      const unique = arr
+          .map(e => e[comp])
+          .map((e, i, final) => final.indexOf(e) === i && i)  // store the keys of the unique objects
+          .filter(e => arr[e]).map(e => arr[e]);              // eliminate the dead keys & store unique objects
+       return unique;
+    }
+    
     // Album Data
-    const renderData = this.state.albums.map(album => {
+    const renderData = getUnique(this.state.albums.map(album => {
       return (
-        <NavLink to={`/albums/${album.id}`} style={{ textDecoration: 'none', color: "black", margin: "0 auto" }}>
+        <NavLink  key={album.name} to={`/albums/${album.id}`} style={{ textDecoration: 'none', color: "black", margin: "0 auto" }}>
           <AlbumCard
-            key={album.id}
+            key={album.name}
             total_tracks={album.total_tracks}
             image={album.images[1].url}
             album={album.name}
@@ -86,7 +95,7 @@ class ArtistPage extends Component {
           />
         </NavLink>
       );
-    });
+    }), 'key');
 
     return (
       <Container fluid style={{ fontFamily: "Lato", margin: "0 auto", maxWidth: "1600px" }}>
