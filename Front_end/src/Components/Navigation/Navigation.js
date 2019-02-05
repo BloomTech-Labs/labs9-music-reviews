@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import SignOut from '../Signout/SignOut';
+import styled from 'styled-components'
 import {
   Navbar,
   Nav,
@@ -21,6 +22,17 @@ import {
 import { FirebaseContext } from "../Firebase/index.js";
 import './Navigation.css';
 
+const SmallScreen = styled.div`
+@media(max-width < 992){
+  display: none;
+}
+`
+
+const BigScreen = styled.div`
+@media(max-width >= 992){
+  dislay: none;
+}
+`
 class Navigation extends Component {
   constructor(props) {
     super(props);
@@ -37,142 +49,113 @@ class Navigation extends Component {
     return (
         <div className="flex-xs-column">
         <Navbar fixed='top' dark expand="lg" toggleable="sm" style={{ display: "flex", alignItems: "center",background: "rgba(152, 75, 67, 0.95)"}}>
-        <Col md="4" xs='12' style={{border: '5px red solid'}}>
-        <Link to="/" style={{ textDecoration: "none",color: "#eac67a", fontSize: "3rem", fontWeight: "700" }}>
-              <img src={require("../../Images/OTR Logo X.png")} alt="ON THE RECORD" style={{ width: "350px" }}/>   
-        </Link>
-          </Col>
-          
-          <Col xs='12' md='8' style={{ display: "flex", border:'5px blue solid'}}>
-          
-          <Col xs="12" md='4' style={{ margin: "0 auto", boarder: '5px green solid'}}>
+            <Col md="4" xs='12' style={{border: '5px red solid'}}>
+              <Link to="/" style={{ textDecoration: "none",color: "#eac67a", fontSize: "3rem", fontWeight: "700" }}>
+                <img src={require("../../Images/OTR Logo X.png")} alt="ON THE RECORD" style={{ width: "350px" }}/>
+              </Link>
+            </Col>
+          {/* start Col */}
+    <Col xs='12' md='8' style={{ display: "flex", border:'5px blue solid'}}>
+
+          <Col xs="4" md='4' style={{ margin: "0 auto", boarder: '5px green solid'}}>
             <Link to="/search">
-               <Button style={{ background: "#eac67a", color: "#984b43", fontWeight: "650" }}>SEARCH</Button>
+              <Button style={{ background: "#eac67a", color: "#984b43", fontWeight: "650" }}>SEARCH</Button>
             </Link>
           </Col>
 
-          <Col className="big" md="8" xs="12" style={{border:'5px teal solid'}}>
+      <Col md="8" xs="8" style={{border:'5px hotpink solid'}}>
 
+        <BigScreen>
+          {this.props.loggedIn === true ? (
+          <Fragment>
+            <Link to="/home" style={{ textDecoration: 'none', textAlign: "center", background:'#a0006c'}}>
+              <DropdownItem style={{color: '#984B43'}}><b>Home</b></DropdownItem>
+            </Link>
+
+            <Link to={`/user/reviews/${this.props.userID}`} style={{ textDecoration: 'none', textAlign: "center"}}>
+              <DropdownItem style={{color: '#984B43'}}><b>My Reviews</b></DropdownItem>
+            </Link>
+
+            <Link to="/user/billing" style={{ textDecoration: 'none', textAlign: "center" }}>
+              <DropdownItem style={{color: '#984B43'}}><b>Billing</b></DropdownItem>
+            </Link>
+
+            <Link to="/user/settings"style={{ textDecoration: 'none', textAlign: "center" }}>
+              <DropdownItem style={{color: '#984B43'}}><b>Settings</b></DropdownItem>
+            </Link>
+
+            <DropdownItem divider />
+
+            <NavLink to="/" style={{ textDecoration: 'none', textAlign: "center", paddingRight: '0', paddingLeft: '0' }}>
+              <DropdownItem>
+                  <FirebaseContext.Consumer>
+                    {firebase => (<SignOut firebase={firebase} signout={this.props.signout}/>)}
+                  </FirebaseContext.Consumer>
+              </DropdownItem>
+            </NavLink>
+          </Fragment> ) : (
+            <Fragment>
+              <Link to="/signup" style={{ textDecoration: 'none', color: "#984b43" }}>
+                <DropdownItem><b>Sign Up</b></DropdownItem>
+              </Link>
+
+              <Link to="/login" style={{ textDecoration: 'none', color: "#984b43" }}>
+                  <DropdownItem><b>Log In</b></DropdownItem>
+              </Link>
+            </Fragment>
+                  )}
+          </BigScreen>
+
+        <SmallScreen> 
           <Collapse isOpen={this.state.isOpen} navbar>
-
-                      <DropdownMenu right style={{ background: "#eac67a", color: "#a0006c"}}>
-                        {this.props.loggedIn === true ? (
-                          
-                          <Fragment>
-                          
-                            <Link to="/home" style={{ textDecoration: 'none', textAlign: "center", background:'#a0006c'}}>
-                              <DropdownItem style={{color: '#984B43'}}><b>Home</b></DropdownItem>
-                            </Link>
-                          
-                            <Link to={`/user/reviews/${this.props.userID}`} style={{ textDecoration: 'none', textAlign: "center"}}>
-                              <DropdownItem style={{color: '#984B43'}}><b>My Reviews</b></DropdownItem>
-                            </Link>
-                          
-                            <Link to="/user/billing" style={{ textDecoration: 'none', textAlign: "center" }}>
-                              <DropdownItem style={{color: '#984B43'}}><b>Billing</b></DropdownItem>
-                            </Link>
-                          
-                            <Link to="/user/settings"style={{ textDecoration: 'none', textAlign: "center" }}>
-                              <DropdownItem style={{color: '#984B43'}}><b>Settings</b></DropdownItem>
-                            </Link>
-                          
-                            <DropdownItem divider />
-                          
-                            <NavLink to="/" style={{ textDecoration: 'none', textAlign: "center", paddingRight: '0', paddingLeft: '0' }}>
-                          
-                              <DropdownItem>
-                                <FirebaseContext.Consumer>
-                                  {firebase => (
-                                    <SignOut
-                                      firebase={firebase}
-                                      signout={this.props.signout}
-                                    />
-                                  )}
-                                </FirebaseContext.Consumer>
-                              </DropdownItem>
-                          
-                            </NavLink>
-                          
-                          </Fragment>
-                        ) : (
-                          <Fragment>
-                            <Link to="/signup" style={{ textDecoration: 'none', color: "#984b43" }}>
-                              <DropdownItem><b>Sign Up</b></DropdownItem>
-                            </Link>
-                            <Link to="/login" style={{ textDecoration: 'none', color: "#984b43" }}>
-                              <DropdownItem><b>Log In</b></DropdownItem>
-                            </Link>
-                          </Fragment>
-                        )}
-                      </DropdownMenu>           
-                    </Dropdown>
-                  
-                </Col>
-              </Row>
-            </Nav>
-          </Col>
-
-
-               <UncontrolledDropdown nav inNavbar>
+              <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                 </DropdownToggle>
                 <DropdownMenu right style={{ background: "#eac67a", color: "#a0006c"}}>
                 {this.props.loggedIn === true ? (
-                                         <Fragment>
-                          
-                                         <Link to="/home" style={{ textDecoration: 'none', textAlign: "center", background:'#a0006c'}}>
-                                           <DropdownItem style={{color: '#984B43'}}><b>Home</b></DropdownItem>
-                                         </Link>
-                                       
-                                         <Link to={`/user/reviews/${this.props.userID}`} style={{ textDecoration: 'none', textAlign: "center"}}>
-                                           <DropdownItem style={{color: '#984B43'}}><b>My Reviews</b></DropdownItem>
-                                         </Link>
-                                       
-                                         <Link to="/user/billing" style={{ textDecoration: 'none', textAlign: "center" }}>
-                                           <DropdownItem style={{color: '#984B43'}}><b>Billing</b></DropdownItem>
-                                         </Link>
-                                       
-                                         <Link to="/user/settings"style={{ textDecoration: 'none', textAlign: "center" }}>
-                                           <DropdownItem style={{color: '#984B43'}}><b>Settings</b></DropdownItem>
-                                         </Link>
-                                       
-                                         <DropdownItem divider />
-                                       
-                                         <NavLink to="/" style={{ textDecoration: 'none', textAlign: "center" }}>
-                                       
-                                           <DropdownItem>
-                                             <FirebaseContext.Consumer>
-                                               {firebase => (
-                                                 <SignOut
-                                                   firebase={firebase}
-                                                   signout={this.props.signout}
-                                                 />
-                                               )}
-                                             </FirebaseContext.Consumer>
-                                           </DropdownItem>
-                                       
-                                         </NavLink>
-                                       
-                                       </Fragment>) : (
-                                         <Fragment>
-                                         <Link to="/signup" style={{ textDecoration: 'none' }}>
-                                           <DropdownItem><b>Sign Up</b></DropdownItem>
-                                         </Link>
-                                         <Link to="/login" style={{ textDecoration: 'none' }}>
-                                           <DropdownItem><b>Log In</b></DropdownItem>
-                                         </Link>
-                                       </Fragment>
-                               )}
-                </DropdownMenu>
-</UncontrolledDropdown>
-          
-          </Collapse> 
-        </Col>
+                  <Fragment>
+                    <Link to="/home" style={{ textDecoration: 'none', textAlign: "center", background:'#a0006c'}}>
+                      <DropdownItem style={{color: '#984B43'}}><b>Home</b></DropdownItem>
+                    </Link>
 
-            </Col>
-        </Navbar> 
+                    <Link to={`/user/reviews/${this.props.userID}`} style={{ textDecoration: 'none', textAlign: "center"}}>
+                      <DropdownItem style={{color: '#984B43'}}><b>My Reviews</b></DropdownItem>
+                    </Link>
+
+                    <Link to="/user/billing" style={{ textDecoration: 'none', textAlign: "center" }}>
+                      <DropdownItem style={{color: '#984B43'}}><b>Billing</b></DropdownItem>
+                    </Link>
+
+                    <Link to="/user/settings"style={{ textDecoration: 'none', textAlign: "center" }}>
+                      <DropdownItem style={{color: '#984B43'}}><b>Settings</b></DropdownItem>
+                    </Link>
+                      <DropdownItem divider />
+
+                    <NavLink to="/" style={{ textDecoration: 'none', textAlign: "center" }}>
+                      <DropdownItem>
+                            <FirebaseContext.Consumer>
+                              {firebase => (   <SignOut firebase={firebase} signout={this.props.signout}/>)}
+                            </FirebaseContext.Consumer>
+                        </DropdownItem>
+                    </NavLink>
+                  </Fragment>) : (
+                    <Fragment>
+                      <Link to="/signup" style={{ textDecoration: 'none' }}>
+                        <DropdownItem><b>Sign Up</b></DropdownItem>
+                      </Link>
+                      <Link to="/login" style={{ textDecoration: 'none' }}>
+                        <DropdownItem><b>Log In</b></DropdownItem>
+                      </Link>
+                    </Fragment>
+                    )}
+                </DropdownMenu>
+              </UncontrolledDropdown>
+          </Collapse>
+        </SmallScreen>
+      </Col>
+    </Col>
+  </Navbar> 
 </div>
-      
     );
   }
 }
