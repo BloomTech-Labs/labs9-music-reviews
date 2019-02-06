@@ -103,7 +103,7 @@ class UserReviewList extends Component {
     });
 
     return (
-      <Fragment>
+      
         <Container
           fluid={true}
           style={{
@@ -178,7 +178,6 @@ class UserReviewList extends Component {
             </Col>
           )}
         </Container>
-      </Fragment>
     );
   }
 }

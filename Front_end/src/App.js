@@ -19,6 +19,7 @@ import SearchResults from "./Components/Search/SearchResults";
 import { withAuthentication } from './Components/Session'
 import Footer from "./Components/Footer/Footer";
 import AboutUs from "./Components/Footer/AboutUs";
+import './index.css'
 
 let refreshTime = 15*60*1000; // 15 mins
 
@@ -111,12 +112,13 @@ class App extends Component {
   }
   render() {
     return (
-      <Container fluid>
+      <wrapper class="d-flex flex-column">
         <Navigation
           loggedIn={this.state.loggedIn}
           signout={this.props.changeLogInState}
           userID={this.state.userID}
         />
+        <main className="container-fluid py-3 flex-fill">
         <Route exact path="/" component={LandingPage} />
         <Route path="/home" component={HomePage} />
         <Route path="/about-us" component={AboutUs} />
@@ -156,8 +158,12 @@ class App extends Component {
             <UserReviewList {...props} loggedIn={this.state.loggedIn} userID={this.state.userID} nickname={this.state.nickname}/>
           )}
         />
-        <Footer />
-      </Container>
+        
+        </main>
+        
+        <Footer loggedIn={this.state.loggedIn} />
+        
+      </wrapper>
     );
   }
 }

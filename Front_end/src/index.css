@@ -15,3 +15,7 @@ body {
   background-color: #FAF0E6;
   color: #eac67a;
 }
+
+body, wrapper {
+  min-height: 100vh;
+}
