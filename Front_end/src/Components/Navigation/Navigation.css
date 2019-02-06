@@ -23,13 +23,19 @@ a {
     color: #984b43 !important;
 }
 
-button:active{
-    color: #984b43 !important;
+.big-menu-item:focus{
+    background: #984b43 !important;
+    outline: none;
 }
 
 .menu-item:hover {
     background: #984b43 !important;
     color: #eac67a !important;
+}
+
+.menu-item:focus{
+    background: #eac67a !important;
+    outline: none;
 }
 
 .icon {
