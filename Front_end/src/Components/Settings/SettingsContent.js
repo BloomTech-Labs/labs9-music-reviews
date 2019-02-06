@@ -82,7 +82,7 @@ class SettingsContent extends React.Component {
     } else if (this.state.loaded === true && this.state.loading === false) {
       return (
         <Container fluid style={{ maxWidth: "1600px", color: "#984b43", fontFamily: "Lato", fontSize: "1.2rem", textAlign: "left", fontWeight: "650" }}>
-          <Card style={{ maxWidth: "1000px", margin: "8rem auto", padding: "3rem", border: "2px solid #eac67a", background: "#233237"  }}>
+          <Card style={{ maxWidth: "1000px", margin: "3rem auto", padding: "3rem", border: "2px solid #eac67a", background: "#233237"  }}>
             <Row>
               <Col xs="12" md="4" style={{ margin: "0 auto", textAlign: "left", padding: "1rem" }}>
                 <CardImg

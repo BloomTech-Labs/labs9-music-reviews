@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
 import { withAuthorization } from "../Session";
+import './reviews.css'
 
 class TrackReviewsPage extends Component {
   static propTypes = {
@@ -99,7 +100,7 @@ class TrackReviewsPage extends Component {
     });
 
     return (
-      <Row style={{ position: "relative", top: "10rem", marginBottom: "50px" }}>
+      <Row style={{ paddingTop: "10rem", marginBottom: "1rem" }}>
         <Col md={5} id="left" className="scrollbox scrollbox-content">
         <div
             style={{
@@ -111,7 +112,7 @@ class TrackReviewsPage extends Component {
               margin: "15px auto 0"
             }}
           >
-            <h2>Track: {this.state.album}</h2>
+            <h2>Track: {this.state.track}</h2>
           </div>
           {/* can add logic to render different size of album art based on screen size: stacked ternary */}
           {/* need to find a way to manipulate the img object from res.data */}
