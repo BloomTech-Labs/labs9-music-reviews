@@ -27,7 +27,7 @@ const theTeam = [
         picture: "https://ca.slack-edge.com/T4JUEB3ME-UAY9JQZGQ-92c0dc2a73c1-48",
         about: "Connecting the dots",
         git: "https://github.com/francistse23",
-        linkedin: "https://www.linkedin.com/in/francis-tse-377126a4/"
+        linkedin: "http://www.linkedin.com/in/francis-tse"
     }
 ]
 
