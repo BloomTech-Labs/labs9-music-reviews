@@ -6,7 +6,6 @@ import AlbumReviewsPage from "./Components/ReviewsPage/AlbumReviewsPage";
 import TrackReviewsPage from "./Components/ReviewsPage/TrackReviewsPage";
 import HomePage from "./Components/HomePage";
 import LandingPage from "./Components/LandingPage/LandingPage";
-import Billing from "./Components/Billing/Billing";
 import SettingsPage from "./Components/Settings/SettingsPage";
 import SignUpPage from "./Components/Signup/SignUpPage";
 import ArtistPage from "./Components/ArtistPage/ArtistPage"
@@ -123,13 +122,6 @@ class App extends Component {
         <Route exact path="/" component={LandingPage} />
         <Route path="/home" component={HomePage} />
         <Route path="/about-us" component={AboutUs} />
-        {/* <Route path="/user/billing" render={(props) => ( 
-          <Billing {...props} userID={this.state.userID} 
-                              subscriptionExpiration={this.state.subscriptionExpiration} 
-                              nickname={this.state.nickname}
-                              tier={this.state.subscriptionExpiration !== null ? "Subscriber" : "Free User"}
-          /> )} 
-        /> */}
         <Route path="/user/settings" render={(props) => 
           <SettingsPage {...props} subscriptionExpiration={this.state.subscriptionExpiration} /> }
         />
@@ -152,7 +144,6 @@ class App extends Component {
           path="/tracks/:id"
           render={props => (
             <TrackReviewsPage {...props} userID={this.state.userID} nickname={this.state.nickname}/>
-            // id="75IN3CtuZwTHTnZvYM4qnJ"
           )}
         />
         <Route
