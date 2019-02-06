@@ -59,7 +59,7 @@ class Navigation extends Component {
                 <Col xs="11" lg="5" style={{ display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
                   {/* shows regular sized menu and hamburger menu hides on mobile */}
                   <Link to="/search" style={{ textAlign: "center", margin: "auto" }}>
-                    <Button style={{ background: "#eac67a", color: "#984b43", fontWeight: "650", position: "relative", left: "0"  }}>SEARCH</Button>
+                    <Button className="search-btn" style={{ background: "#eac67a", color: "#984b43", fontWeight: "650", position: "relative", left: "0"  }}>SEARCH</Button>
                   </Link>
                   <BigScreen>
                     {this.props.loggedIn === true ? (

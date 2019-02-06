@@ -68,7 +68,7 @@ class SubInfoModal extends React.Component {
                   <Ul><i class="fas fa-check" style={{ padding: "0 1rem" }}></i>Search Music</Ul>
                   <Ul><i class="fas fa-check" style={{ padding: "0 1rem" }}></i>Play Music Snippet</Ul>
                   <Ul><i class="fas fa-check" style={{ padding: "0 1rem" }}></i>Write Reviews</Ul>
-                  <Ul><i class="fas fa-check" style={{ padding: "0 1rem" }}></i>Like Reviews</Ul>
+                  {/* <Ul><i class="fas fa-check" style={{ padding: "0 1rem" }}></i>Like Reviews</Ul> */}
                 </ListGroup>
               </ModalBody>
             </Col>
@@ -80,7 +80,7 @@ class SubInfoModal extends React.Component {
                   <Ul><i class="fas fa-check" style={{ padding: "0 1rem" }}></i>Search Music</Ul>
                   <Ul><i class="fas fa-check" style={{ padding: "0 1rem" }}></i>Play Music Snippet</Ul>
                   <Ul><i class="fas fa-times" style={{ padding: "0 1rem" }}></i>Write Reviews</Ul>
-                  <Ul><i class="fas fa-times" style={{ padding: "0 1rem" }}></i>Like Reviews</Ul>
+                  {/* <Ul><i class="fas fa-times" style={{ padding: "0 1rem" }}></i>Like Reviews</Ul> */}
                 </ListGroup>
               </ModalBody>
             </Col>
