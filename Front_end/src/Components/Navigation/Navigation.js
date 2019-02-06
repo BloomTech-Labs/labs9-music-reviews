@@ -10,10 +10,7 @@ import {
   DropdownMenu,
   DropdownItem,
   NavLink,
-  Row,
   Col,
-  Collapse,
-  UncontrolledDropdown, 
 } from 'reactstrap';
 import { FirebaseContext } from "../Firebase/index.js";
 import './Navigation.css';
@@ -48,41 +45,41 @@ class Navigation extends Component {
   render() {
     return (
         <div className="flex-xs-column">
-          <Navbar fixed='top' dark expand="lg" toggleable="sm" style={{ display: "flex", alignItems: "center",background: "rgba(152, 75, 67, 0.95)"}}>
-            <Col xs='12' md="4" style={{border: '5px red solid'}}>
+          <Navbar fixed='top' dark expand="lg" toggleable="sm" style={{ display: "flex", alignItems: "center", background: "rgba(152, 75, 67, 0.95)"}}>
+            <Col xs='12' md="4">
               <Link to="/" style={{ textDecoration: "none",color: "#eac67a", fontSize: "3rem", fontWeight: "700" }}>
                 <img src={require("../../Images/OTR Logo X.png")} alt="ON THE RECORD" style={{ maxWidth: "500px", margin: "auto", width: "100%", height: "100%" }}/>
               </Link>
             </Col>
 
             {/* start Col */}
-            <Col xs='12' md='8' style={{ display: "flex", border:'5px blue solid', height: "100%", verticalAlign: "middle" }}>
+            <Col xs='12' md='8' style={{ display: "flex", height: "100%", verticalAlign: "middle" }}>
                 <Col xs="1" lg="7"></Col>
 
-                <Col xs="11" lg="5" style={{ display: "flex", justifyContent: "flex-end", border:'5px hotpink solid' }}>
+                <Col xs="11" lg="5" style={{ display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
                   {/* shows regular sized menu and hamburger menu hides on mobile */}
                   <Link to="/search" style={{ textAlign: "center", margin: "auto" }}>
-                    <Button style={{ background: "#eac67a", color: "#984b43", fontWeight: "650" }}>SEARCH</Button>
+                    <Button style={{ background: "#eac67a", color: "#984b43", fontWeight: "650", position: "relative", left: "0"  }}>SEARCH</Button>
                   </Link>
                   <BigScreen>
                     {this.props.loggedIn === true ? (
                     <Fragment>
                       <Link to="/home" style={{ textDecoration: 'none', textAlign: "center", margin: "auto"  }}>
-                        <DropdownItem style={{color: '#eac67a'}}><b>Home</b></DropdownItem>
+                        <DropdownItem className="big-menu-item" style={{color: '#eac67a'}}><b>Home</b></DropdownItem>
                       </Link>
 
                       <Link to={`/user/reviews/${this.props.userID}`} style={{ textDecoration: 'none', textAlign: "center", margin: "auto" }}>
-                        <DropdownItem style={{color: '#eac67a'}}><b>My Reviews</b></DropdownItem>
+                        <DropdownItem className="big-menu-item" style={{color: '#eac67a'}}><b>My Reviews</b></DropdownItem>
                       </Link>
 
                       <Link to="/user/settings" style={{ textDecoration: 'none', textAlign: "center", margin: "auto"  }}>
-                        <DropdownItem style={{color: '#eac67a'}}><b>Settings</b></DropdownItem>
+                        <DropdownItem className="big-menu-item" style={{color: '#eac67a'}}><b>Settings</b></DropdownItem>
                       </Link>
 
                       <DropdownItem divider />
 
                       <NavLink to="/" style={{ textDecoration: 'none', textAlign: "center", paddingRight: '0', paddingLeft: '0', margin: "auto" }}>
-                        <DropdownItem>
+                        <DropdownItem className="big-menu-item" style={{ color: "#eac67a" }}>
                             <FirebaseContext.Consumer>
                               {firebase => (<SignOut firebase={firebase} signout={this.props.signout}/>)}
                             </FirebaseContext.Consumer>
@@ -91,11 +88,11 @@ class Navigation extends Component {
                     </Fragment> ) : (
                       <Fragment>
                         <Link to="/signup" style={{ textDecoration: 'none', textAlign: "center" }}>
-                          <DropdownItem style={{color: '#eac67a'}}><b>Sign Up</b></DropdownItem>
+                          <DropdownItem className="big-menu-item" style={{color: '#eac67a'}}><b>Sign Up</b></DropdownItem>
                         </Link>
 
                         <Link to="/login" style={{ textDecoration: 'none', textAlign: "center" }}>
-                            <DropdownItem style={{color: '#eac67a'}}><b>Log In</b></DropdownItem>
+                            <DropdownItem className="big-menu-item" style={{color: '#eac67a'}}><b>Log In</b></DropdownItem>
                         </Link>
                       </Fragment>
                             )}
@@ -103,52 +100,48 @@ class Navigation extends Component {
 
                   {/* shows hamburger menu and hides regular sized menu on mobile */}
                   <SmallScreen> 
-                    {/* <Collapse isOpen={this.state.isOpen} navbar>
-                    <UncontrolledDropdown nav> */}
                     <Dropdown isOpen={this.state.isOpen} toggle={this.toggle}>
                       <DropdownToggle nav>
-                        <i class="fa fa-bars" aria-hidden="true"></i>
+                        <i className="fa fa-bars icon" aria-hidden="true"></i>
                       </DropdownToggle>
                       <DropdownMenu right style={{ background: "#eac67a", color: "#984b43"}}>
                         {this.props.loggedIn === true ? (
                           <Fragment>
                             <Link to="/home" style={{ textDecoration: 'none', textAlign: "center", background:'#984b43'}}>
-                              <DropdownItem style={{color: '#984B43'}}><b>Home</b></DropdownItem>
+                              <DropdownItem className="menu-item" style={{color: '#984B43'}}><b>Home</b></DropdownItem>
                             </Link>
 
                             <Link to={`/user/reviews/${this.props.userID}`} style={{ textDecoration: 'none', textAlign: "center"}}>
-                              <DropdownItem style={{color: '#984B43'}}><b>My Reviews</b></DropdownItem>
+                              <DropdownItem className="menu-item" style={{color: '#984B43'}}><b>My Reviews</b></DropdownItem>
                             </Link>
 
                             <Link to="/user/settings" style={{ textDecoration: 'none', textAlign: "center" }}>
-                              <DropdownItem style={{color: '#984B43'}}><b>Settings</b></DropdownItem>
+                              <DropdownItem className="menu-item" style={{color: '#984B43'}}><b>Settings</b></DropdownItem>
                             </Link>
                               <DropdownItem divider />
 
-                            <NavLink to="/" style={{ textDecoration: 'none', textAlign: "center" }}>
-                              <DropdownItem>
-                                    <FirebaseContext.Consumer>
-                                      {firebase => (<SignOut firebase={firebase} signout={this.props.signout}/>)}
-                                    </FirebaseContext.Consumer>
-                                </DropdownItem>
+                            <NavLink to="/" style={{ textDecoration: 'none', textAlign: "center", margin: "0", padding: "0" }}>
+                              <DropdownItem className="menu-item" style={{ color: "#984b43" }}>
+                                <FirebaseContext.Consumer>
+                                  {firebase => (<SignOut firebase={firebase} signout={this.props.signout}/>)}
+                                </FirebaseContext.Consumer>
+                              </DropdownItem>
                             </NavLink>
                           </Fragment>) : (
                             <Fragment>
                               <Link to="/signup" style={{ textDecoration: 'none', textAlign: "center" }}>
-                                <DropdownItem style={{color: '#eac67a'}}><b>Sign Up</b></DropdownItem>
+                                <DropdownItem className="menu-item" style={{color: '#eac67a'}}><b>Sign Up</b></DropdownItem>
                               </Link>
                               <Link to="/login" style={{ textDecoration: 'none', textAlign: "center" }}>
-                                <DropdownItem style={{color: '#eac67a'}}><b>Log In</b></DropdownItem>
+                                <DropdownItem className="menu-item" style={{color: '#eac67a'}}><b>Log In</b></DropdownItem>
                               </Link>
                             </Fragment>
                             )}
                           </DropdownMenu>
                     </Dropdown>
-                    {/* </UncontrolledDropdown>
-                    </Collapse> */}
                   </SmallScreen>
+                
                 </Col>
-     
             </Col>
           </Navbar> 
         </div>

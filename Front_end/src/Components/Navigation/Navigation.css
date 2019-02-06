@@ -13,3 +13,25 @@ a {
     background-color: transparent;
     font-weight: 650;
 }
+
+.big-menu-item {
+    margin: 0.5rem;
+}
+
+.big-menu-item:hover {
+    background: #eac67a !important;
+    color: #984b43 !important;
+}
+
+button:active{
+    color: #984b43 !important;
+}
+
+.menu-item:hover {
+    background: #984b43 !important;
+    color: #eac67a !important;
+}
+
+.icon {
+    color: #eac67a !important;
+}
