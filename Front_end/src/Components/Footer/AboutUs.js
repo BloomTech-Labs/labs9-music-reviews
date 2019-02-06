@@ -36,7 +36,7 @@ const TeamCard = (props) => {
     return (
         <div className = 'col-sm' style = {{ background: 'rgb(35, 50, 55)', border: '1px solid rgb(234, 198, 122)'}}>
             <div className = 'row px-3 py-3 justify-content-center'>
-                <img className = 'rounded-circle' src = {props.image}/>
+                <img className = 'rounded-circle' src = {props.image} alt="Team Member Portrait"/>
             </div>
             <div className = 'row px-3 justify-content-center'>
                 <h1>{props.name}</h1>
@@ -78,7 +78,7 @@ const AboutUs = () => {
             <div className = 'row'>
                 <div className = 'col-sm' style = {{ background: 'rgb(35, 50, 55)', border: '1px solid rgb(234, 198, 122)'}}>
                     <div className = 'row px-3 py-3 justify-content-center'>
-                        <img className = 'rounded-circle' src = "https://ca.slack-edge.com/T4JUEB3ME-U9HG9M5HU-g05eb672c204-48"/>
+                        <img className = 'rounded-circle' src = "https://ca.slack-edge.com/T4JUEB3ME-U9HG9M5HU-g05eb672c204-48" alt="Chief Keith"/>
                     </div>
                     <div className = 'row px-3 justify-content-center'>
                         <h1>Keith</h1>

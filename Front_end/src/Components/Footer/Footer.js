@@ -22,7 +22,7 @@ const Footer = () => {
             </div>
         <hr style={{margin: '0 15%', borderTop: '1px solid  rgb(234, 198, 122)'}}/>   
         <div className="footer-copyright text-center py-3">© {currentYear} Copyright 
-            <a style = {aStyle} href=""> OnTheRecord.us</a>
+            <a style = {aStyle} href="/"> OnTheRecord.us</a>
         </div>
     </footer>
 

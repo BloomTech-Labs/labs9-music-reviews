@@ -134,10 +134,10 @@ class Navigation extends Component {
                           </Fragment>) : (
                             <Fragment>
                               <Link to="/signup" style={{ textDecoration: 'none', textAlign: "center" }}>
-                                <DropdownItem className="menu-item" style={{color: '#eac67a'}}><b>Sign Up</b></DropdownItem>
+                                <DropdownItem className="menu-item" style={{color: '#984b43'}}><b>Sign Up</b></DropdownItem>
                               </Link>
                               <Link to="/login" style={{ textDecoration: 'none', textAlign: "center" }}>
-                                <DropdownItem className="menu-item" style={{color: '#eac67a'}}><b>Log In</b></DropdownItem>
+                                <DropdownItem className="menu-item" style={{color: '#984b43'}}><b>Log In</b></DropdownItem>
                               </Link>
                             </Fragment>
                             )}
