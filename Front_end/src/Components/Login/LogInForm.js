@@ -39,7 +39,7 @@ class LogInForm extends React.Component {
   };
   render() {
     return (
-      <Container fluid style={{ position: "relative", top: "10rem" }}>
+      <Container fluid style={{ paddingTop: "8rem" }}>
         <Row className='justify-content-center'>
           <Col>
           <h2 style ={{ color: "#984B43", fontFamily:'merriweather sans'}}>Log In</h2>

@@ -7,22 +7,22 @@ const aStyle = {
 }
 
 
-const Footer = () => {
+const Footer = (props) => {
     let year = new Date();
     let currentYear = year.getFullYear();
     return (
        
-    <footer className="fixed-bottom" style = {{background: '#984b43'}}>
-            <div className="row text-center d-flex justify-content-center pt-3 mb-1">                  
-                <div className="col-md-2 mb-2">
+    <footer className="container-fluid w-100 py-2" style = {{background: '#984b43', zIndex: '9999'}}>
+            <div className="row text-center d-flex justify-content-center pt-1 mb-1">                  
+                <div className="col-md-2 mb-1">
                     <h6 className="text-uppercase font-weight-bold">
-                        <Link style = {aStyle} to = 'about-us'>About us</Link>
+                        <Link style = {aStyle} to = '/about-us'>About us</Link>
                     </h6>
                 </div>
             </div>
-        <hr style={{margin: '0 15%', borderTop: '1px solid  rgb(234, 198, 122)'}}/>   
-        <div className="footer-copyright text-center py-3">© {currentYear} Copyright 
-            <a style = {aStyle} href="/"> OnTheRecord.us</a>
+        <hr style={{margin: '0 12%', borderTop: '1px solid  rgb(234, 198, 122)'}}/>   
+        <div className="footer-copyright text-center pt-2"><span style = {aStyle}>© {currentYear} Copyright</span>
+            <a style = {aStyle} href={!props.loggedIn ? "/" : "/home"}> OnTheRecord.us</a>
         </div>
     </footer>
 
