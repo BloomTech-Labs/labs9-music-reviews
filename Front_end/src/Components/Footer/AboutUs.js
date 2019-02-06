@@ -1,4 +1,5 @@
 import React from 'react';
+import './about.css';
 
 const theTeam = [
     {
@@ -34,12 +35,12 @@ const theTeam = [
 
 const TeamCard = (props) => {
     return (
-        <div className = 'col-sm' style = {{ background: 'rgb(35, 50, 55)', border: '1px solid rgb(234, 198, 122)'}}>
+        <div className = 'col-sm cards'>
             <div className = 'row px-3 py-3 justify-content-center'>
                 <img className = 'rounded-circle' src = {props.image}/>
             </div>
             <div className = 'row px-3 justify-content-center'>
-                <h1>{props.name}</h1>
+                <h1 style={{paddingTop: '0'}}>{props.name}</h1>
             </div>
             <div className = 'row px-3 justify-content-center'>
                 <p>{props.about}</p>
@@ -65,7 +66,6 @@ const renderTeam = theTeam.map((member, index) => {
                         about = {member.about}
                         git = {member.git}
                         linkedin = {member.linkedin}
-
                     />
                 )
             })
@@ -76,14 +76,14 @@ const AboutUs = () => {
         <div className = 'container-fluid' style={{position: 'relative', top: '8rem', width: '100%', maxWidth: '1200px', marginBottom: '8rem'}}>
         <h1 style={{ color: "#984b43", margin: "1rem auto 1rem auto", fontFamily:'Merriweather Sans' }}> The Team </h1>
             <div className = 'row'>
-                <div className = 'col-sm' style = {{ background: 'rgb(35, 50, 55)', border: '1px solid rgb(234, 198, 122)'}}>
+                <div className = 'col-sm' style = {{ background: 'rgb(35, 50, 55)', border: '1px solid rgb(234, 198, 122)', borderTopLeftRadius: '1rem', borderTopRightRadius: '1rem'}}>
                     <div className = 'row px-3 py-3 justify-content-center'>
                         <img className = 'rounded-circle' src = "https://ca.slack-edge.com/T4JUEB3ME-U9HG9M5HU-g05eb672c204-48"/>
                     </div>
-                    <div className = 'row px-3 justify-content-center'>
-                        <h1>Keith</h1>
+                    <div className = 'row px-3 justify-content-center' style={{color: "rgb(234, 198, 122)"}}>
+                        <h1 style={{paddingTop: '0'}}>Keith</h1>
                     </div>
-                    <div className = 'row px-3 justify-content-center'>
+                    <div className = 'row px-3 justify-content-center' style={{color: "rgb(234, 198, 122)"}}>
                         <p>The Chief</p>
                     </div>
                     <div className = 'row px-3 pb-3 justify-content-center'>

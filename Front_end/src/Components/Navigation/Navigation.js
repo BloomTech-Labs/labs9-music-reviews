@@ -47,7 +47,7 @@ class Navigation extends Component {
         <div className="flex-xs-column">
           <Navbar fixed='top' dark expand="lg" toggleable="sm" style={{ display: "flex", alignItems: "center", background: "rgba(152, 75, 67, 0.95)"}}>
             <Col xs='12' md="4">
-              <Link to="/" style={{ textDecoration: "none",color: "#eac67a", fontSize: "3rem", fontWeight: "700" }}>
+              <Link to={!this.props.loggedIn ? "/" : "/home"} style={{ textDecoration: "none",color: "#eac67a", fontSize: "3rem", fontWeight: "700" }}>
                 <img src={require("../../Images/OTR Logo X.png")} alt="ON THE RECORD" style={{ maxWidth: "500px", margin: "auto", width: "100%", height: "100%" }}/>
               </Link>
             </Col>

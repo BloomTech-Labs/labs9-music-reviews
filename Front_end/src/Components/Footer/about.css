@@ -1,0 +1,43 @@
+
+@media (min-width: 576px) {
+    .cards {
+        background: rgb(35, 50, 55);
+        border: 1px solid rgb(234, 198, 122);
+    }
+
+    .cards:last-child {
+        border-bottom-right-radius: 1rem;
+        background: rgb(35, 50, 55);
+        border: 1px solid rgb(234, 198, 122);
+    }
+
+    .cards:first-child {
+        border-bottom-left-radius: 1rem;
+        background: rgb(35, 50, 55);
+        border: 1px solid rgb(234, 198, 122);
+    }
+}
+
+@media (max-width: 575.98px) {
+    .cards {
+        background: rgb(35, 50, 55);
+        border: 1px solid rgb(234, 198, 122);
+    }
+
+    .cards:last-child {
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        background: rgb(35, 50, 55);
+        border: 1px solid rgb(234, 198, 122);
+    }
+
+    .cards:first-child {
+        background: rgb(35, 50, 55);
+        border: 1px solid rgb(234, 198, 122);
+    }
+}
+
+
+.cards {
+    color: rgb(234, 198, 122);
+}

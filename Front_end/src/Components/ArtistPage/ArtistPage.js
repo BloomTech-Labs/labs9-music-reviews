@@ -11,7 +11,8 @@ const cardStyle = {
   background: "#233237",
   padding: "1rem",
   height: "100%",
-  flexGrow: "3" 
+  flexGrow: "3",
+  color: "rgb(234, 198, 122)"
 }
 
 class ArtistPage extends Component {
@@ -98,21 +99,20 @@ class ArtistPage extends Component {
     }), 'key');
 
     return (
-      <Container fluid style={{ fontFamily: "Lato", margin: "0 auto", maxWidth: "1600px" }}>
+      <Container fluid style={{ fontFamily: "Lato", margin: "0 auto", maxWidth: "1600px", paddingTop: '8rem' }}>
         
         <Row noGutters style={{ 
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-around",
               position: "relative",
-              top: "12rem",
               margin: "0 auto",
               maxWidth: "800px",
             }}
           >
           <h1 style={{ color: "#984b43", fontFamily: "Merriweather Sans", fontWeight: "700" }}>Artist Info</h1>
-          <Row noGutters style={{ margin: "0 auto", position: "relative" }}>
-            <Col xs="12" md="6" style={{ display: "flex" }}>
+          <Row noGutters style={{ margin: "0 auto" }}>
+            <Col xs="12" md="6">
               <Card style={ cardStyle }>
                 <h2 style={{ fontFamily: "Merriweather Sans", padding: "1rem" }}>
                   {this.state.artist}
@@ -138,11 +138,11 @@ class ArtistPage extends Component {
 
         </Row>
                   
+        <Container>
         <Row>
           <h1 style={{ 
-              position: "relative",
+             
               color: "#984b43",
-              top: "12rem",
               fontFamily: "Merriweather Sans",
               fontWeight: "700",
               margin: "0 auto",
@@ -151,8 +151,9 @@ class ArtistPage extends Component {
           >
             Albums
           </h1>
-          <Row style={{ position: "relative", top: "12rem", maxHeight: "40rem", overflowY: "scroll" }}>{renderData}</Row>
-        </Row>
+          </Row>
+          <Row style={{  maxHeight: "40rem", overflowY: "scroll" }}>{renderData}</Row>
+        </Container>
       </Container>
     );
   }
