@@ -103,15 +103,15 @@ trackReview
 
 ### endpoints for Users
 | Method | Endpoint       | Description
-| ------ | -------------- | --------------------------------------------------------------------------------------------------------------  
+| ------ | -------------- | --------------------------------------------------------------------------------------------------------------
 | POST   | /users/create     | Creates a user using the information sent inside the `request body`.
 | GET    | /users/get/:email     | Returns an array of all the post objects contained in the database.
 | GET    | /users/:userID/nickname | Returns the nickname
-| PUT    | /users/:userID/Change_nickname | Updates the post with the specified `id` using data from the `request body`. Returns the modified record.             |
+| PUT    | /users/:userID/Change_nickname | Updates the post with the specified `id` using data from the `request body`. Returns the modified record.
 
 
-## Depoyment location
-The backend is deployed on heroku. 
+## API Reference
+
 * https://labs9-car-reviews.herokuapp.com/trackReviews ```Returns all track Reviews```
 * https://labs9-car-reviews.herokuapp.com/trackReviews/[userID] ``` returns track review matching userID passed, if there is no matching userID, returns an empty array```
 
