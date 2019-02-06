@@ -15,7 +15,7 @@ a {
 }
 
 .search-btn:hover{
-    box-shadow: -1px 1px 20px 10px #eac67a;
+    box-shadow: 0 0 20px 10px #eac67a;
 };
 
 .big-menu-item {
