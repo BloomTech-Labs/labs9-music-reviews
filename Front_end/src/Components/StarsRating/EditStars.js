@@ -16,7 +16,7 @@ class Stars extends Component {
   changeRating = newRating => {
     this.setState({
       rating: newRating,
-    }, () => this.props.updateRating(this.state.rating))
+    }, () => this.props.updateRating(this.state.rating)
   }
 
   render() {
