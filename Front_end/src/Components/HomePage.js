@@ -12,7 +12,9 @@ const HomePage = () => {
                 maxWidth: "1200px",
                 padding: "7rem 0 5rem 0",
                 fontFamily: "Lato",
-                fontSize: "1.2rem"
+                fontSize: "1.2rem",
+                marginBottom: '3rem',
+                width: '100%'
             }}
         >
             <Newest />

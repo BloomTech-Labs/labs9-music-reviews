@@ -17,6 +17,8 @@ import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
 import SearchResults from "./Components/Search/SearchResults";
 import { withAuthentication } from './Components/Session'
+import Footer from "./Components/Footer/Footer";
+import AboutUs from "./Components/Footer/AboutUs";
 
 let refreshTime = 15*60*1000; // 15 mins
 
@@ -119,6 +121,7 @@ class App extends Component {
         />
         <Route exact path="/" component={LandingPage} />
         <Route path="/home" component={HomePage} />
+        <Route path="/about-us" component={AboutUs} />
         <Route path="/user/settings" render={(props) => 
           <SettingsPage {...props} subscriptionExpiration={this.state.subscriptionExpiration} /> }
         />
@@ -155,6 +158,7 @@ class App extends Component {
             <UserReviewList {...props} loggedIn={this.state.loggedIn} userID={this.state.userID} nickname={this.state.nickname}/>
           )}
         />
+        <Footer />
       </Container>
     );
   }
