@@ -1,6 +1,26 @@
 # labs9-music-reviews
 
-## Node.js Express, sqlite and pg
+## Tech stack:
+Node.js Express, sqlite and pg
+
+## Libraries:
+These are the libraries used:
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "faker": "^4.1.0",
+    "firebase-admin": "^6.5.0",
+    "helmet": "^3.15.0",
+    "knex": "^0.16.3",
+    "nodemon": "^1.18.9",
+    "pg": "^7.8.0",
+    "sqlite3": "^4.0.4",
+    "stripe": "^6.20.0"
+
 
 ### Database access
 Database access `usersDB.js` file included inside the data folder. It publishes the following methods: 
@@ -32,11 +52,11 @@ POST to the database confirms to the following structure:
 users.
 ```
 {
-    firebaseUID: "PXl9fiZMGMgMx48kQM0fv7O3CcO2",
-    emailAddres: "wtse.ucsd@gmail.com",
+    firebaseUID: "PXl9fiZMGMgMx48kQM0fv7O3Cc",
+    emailAddres: "sam@gmail.com",
     paidMembership: "0",
     subscriptionExpiration: "Sun Apr 07 2019 00:47:06",
-    nickname: "wtse.ucsd"
+    nickname: "sam"
 }
 ```
 albumReview
@@ -63,38 +83,45 @@ trackReview
 
 ### endpoints for Track Review
 
-| Method | Endpoint       | Description                                                                                                                |
-| ------ | -------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| POST   | /trackReviews    | Creates a track review using the information sent inside the `request body`. 
-
-| GET    | /trackReviews     | Returns an array of all the track review objects contained in the database. 
-
-| GET    | /trackReviews/:id | Returns the trackReview object with the specified id.                                                                          |
-| DELETE | /trackReviews/:id | Removes the track review  with the specified id.                                                    
-| PUT    | /trackReviews/:id | Updates the track review with the specified `id` using data from the `request body`.             
+| Method | Endpoint       | Description
+| ------ | -------------- | ------------------------------------------------------------------------------------------------------
+| POST   | /trackReviews    | Creates a track review using the information sent inside the `request body`.
+| GET    | /trackReviews     | Returns an array of all the track review objects contained in the database.
+| GET    | /trackReviews/:id | Returns the trackReview object with the specified id.
+| DELETE | /trackReviews/:id | Removes the track review  with the specified id
+| PUT    | /trackReviews/:id | Updates the track review with the specified `id` using data from the `request body`.
 
 ### endpoints for Album Review
 
-| Method | Endpoint       | Description                                                                                                               |
-| ------ | -------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| POST   | /albumReview    | Creates a album review using the information sent inside the `request body`.                                                     |
-| GET    | /albumReview     | Returns an array of all the album review objects contained in the database.                                                     |
-| GET    | /albumReview/:id | Returns the album review object with the specified id.                                                                          |
-| DELETE | /albumReview/:id | Removes the album review with the specified id.                                                    |
-| PUT    | /albumReview/:id | Updates the album review with the specified `id` using data from the `request body`.             |
+| Method | Endpoint       | Description
+| ------ | -------------- | -----------------------------------------------------------------------------------------------------
+| POST   | /albumReview    | Creates a album review using the information sent inside the `request body`.
+| GET    | /albumReview     | Returns an array of all the album review objects contained in the database.
+| GET    | /albumReview/:id | Returns the album review object with the specified id.
+| DELETE | /albumReview/:id | Removes the album review with the specified id.
+| PUT    | /albumReview/:id | Updates the album review with the specified `id` using data from the `request body`.
 
 ### endpoints for Users
-| Method | Endpoint       | Description                                                                                                         |
-| ------ | -------------- | ------------------------------------------------------------------------------------------------------------------  |
-| POST   | /users/create     | Creates a user using the information sent inside the `request body`.                                                     |
-| GET    | /users/get/:email     | Returns an array of all the post objects contained in the database.                                                     |
-| GET    | /users/:id | Returns the post object with the specified id.  
-
+| Method | Endpoint       | Description
+| ------ | -------------- | --------------------------------------------------------------------------------------------------------------  
+| POST   | /users/create     | Creates a user using the information sent inside the `request body`.
+| GET    | /users/get/:email     | Returns an array of all the post objects contained in the database.
 | GET    | /users/:userID/nickname | Returns the nickname
-
 | PUT    | /users/:userID/Change_nickname | Updates the post with the specified `id` using data from the `request body`. Returns the modified record.             |
 
 
+## Depoyment location
+The backend is deployed on heroku. 
+* https://labs9-car-reviews.herokuapp.com/trackReviews ```Returns all track Reviews```
+* https://labs9-car-reviews.herokuapp.com/trackReviews/[userID] ``` returns track review matching userID passed, if there is no matching userID, returns an empty array```
 
+
+* https://labs9-car-reviews.herokuapp.com/albumReviews ```returns all album reviews ```
+* https://labs9-car-reviews.herokuapp.com/albumReviews/[userID] ``` returns album review matching the userID passed, if there is no matching userID returns empty array```
+
+
+* https://labs9-car-reviews.herokuapp.com/users  ``` returns all users```
+* https://labs9-car-reviews.herokuapp.com/users/get/[valid email address] ```retuns user information matching the email address ```
+* https://labs9-car-reviews.herokuapp.com/users/[userID]/nickname ```returns nickname of a user matching an id ```
 
 
