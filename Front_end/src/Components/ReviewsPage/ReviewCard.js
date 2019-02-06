@@ -30,7 +30,7 @@ class AlbumReviewCard extends Component {
         });
         this.setState(newState);
       })
-      .catch(err => console.log(err));
+      .catch(err => (err));
   }
 
   getNickname(userID) {
@@ -43,7 +43,7 @@ class AlbumReviewCard extends Component {
         });
         this.setState(newState);
       })
-      .catch(err => console.log(err));
+      .catch(err => (err.message));
   }
 
   getAlbumReviews() {
@@ -56,7 +56,7 @@ class AlbumReviewCard extends Component {
         });
         this.setState(newState);
       })
-      .catch(err => console.log(err));
+      .catch(err => (err.message));
   }
 
   getTrackReviews() {
@@ -69,7 +69,7 @@ class AlbumReviewCard extends Component {
         });
         this.setState(newState);
       })
-      .catch(err => console.log(err));
+      .catch(err => (err.message));
   }
   componentDidMount() {
     this.getUser();

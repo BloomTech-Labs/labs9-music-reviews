@@ -38,8 +38,8 @@ class SettingsContent extends React.Component {
       axios.put(`https://labs9-car-reviews.herokuapp.com/users/${this.state.userID}/change_nickname`, {
           nickname: this.state.newNickname
         })
-        .then( res => console.log(res) )
-        .error( err => console.log(err) )
+        .then( res => (res))
+        .error( err => (err.message) )
     }
   }
   componentDidMount() {

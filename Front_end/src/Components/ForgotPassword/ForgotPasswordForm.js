@@ -28,7 +28,7 @@ class ForgotPasswordForm extends React.Component {
     this.props.firebase
       .doPasswordReset(this.state.email)
       .then((res) => this.props.history.push('/login'))
-      .catch((err) => console.log(err));
+      .catch((err) => err.message)
   };
   render() {
     return (

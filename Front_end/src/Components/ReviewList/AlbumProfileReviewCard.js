@@ -51,7 +51,7 @@ class AlbumProfileReviewCard extends Component {
           tracks: data.data.tracks.items
         });
       })
-      .catch(err => console.log(err));
+      .catch(err => (err.message));
   };
 
   componentDidMount() {

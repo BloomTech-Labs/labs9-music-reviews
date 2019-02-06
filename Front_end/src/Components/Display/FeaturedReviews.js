@@ -20,9 +20,7 @@ class FeaturedReviews extends Component {
           data: response.data,
         })
       })
-      .catch(function(error) {
-        console.log(error)
-      })
+      .catch(error => error.message )
   }
 
   render() {

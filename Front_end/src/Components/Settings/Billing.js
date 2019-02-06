@@ -45,8 +45,8 @@ class Billing extends Component {
       paidMembership: true,      
       subscriptionExpiration: expirationDate
     })
-    .then(res => { console.log(res) })
-    .catch(err => { console.log(err) })
+    .then(res => (res) )
+    .catch(err =>  (err.message) )
   }
   render() {
     return (

@@ -48,7 +48,7 @@ class TrackReviewsPage extends Component {
           () => this.getAlbum(this.state.albumId, token)
         );
       })
-      .catch(err => console.log(err));
+      .catch(err => (err.message));
   };
   getAlbum = (albumId, token) => {
     axios
@@ -62,7 +62,7 @@ class TrackReviewsPage extends Component {
           tracks: res.data.tracks.items
         });
       })
-      .catch(err => console.log(err));
+      .catch(err => (err.message));
   };
   getTrackReviews() {
     axios
@@ -74,7 +74,7 @@ class TrackReviewsPage extends Component {
         });
         this.setState(newState);
       })
-      .catch(err => console.log(err));
+      .catch(err => (err.message));
   }
   redirectTo = (id, name) => {
     this.setState({
@@ -93,7 +93,7 @@ class TrackReviewsPage extends Component {
     const trackReviews = this.state.reviews.filter(review => {
       return review.spotifyTrackID === this.props.match.params.id;
     });
-    console.log(trackReviews, "Line 97");
+
     const trackReviewFilteredbyUserID = trackReviews.filter(track => {
       return (track.userID = this.props.userID);
     });

@@ -10,27 +10,25 @@ router.get('/', async (req, res) => {
   try {
     const likedTrack = await dbLikedTrackReviews.retrieve()
     res.status(200).json(likedTrack)
-  }
-  catch (err) {
-    res.status(500).json({ message: 'failed to retrieve data' })
+  } catch (err) {
+    res.status(500).json(err.message)
   }
 })
 // get one liked review by id
-// ******************************************************//
+// ******************************************************
 router.get('/:likedTrackReviewID', async (req, res) => {
   const { likedTrackReviewID } = req.params
   try {
     const likedTrackReview = await dbLikedTrackReviews.retrieveById(likedTrackReviewID)
     res.status(200).json(likedTrackReview)
-  }
-  catch (err) {
+  } catch (err) {
     res.status(500).json(err.message)
   }
 })
-// **********************************************************//
+// **********************************************************
 // create a new like track review
 router.post('/', async (req, res) => {
-  const likedTrackReview = req.body;
+  const likedTrackReview = req.body
   if (!likedTrackReview) {
     res.status(400).json({ message: 'review to be added cannot be empty' })
   } else {
@@ -57,7 +55,7 @@ router.put('/:likedTrackReviewID', async (req, res) => {
     }
   }
 })
-// ***********************************************************************************//
+// ***********************************************************************************
 router.delete('/:likedTrackReviewID', async (req, res) => {
   const { likedTrackReviewID } = req.params
   try {

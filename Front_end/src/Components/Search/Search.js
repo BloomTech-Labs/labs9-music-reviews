@@ -57,9 +57,7 @@ class Search extends Component {
             tracks: data.tracks.items,
           })
       })
-      .catch(error => {
-        console.log(error)
-      })
+      .catch(error => error.message)
   }
 
   onChange = (event) => {
@@ -85,7 +83,6 @@ class Search extends Component {
 
   keyPress = (event) => {
     event.preventDefault();
-    console.log('Enter is clicked');
     if (!this.props.loggedIn){
     window.location = '/login';
     }

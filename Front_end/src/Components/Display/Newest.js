@@ -27,9 +27,7 @@ componentDidMount() {
               data: response.data.albums.items,
             })
         })
-        .catch(function(error) {
-            console.log(error)
-        })
+        .catch(error => error.message)
     }
 
     render() {

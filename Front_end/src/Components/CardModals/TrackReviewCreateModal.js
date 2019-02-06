@@ -54,11 +54,9 @@ class TrackReviewCreateModal extends React.Component {
         userID: this.state.userID
       })
       .then(res => {
-        console.log(res);
-        console.log(res.data);
         window.location.reload();
       })
-      .catch(err => console.log(err));
+      .catch(err => (err.message));
   };
 
   handleEditChange = event => {
@@ -89,7 +87,6 @@ class TrackReviewCreateModal extends React.Component {
     });
   }
   render() {
-    console.log(this.props.trackId);
     return (
       <Fragment>
         <Button

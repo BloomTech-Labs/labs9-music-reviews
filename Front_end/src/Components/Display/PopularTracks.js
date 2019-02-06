@@ -27,9 +27,7 @@ class PopularTracks extends Component {
               data: response.data.tracks.items,
             })
           })
-          .catch(function(error) {
-            console.log(error)
-          })
+          .catch(error=> error.message)
       }
 
     render() {

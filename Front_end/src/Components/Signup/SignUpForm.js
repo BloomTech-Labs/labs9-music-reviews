@@ -56,11 +56,11 @@ class SignUpForm extends React.Component {
                       this.props.changeLogInState();
                       this.props.history.push('/home');
                     })
-                    .catch((err) => console.log(err));
+                    .catch((err) =>(err.message));
                 });
               }}
             )
-            .catch((err) => console.log(err));
+            .catch((err) => (err.message));
         })
         .catch((error) => {
           this.setState({ error });

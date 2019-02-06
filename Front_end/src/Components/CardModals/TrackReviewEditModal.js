@@ -46,22 +46,18 @@ class TrackReviewEditModal extends React.Component {
         }
       )
       .then(res => {
-        console.log(res);
-        console.log(res.data);
         window.location.reload();
       })
-      .catch(err => console.log(err));
+      .catch(err => (err.message));
   };
 
   deleteHandler = id => {
     axios
       .delete(`https://labs9-car-reviews.herokuapp.com/trackReviews/${id}`)
       .then(res => {
-        console.log(res);
-        console.log(res.data);
         window.location.reload();
       })
-      .catch(err => console.log(err));
+      .catch(err => (err.message));
   };
 
   updateRating = newRating => {
@@ -98,7 +94,6 @@ class TrackReviewEditModal extends React.Component {
     let month = currentDate.getMonth();
     let year = currentDate.getFullYear();
     let dateString = month + 1 + "/" + date + "/" + year;
-    console.log(dateString);
     this.setState({ dateModified: dateString });
   }
 

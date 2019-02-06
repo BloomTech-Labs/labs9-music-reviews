@@ -58,7 +58,7 @@ class Firebase {
           url: process.env.REACT_APP_CONFIRMATION_EMAIL_REDIRECT,
         })
       )
-      .catch (err => console.log (err));
+      .catch (err => err.message);
 
   doSignInWithGoogle = () => this.auth.signInWithPopup (this.googleProvider)
       .catch( (error) => {

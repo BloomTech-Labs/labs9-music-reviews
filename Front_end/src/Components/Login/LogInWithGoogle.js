@@ -22,9 +22,9 @@ class LogInWithGoogle extends React.Component {
                     token: userIdToken,
                   })
                   .then((res) => console.log("Login Successful"))
-                  .catch((err) => console.log(err));
+                  .catch((err) => err.message);
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => err.message);
             }
           });
           this.props.changeLogInState();

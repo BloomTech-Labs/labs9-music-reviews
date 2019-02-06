@@ -40,7 +40,7 @@ class ArtistPage extends Component {
           art: response.data.images[1].url
         });
       })
-      .catch(err => console.log(err));
+      .catch(err => (err.message));
   };
 
   getArtistAlbums = (artistId, token) => {
@@ -53,7 +53,7 @@ class ArtistPage extends Component {
           albums: data.data.items
         });
       })
-      .catch(err => console.log(err));
+      .catch(err => (err.message));
   };
 
   componentDidMount() {

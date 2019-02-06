@@ -24,9 +24,7 @@ router.get('/:likedAlbumReviewID', async (req, res) => {
     const likedReview = await dbLikedAlbumReviews.retrieveById(likedAlbumReviewID);
     res.status(200).json(likedReview)
   } catch (err) {
-    res.status(500).json({
-      message: 'failed to retrieve with specific id',
-    });
+    res.status(500).json(err.message);
   }
 });
 
@@ -40,7 +38,7 @@ router.post('/', async (req, res) => {
       const newLikedAlbumReview = await dbLikedAlbumReviews.write(likedAlbumReview)
       res.status(200).json(newLikedAlbumReview)
     } catch (err) {
-      res.status(500).json({ message: 'It was not written' })
+      res.status(500).json(err.message)
     }
   }
 })
@@ -59,7 +57,7 @@ router.put('/:likedAlbumReviewID', async (req, res) => {
       res.status(200).json(updatedLikedAlbumReview)
     }
     catch (err) {
-      res.status(500).json({ message: "failed to update liked album review" })
+      res.status(500).json(err.message)
     }
   }
 })

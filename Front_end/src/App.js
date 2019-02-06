@@ -58,7 +58,7 @@ class App extends Component {
           loggedIn: true,
         }));
       })
-      .catch((err) => this.setState({ loggedIn: false, loaded: false, loading: false }, console.log(err)));
+      .catch((err) => this.setState({ loggedIn: false, loaded: false, loading: false }, (err.message)));
   }
   getToken = () => {
     axios
@@ -66,22 +66,20 @@ class App extends Component {
       .then(res => {
         if ( typeof this.props.cookies.get("access_token") == undefined ){
           this.props.cookies.remove("access_token")
-          console.log("token removed")
           this.getToken();
         } else {
           this.props.cookies.set("access_token", res.data.access_token)
         }
       })
-      .catch(err => console.log(err));
+      .catch(err => (err.message));
   };
   refreshToken = () => {
     this.props.cookies.remove("access_token");
     axios.get(process.env.REACT_APP_REFRESH_TOKEN_URL)
       .then( res => {
         this.props.cookies.set('access_token', res.data.access_token)
-        console.log("Token Refreshed")
       })
-      .catch( err => console.log(err) )
+      .catch( err => (err.message) )
   }
   changeLoginState = () => {
     if (this.state.loggedIn === false){

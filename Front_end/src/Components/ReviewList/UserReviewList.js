@@ -61,7 +61,7 @@ class UserReviewList extends Component {
         });
         this.setState(newState);
       })
-      .catch(err => console.log(err));
+      .catch(err => (err.message));
   }
 
   getTrackReviews() {
@@ -74,7 +74,7 @@ class UserReviewList extends Component {
         });
         this.setState(newState);
       })
-      .catch(err => console.log(err));
+      .catch(err => (err.message));
   }
 
   getNickname(userID) {
@@ -87,7 +87,7 @@ class UserReviewList extends Component {
         });
         this.setState(newState);
       })
-      .catch(err => console.log(err));
+      .catch(err => (err.message));
   }
 
   handleReviewChange = event => {
@@ -101,8 +101,7 @@ class UserReviewList extends Component {
     const userTrackReviews = this.state.trackReviews.filter(review => {
       return review.userID === parseInt(this.props.match.params.id);
     });
-    console.log(this.props.match.params.id);
-    console.log(this.state.nickname);
+
     return (
       <Fragment>
         <Container

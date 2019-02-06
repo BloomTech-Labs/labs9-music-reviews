@@ -45,11 +45,10 @@ class AlbumReviewsPage extends Component {
             art: res.data.images[1].url,
             tracks: res.data.tracks.items,
             width: res.data.images[1].height
-          },
-          console.log(res.data)
+          }
         );
       })
-      .catch(err => console.log(err));
+      .catch(err => (err.message));
   };
 
   getAlbumReviews() {
@@ -62,7 +61,7 @@ class AlbumReviewsPage extends Component {
         });
         this.setState(newState);
       })
-      .catch(err => console.log(err));
+      .catch(err => (err.message));
   }
 
   componentDidMount() {
