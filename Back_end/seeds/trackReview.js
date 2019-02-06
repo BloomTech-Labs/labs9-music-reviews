@@ -1,6 +1,6 @@
 const faker = require('faker')
 
-const createFakeAlbumReview = () => ({
+const createFakeTrackReview = () => ({
   dateCreated: faker.random.number(),
   dateModified: faker.random.number(),
   rating: faker.random.number(),
@@ -10,10 +10,10 @@ const createFakeAlbumReview = () => ({
 })
 
 exports.seed = async function (knex, Promise) {
-  const fakeAlbumReview = []
-  const desiredFakeAlbumReview = 50
-  for (let i = 0;i < desiredFakeAlbumReview;i++) {
-    fakeAlbumReview.push(createFakeAlbumReview())
+  const fakeTrackReview = []
+  const desiredFakeTrackReview = 50
+  for (let i = 0;i < desiredFakeTrackReview;i++) {
+    fakeTrackReview.push(createFakeTrackReview())
   }
-  await knex('albumReview').insert('fakeAlbumReview')
-}
+  await knex('trackReview').insert(fakeTrackReview)
+} 

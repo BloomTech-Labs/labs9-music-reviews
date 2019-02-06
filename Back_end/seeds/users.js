@@ -1,9 +1,9 @@
 const faker = require('faker')
 
 const createFakeUser = () => ({
+  firebaseUID: faker.random.uuid(),
   emailAddress: faker.internet.email(),
   paidMembership: faker.random.boolean(),
-  reviewCount: faker.random.number(),
   subscriptionExpiration: faker.random.number(),
   nickName: faker.name.lastName(),
 })
@@ -14,4 +14,4 @@ exports.seed = async function (knex, Promise) {
     fakeUsers.push(createFakeUser())
   }
   await knex('users').insert(fakeUsers)
-}
+} 
