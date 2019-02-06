@@ -32,17 +32,17 @@ Database access `usersDB.js` file included inside the data folder. It publishes 
 * getNickName:  takes one argument i.e. userID and returns users nickname.
 
 Database access `trackReviewsDb.js` file included inside the data folder. It publishes the following methods:
-* retrive: returns promise  of all track reviews contained in the database
-* retrieveById: will be expecting an Id and retuns review matching the id passed
-* retriveUserByUserId: takes userID as an argument and returns reviews matching that userID
+* retrieve: returns promise  of all track reviews contained in the database
+* retrieveById: will be expecting an Id and returns review matching the id passed
+* retrieveUserByUserId: takes userID as an argument and returns reviews matching that userID
 * write: will add review to the reviews table
 * edit: update accepts two arguments id and review. Using the id will locate the review and updates with the new passed review
 * remove: takes an id argument and removes reviews that matches the id.
 
 Database access `albumReviewsDb.js` file included inside the data folder. It publishes the following methods:
-* retrive: returns promise  of all album reviews contained in the database
+* retrieve: returns promise  of all album reviews contained in the database
 * retrieveById: will be expecting an Id and returns album review matching the id passed
-* retriveUserByUserId: takes userID as an argument and returns reviews matching that userID
+* retrieveUserByUserId: takes userID as an argument and returns reviews matching that userID
 * write: will add review to the reviews table
 * edit: update accepts two arguments id and review. Using the id will locate the review and updates with the new passed review
 * remove: takes an id argument and removes reviews that matches the id.
@@ -53,7 +53,7 @@ users.
 ```
 {
     firebaseUID: "PXl9fiZMGMgMx48kQM0fv7O3Cc",
-    emailAddres: "sam@gmail.com",
+    emailAddress: "sam@gmail.com",
     paidMembership: "0",
     subscriptionExpiration: "Sun Apr 07 2019 00:47:06",
     nickname: "sam"
