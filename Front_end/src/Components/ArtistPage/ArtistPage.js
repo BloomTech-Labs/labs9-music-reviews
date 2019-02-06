@@ -138,7 +138,7 @@ class ArtistPage extends Component {
 
         </Row>
                   
-        <Container>
+        <Container fluid>
         <Row>
           <h1 style={{ 
              

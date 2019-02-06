@@ -128,7 +128,7 @@ class AlbumReviewCard extends Component {
               </NavLink>
             </div>
             {/* <div>Member status</div> */}
-            <div>
+            <div style={{color: 'rgb(234, 198, 122)'}}>
               <strong>Reviews: </strong>
               {userAlbumReviews.length + userTrackReviews.length}
             </div>
@@ -139,13 +139,13 @@ class AlbumReviewCard extends Component {
                 <ViewStars rating={this.props.review.rating} />
               </Col>
               <Col sm="12" md="6">
-                <p style={{ margin: "auto" }}>
+                <p style={{ margin: "auto", color: 'rgb(234, 198, 122)' }}>
                   Written: {this.props.review.dateCreated}
                 </p>
               </Col>
             </Row>
             <Row>
-              <Col>
+              <Col style={{color: 'rgb(234, 198, 122)'}}>
                 <p>{this.props.review.review}</p>
               </Col>
             </Row>

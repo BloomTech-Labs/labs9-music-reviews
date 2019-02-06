@@ -104,7 +104,7 @@ class UserReviewList extends Component {
     console.log(this.props.match.params.id);
     console.log(this.state.nickname);
     return (
-      <Fragment>
+      
         <Container
           fluid={true}
           style={{
@@ -179,7 +179,6 @@ class UserReviewList extends Component {
             </Col>
           )}
         </Container>
-      </Fragment>
     );
   }
 }

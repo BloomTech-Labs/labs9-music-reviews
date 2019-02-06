@@ -112,7 +112,7 @@ class TrackReviewsPage extends Component {
               margin: "15px auto 0"
             }}
           >
-            <h2>Track: {this.state.album}</h2>
+            <h2>Track: {this.state.track}</h2>
           </div>
           {/* can add logic to render different size of album art based on screen size: stacked ternary */}
           {/* need to find a way to manipulate the img object from res.data */}

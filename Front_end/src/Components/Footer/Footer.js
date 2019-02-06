@@ -16,7 +16,7 @@ const Footer = (props) => {
             <div className="row text-center d-flex justify-content-center pt-1 mb-1">                  
                 <div className="col-md-2 mb-1">
                     <h6 className="text-uppercase font-weight-bold">
-                        <Link style = {aStyle} to = 'about-us'>About us</Link>
+                        <Link style = {aStyle} to = '/about-us'>About us</Link>
                     </h6>
                 </div>
             </div>
