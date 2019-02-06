@@ -6,7 +6,6 @@ import AlbumReviewsPage from "./Components/ReviewsPage/AlbumReviewsPage";
 import TrackReviewsPage from "./Components/ReviewsPage/TrackReviewsPage";
 import HomePage from "./Components/HomePage";
 import LandingPage from "./Components/LandingPage/LandingPage";
-import SearchLanding from "./Components/SearchLanding/SearchLanding";
 import Billing from "./Components/Billing/Billing";
 import SettingsPage from "./Components/Settings/SettingsPage";
 import SignUpPage from "./Components/Signup/SignUpPage";
@@ -19,6 +18,8 @@ import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
 import SearchResults from "./Components/Search/SearchResults";
 import { withAuthentication } from './Components/Session'
+import Footer from "./Components/Footer/Footer";
+import AboutUs from "./Components/Footer/AboutUs";
 
 let refreshTime = 15*60*1000; // 15 mins
 
@@ -121,7 +122,7 @@ class App extends Component {
         />
         <Route exact path="/" component={LandingPage} />
         <Route path="/home" component={HomePage} />
-        <Route path="/search_landing" component={SearchLanding} />
+        <Route path="/about-us" component={AboutUs} />
         {/* <Route path="/user/billing" render={(props) => ( 
           <Billing {...props} userID={this.state.userID} 
                               subscriptionExpiration={this.state.subscriptionExpiration} 
@@ -166,6 +167,7 @@ class App extends Component {
             <UserReviewList {...props} loggedIn={this.state.loggedIn} userID={this.state.userID} nickname={this.state.nickname}/>
           )}
         />
+        <Footer />
       </Container>
     );
   }
