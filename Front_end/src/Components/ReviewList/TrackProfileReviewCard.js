@@ -6,6 +6,7 @@ import axios from "axios";
 import { NavLink } from "react-router-dom";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
+import {withAuthorization} from '../Session'
 
 class TrackProfileReviewCard extends Component {
   static propTypes = {
@@ -154,4 +155,7 @@ class TrackProfileReviewCard extends Component {
   }
 }
 
-export default withCookies(TrackProfileReviewCard);
+// export default withCookies(TrackProfileReviewCard);
+const condition = authUser => !!authUser;
+export default withAuthorization(condition)(withCookies(TrackProfileReviewCard));
+
