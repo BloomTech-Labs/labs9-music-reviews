@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import ViewStars from "../StarsRating/ViewStars";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
+import {withAuthorization} from '../Session'
 
 class AlbumReviewCard extends Component {
   static propTypes = {
@@ -160,4 +161,7 @@ class AlbumReviewCard extends Component {
   }
 }
 
-export default withCookies(AlbumReviewCard);
+// export default withCookies(AlbumReviewCard);
+const condition = authUser => !!authUser;
+export default withAuthorization(condition)(withCookies(AlbumReviewCard));
+
