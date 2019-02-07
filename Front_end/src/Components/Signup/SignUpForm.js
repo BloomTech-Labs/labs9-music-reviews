@@ -77,7 +77,7 @@ class SignUpForm extends React.Component {
   };
   render() {
     return (
-      <Container fluid style={{ paddingTop: "8rem" }}>
+      <Container fluid style={{ paddingTop: "12rem" }}>
       <Row className='justify-content-center'>
       <Col>
         <h2 style ={{ color: "#984B43", fontFamily:'merriweather sans'}}>Sign Up</h2>
@@ -119,20 +119,23 @@ class SignUpForm extends React.Component {
               />
             </FormGroup>
           </Col>
-          <div className="btn-container" style={{display: 'flex', flexDirection:'column', alignItem: 'center', margin:'10px'}}>
+          <div className="container d-flex flex-column mt-3" style={{textAlign: 'center'}} >
+          <Col>
             <Button
               onClick={this.onSubmitHandler}
               style={{backgroundColor: '#eac67a', color: '#984b43', fontWeight: '650'}}
             >
               Sign Up
             </Button>
+            </Col>
+            <Col>
             <Button 
                   color= 'link'
                   style = {{color: '#eac67a', fontWeight: '200', padding: "1.5rem" }}
                   onClick={() => this.props.history.push('/login')}>
                           Have an account?
             </Button>
-
+            </Col>
             <FirebaseContext.Consumer>
               {(firebase) => <LogInWithGoogle firebase={firebase} changeLogInState={this.props.changeLogInState} />}
             </FirebaseContext.Consumer>
