@@ -1,14 +1,11 @@
 
 # Labs 9 - On The Record
----
 On The Record is a website that allows users to leave their honest opinions on their choice of albums and/or tracks. 
 
 # Motivation
----
 On The Record deviates from traditional review sites where professionals often write biased reviews, usually driven by monetary incentives, and influence the readers' perception and impression. In contrast, On The Record provides a space for its users to freely express their opinions on certain pieces of music. 
 
 # Build Status
----
 [![Netlify Status](https://api.netlify.com/api/v1/badges/a32436d8-0761-4df9-90fc-4d9dde0037ca/deploy-status)](https://app.netlify.com/sites/labs9carreviews/deploys)
 
 #### On The Record - https://labs9carreviews.netlify.com/
@@ -16,7 +13,6 @@ On The Record deviates from traditional review sites where professionals often w
 ![](https://firebasestorage.googleapis.com/v0/b/labs9-music-reviews.appspot.com/o/Website%20Images%2FOTR%20Logo%20X.png?alt=media&token=d3989fdf-1445-463f-afda-1549824b9fa2)
 
 # Tech Stack
----
 - ### React.js
     - #### Reuseable Components
         -   It makes development and maintenance easier. In addition, reuseable components can help the           website to look and feel more consistent.
@@ -34,8 +30,7 @@ On The Record deviates from traditional review sites where professionals often w
     - #### Can be extended in future releases
         - Adding new tables or columns can be done with ease. Backwards compatibility is also preserved.
 
-## Dependencies and Environment
----
+# Dependencies and Environment
 ### Back End Dependencies 
 - [axios](https://www.npmjs.com/package/axios)
 - [body-parser](https://www.npmjs.com/package/body-parser)
@@ -90,9 +85,9 @@ On The Record deviates from traditional review sites where professionals often w
 # Contributors
 | AD Faris | Adam Lee |  Das G. Ma  | Francis Tse  |  Keith Haag (Project Manager) |
 |----------|------------|----------------|-----------------------| ---------------|
-| ![AD Faris](https://ca.slack-edge.com/T4JUEB3ME-U90KKDADV-cdc4cecf0d75-48)  | ![Adam Lee](https://ca.slack-edge.com/T4JUEB3ME-UB4MBM7FZ-8c44fa13e6b7-48)  | ![Das G. Ma](https://ca.slack-edge.com/T4JUEB3ME-UB0E286A2-83f59c1735d0-48)  | ![Francis Tse](https://ca.slack-edge.com/T4JUEB3ME-UAY9JQZGQ-92c0dc2a73c1-48) |
-| [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/adfaris)  | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Adamcglee)    |  [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/DasGMA)   | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/francistse23)    |  [<img src="https://github.com/favicon.ico" width="15"> ]()  
-| [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/in/ad-faris/) |  [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/in/adamcglee/)  | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/in/dasgrigoma/)  |  [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](http://www.linkedin.com/in/francis-tse) |  [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">]()
+| ![AD Faris](https://ca.slack-edge.com/T4JUEB3ME-U90KKDADV-cdc4cecf0d75-48)  | ![Adam Lee](https://ca.slack-edge.com/T4JUEB3ME-UB4MBM7FZ-8c44fa13e6b7-48)  | ![Das G. Ma](https://ca.slack-edge.com/T4JUEB3ME-UB0E286A2-83f59c1735d0-48)  | ![Francis Tse](https://ca.slack-edge.com/T4JUEB3ME-UAY9JQZGQ-92c0dc2a73c1-48) | ![Keith Haag](https://firebasestorage.googleapis.com/v0/b/labs9-music-reviews.appspot.com/o/chief.JPG?alt=media&token=37892dc1-5b05-4eb9-a56c-a6d3dd092bb8) |
+| [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/adfaris)  | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Adamcglee)    |  [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/DasGMA)   | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/francistse23)    |  [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/kkhaag)  
+| [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/in/ad-faris/) |  [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/in/adamcglee/)  | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/in/dasgrigoma/)  |  [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](http://www.linkedin.com/in/francis-tse) |  [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/in/k-haag/)
 
 # License
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
