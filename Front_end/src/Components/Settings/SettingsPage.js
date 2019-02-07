@@ -22,7 +22,12 @@ class SettingsPage extends React.Component {
           Account Settings
         </h1>
         <FirebaseContext.Consumer>
-          {(firebase) => <SettingsContent firebase={firebase} subscriptionExpiration={this.props.subscriptionExpiration} />}
+          {(firebase) => <SettingsContent 
+            firebase={firebase} 
+            subscriptionExpiration={this.props.subscriptionExpiration}
+            userID={this.props.userID}
+            nickname={this.props.nickname}
+          />}
         </FirebaseContext.Consumer>
       </SettingsContainer>
     );
