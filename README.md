@@ -68,17 +68,35 @@ On The Record deviates from traditional review sites where professionals often w
 - Run `yarn start`
 - If errors occur, please make sure all dependencies are installed by referencing `package.json`
 
-# API Documentation
-## Third-Party APIs
-- [Stripe](https://stripe.com/docs)
-- [Spotify](https://developer.spotify.com/documentation/web-api/reference/)
-
 # How to Use?
 - All features presented on On The Record are available to registered users only. The first step is to create an account.
 - User may sign up using his/her email/password, or the user can sign up by logging into his/her Google account by clicking ![](https://firebasestorage.googleapis.com/v0/b/labs9-music-reviews.appspot.com/o/Website%20Images%2FGoogleWhite.png?alt=media&token=ba31e7bf-af7f-4d38-b53c-bc2ea5a164f9) on the sign up page. (Note: New users are given 60 days of subscription for free. Users can navigate to settings to confirm the status)
 - Once logged in/signed up, user will be redirected to the Home page where it shows the latest releases and popular tracks (updated daily).
 - User may choose to select any of the featured album/track and write a review, or click `SEARCH` on the navbar and search for an album/track.
 - On the respective album/track page, playback is enabled for user to revisit the album/track as he/she writes a review. (Note: User has to log into their Spotify account to listen to the full album/track. Otherwise it will be a 30-second snippet)
+
+# API Documentation
+## Third-Party APIs
+- [Stripe](https://stripe.com/docs)
+- [Spotify](https://developer.spotify.com/documentation/web-api/reference/)
+
+## Backend API
+| Method | Endpoint       | Description
+| ------ | -------------- | ------------------------------------------------------------------------------------------------------
+| POST   | /trackReviews    | Creates a track review using the information sent inside the `request body`.
+| GET    | /trackReviews     | Returns an array of all the track review objects contained in the database.
+| GET    | /trackReviews/:id | Returns a trackReview object with the specified id.
+| DELETE | /trackReviews/:id | Removes the track review  with the specified id
+| PUT    | /trackReviews/:id | Updates the track review matching the `id` using data from the `request body`
+| POST   | /albumReview    | Creates a album review using the information sent inside the `request body`.
+| GET    | /albumReview     | Returns an array of all the album review objects contained in the database.
+| GET    | /albumReview/:id | Returns the album review object with the specified id.
+| DELETE | /albumReview/:id | Removes the album review with the specified id.
+| PUT    | /albumReview/:id | Updates the album review with the specified `id` using data from the `request body`.
+| POST   | /users/create     | Creates a user using the information sent inside the `request body`.
+| GET    | /users/get/:email     | Returns an object of user with the given email.
+| GET    | /users/:userID/nickname | Returns the nickname
+| PUT    | /users/:userID/Change_nickname | Updates the post with the specified `id` using data from the `request body`. Returns the modified record.
 
 # Contributors
 
