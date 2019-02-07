@@ -59,7 +59,7 @@ class SubInfoModal extends React.Component {
           className={this.props.className}
           style={{ maxWidth: "600px" }}
         >
-          <Row>
+          <Row style={{ color: "#eac67a"}}>
             <Col xs="6">
               <ModalBody style={{ textAlign: "center" }}><h3>Subscriber</h3></ModalBody>
               <ModalBody>

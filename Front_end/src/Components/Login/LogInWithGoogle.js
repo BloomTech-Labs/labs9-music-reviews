@@ -41,8 +41,8 @@ class LogInWithGoogle extends React.Component {
         {/* <Button style={{backgroundColor: '#eac67a', color: '#984b43', fontWeight: '650'}} onClick={this.onSubmit}>
           Google Log In
         </Button> */}
-        <img src={require("../../Images/GoogleWhite.png")} alt="Log In with Google" onClick={this.onSubmit} 
-            style={{ color: '#eac67a', fontWeight: '650', maxWidth: "15rem", padding: "1rem", borderRadius: "1.5rem" }}
+        <img src={require("../../Images/GoogleWhite.png")} alt="Log In with Google" onClick={this.onSubmit} className = 'img-responsive'
+            style={{ color: '#eac67a', fontWeight: '650', maxWidth: '12rem', borderRadius: "1.5rem" }}
         />
       </Col>
     );

@@ -165,15 +165,7 @@ class AlbumReviewsPage extends Component {
                       <h6>{track.track_number}.</h6>
                     </Col>
                     <Col xs="9">
-                      <ul
-                        style={{
-                          fontSize: "0.8rem",
-                          alignItems: "center"
-                        }}
-                        key={track.id}
-                      >
-                        {track.name}
-                      </ul>
+                      <h6 key={track.id}> {track.name} </h6>
                     </Col>
                   </Row>
                 </Link>
