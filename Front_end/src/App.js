@@ -125,7 +125,12 @@ class App extends Component {
         <Route path="/home" component={HomePage} />
         <Route path="/about-us" component={AboutUs} />
         <Route path="/user/settings" render={(props) => 
-          <SettingsPage {...props} subscriptionExpiration={this.state.subscriptionExpiration} /> }
+          <SettingsPage {...props} 
+            subscriptionExpiration={this.state.subscriptionExpiration}
+            userID={this.state.userID}
+            nickname={this.state.nickname}
+          /> 
+          }
         />
         <Route path="/signup" render={(props) =>
           <SignUpPage {...props} changeLogInState={this.changeLoginState} /> }
