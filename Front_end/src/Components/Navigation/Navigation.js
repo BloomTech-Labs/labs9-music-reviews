@@ -18,7 +18,8 @@ import './Navigation.css';
 const SmallScreen = styled.div`
   display: none;
   @media (max-width: 991px){
-    display: inline-block;
+    display: flex;
+    padding-top: 1rem;
   }
 `
 
@@ -58,10 +59,10 @@ class Navigation extends Component {
 
                 <Col xs="11" lg="5" style={{ display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
                   {/* shows regular sized menu and hamburger menu hides on mobile */}
-                  <Link to="/search" style={{ textAlign: "center", margin: "auto" }}>
-                    <Button style={{ background: "#eac67a", color: "#984b43", fontWeight: "650", position: "relative", left: "0"  }}>SEARCH</Button>
-                  </Link>
                   <BigScreen>
+                    <Link to="/search" style={{ textAlign: "center", margin: "auto 1rem" }}>
+                      <Button className="search-btn" style={{ background: "#eac67a", color: "#984b43", fontWeight: "650", position: "relative", left: "0"  }}>SEARCH</Button>
+                    </Link>
                     {this.props.loggedIn === true ? (
                     <Fragment>
                       <Link to="/home" style={{ textDecoration: 'none', textAlign: "center", margin: "auto"  }}>
@@ -100,6 +101,9 @@ class Navigation extends Component {
 
                   {/* shows hamburger menu and hides regular sized menu on mobile */}
                   <SmallScreen> 
+                    <Link to="/search" style={{ textAlign: "center", margin: "auto 11rem auto 0" }}>
+                      <Button className="search-btn" style={{ background: "#eac67a", color: "#984b43", fontWeight: "650", position: "relative", left: "0"  }}>SEARCH</Button>
+                    </Link>
                     <Dropdown isOpen={this.state.isOpen} toggle={this.toggle}>
                       <DropdownToggle nav>
                         <i className="fa fa-bars icon" aria-hidden="true"></i>

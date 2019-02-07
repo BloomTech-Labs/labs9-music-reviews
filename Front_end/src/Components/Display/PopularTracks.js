@@ -35,18 +35,17 @@ class PopularTracks extends Component {
     render() {
         const renderData = this.state.data.map(data => {
                                 if (data.track.popularity > 90) {
-                                return data.track.album.images.length === 0 ? null : 
-                                        <PopularTracksCard
-                                            key = {data.track.id}
-                                            id = {data.track.album.id}
-                                            image = {data.track.album.images[0].url}
-                                            alt = "Album Art"
-                                            artist = {data.track.artists[0].name}
-                                            track={data.track.name}
-                                        />
-                                }
-                            
-                        })
+                                    return data.track.album.images.length === 0 ? null : 
+                                            <PopularTracksCard
+                                                key = {data.track.id}
+                                                id = {data.track.album.id}
+                                                image = {data.track.album.images[0].url}
+                                                alt = "Album Art"
+                                                artist = {data.track.artists[0].name}
+                                                track={data.track.name}
+                                            />
+                                    }
+                            })
         return (
             <Container md="3" xs="12" style={{
                     overflow: "hidden",

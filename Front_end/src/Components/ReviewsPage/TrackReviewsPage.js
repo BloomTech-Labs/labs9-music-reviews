@@ -132,6 +132,7 @@ class TrackReviewsPage extends Component {
               to={`/albums/${this.state.albumId}`}
             >
               <CardImg
+                className="album-art"
                 src={this.state.art}
                 alt="Album Art"
                 style={{ maxWidth: "400px", width: "100%" }}
