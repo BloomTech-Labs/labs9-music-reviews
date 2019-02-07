@@ -2,7 +2,8 @@
     #left {
         position: fixed;
         top: 10rem;
-        bottom: 5rem;
+        bottom: 0rem;
+        padding-bottom: 5rem;
     }
 }
 
