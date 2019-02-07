@@ -208,7 +208,7 @@ class Search extends Component {
       <Container fluid>
         <Row>
           <Col xs = '12' sm = '12' md = '12' lg = '12'>
-            <Form onSubmit={this.noEnter} style={{ position: "relative" }}>
+            <Form onSubmit={this.noEnter} style={{ position: "relative", border: "none" }}>
                 <Input
                   type="search"
                   name="search"
@@ -217,7 +217,8 @@ class Search extends Component {
                   value = {this.state.query}
                   style={{
                     minWidth: "300px",
-                    border: "none",
+                    border: "2px solid #984b43",
+                    borderRadius: "0.5rem"
                   }}
                   />
               </Form>

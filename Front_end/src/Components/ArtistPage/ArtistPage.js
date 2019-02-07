@@ -72,14 +72,14 @@ class ArtistPage extends Component {
     function dateConverter(date) {
       var msec = Date.parse(date);
       var d = new Date(msec);
-      return d.toString().split("G",1)[0].slice(3,15);
+      return d.toString().split("G",1)[0].slice(4,15);
     }
 
     function getUnique(arr, comp) {
       const unique = arr
           .map(e => e[comp])
           .map((e, i, final) => final.indexOf(e) === i && i)  // store the keys of the unique objects
-          .filter(e => arr[e]).map(e => arr[e]);              // eliminate the dead keys & store unique objects
+          .filter(e => arr[e]).map(e => arr[e]);             // eliminate the dead keys & store unique objects
        return unique;
     }
     
@@ -96,7 +96,9 @@ class ArtistPage extends Component {
           />
         </NavLink>
       );
-    }), 'key');
+    }), 'key').sort((a,b) => { return new Date(b['props']['children']['props']['release_date']) - new Date(a['props']['children']['props']['release_date']) });
+
+    console.log(renderData)
 
     return (
       <Container fluid style={{ fontFamily: "Lato", margin: "0 auto", maxWidth: "1600px", paddingTop: '8rem' }}>

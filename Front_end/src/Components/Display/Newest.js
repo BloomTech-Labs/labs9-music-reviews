@@ -60,8 +60,8 @@ componentDidMount() {
                         id = {album.id}
                     />
               )
-        }), 'id')
-    })
+            }), 'id')
+        }).sort((a,b) => { return new Date(b[0]['props']['date']) - new Date(a[0]['props']['date']) });
 
         return (
             <Container md="3" xs="12" style={{
