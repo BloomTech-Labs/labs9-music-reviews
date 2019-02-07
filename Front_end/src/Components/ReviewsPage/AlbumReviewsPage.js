@@ -81,7 +81,7 @@ class AlbumReviewsPage extends Component {
     });
 
     return (
-      <Row style={{ position: "relative", top: "10rem", marginBottom: "50px" }}>
+      <Row style={{ paddingTop: "10rem", marginBottom: "1rem" }}>
         <Col md={5} id="left" className="scrollbox scrollbox-content">
           <div
             style={{

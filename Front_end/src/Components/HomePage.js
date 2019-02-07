@@ -10,10 +10,10 @@ const HomePage = () => {
     return(
         <Container fluid style={{ 
                 maxWidth: "1200px",
-                padding: "7rem 0 5rem 0",
+                padding: "7rem 0 1rem 0",
                 fontFamily: "Lato",
                 fontSize: "1.2rem",
-                marginBottom: '3rem',
+                marginBottom: '1rem',
                 width: '100%'
             }}
         >

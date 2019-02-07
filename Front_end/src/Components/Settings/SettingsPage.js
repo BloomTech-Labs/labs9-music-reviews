@@ -5,8 +5,7 @@ import SettingsContent from './SettingsContent';
 import { withAuthorization } from '../../Components/Session';
 
 const SettingsContainer = styled.div`
-  height: 100vh;
-  padding-top: 10rem
+  padding-top: 8rem;
   div {
     text-align: center;
     p {
