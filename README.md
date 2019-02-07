@@ -70,7 +70,6 @@ On The Record deviates from traditional review sites where professionals often w
 - If errors occur, please make sure all dependencies are installed by referencing `package.json`
 
 # API Documentation
----
 ## Third-Party APIs
 - [Stripe](https://stripe.com/docs)
 - [Spotify](https://developer.spotify.com/documentation/web-api/reference/)
@@ -85,7 +84,7 @@ On The Record deviates from traditional review sites where professionals often w
 # Contributors
 | AD Faris | Adam Lee |  Das G. Ma  | Francis Tse  |  Keith Haag (Project Manager) |
 |----------|------------|----------------|-----------------------| ---------------|
-| ![AD Faris](https://ca.slack-edge.com/T4JUEB3ME-U90KKDADV-cdc4cecf0d75-48)  | ![Adam Lee](https://ca.slack-edge.com/T4JUEB3ME-UB4MBM7FZ-8c44fa13e6b7-48)  | ![Das G. Ma](https://ca.slack-edge.com/T4JUEB3ME-UB0E286A2-83f59c1735d0-48)  | ![Francis Tse](https://ca.slack-edge.com/T4JUEB3ME-UAY9JQZGQ-92c0dc2a73c1-48) | ![Keith Haag](https://firebasestorage.googleapis.com/v0/b/labs9-music-reviews.appspot.com/o/chief.JPG?alt=media&token=37892dc1-5b05-4eb9-a56c-a6d3dd092bb8) |
+| ![AD Faris](https://ca.slack-edge.com/T4JUEB3ME-U90KKDADV-cdc4cecf0d75-48)  | ![Adam Lee](https://ca.slack-edge.com/T4JUEB3ME-UB4MBM7FZ-8c44fa13e6b7-48)  | ![Das G. Ma](https://ca.slack-edge.com/T4JUEB3ME-UB0E286A2-83f59c1735d0-48)  | ![Francis Tse](https://ca.slack-edge.com/T4JUEB3ME-UAY9JQZGQ-92c0dc2a73c1-48) | ![Keith Haag](https://firebasestorage.googleapis.com/v0/b/labs9-music-reviews.appspot.com/o/chief.JPG?alt=media&token=8653fa07-58a1-4b78-bb0a-e26a3aca7e03) |
 | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/adfaris)  | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Adamcglee)    |  [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/DasGMA)   | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/francistse23)    |  [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/kkhaag)  
 | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/in/ad-faris/) |  [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/in/adamcglee/)  | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/in/dasgrigoma/)  |  [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](http://www.linkedin.com/in/francis-tse) |  [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/in/k-haag/)
 
