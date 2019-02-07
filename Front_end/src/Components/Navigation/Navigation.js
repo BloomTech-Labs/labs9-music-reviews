@@ -101,7 +101,7 @@ class Navigation extends Component {
 
                   {/* shows hamburger menu and hides regular sized menu on mobile */}
                   <SmallScreen> 
-                    <Link to="/search" style={{ textAlign: "center", margin: "auto 11rem auto 0" }}>
+                    <Link to="/search" style={{ textAlign: "center", margin: "auto 9rem auto 0" }}>
                       <Button className="search-btn" style={{ background: "#eac67a", color: "#984b43", fontWeight: "650", position: "relative", left: "0"  }}>SEARCH</Button>
                     </Link>
                     <Dropdown isOpen={this.state.isOpen} toggle={this.toggle}>

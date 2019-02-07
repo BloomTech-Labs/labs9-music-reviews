@@ -86,10 +86,8 @@ class App extends Component {
   }
   changeLoginState = () => {
     if (this.state.loggedIn === false){
-      window.location.href=`${process.env.REACT_APP_FRONTEND_URL}home`;
       this.setState({ loggedIn: true });
     } else {
-      window.location.href=`${process.env.REACT_APP_FRONTEND_URL}`;
       this.setState({ loggedIn: false })
     }
   }

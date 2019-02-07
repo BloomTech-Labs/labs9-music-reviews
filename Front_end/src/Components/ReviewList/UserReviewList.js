@@ -101,8 +101,6 @@ class UserReviewList extends Component {
     const userTrackReviews = this.state.trackReviews.filter(review => {
       return review.userID === parseInt(this.props.match.params.id);
     });
-    console.log(this.props.match.params.id);
-    console.log(this.state.nickname);
     return (
       
         <Container
