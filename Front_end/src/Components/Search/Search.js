@@ -83,13 +83,6 @@ class Search extends Component {
     return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
   }
 
-  keyPress = (event) => {
-    event.preventDefault();
-    if (!this.props.loggedIn){
-    window.location = '/login';
-    }
-  }
-
   render() {         
     const image = '../../Images/songbird.png';
     const renderSearch = 
@@ -206,8 +199,8 @@ class Search extends Component {
     return (
       <Container fluid>
         <Row>
-          <Col xs = '12' sm = '12' md = '12' lg = '12'>
-            <Form onSubmit={this.noEnter} style={{ position: "relative", border: "none" }}>
+          <Col>
+            <Form onSubmit={this.noEnter} style={{border: "none" }}>
                 <Input
                   type="search"
                   name="search"
@@ -215,7 +208,6 @@ class Search extends Component {
                   onChange={this.onChange}
                   value = {this.state.query}
                   style={{
-                    minWidth: "300px",
                     border: "2px solid #984b43",
                     borderRadius: "0.5rem"
                   }}
