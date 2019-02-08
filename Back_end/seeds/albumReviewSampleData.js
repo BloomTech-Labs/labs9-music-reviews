@@ -44,6 +44,8 @@ exports.seed = function (knex, Promise) {
           userID:2
         },
         {
+          dateCreated:'02/08/2019',
+          dateModified:'02/08/2019',
           spotifyAlbumID: '35s58BRTGAEWztPo9WqCIs',
           rating: '4',
           review: 'Spidey!',
