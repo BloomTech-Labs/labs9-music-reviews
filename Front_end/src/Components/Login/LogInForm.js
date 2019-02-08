@@ -43,7 +43,7 @@ class LogInForm extends React.Component {
         <Row className='justify-content-center'>
           <Col>
           <h2 style ={{ color: "#984B43", fontFamily:'merriweather sans'}}>Log In</h2>
-                <Form className = 'pt-5 pb-5 align-items-center' style={{ border: "2px solid #eac67a", borderRadius: '1rem', backgroundColor: 'rgba(35, 50, 55, 1)' }}>
+                <Form className = 'pt-5 pb-5 align-items-center' style={{ border: "2px solid #eac67a", borderRadius: '1rem', backgroundColor: 'rgba(35, 50, 55, 1)', color: 'rgb(234, 198, 122)' }}>
                   <FirebaseContext.Consumer>
                     {(firebase) => <LogInWithGoogle firebase={firebase} changeLogInState={this.props.changeLogInState} />}
                   </FirebaseContext.Consumer>
