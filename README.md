@@ -5,9 +5,9 @@ On The Record is a website that allows users to leave their honest opinions on t
 On The Record deviates from traditional review sites where professionals often write biased reviews, usually driven by monetary incentives, and influence the readers' perception and impression. In contrast, On The Record provides a space for its users to freely express their opinions on certain pieces of music. 
 
 # Build Status
-[![Netlify Status](https://api.netlify.com/api/v1/badges/a32436d8-0761-4df9-90fc-4d9dde0037ca/deploy-status)](https://app.netlify.com/sites/labs9carreviews/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a32436d8-0761-4df9-90fc-4d9dde0037ca/deploy-status)](https://app.netlify.com/sites/ontherecord/deploys)
 
-#### On The Record - https://labs9carreviews.netlify.com/
+#### On The Record - https://ontherecord.netlify.com/
 
 ![](https://firebasestorage.googleapis.com/v0/b/labs9-music-reviews.appspot.com/o/Website%20Images%2FOTR%20Logo%20X.png?alt=media&token=d3989fdf-1445-463f-afda-1549824b9fa2)
 
