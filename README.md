@@ -78,7 +78,7 @@ On The Record deviates from traditional review sites where professionals often w
 # API Documentation
 ## Third-Party APIs
 - [Stripe](https://stripe.com/docs)
-- [Spotify](https://developer.spotify.com/documentation/web-api/reference/)
+- [Spotify](https://developer.spotify.com/documentation/web-api/reference/) - [Firebase](https://firebase.google.com/docs/) (edited) 
 
 ## Backend API
 | Method | Endpoint       | Description
