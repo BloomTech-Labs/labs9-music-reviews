@@ -25,6 +25,7 @@ a {
 .big-menu-item:hover {
     background: #eac67a !important;
     color: #984b43 !important;
+    cursor: pointer;
 }
 
 .big-menu-item:focus{
