@@ -5,6 +5,7 @@ import { instanceOf } from 'prop-types';
 import { Container } from 'reactstrap';
 import PopularTracksCard from './PopularTracksCard';
 
+
 const url = 'https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF';
  // TOP50 most playable tracks in the world
 class PopularTracks extends Component {
@@ -72,5 +73,5 @@ class PopularTracks extends Component {
          );
     }
 }
- 
+
 export default withCookies(PopularTracks);

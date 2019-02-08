@@ -6,6 +6,7 @@ import ViewStars from "../StarsRating/ViewStars";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
 
+
 class AlbumReviewCard extends Component {
   static propTypes = {
     cookies: instanceOf(Cookies).isRequired
@@ -161,3 +162,4 @@ class AlbumReviewCard extends Component {
 }
 
 export default withCookies(AlbumReviewCard);
+

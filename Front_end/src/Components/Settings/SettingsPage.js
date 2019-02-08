@@ -2,7 +2,7 @@ import React from 'react';
 import { FirebaseContext } from '../Firebase';
 import styled from 'styled-components';
 import SettingsContent from './SettingsContent';
-import { withAuthorization } from '../../Components/Session';
+import { withAuthorization } from '../Session';
 
 const SettingsContainer = styled.div`
   padding-top: 8rem;
