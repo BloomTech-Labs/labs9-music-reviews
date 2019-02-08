@@ -61,7 +61,7 @@ class Billing extends Component {
           <Row>
             <Col xs="12">
               <Payment>
-                <Container style={{ textAlign: "left", fontFamily: "Merriweather Sans, sans-serif", color: "#eac67a", fontSize: "2rem", minWidth: "325px", border: "2px solid white" }}> 
+                <Container style={{ textAlign: "left", fontFamily: "Merriweather Sans, sans-serif", color: "#eac67a", fontSize: "2rem", minWidth: "325px" }}> 
                   Subscribe/Renew Subscription
                 </Container>
                 <div style={{ margin: "2rem 0" }}>
