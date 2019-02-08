@@ -98,7 +98,7 @@ class ArtistPage extends Component {
       );
     }), 'key').sort((a,b) => { return new Date(b['props']['children']['props']['release_date']) - new Date(a['props']['children']['props']['release_date']) });
 
-    console.log(renderData)
+  
 
     return (
       <Container fluid style={{ fontFamily: "Lato", margin: "0 auto", maxWidth: "1600px", paddingTop: '8rem' }}>

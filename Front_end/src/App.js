@@ -163,11 +163,8 @@ class App extends Component {
             <UserReviewList {...props} loggedIn={this.state.loggedIn} userID={this.state.userID} nickname={this.state.nickname}/>
           )}
         />
-        
         </main>
-        
         <Footer loggedIn={this.state.loggedIn} />
-        
       </wrapper>
     );
   }
