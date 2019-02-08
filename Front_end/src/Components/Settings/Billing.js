@@ -61,9 +61,10 @@ class Billing extends Component {
           <Row>
             <Col xs="12">
               <Payment>
-                <Container style={{ textAlign: "left", fontFamily: "Merriweather Sans, sans-serif", color: "#eac67a", fontSize: "2rem", minWidth: "325px" }}> 
-                  Subscribe/Renew Subscription
-                </Container>
+                <Row style={{ textAlign: "left", fontFamily: "Merriweather Sans, sans-serif", color: "#eac67a", fontSize: "2rem", maxWidth: "325px", lineHeight: "2rem" }}> 
+                  <p>Subscribe/</p>
+                  <p>Renew Subscription</p>
+                </Row>
                 <div style={{ margin: "2rem 0" }}>
                   <FormGroup check style={{ display: "flex", flexDirection: "column", textAlign: "left" }}>
                     <Label check>

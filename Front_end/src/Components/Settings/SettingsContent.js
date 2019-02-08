@@ -100,7 +100,7 @@ class SettingsContent extends React.Component {
                 <p><H3>Nickname: </H3>{this.state.nickname}</p>
                 <p><H3>Email address: </H3>{this.state.email}</p>  
               </Col>
-              <Col xs="12" md="8" style={{ margin: "auto", textAlign: "left", padding: "0 1rem" }}>
+              <Col xs="12" md="8" style={{ display: "flex", flexDirection: "column", margin: "auto", textAlign: "left", padding: "0 1rem" }}>
                 {/* <Input 
                   style={{ maxWidth: "400px" }}
                   name="newNickname"
@@ -129,14 +129,14 @@ class SettingsContent extends React.Component {
                     : `Your subscription will expire on: ${this.props.subscriptionExpiration.slice(4,15)}`
                     }   
                 </Row>
-                <Row>
-                  <Billing 
-                    userID={this.props.userID} 
-                    subscriptionExpiration={this.props.subscriptionExpiration} 
-                    nickname={this.props.nickname}
-                    tier={this.props.subscriptionExpiration}
-                  />
-                </Row>
+ 
+                <Billing 
+                  userID={this.props.userID} 
+                  subscriptionExpiration={this.props.subscriptionExpiration} 
+                  nickname={this.props.nickname}
+                  tier={this.props.subscriptionExpiration}
+                />
+ 
               </Col>
             </Row>
         
