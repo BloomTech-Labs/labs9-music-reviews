@@ -89,7 +89,6 @@ class TrackReviewCreateModal extends React.Component {
     });
   }
   render() {
-    console.log(this.props.trackId);
     return (
       <Fragment>
         <Button

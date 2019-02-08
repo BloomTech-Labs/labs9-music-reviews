@@ -85,7 +85,6 @@ class Search extends Component {
 
   keyPress = (event) => {
     event.preventDefault();
-    console.log('Enter is clicked');
     if (!this.props.loggedIn){
     window.location = '/login';
     }

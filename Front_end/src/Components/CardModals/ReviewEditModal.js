@@ -107,7 +107,6 @@ class ReviewEditModal extends React.Component {
     let month = currentDate.getMonth();
     let year = currentDate.getFullYear();
     let dateString = month + 1 + "/" + date + "/" + year;
-    console.log(dateString);
     this.setState({ dateModified: dateString });
   }
 
