@@ -32,7 +32,7 @@ class Checkout extends Component {
         .then(() => {
             this.successPayment();
             this.props.changeSubscriptionStatus();
-            window.location.href='https://labs9carreviews.netlify.com/user/settings'
+            window.location.href=`${process.env.REACT_APP_FRONTEND_URL}user/settings`
         })
         .catch(this.errorPayment);
     }
