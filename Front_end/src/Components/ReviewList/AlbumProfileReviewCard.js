@@ -7,7 +7,6 @@ import axios from "axios";
 import { NavLink } from "react-router-dom";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
-import {withAuthorization} from '../Session'
 
 const ReviewText = styled.div`
   padding-top: 20px;
@@ -160,6 +159,4 @@ class AlbumProfileReviewCard extends Component {
   }
 }
 
-// export default withCookies(AlbumProfileReviewCard);
-const condition = authUser => !!authUser;
-export default withAuthorization(condition)(withCookies(AlbumProfileReviewCard));
+export default withCookies(AlbumProfileReviewCard);

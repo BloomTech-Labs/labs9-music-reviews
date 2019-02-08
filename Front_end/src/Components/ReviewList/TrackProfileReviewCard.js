@@ -155,7 +155,5 @@ class TrackProfileReviewCard extends Component {
   }
 }
 
-// export default withCookies(TrackProfileReviewCard);
-const condition = authUser => !!authUser;
-export default withAuthorization(condition)(withCookies(TrackProfileReviewCard));
+export default withCookies(TrackProfileReviewCard);
 

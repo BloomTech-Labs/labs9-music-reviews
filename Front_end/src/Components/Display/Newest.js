@@ -4,7 +4,6 @@ import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
 import NewReleaseCard from './NewReleaseCard';
 import { Container } from 'reactstrap';
-import {withAuthorization} from '../Session'
 
 const url = 'https://api.spotify.com/v1/browse/new-releases';
 
@@ -91,7 +90,5 @@ componentDidMount() {
     }
 }
  
-// export default withCookies(Newest);
-const condition = authUser => !!authUser;
-export default withAuthorization(condition)(withCookies(Newest));
+export default withCookies(Newest);
 

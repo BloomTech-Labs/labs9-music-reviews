@@ -4,7 +4,8 @@ import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
 import { Container } from 'reactstrap';
 import PopularTracksCard from './PopularTracksCard';
-import {withAuthorization} from '../Session'
+
+
 const url = 'https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF';
  // TOP50 most playable tracks in the world
 class PopularTracks extends Component {
@@ -72,6 +73,5 @@ class PopularTracks extends Component {
          );
     }
 }
-const condition = authUser => !!authUser
-// export default withCookies(PopularTracks);
-export default withAuthorization(condition)(withCookies(PopularTracks));
+
+export default withCookies(PopularTracks);
