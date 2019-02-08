@@ -28,7 +28,6 @@ router.post('/create', (req, res) => {
       dbUsers
         .createNewUser(decodedToken)
         .then((newUser) => {
-          console.log(newUser);
           if (newUser !== null) {
             res.status(201).json(newUser[0]);
           }
