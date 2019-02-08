@@ -12,7 +12,7 @@ const theTeam = [
     {
         name: "AD",
         picture: "https://ca.slack-edge.com/T4JUEB3ME-U90KKDADV-cdc4cecf0d75-48",
-        about: "Jojo's daddy",
+        about: "Fullstack developer",
         git: "https://github.com/adfaris",
         linkedin: "https://www.linkedin.com/in/ad-faris/"
     },

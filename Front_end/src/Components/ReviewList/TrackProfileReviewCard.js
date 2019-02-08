@@ -29,7 +29,6 @@ class TrackProfileReviewCard extends Component {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(res => {
-        console.log(res.data);
         this.setState({
           track: res.data.name,
           album: res.data.album.name,
@@ -50,8 +49,6 @@ class TrackProfileReviewCard extends Component {
   }
 
   render() {
-    console.log(this.props.review.spotifyTrackID);
-    console.log(this.state.track);
     return (
       <Fragment>
         <Container>
