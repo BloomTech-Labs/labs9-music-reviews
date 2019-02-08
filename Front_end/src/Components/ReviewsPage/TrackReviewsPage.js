@@ -94,7 +94,6 @@ class TrackReviewsPage extends Component {
     const trackReviews = this.state.reviews.filter(review => {
       return review.spotifyTrackID === this.props.match.params.id;
     });
-    console.log(trackReviews, "Line 97");
     const trackReviewFilteredbyUserID = trackReviews.filter(track => {
       return (track.userID = this.props.userID);
     });
@@ -225,6 +224,7 @@ class TrackReviewsPage extends Component {
             trackReviews.map(review => (
               <ReviewCard
                 review={review}
+                userID={this.props.userID}
                 trackReview={this.state.trackReview}
               />
             ))
