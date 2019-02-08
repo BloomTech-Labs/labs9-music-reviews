@@ -5,9 +5,9 @@ On The Record is a website that allows users to leave their honest opinions on t
 On The Record deviates from traditional review sites where professionals often write biased reviews, usually driven by monetary incentives, and influence the readers' perception and impression. In contrast, On The Record provides a space for its users to freely express their opinions on certain pieces of music. 
 
 # Build Status
-[![Netlify Status](https://api.netlify.com/api/v1/badges/a32436d8-0761-4df9-90fc-4d9dde0037ca/deploy-status)](https://app.netlify.com/sites/ontherecord/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a32436d8-0761-4df9-90fc-4d9dde0037ca/deploy-status)](https://app.netlify.com/sites/labs9carreviews/deploys)
 
-#### On The Record - https://ontherecord.netlify.com/
+#### On The Record - https://labs9carreviews.netlify.com/
 
 ![](https://firebasestorage.googleapis.com/v0/b/labs9-music-reviews.appspot.com/o/Website%20Images%2FOTR%20Logo%20X.png?alt=media&token=d3989fdf-1445-463f-afda-1549824b9fa2)
 
@@ -78,7 +78,7 @@ On The Record deviates from traditional review sites where professionals often w
 # API Documentation
 ## Third-Party APIs
 - [Stripe](https://stripe.com/docs)
-- [Spotify](https://developer.spotify.com/documentation/web-api/reference/)
+- [Spotify](https://developer.spotify.com/documentation/web-api/reference/) - [Firebase](https://firebase.google.com/docs/) (edited) 
 
 ## Backend API
 | Method | Endpoint       | Description
@@ -88,11 +88,11 @@ On The Record deviates from traditional review sites where professionals often w
 | GET    | /trackReviews/:id | Returns a trackReview object with the specified id.
 | DELETE | /trackReviews/:id | Removes the track review  with the specified id
 | PUT    | /trackReviews/:id | Updates the track review matching the `id` using data from the `request body`
-| POST   | /albumReview    | Creates a album review using the information sent inside the `request body`.
-| GET    | /albumReview     | Returns an array of all the album review objects contained in the database.
-| GET    | /albumReview/:id | Returns the album review object with the specified id.
-| DELETE | /albumReview/:id | Removes the album review with the specified id.
-| PUT    | /albumReview/:id | Updates the album review with the specified `id` using data from the `request body`.
+| POST   | /albumReviews    | Creates a album review using the information sent inside the `request body`.
+| GET    | /albumReviews     | Returns an array of all the album review objects contained in the database.
+| GET    | /albumReviews/:id | Returns the album review object with the specified id.
+| DELETE | /albumReviews/:id | Removes the album review with the specified id.
+| PUT    | /albumReviews/:id | Updates the album review with the specified `id` using data from the `request body`.
 | POST   | /users/create     | Creates a user using the information sent inside the `request body`.
 | GET    | /users/get/:email     | Returns an object of user with the given email.
 | GET    | /users/:userID/nickname | Returns the nickname
