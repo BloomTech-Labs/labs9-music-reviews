@@ -215,7 +215,6 @@ class Search extends Component {
                   onChange={this.onChange}
                   value = {this.state.query}
                   style={{
-                    minWidth: "300px",
                     border: "2px solid #984b43",
                     borderRadius: "0.5rem"
                   }}
