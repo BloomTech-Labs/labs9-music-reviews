@@ -23,7 +23,7 @@ const LandingPage = () => {
       </h3>
 
       <Row style={{ display: "flex", justifyContent: "center" }}>
-        <Link to="/signup" style={{ margin: "0 auto" }}>
+        <Link to="/signup">
         <Button style={{
             padding: "1rem",
             borderRadius: "0.5rem",
