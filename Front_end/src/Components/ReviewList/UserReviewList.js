@@ -4,6 +4,7 @@ import axios from "axios";
 import { Row, Col, Container, CardImg } from "reactstrap";
 import AlbumProfileReviewCard from "./AlbumProfileReviewCard";
 import TrackProfileReviewCard from "./TrackProfileReviewCard";
+import { withAuthorization } from "../Session";
 
 const Sidebar = styled.div`
   position: fixed;
@@ -181,4 +182,7 @@ class UserReviewList extends Component {
   }
 }
 
-export default UserReviewList;
+// export default UserReviewList;
+const condition = authUser => !!authUser;
+export default withAuthorization(condition)(UserReviewList);
+
