@@ -91,7 +91,5 @@ componentDidMount() {
     }
 }
  
-// export default withCookies(Newest);
-const condition = authUser => !!authUser;
-export default withAuthorization(condition)(withCookies(Newest));
+export default withCookies(Newest);
 
