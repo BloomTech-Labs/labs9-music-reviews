@@ -8,7 +8,8 @@ const cardStyle = {
   textDecoration: 'none',
   textAlign: 'left',
   fontFamily: 'Lato',
-  fontSize: "0.9rem"
+  fontSize: "0.9rem",
+  fontWeight: 'normal'
 };
 
 const H5 = styled.h5`
