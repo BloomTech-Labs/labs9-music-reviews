@@ -66,21 +66,8 @@ class App extends Component {
   };
   getToken = () => {
     const { cookies } = this.props;
-    // axios
-    //   .get(process.env.REACT_APP_TOKEN_URL)
-    //   .then(res => {
-    //     if (typeof this.props.cookies.get("access_token") == undefined) {
-    //       this.props.cookies.remove("access_token");
-    //       console.log("token removed");
-    //       this.getToken();
-    //     } else {
-    //       this.props.cookies.set("access_token", res.data.access_token);
-    //     }
-    //   })
-    //   .catch(err => console.log(err));
-    // 8aAWVO6hE5A0_9YuxqHYIL3Ixj-OXNcNlV9bJIrK22Q
     axios
-      .get("http://localhost:9000/spotify/token")
+      .get(`${process.env.REACT_APP_TOKEN_URL}`)
       .then(res => {
         if (
           typeof cookies.get("access_token") == undefined ||
