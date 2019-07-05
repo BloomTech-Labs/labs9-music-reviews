@@ -8,20 +8,20 @@ import HomePage from "./Components/HomePage";
 import LandingPage from "./Components/LandingPage/LandingPage";
 import SettingsPage from "./Components/Settings/SettingsPage";
 import SignUpPage from "./Components/Signup/SignUpPage";
-import ArtistPage from "./Components/ArtistPage/ArtistPage"
+import ArtistPage from "./Components/ArtistPage/ArtistPage";
 import LogInPage from "./Components/Login/LogInPage";
 import ForgotPasswordPage from "./Components/ForgotPassword/ForgotPasswordPage";
-import { Container } from "reactstrap";
+
 import axios from "axios";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
 import SearchResults from "./Components/Search/SearchResults";
-import { withAuthentication } from './Components/Session'
+import { withAuthentication } from "./Components/Session";
 import Footer from "./Components/Footer/Footer";
 import AboutUs from "./Components/Footer/AboutUs";
-import './index.css'
+import "./index.css";
 
-let refreshTime = 15*60*1000; // 15 mins
+let refreshTime = 45 * 60 * 1000; // 45 mins
 
 class App extends Component {
   static propTypes = {
@@ -38,15 +38,13 @@ class App extends Component {
       email: "",
       paidStatus: false,
       subscriptionExpiration: null,
-      nickname: "",
-    }
-    this.getToken = this.getToken.bind(this);
-    this.refreshToken = this.refreshToken.bind(this);
+      nickname: ""
+    };
   }
-  getUser = (email) => {
+  getUser = email => {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}users/get/${email}`)
-      .then((res) => {
+      .then(res => {
         this.setState(() => ({
           userID: res.data.userID,
           firebaseUID: res.data.firebaseUID,
@@ -56,60 +54,85 @@ class App extends Component {
           nickname: res.data.nickname,
           loaded: true,
           loading: false,
-          loggedIn: true,
+          loggedIn: true
         }));
       })
-      .catch((err) => this.setState({ loggedIn: false, loaded: false, loading: false }, console.log(err)));
-  }
+      .catch(err =>
+        this.setState(
+          { loggedIn: false, loaded: false, loading: false },
+          console.log(err)
+        )
+      );
+  };
   getToken = () => {
+    const { cookies } = this.props;
+    // axios
+    //   .get(process.env.REACT_APP_TOKEN_URL)
+    //   .then(res => {
+    //     if (typeof this.props.cookies.get("access_token") == undefined) {
+    //       this.props.cookies.remove("access_token");
+    //       console.log("token removed");
+    //       this.getToken();
+    //     } else {
+    //       this.props.cookies.set("access_token", res.data.access_token);
+    //     }
+    //   })
+    //   .catch(err => console.log(err));
+    // 8aAWVO6hE5A0_9YuxqHYIL3Ixj-OXNcNlV9bJIrK22Q
     axios
-      .get(process.env.REACT_APP_TOKEN_URL)
+      .get("http://localhost:9000/spotify/token")
       .then(res => {
-        if ( typeof this.props.cookies.get("access_token") == undefined ){
-          this.props.cookies.remove("access_token")
-          console.log("token removed")
+        if (
+          typeof cookies.get("access_token") == undefined ||
+          cookies.get("access_token") === null
+        ) {
+          cookies.remove("access_token");
           this.getToken();
         } else {
-          this.props.cookies.set("access_token", res.data.access_token)
+          cookies.set("access_token", res.data.access_token);
         }
       })
       .catch(err => console.log(err));
   };
   refreshToken = () => {
     this.props.cookies.remove("access_token");
-    axios.get(process.env.REACT_APP_REFRESH_TOKEN_URL)
-      .then( res => {
-        this.props.cookies.set('access_token', res.data.access_token)
-        console.log("Token Refreshed")
+    axios
+      .get(process.env.REACT_APP_REFRESH_TOKEN_URL)
+      .then(res => {
+        this.props.cookies.set("access_token", res.data.access_token);
       })
-      .catch( err => console.log(err) )
-  }
+      .catch(err => console.log(err));
+  };
   changeLoginState = () => {
-    if (this.state.loggedIn === false){
+    if (this.state.loggedIn === false) {
       this.setState({ loggedIn: true });
     } else {
-      this.setState({ loggedIn: false })
+      this.setState({ loggedIn: false });
     }
-  }
-  componentDidMount(){
+  };
+  componentDidMount() {
     this.setState({ loading: true }, () => {
       //when component mounts
       //check to see if there is a user that has been authenticated
-      this.props.firebase.auth.onAuthStateChanged((user) => {
+      this.props.firebase.auth.onAuthStateChanged(user => {
         // if there has been make a call to our own database to find user
         if (user) {
           //if successful set state with details of the user
           const email = user.email;
-          this.getUser(email)
+          this.getUser(email);
         } else {
           this.setState({ loggedIn: false, loaded: false, loading: false });
           //no user so data has been loaded since there was none to be found.
         }
-      })
+      });
     });
     this.getToken();
-    setInterval(this.refreshToken, refreshTime);
+    setInterval(this.getToken, refreshTime);
   }
+  componentWillUnmount() {
+    clearInterval();
+  }
+
   render() {
     return (
       <wrapper class="d-flex flex-column">
@@ -119,50 +142,76 @@ class App extends Component {
           userID={this.state.userID}
         />
         <main className="container-fluid py-3 flex-fill">
-        <Route exact path="/" component={LandingPage} />
-        <Route path="/home" component={HomePage} />
-        <Route path="/about-us" component={AboutUs} />
-        <Route path="/user/settings" render={(props) => 
-          <SettingsPage {...props} 
-            subscriptionExpiration={this.state.subscriptionExpiration}
-            userID={this.state.userID}
-            nickname={this.state.nickname}
-          /> 
-          }
-        />
-        <Route path="/signup" render={(props) =>
-          <SignUpPage {...props} changeLogInState={this.changeLoginState} /> }
-        />
-        <Route path="/login" render={(props) => 
-          <LogInPage {...props} changeLogInState={this.changeLoginState} /> }
-        />
-        <Route path="/forgot_password" component={ForgotPasswordPage} />
-        <Route path="/search"  render={(props) => 
-          <SearchResults {...props} loggedIn={this.state.loggedIn} /> }/>
-        <Route
-          path="/albums/:id"
-          render={props => (
-            <AlbumReviewsPage {...props} userID={this.state.userID} nickname={this.state.nickname}/>
-          )}
-        />
-        <Route
-          path="/tracks/:id"
-          render={props => (
-            <TrackReviewsPage {...props} userID={this.state.userID} nickname={this.state.nickname}/>
-          )}
-        />
-        <Route
-          path="/artists/:id"
-          render={props => (
-            <ArtistPage {...props} userID={this.state.userID}/>
-          )}
-        />
-        <Route
-          path="/user/reviews/:id"
-          render={props => (
-            <UserReviewList {...props} loggedIn={this.state.loggedIn} userID={this.state.userID} nickname={this.state.nickname}/>
-          )}
-        />
+          <Route exact path="/" component={LandingPage} />
+          <Route path="/home" component={HomePage} />
+          <Route path="/about-us" component={AboutUs} />
+          <Route
+            path="/user/settings"
+            render={props => (
+              <SettingsPage
+                {...props}
+                subscriptionExpiration={this.state.subscriptionExpiration}
+                userID={this.state.userID}
+                nickname={this.state.nickname}
+              />
+            )}
+          />
+          <Route
+            path="/signup"
+            render={props => (
+              <SignUpPage {...props} changeLogInState={this.changeLoginState} />
+            )}
+          />
+          <Route
+            path="/login"
+            render={props => (
+              <LogInPage {...props} changeLogInState={this.changeLoginState} />
+            )}
+          />
+          <Route path="/forgot_password" component={ForgotPasswordPage} />
+          <Route
+            path="/search"
+            render={props => (
+              <SearchResults {...props} loggedIn={this.state.loggedIn} />
+            )}
+          />
+          <Route
+            path="/albums/:id"
+            render={props => (
+              <AlbumReviewsPage
+                {...props}
+                userID={this.state.userID}
+                nickname={this.state.nickname}
+              />
+            )}
+          />
+          <Route
+            path="/tracks/:id"
+            render={props => (
+              <TrackReviewsPage
+                {...props}
+                userID={this.state.userID}
+                nickname={this.state.nickname}
+              />
+            )}
+          />
+          <Route
+            path="/artists/:id"
+            render={props => (
+              <ArtistPage {...props} userID={this.state.userID} />
+            )}
+          />
+          <Route
+            path="/user/reviews/:id"
+            render={props => (
+              <UserReviewList
+                {...props}
+                loggedIn={this.state.loggedIn}
+                userID={this.state.userID}
+                nickname={this.state.nickname}
+              />
+            )}
+          />
         </main>
         <Footer loggedIn={this.state.loggedIn} />
       </wrapper>
