@@ -186,9 +186,9 @@ router.get("/token", (req, res) => {
     access_token: access_token
   });
 
-  res.send({
-    access_token: access_token
-  });
+  // res.send({
+  //   access_token: access_token
+  // });
 });
 
 module.exports = router;
