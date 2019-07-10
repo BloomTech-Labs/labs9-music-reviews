@@ -169,26 +169,14 @@ router.get("/token", (req, res) => {
   request.post(authOptions, (err, res, body) => {
     if (!err && res.statusCode === 200) {
       access_token = body.access_token;
-
-      let options = {
-        url: "https://api.spotify.com/v1/users/me",
-        headers: {
-          Authorization: "Bearer " + access_token
-        },
-        json: true
-      };
     }
   });
 
   res.cookie("access_token", access_token);
 
-  res.status(200).json({
+  res.send({
     access_token: access_token
   });
-
-  // res.send({
-  //   access_token: access_token
-  // });
 });
 
 module.exports = router;
