@@ -74,19 +74,8 @@ class App extends Component {
           cookies.get("access_token") === null
         ) {
           cookies.remove("access_token");
-          this.getToken();
-        } else {
-          cookies.set("access_token", res.data.access_token);
         }
-      })
-      .catch(err => console.log(err));
-  };
-  refreshToken = () => {
-    this.props.cookies.remove("access_token");
-    axios
-      .get(process.env.REACT_APP_REFRESH_TOKEN_URL)
-      .then(res => {
-        this.props.cookies.set("access_token", res.data.access_token);
+        cookies.set("access_token", res.data.access_token);
       })
       .catch(err => console.log(err));
   };
