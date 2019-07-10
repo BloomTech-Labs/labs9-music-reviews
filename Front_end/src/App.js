@@ -69,12 +69,7 @@ class App extends Component {
     axios
       .get(`${process.env.REACT_APP_TOKEN_URL}`)
       .then(res => {
-        if (
-          typeof cookies.get("access_token") == undefined ||
-          cookies.get("access_token") === null
-        ) {
-          cookies.remove("access_token");
-        }
+        if (cookies.cookies.access_token) cookies.remove("access_token");
         cookies.set("access_token", res.data.access_token);
       })
       .catch(err => console.log(err));
