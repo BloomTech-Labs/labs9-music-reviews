@@ -69,7 +69,7 @@ class App extends Component {
     axios
       .get(`${process.env.REACT_APP_TOKEN_URL}`)
       .then(res => {
-        if (cookies.cookies.access_token) cookies.remove("access_token");
+        if (cookies.access_token) cookies.remove("access_token");
         cookies.set("access_token", res.data.access_token);
       })
       .catch(err => console.log(err));
@@ -102,6 +102,7 @@ class App extends Component {
   }
   componentWillUnmount() {
     clearInterval();
+    this.props.cookies.remove("access_token");
   }
 
   render() {
