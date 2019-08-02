@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Ratings from "react-ratings-declarative";
-import styled from "styled-components";
 
 class ViewStars extends Component {
   render() {

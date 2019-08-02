@@ -12,7 +12,6 @@ import {
 const cardStyle = {
   maxWidth: "12rem",
   textAlign: 'left',
-  border: 'none',
   textDecoration: "none",
   border: "2px solid #984b43",
   background: "#233237",
@@ -28,11 +27,11 @@ class AlbumCard extends Component {
         <Card style={ cardStyle }>
           <CardImg
             top
-            width="100%"
+            style={{ height: "60%" }}
             src={this.props.image}
             alt={this.props.alt}
           />
-          <CardBody>
+          <CardBody style={{ height: "40%" }}>
             <CardTitle style={{ fontWeight: "650" }}>
               Album:
             </CardTitle>

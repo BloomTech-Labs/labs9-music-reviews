@@ -4,12 +4,16 @@ import axios from "axios";
 import { Row, Col, Container, CardImg } from "reactstrap";
 import AlbumProfileReviewCard from "./AlbumProfileReviewCard";
 import TrackProfileReviewCard from "./TrackProfileReviewCard";
+import { withAuthorization } from "../Session";
 
 const Sidebar = styled.div`
   position: fixed;
   margin-top: 15px;
   left: 10%;
   height: 350px;
+  width: 20%;
+  max-width: 500px;
+  min-width: 200px;
   z-index: 1;
   display: flex;
   flex-direction: column;
@@ -18,8 +22,10 @@ const Sidebar = styled.div`
   background-color: #233237;
   border-radius: 10px;
   @media (max-width: 768px) {
-    position: relative;
-    left: 0;
+    position: static;
+    margin: 20px auto 0;
+    width: 50%;
+    min-width: 280px;
   }
 `;
 
@@ -96,10 +102,8 @@ class UserReviewList extends Component {
     const userTrackReviews = this.state.trackReviews.filter(review => {
       return review.userID === parseInt(this.props.match.params.id);
     });
-    console.log(this.props.match.params.id);
-    console.log(this.state.nickname);
     return (
-      <Fragment>
+      
         <Container
           fluid={true}
           style={{
@@ -107,9 +111,10 @@ class UserReviewList extends Component {
             flexWrap: "wrap",
             justifyItems: "space-around",
             margin: "0 auto",
-            paddingTop: "10rem", 
+            paddingTop: "10rem",
             fontFamily: "Lato",
-            color: "#984B43"
+            color: "#984B43",
+            maxWidth: "1600px"
           }}
         >
           <Col xs="12" md="4">
@@ -128,7 +133,7 @@ class UserReviewList extends Component {
               </Row>
 
               <div style={{ alignSelf: "center" }}>
-                <h3 style={{ fontFamily: 'Merriweather Sans, sans-serif'}}>
+                <h3 style={{ fontFamily: "Merriweather Sans, sans-serif" }}>
                   <strong>{this.state.nickname}</strong>
                 </h3>
               </div>
@@ -142,37 +147,42 @@ class UserReviewList extends Component {
               </div>
             </Sidebar>
           </Col>
-          {userAlbumReviews.length + userTrackReviews.length === 0 ? 
-          <Col xs="12" md="8" style={{ fontFamily: "Merriweather Sans", margin: "20px 0"}}>
-            <h3>You have no reviews. Please go write some reviews!</h3>
-          </Col>
-          :
-          <Col xs="12" md="8">
-          {userAlbumReviews.map(review => (
-            <AlbumProfileReviewCard
-              review={review}
-              loggedIn={this.props.loggedIn}
-              userID={this.props.userID}
-              key={review.id}
-              nickname={this.props.nickname}
-            />
-          ))}
-          {userTrackReviews.map(review => (
-            <TrackProfileReviewCard
-              review={review}
-              loggedIn={this.props.loggedIn}
-              userID={this.props.userID}
-              key={review.id}
-              nickname={this.props.nickname}
-            />
-          ))}
-        </Col>
-        }
-          
+          {userAlbumReviews.length + userTrackReviews.length === 0 ? (
+            <Col
+              xs="12"
+              md="8"
+              style={{ fontFamily: "Merriweather Sans", margin: "20px 0" }}
+            >
+              <h3>You have no reviews. Please go write some reviews!</h3>
+            </Col>
+          ) : (
+            <Col xs="12" md="8">
+              {userAlbumReviews.map(review => (
+                <AlbumProfileReviewCard
+                  review={review}
+                  loggedIn={this.props.loggedIn}
+                  userID={this.props.userID}
+                  key={review.id}
+                  nickname={this.props.nickname}
+                />
+              ))}
+              {userTrackReviews.map(review => (
+                <TrackProfileReviewCard
+                  review={review}
+                  loggedIn={this.props.loggedIn}
+                  userID={this.props.userID}
+                  key={review.id}
+                  nickname={this.props.nickname}
+                />
+              ))}
+            </Col>
+          )}
         </Container>
-      </Fragment>
     );
   }
 }
 
-export default UserReviewList;
+// export default UserReviewList;
+const condition = authUser => !!authUser;
+export default withAuthorization(condition)(UserReviewList);
+

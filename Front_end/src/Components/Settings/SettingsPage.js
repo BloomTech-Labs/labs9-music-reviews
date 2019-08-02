@@ -1,12 +1,11 @@
 import React from 'react';
 import { FirebaseContext } from '../Firebase';
-import SettingsContent from './SettingsContent';
-import { withAuthorization } from '../../Components/Session';
 import styled from 'styled-components';
+import SettingsContent from './SettingsContent';
+import { withAuthorization } from '../Session';
 
 const SettingsContainer = styled.div`
-  height: 100vh;
-  padding-top: 10rem
+  padding-top: 8rem;
   div {
     text-align: center;
     p {
@@ -19,8 +18,16 @@ class SettingsPage extends React.Component {
   render() {
     return (
       <SettingsContainer>
+        <h1 style={{ margin: "0 auto", textAlign: "center", color: "#984b43", fontFamily: "Merriweather Sans", fontWeight: "700" }}>
+          Account Settings
+        </h1>
         <FirebaseContext.Consumer>
-          {(firebase) => <SettingsContent firebase={firebase} subscriptionExpiration={this.props.subscriptionExpiration} />}
+          {(firebase) => <SettingsContent 
+            firebase={firebase} 
+            subscriptionExpiration={this.props.subscriptionExpiration}
+            userID={this.props.userID}
+            nickname={this.props.nickname}
+          />}
         </FirebaseContext.Consumer>
       </SettingsContainer>
     );

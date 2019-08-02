@@ -4,8 +4,9 @@ import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
 import NewReleaseCard from './NewReleaseCard';
 import { Container } from 'reactstrap';
+import {withAuthorization} from '../Session'
 
-const url = 'https://api.spotify.com/v1/search?q=tag%3Anew&type=album';
+const url = 'https://api.spotify.com/v1/browse/new-releases';
 
 class Newest extends Component {
     static propTypes = {
@@ -37,12 +38,22 @@ componentDidMount() {
             var msec = Date.parse(date);
             var d = new Date(msec);
             return d.toString().split("G",1)[0].slice(3,15);
-        }
+        }        
+
+        function getUnique(arr, comp) {
+            const unique = arr
+                .map(e => e[comp])
+                .map((e, i, final) => final.indexOf(e) === i && i)  // store the keys of the unique objects
+                .filter(e => arr[e]).map(e => arr[e]);              // eliminate the dead keys & store unique objects
+             return unique;
+          }
+          
+
         const renderData = this.state.data.map(album => {
-            return album.artists.map((artist, index) => {
+            return getUnique(album.artists.map(artist => {
               return (
                     <NewReleaseCard
-                        key = {index} 
+                        key = {album.id} 
                         album = {album.name}
                         artist = {artist.name}
                         date = {dateConverter(album.release_date)}
@@ -50,14 +61,14 @@ componentDidMount() {
                         id = {album.id}
                     />
               )
-        })
-    })
+            }), 'id')
+        }).sort((a,b) => { return new Date(b[0]['props']['date']) - new Date(a[0]['props']['date']) });
 
         return (
             <Container md="3" xs="12" style={{
                         overflow: "hidden",
                         textAlign: "center",
-                        padding: "2rem 1rem 0 1rem",
+                        padding: "2rem 0",
                         margin: "0 auto",
                         fontFamily: "Lato"
                     }}
@@ -81,3 +92,4 @@ componentDidMount() {
 }
  
 export default withCookies(Newest);
+

@@ -2,7 +2,8 @@
     #left {
         position: fixed;
         top: 10rem;
-        bottom: 0;
+        bottom: 0rem;
+        padding-bottom: 5rem;
     }
 }
 
@@ -12,18 +13,8 @@
     visibility: hidden;
   }
   
-  .scrollbox-content,
-  .scrollbox:hover,
-  .scrollbox:focus {
+  .scrollbox-content {
     visibility: visible;
-  }
-  
-  .scrollbox_delayed {
-    transition: visibility 0.2s;
-  }
-  
-  .scrollbox_delayed:hover {
-    transition: visibility 0s 0.2s;
   }
 
   .but {
@@ -70,4 +61,8 @@
 
 .link:visited:hover {
   color:  #984B43;
+}
+
+.album-art:hover{
+  box-shadow: 0 0 10px 10px #eac67a;
 }

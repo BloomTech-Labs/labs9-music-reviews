@@ -10,17 +10,11 @@ import {
   Input,
   Row
 } from 'reactstrap';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import './Signup.css'
-import * as ROUTES from '../../constants/routes/routes'
 import {FirebaseContext } from '../Firebase';
 import LogInWithGoogle from '../Login/LogInWithGoogle';
 
-const SignUpPage = () => (
-  <div>
-    <SignUpForm/>
-  </div>
-)
 class SignUpForm extends React.Component {
   constructor(props) {
     super(props);
@@ -50,19 +44,20 @@ class SignUpForm extends React.Component {
           this.props.firebase.auth
           .onAuthStateChanged((user) => {
             if (user) {
-                user.getIdToken().then((idToken) => {
-                    axios
-                    .post(
-                      `${process.env.REACT_APP_BACKEND_URL}users/create`,
-                      {
-                        token: idToken,
-                      }
-                      )
-                      .then((res) => {
-                        window.location.href="https://labs9carreviews.netlify.com/home"
-                      })
-                      .catch((err) => console.log(err));
-                  });
+              user.getIdToken().then((idToken) => {
+                  axios
+                  .post(
+                    `${process.env.REACT_APP_BACKEND_URL}users/create`,
+                    {
+                      token: idToken,
+                    }
+                    )
+                    .then((res) => {
+                      this.props.changeLogInState();
+                      this.props.history.push('/home');
+                    })
+                    .catch((err) => console.log(err));
+                });
               }}
             )
             .catch((err) => console.log(err));
@@ -82,11 +77,11 @@ class SignUpForm extends React.Component {
   };
   render() {
     return (
-      <Container fluid style={{ position: "relative", top: "12rem" }}>
+      <Container fluid style={{ paddingTop: "12rem" }}>
       <Row className='justify-content-center'>
-      <Col xl={6} lg={6} md={6} sm={6}>
+      <Col>
         <h2 style ={{ color: "#984B43", fontFamily:'merriweather sans'}}>Sign Up</h2>
-        <Form className = 'pt-5 pb-5 align-items-center' style={{ border: "2px solid #eac67a", borderRadius: '1rem', backgroundColor: 'rgba(35, 50, 55, 1)' }}>
+        <Form className = 'pt-5 pb-5 align-items-center' style={{ border: "2px solid #eac67a", borderRadius: '1rem', backgroundColor: 'rgba(35, 50, 55, 1)', color: 'rgb(234, 198, 122)' }}>
           <Col sm={10}>
             <FormGroup>
               <Label>Email</Label>
@@ -96,7 +91,6 @@ class SignUpForm extends React.Component {
                 value={this.state.email}
                 onChange={this.onChangeHandler}
                 placeholder="Email Address"
-                // style = {{backgroundColor: '#eac67a', color: '#984b43'}}
               />
             </FormGroup>
           </Col>
@@ -109,7 +103,6 @@ class SignUpForm extends React.Component {
                 value={this.state.password}
                 onChange={this.onChangeHandler}
                 placeholder="Password"
-                // style = {{backgroundColor: '#eac67a', color: '#984b43'}}
               />
             </FormGroup>
           </Col>
@@ -126,20 +119,23 @@ class SignUpForm extends React.Component {
               />
             </FormGroup>
           </Col>
-          <div className="btn-container" style={{display: 'flex', flexDirection:'column', alignItem: 'center', margin:'10px'}}>
+          <div className="container d-flex flex-column mt-3" style={{textAlign: 'center'}} >
+          <Col>
             <Button
               onClick={this.onSubmitHandler}
               style={{backgroundColor: '#eac67a', color: '#984b43', fontWeight: '650'}}
             >
               Sign Up
             </Button>
+            </Col>
+            <Col>
             <Button 
                   color= 'link'
                   style = {{color: '#eac67a', fontWeight: '200', padding: "1.5rem" }}
                   onClick={() => this.props.history.push('/login')}>
                           Have an account?
             </Button>
-
+            </Col>
             <FirebaseContext.Consumer>
               {(firebase) => <LogInWithGoogle firebase={firebase} changeLogInState={this.props.changeLogInState} />}
             </FirebaseContext.Consumer>

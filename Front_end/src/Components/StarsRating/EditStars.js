@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import axios from "axios";
 import Ratings from 'react-ratings-declarative'
 
 class Stars extends Component {
@@ -18,7 +17,6 @@ class Stars extends Component {
     this.setState({
       rating: newRating,
     }, () => this.props.updateRating(this.state.rating))
-    console.log("Child Rating", this.state.rating);
   }
 
   render() {

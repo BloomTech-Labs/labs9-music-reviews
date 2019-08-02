@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import { withCookies, Cookies } from 'react-cookie';
-import { NavLink } from 'react-router-dom';
 import { instanceOf } from 'prop-types';
-import { Row, Col, Card, CardImg, CardTitle, Container } from 'reactstrap';
+import { Container } from 'reactstrap';
 import PopularTracksCard from './PopularTracksCard';
+
 
 const url = 'https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF';
  // TOP50 most playable tracks in the world
@@ -35,20 +35,18 @@ class PopularTracks extends Component {
 
     render() {
         const renderData = this.state.data.map(data => {
-                            return data.track.artists.map(artist => {
-                                if (data.track.popularity > 95) {
-                                return data.track.album.images.length === 0 ? null : 
-                                        <PopularTracksCard
-                                            key = {data.track.id}
-                                            id = {data.track.album.id}
-                                            image = {data.track.album.images[0].url}
-                                            alt = "Album Art"
-                                            artist = {data.track.artists[0].name}
-                                            track={data.track.name}
-                                        />
-                                }
+                                if (data.track.popularity > 90) {
+                                    return data.track.album.images.length === 0 ? null : 
+                                            <PopularTracksCard
+                                                key = {data.track.id}
+                                                id = {data.track.album.id}
+                                                image = {data.track.album.images[0].url}
+                                                alt = "Album Art"
+                                                artist = {data.track.artists[0].name}
+                                                track={data.track.name}
+                                            />
+                                    }
                             })
-                        })
         return (
             <Container md="3" xs="12" style={{
                     overflow: "hidden",
@@ -75,5 +73,5 @@ class PopularTracks extends Component {
          );
     }
 }
- 
+
 export default withCookies(PopularTracks);

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container,Col, Button, Form, FormGroup, Label,  Input,  Card,  Row } from 'reactstrap';
+import {Container,Col, Button, Form, FormGroup, Label,  Input, Row } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
 import { FirebaseContext } from '../Firebase';
 import LogInWithGoogle from './LogInWithGoogle';
@@ -24,7 +24,7 @@ class LogInForm extends React.Component {
         .doSignInWithEmailAndPassword(this.state.email, this.state.password)
         .then((authUser) => {
           this.props.changeLogInState();
-          window.location.href="https://labs9carreviews.netlify.com/home"
+          window.location.href=`${process.env.REACT_APP_FRONTEND_URL}home`
         })
         .catch((error) => {
           this.setState({ error });
@@ -39,11 +39,11 @@ class LogInForm extends React.Component {
   };
   render() {
     return (
-      <Container fluid style={{ position: "relative", top: "10rem" }}>
+      <Container fluid style={{ paddingTop: "12rem" }}>
         <Row className='justify-content-center'>
-          <Col xl={6} lg={6} md={6} sm={6}>
+          <Col>
           <h2 style ={{ color: "#984B43", fontFamily:'merriweather sans'}}>Log In</h2>
-                <Form className = 'pt-5 pb-5 align-items-center' style={{ border: "2px solid #eac67a", borderRadius: '1rem', backgroundColor: 'rgba(35, 50, 55, 1)' }}>
+                <Form className = 'pt-5 pb-5 align-items-center' style={{ border: "2px solid #eac67a", borderRadius: '1rem', backgroundColor: 'rgba(35, 50, 55, 1)', color: 'rgb(234, 198, 122)' }}>
                   <FirebaseContext.Consumer>
                     {(firebase) => <LogInWithGoogle firebase={firebase} changeLogInState={this.props.changeLogInState} />}
                   </FirebaseContext.Consumer>

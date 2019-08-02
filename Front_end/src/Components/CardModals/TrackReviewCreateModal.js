@@ -1,8 +1,7 @@
 import React, { Fragment } from "react";
 import axios from "axios";
 import { instanceOf } from "prop-types";
-import styled from "styled-components";
-import { withCookies, Cookies } from "react-cookie";
+import { Cookies } from "react-cookie";
 import { Button, Modal, ModalBody, Col, Row } from "reactstrap";
 import EditStars from "../StarsRating/EditStars";
 import "./modals.css";
@@ -90,7 +89,6 @@ class TrackReviewCreateModal extends React.Component {
     });
   }
   render() {
-    console.log(this.props.trackId);
     return (
       <Fragment>
         <Button
@@ -150,7 +148,7 @@ class TrackReviewCreateModal extends React.Component {
             </Col>
           </Row>
           <div className="container center-align" style={{ margin: "0 auto" }}>
-            <div style={{ textAlign: "center" }}>Set Star Rating</div>
+            <div style={{ textAlign: "center", color: "rgb(234, 198, 122)"  }}>Select Star Rating</div>
             <Row style={{ justifyContent: "center", margin: "5px 0" }}>
               <EditStars
                 rating={this.state.rating}
@@ -158,7 +156,7 @@ class TrackReviewCreateModal extends React.Component {
               />
             </Row>
             <div>
-              <div style={{ margin: "5px 0" }}>Write Review</div>
+              <div style={{ margin: "5px 0", color: "rgb(234, 198, 122)" }}>Write Review</div>
               <textarea
                 onChange={this.handleEditChange}
                 name="review"
@@ -177,8 +175,8 @@ class TrackReviewCreateModal extends React.Component {
                 this.toggleAll();
               }}
               style={{
-                color: "#EAC67A",
-                backgroundColor: "#984B43",
+                color: "#984B43",
+                backgroundColor: "#eac67a",
                 fontWeight: "650"
               }}
             >

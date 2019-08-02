@@ -33,7 +33,7 @@ class SubInfoModal extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{ textAlign: "left" }}>
         <Button
           outline
           color="info"
@@ -45,7 +45,7 @@ class SubInfoModal extends React.Component {
             fontWeight: "700",
             border: "none",
             padding: "1rem",
-            margin: "2rem",
+            margin: "1.5rem 0",
             background: "#eac67a",
             color: "#984b43"
           }}
@@ -59,19 +59,7 @@ class SubInfoModal extends React.Component {
           className={this.props.className}
           style={{ maxWidth: "600px" }}
         >
-          <Row>
-            <Col xs="6">
-              <ModalBody style={{ textAlign: "center" }}><h3>Free User</h3></ModalBody>
-              <ModalBody>
-                <ListGroup>
-                  <Ul><i class="fas fa-check" style={{ padding: "0 1rem" }}></i>Read Reviews</Ul>
-                  <Ul><i class="fas fa-check" style={{ padding: "0 1rem" }}></i>Search Music</Ul>
-                  <Ul><i class="fas fa-check" style={{ padding: "0 1rem" }}></i>Play Music Snippet</Ul>
-                  <Ul><i class="fas fa-times" style={{ padding: "0 1rem" }}></i>Write Reviews</Ul>
-                  <Ul><i class="fas fa-times" style={{ padding: "0 1rem" }}></i>Like Reviews</Ul>
-                </ListGroup>
-              </ModalBody>
-            </Col>
+          <Row style={{ color: "#eac67a"}}>
             <Col xs="6">
               <ModalBody style={{ textAlign: "center" }}><h3>Subscriber</h3></ModalBody>
               <ModalBody>
@@ -80,7 +68,19 @@ class SubInfoModal extends React.Component {
                   <Ul><i class="fas fa-check" style={{ padding: "0 1rem" }}></i>Search Music</Ul>
                   <Ul><i class="fas fa-check" style={{ padding: "0 1rem" }}></i>Play Music Snippet</Ul>
                   <Ul><i class="fas fa-check" style={{ padding: "0 1rem" }}></i>Write Reviews</Ul>
-                  <Ul><i class="fas fa-check" style={{ padding: "0 1rem" }}></i>Like Reviews</Ul>
+                  {/* <Ul><i class="fas fa-check" style={{ padding: "0 1rem" }}></i>Like Reviews</Ul> */}
+                </ListGroup>
+              </ModalBody>
+            </Col>
+            <Col xs="6">
+              <ModalBody style={{ textAlign: "center" }}><h3>Free User</h3></ModalBody>
+              <ModalBody>
+                <ListGroup>
+                  <Ul><i class="fas fa-check" style={{ padding: "0 1rem" }}></i>Read Reviews</Ul>
+                  <Ul><i class="fas fa-check" style={{ padding: "0 1rem" }}></i>Search Music</Ul>
+                  <Ul><i class="fas fa-check" style={{ padding: "0 1rem" }}></i>Play Music Snippet</Ul>
+                  <Ul><i class="fas fa-times" style={{ padding: "0 1rem" }}></i>Write Reviews</Ul>
+                  {/* <Ul><i class="fas fa-times" style={{ padding: "0 1rem" }}></i>Like Reviews</Ul> */}
                 </ListGroup>
               </ModalBody>
             </Col>

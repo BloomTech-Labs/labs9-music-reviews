@@ -6,6 +6,7 @@ import axios from "axios";
 import { NavLink } from "react-router-dom";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
+import {withAuthorization} from '../Session'
 
 class TrackProfileReviewCard extends Component {
   static propTypes = {
@@ -28,7 +29,6 @@ class TrackProfileReviewCard extends Component {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(res => {
-        console.log(res.data);
         this.setState({
           track: res.data.name,
           album: res.data.album.name,
@@ -49,8 +49,6 @@ class TrackProfileReviewCard extends Component {
   }
 
   render() {
-    console.log(this.props.review.spotifyTrackID);
-    console.log(this.state.track);
     return (
       <Fragment>
         <Container>
@@ -139,7 +137,7 @@ class TrackProfileReviewCard extends Component {
                 <p style={{ padding: "0 20px", color: "#EAC67A" }}>
                   Written: {this.props.review.dateCreated}
                 </p>
-                {this.props.review.dateCreated != this.props.review.dateModified ? <i>(edited)</i> : null}
+                {this.props.review.dateCreated !== this.props.review.dateModified ? <i>(edited)</i> : null}
               </Row>
               <Row>
                 <div align="left">
@@ -155,3 +153,4 @@ class TrackProfileReviewCard extends Component {
 }
 
 export default withCookies(TrackProfileReviewCard);
+

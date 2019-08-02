@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import axios from "axios";
 import { instanceOf } from "prop-types";
-import { withCookies, Cookies } from "react-cookie";
+import { Cookies } from "react-cookie";
 import { Button, Modal, ModalBody, Col, Row } from "reactstrap";
 import EditStars from "../StarsRating/EditStars";
 import "./modals.css";
@@ -160,7 +160,7 @@ class AlbumReviewCreateModal extends React.Component {
             </Col>
           </Row>
           <div className="container center-align" style={{ margin: "0 auto" }}>
-            <div style={{ textAlign: "center" }}>Set Star Rating</div>
+            <div style={{ textAlign: "center", color: "rgb(234, 198, 122)" }}>Select Star Rating</div>
             <Row style={{ justifyContent: "center", margin: "5px 0" }}>
               <EditStars
                 rating={this.state.rating}
@@ -168,7 +168,7 @@ class AlbumReviewCreateModal extends React.Component {
               />
             </Row>
             <div>
-              <div style={{ margin: "5px 0" }}>Write Review</div>
+              <div style={{ margin: "5px 0", color: "rgb(234, 198, 122)" }}>Write Review</div>
               <textarea
                 onChange={this.handleEditChange}
                 name="review"

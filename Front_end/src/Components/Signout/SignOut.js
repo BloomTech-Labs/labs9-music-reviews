@@ -1,18 +1,20 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
 const SignOutAnchor = styled.a`
   cursor: pointer;
-  color: #984B43 !important;
-`;
+  padding: 0;
+  margin: 0;
+`
 
 const SignOut = (props) => (
   <SignOutAnchor onClick={() => {
-    props.firebase.doSignOut()
-    props.signout()
+    props.firebase.doSignOut();
   }}>
-    Sign Out
+    <SignOutAnchor onClick={props.signout}>
+      Sign Out
+    </SignOutAnchor>
   </SignOutAnchor>
-);
+)
 
-export default SignOut;
+export default SignOut

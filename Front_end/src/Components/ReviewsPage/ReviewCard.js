@@ -1,11 +1,11 @@
-import React, { Component, Fragment } from "react";
-import styled from "styled-components";
-import { Container, Row, Col, Jumbotron, CardImg, Button } from "reactstrap";
+import React, { Component } from "react";
+import { Row, Col, Jumbotron } from "reactstrap";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import ViewStars from "../StarsRating/ViewStars";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
+
 
 class AlbumReviewCard extends Component {
   static propTypes = {
@@ -17,7 +17,7 @@ class AlbumReviewCard extends Component {
       users: [],
       nickname: "",
       albumReviews: [],
-      trackReviews: []
+      trackReviews: [],
     };
   }
 
@@ -72,7 +72,6 @@ class AlbumReviewCard extends Component {
       })
       .catch(err => console.log(err));
   }
-
   componentDidMount() {
     this.getUser();
     this.getNickname(this.props.review.userID);
@@ -99,7 +98,8 @@ class AlbumReviewCard extends Component {
             this.props.albumReview === true
               ? "3px solid #984B43"
               : "3px solid #EAC67A",
-          borderRadius: "10px"
+          borderRadius: "10px",
+          maxWidth: "1200px"
         }}
       >
         {/* User info */}
@@ -113,7 +113,7 @@ class AlbumReviewCard extends Component {
             <div>
               <img
                 src={require("../../Images/defaultUser.png")}
-                alt="Default profile image"
+                alt="Default profile"
                 style={{
                   width: "100%",
                   maxWidth: "200px"
@@ -128,8 +128,8 @@ class AlbumReviewCard extends Component {
                 <strong>{this.state.nickname}</strong>
               </NavLink>
             </div>
-            <div>Member status</div>
-            <div>
+            {/* <div>Member status</div> */}
+            <div style={{color: 'rgb(234, 198, 122)'}}>
               <strong>Reviews: </strong>
               {userAlbumReviews.length + userTrackReviews.length}
             </div>
@@ -140,16 +140,20 @@ class AlbumReviewCard extends Component {
                 <ViewStars rating={this.props.review.rating} />
               </Col>
               <Col sm="12" md="6">
-                <p style={{ margin: "auto" }}>
+                <p style={{ margin: "auto", color: 'rgb(234, 198, 122)' }}>
                   Written: {this.props.review.dateCreated}
                 </p>
               </Col>
             </Row>
             <Row>
-              <Col>
+              <Col style={{color: 'rgb(234, 198, 122)'}}>
                 <p>{this.props.review.review}</p>
               </Col>
             </Row>
+            {/* <Row style={{ display: "flex", justifyContent: "flex-end" }}>
+              <i className={ liked } style={ iconStyle } onClick={this.likeReview} />
+              <i className={ disliked } style={ iconStyle } onClick={this.dislikeReview} />
+            </Row> */}
           </Col>
         </Row>
       </Jumbotron>
@@ -158,3 +162,4 @@ class AlbumReviewCard extends Component {
 }
 
 export default withCookies(AlbumReviewCard);
+

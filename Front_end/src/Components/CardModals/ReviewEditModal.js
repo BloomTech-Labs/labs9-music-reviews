@@ -107,7 +107,6 @@ class ReviewEditModal extends React.Component {
     let month = currentDate.getMonth();
     let year = currentDate.getFullYear();
     let dateString = month + 1 + "/" + date + "/" + year;
-    console.log(dateString);
     this.setState({ dateModified: dateString });
   }
 
@@ -164,7 +163,7 @@ class ReviewEditModal extends React.Component {
             </Col>
           </Row>
           <div class="container center-align" style={{ margin: "10px auto" }}>
-            <div style={{ textAlign: "center" }}>Set Star Rating</div>
+            <div style={{ textAlign: "center" }}>Select Star Rating</div>
             <Row style={{ justifyContent: "center", margin: "0 auto" }}>
               {/* Editable Star Rating  */}
               <EditStars
